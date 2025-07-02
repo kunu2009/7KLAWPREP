@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -18,12 +19,14 @@ import {
   Search,
   LineChart,
   Scale,
-  FileText
+  FileText,
+  Layers,
 } from "lucide-react";
 
 const menuItems = [
   { href: "/", label: "Daily MCQs", icon: LayoutDashboard },
   { href: "/notes", label: "Topic Notes", icon: BookText },
+  { href: "/flashcards", label: "Flashcards", icon: Layers },
   { href: "/planner", label: "Study Planner", icon: CalendarClock },
   { href: "/progress", label: "Progress Tracker", icon: LineChart },
   { href: "/summarizer", label: "Summarizer", icon: FileText },
@@ -46,10 +49,12 @@ export function AppSidebar() {
         <SidebarMenu>
           {menuItems.map((item) => (
             <SidebarMenuItem key={item.href}>
-              <Link href={item.href} asChild>
-                <SidebarMenuButton isActive={pathname === item.href}>
-                  <item.icon />
-                  <span>{item.label}</span>
+              <Link href={item.href} legacyBehavior passHref>
+                <SidebarMenuButton asChild isActive={pathname === item.href}>
+                  <a>
+                    <item.icon />
+                    <span>{item.label}</span>
+                  </a>
                 </SidebarMenuButton>
               </Link>
             </SidebarMenuItem>

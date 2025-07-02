@@ -1,51 +1,91 @@
+
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { McqCard } from '@/components/mcq-card';
 import { mcqs } from '@/lib/data';
 import type { MCQ } from '@/lib/types';
 import { Button } from '@/components/ui/button';
 import { RotateCw } from 'lucide-react';
+import { format } from 'date-fns';
 
-// Function to get 10 random MCQs
-const getRandomMcqs = (): MCQ[] => {
+const getTodaysMcqs = (): MCQ[] => {
+  const today = format(new Date(), 'yyyy-MM-dd');
+  const storageKey = `lawPrepDailyMCQ_${today}`;
+
+  try {
+    const storedMcqIdsJson = localStorage.getItem(storageKey);
+    if (storedMcqIdsJson) {
+      const storedMcqIds = JSON.parse(storedMcqIdsJson);
+      // Ensure we have a valid array of IDs before proceeding
+      if (Array.isArray(storedMcqIds) && storedMcqIds.length > 0) {
+        const todaysMcqs = storedMcqIds.map((id: string) => mcqs.find(mcq => mcq.id === id)).filter((mcq): mcq is MCQ => !!mcq);
+        if (todaysMcqs.length === 10) {
+          return todaysMcqs;
+        }
+      }
+    }
+  } catch (error) {
+    console.error("Failed to read from localStorage", error);
+  }
+  
+  // If not found or invalid, generate new ones
   const shuffled = [...mcqs].sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, 10);
+  const newDailyMcqs = shuffled.slice(0, 10);
+  
+  try {
+    localStorage.setItem(storageKey, JSON.stringify(newDailyMcqs.map(mcq => mcq.id)));
+  } catch (error) {
+    console.error("Failed to write to localStorage", error);
+  }
+  
+  return newDailyMcqs;
 };
 
 export default function DailyMcqPage() {
   const [dailyMcqs, setDailyMcqs] = useState<MCQ[]>([]);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    // Set initial random MCQs on component mount (client-side)
-    setDailyMcqs(getRandomMcqs());
+    setIsClient(true);
+    setDailyMcqs(getTodaysMcqs());
   }, []);
 
-  const refreshMcqs = () => {
-    setDailyMcqs(getRandomMcqs());
-  };
+  const refreshMcqs = useCallback(() => {
+    // Force a new set of questions, overriding today's saved set
+    const today = format(new Date(), 'yyyy-MM-dd');
+    const storageKey = `lawPrepDailyMCQ_${today}`;
+    try {
+      localStorage.removeItem(storageKey); // Clear the old set
+    } catch (error) {
+      console.error("Failed to remove item from localStorage", error);
+    }
+    setDailyMcqs(getTodaysMcqs()); // This will now generate a new set
+  }, []);
   
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-2xl font-bold tracking-tight">Daily MCQs</h1>
-          <p className="text-muted-foreground">Test your knowledge with 10 new questions every day.</p>
+          <p className="text-muted-foreground">Your daily set of 10 questions. A new set appears each day.</p>
         </div>
-        <Button onClick={refreshMcqs} variant="outline">
+        <Button onClick={refreshMcqs} variant="outline" disabled={!isClient}>
           <RotateCw className="mr-2 h-4 w-4" />
-          New Questions
+          Get a New Set
         </Button>
       </div>
 
-      {dailyMcqs.length > 0 ? (
+      {!isClient ? (
+         <p className="text-muted-foreground">Loading questions...</p>
+      ) : dailyMcqs.length > 0 ? (
         <div className="grid grid-cols-1 gap-6">
           {dailyMcqs.map((mcq, index) => (
             <McqCard key={mcq.id} mcq={mcq} questionNumber={index + 1} />
           ))}
         </div>
       ) : (
-         <p className="text-muted-foreground">Loading questions...</p>
+         <p className="text-muted-foreground">No questions available.</p>
       )}
     </div>
   );

@@ -1,3 +1,4 @@
+
 export interface MCQ {
   id: string;
   question: string;
@@ -23,4 +24,11 @@ export interface ProgressState {
   attempted: number;
   correct: number;
   history: { [mcqId: string]: 'correct' | 'incorrect' };
+}
+
+export interface Flashcard {
+  id: string;
+  term: string;
+  definition: string;
+  topic: string;
 }

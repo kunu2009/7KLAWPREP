@@ -1,4 +1,5 @@
-import type { MCQ, Note, StudyEvent } from './types';
+
+import type { MCQ, Note, StudyEvent, Flashcard } from './types';
 
 export const mcqs: MCQ[] = [
   {
@@ -154,4 +155,15 @@ export const studyEvents: StudyEvent[] = [
         title: 'Read a newspaper editorial',
         description: 'Summarize the main arguments.'
     }
+];
+
+export const flashcards: Flashcard[] = [
+  { id: 'fc-1', term: 'Habeas Corpus', definition: 'A writ requiring a person under arrest to be brought before a judge or into court, especially to secure the person\'s release unless lawful grounds are shown for their detention.', topic: 'Legal Writs' },
+  { id: 'fc-2', term: 'Mens Rea', definition: 'The intention or knowledge of wrongdoing that constitutes part of a crime, as opposed to the action or conduct of the accused (actus reus).', topic: 'Criminal Law' },
+  { id: 'fc-3', term: 'Stare Decisis', definition: 'The legal principle of determining points in litigation according to precedent.', topic: 'Legal Principles' },
+  { id: 'fc-4', term: 'Caveat Emptor', definition: 'The principle that the buyer alone is responsible for checking the quality and suitability of goods before a purchase is made.', topic: 'Contract Law' },
+  { id: 'fc-5', term: 'Void ab initio', definition: 'A contract or legal document that is void from the very beginning.', topic: 'Contract Law' },
+  { id: 'fc-6', term: 'Doli Incapax', definition: 'A legal presumption that a child under a certain age is incapable of forming criminal intent.', topic: 'Criminal Law' },
+  { id: 'fc-7', term: 'Amicus Curiae', definition: 'An impartial adviser, often voluntary, to a court of law in a particular case. Translates to "friend of the court".', topic: 'Legal Roles'},
+  { id: 'fc-8', term: 'Ratio Decidendi', definition: 'The rule of law on which a judicial decision is based. It is the legally binding part of a judgment.', topic: 'Legal Principles'},
 ];

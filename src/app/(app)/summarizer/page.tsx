@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Textarea } from '@/components/ui/textarea';
 import { summarizeLegalText } from '@/ai/flows/summarize-legal-text';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, Wand2 } from 'lucide-react';
+import { Loader2, Wand2, X } from 'lucide-react';
 
 export default function SummarizerPage() {
   const [legalText, setLegalText] = useState('');
@@ -39,6 +39,11 @@ export default function SummarizerPage() {
     });
   };
 
+  const handleClear = () => {
+    setLegalText('');
+    setSummary('');
+  };
+
   return (
     <div className="space-y-6">
       <div>
@@ -62,10 +67,16 @@ export default function SummarizerPage() {
                 disabled={isPending}
                 required
               />
-              <Button type="submit" disabled={isPending || !legalText.trim()}>
-                {isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Wand2 className="mr-2 h-4 w-4" />}
-                Summarize Text
-              </Button>
+              <div className="flex flex-wrap gap-2">
+                <Button type="submit" disabled={isPending || !legalText.trim()}>
+                  {isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Wand2 className="mr-2 h-4 w-4" />}
+                  Summarize Text
+                </Button>
+                <Button type="button" variant="outline" onClick={handleClear} disabled={isPending}>
+                  <X className="mr-2 h-4 w-4" />
+                  Clear
+                </Button>
+              </div>
             </form>
           </CardContent>
         </Card>
