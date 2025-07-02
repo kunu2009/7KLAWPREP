@@ -815,7 +815,21 @@ export const mcqs: MCQ[] = [
 export const notes: Note[] = [
   {
     topic: 'Constitution',
-    content: `The Constitution of India is the supreme law of India. It lays down the framework defining fundamental political principles, establishes the structure, procedures, powers, and duties of government institutions, and sets out fundamental rights, directive principles, and the duties of citizens. Key areas to study include: Preamble, Fundamental Rights & Duties, Directive Principles of State Policy (DPSP), Union & State Legislature, Judiciary, and Emergency provisions.`,
+    content: `The Constitution of India is the supreme law of the land, providing a comprehensive framework for governance.
+    \n**Preamble:** It declares India to be a SOVEREIGN, SOCIALIST, SECULAR, and DEMOCRATIC REPUBLIC. It secures JUSTICE (social, economic, political), LIBERTY (of thought, expression, belief, faith, worship), EQUALITY (of status and opportunity), and promotes FRATERNITY.
+    \n**Key Parts & Articles:**
+    \n- **Part III: Fundamental Rights (Art. 12-35):** Considered the 'Magna Carta' of India. They are justiciable.
+      - Right to Equality (Art. 14-18): Equality before law, prohibition of discrimination.
+      - Right to Freedom (Art. 19-22): Freedom of speech, expression, assembly, etc. Article 21 (Right to Life and Personal Liberty) is a key article with wide interpretations.
+      - Right against Exploitation (Art. 23-24): Prohibits human trafficking and child labor.
+      - Right to Freedom of Religion (Art. 25-28).
+      - Cultural and Educational Rights (Art. 29-30): Protects interests of minorities.
+      - Right to Constitutional Remedies (Art. 32): The right to move the Supreme Court for the enforcement of rights.
+    \n- **Part IV: Directive Principles of State Policy (DPSP) (Art. 36-51):** Guidelines for the state to follow in governance. They are non-justiciable. Examples include Uniform Civil Code (Art. 44), Organization of village panchayats (Art. 40).
+    \n- **Part IV-A: Fundamental Duties (Art. 51A):** Added by the 42nd Amendment, these are moral obligations on all citizens.
+    \n- **The Union & State:** Covers the structure of the central government (President, Parliament - Lok Sabha & Rajya Sabha) and state governments (Governor, State Legislature).
+    \n- **Judiciary:** Structure of the Supreme Court and High Courts, their jurisdictions (Original, Appellate, Advisory), and the principle of Judicial Review and independence of the judiciary.
+    \n- **Emergency Provisions (Part XVIII):** National Emergency (Art. 352), President's Rule (Art. 356), and Financial Emergency (Art. 360).`,
     links: [
       { title: 'Constitution of India (Full Text)', url: 'https://legislative.gov.in/constitution-of-india' },
       { title: 'Important Articles of Indian Constitution', url: 'https://byjus.com/ias/important-articles-in-constitution-of-india/' },
@@ -823,22 +837,69 @@ export const notes: Note[] = [
   },
   {
     topic: 'Legal Aptitude',
-    content: `Legal Aptitude tests your problem-solving ability and understanding of legal principles. You'll be given legal principles and a factual situation, and you must apply the principle to the facts. Key topics: Law of Torts (defamation, negligence), Law of Contracts (essentials of a contract, breach), and basic concepts of Criminal Law (actus reus, mens rea).`,
+    content: `This section tests your legal reasoning and problem-solving skills, not prior legal knowledge. You apply given principles to factual scenarios.
+    \n**Law of Torts (Civil Wrongs):**
+    \n- **Negligence:** A breach of a legal duty to take care, resulting in damage. Key elements: Duty of Care, Breach of that Duty, Causation (the breach caused the harm), and Damages (actual harm).
+    \n- **Defamation:** Harming the reputation of another. It can be **Libel** (permanent form, like writing) or **Slander** (transient form, like speaking).
+    \n- **Vicarious Liability:** Holding one person responsible for the torts of another (e.g., an employer for an employee's actions during employment).
+    \n- **Nuisance:** Unlawful interference with a person's use or enjoyment of land.
+    \n- **Trespass:** Unlawful interference with one's person (assault, battery), land, or goods.
+    \n**Law of Contracts:**
+    \n- **Essentials of a Valid Contract (Sec 10, ICA 1872):** Agreement (Offer + Acceptance), Intention to create legal relations, Lawful Consideration, Capacity of parties, Free Consent, Lawful Object.
+    \n- **Key Concepts:** 'Consideration' (quid pro quo - something in return), 'Minor's contract' (void ab initio), 'Free Consent' (not caused by coercion, undue influence, fraud, misrepresentation, or mistake).
+    \n**Criminal Law:**
+    \n- **Core Principles:** A crime requires both **Actus Reus** (the guilty act) and **Mens Rea** (the guilty mind). The burden of proof is on the prosecution to prove guilt "beyond a reasonable doubt".
+    \n- **Key Offences:** Distinctions between Theft, Extortion, Robbery, and Dacoity. Culpable Homicide vs. Murder.`,
     links: [{ title: 'Introduction to Law of Torts', url: 'https://www.law.cornell.edu/wex/tort' }],
   },
   {
     topic: 'General Knowledge',
-    content: `General Knowledge covers a vast area including History, Geography, General Science, and Economics. For law entrance, focus on static GK related to civics, Indian history (especially the freedom struggle), and basic world geography.`,
+    content: `This section covers a wide array of static and dynamic topics.
+    \n**History:**
+    \n- **Ancient India:** Indus Valley Civilization, Vedic Period, Mauryan and Gupta Empires, Buddhism and Jainism.
+    \n- **Medieval India:** Delhi Sultanate, Mughal Empire, Vijayanagara Empire. Key rulers and their contributions.
+    \n- **Modern India:** Arrival of Europeans, Revolt of 1857, Indian National Congress formation, Gandhian era, Partition and Independence.
+    \n**Geography:**
+    \n- **Indian Geography:** Major rivers, mountains, soils, climate, national parks.
+    \n- **World Geography:** Continents, oceans, major physical features, capitals and currencies.
+    \n**Economy:**
+    \n- **Basic Concepts:** GDP, GNP, Inflation, Fiscal Deficit, Monetary Policy (repo rate, CRR).
+    \n- **Institutions:** Role of RBI, SEBI, NITI Aayog.
+    \n- **Union Budget:** Key highlights of the latest budget.
+    \n**Awards and Honours:**
+    \n- **National:** Bharat Ratna, Padma Awards (Vibhushan, Bhushan, Shri), Gallantry awards.
+    \n- **International:** Nobel Prize, Pulitzer Prize, Booker Prize, Ramon Magsaysay Award.`,
     links: [{ title: 'Lucent\'s General Knowledge (Book)', url: 'https://www.amazon.in/Lucents-General-Knowledge-S-Pandey/dp/9384761544' }],
   },
   {
     topic: 'English',
-    content: `The English section assesses your language proficiency. It typically includes Reading Comprehension, Grammar (Tenses, Articles, Prepositions), Vocabulary (Synonyms, Antonyms), and identifying errors in sentences. A strong reading habit is crucial.`,
+    content: `Proficiency in English is crucial for understanding legal texts.
+    \n**Reading Comprehension:**
+    \n- Practice reading passages and identifying the main idea, tone, and author's point of view. Focus on inference-based questions.
+    \n**Vocabulary:**
+    \n- **Synonyms & Antonyms:** Learn words with their meanings in context.
+    \n- **Idioms & Phrases:** Understand the meaning of common idioms like 'bite the bullet', 'a blessing in disguise', 'spill the beans', etc.
+    \n- **Foreign Words:** Familiarize yourself with commonly used foreign words (e.g., de facto, bona fide, etc.).
+    \n**Grammar:**
+    \n- **Parts of Speech:** Identify nouns, pronouns, verbs, adjectives, adverbs, prepositions, and conjunctions.
+    \n- **Tenses:** Correct usage of past, present, and future tenses.
+    \n- **Subject-Verb Agreement:** Ensure the verb agrees with its subject in number.
+    \n- **Sentence Correction:** Spot errors related to modifiers, parallelism, articles, and prepositions.`,
     links: [{ title: 'Grammar Exercises', url: 'https://www.perfect-english-grammar.com/grammar-exercises.html' }],
   },
   {
     topic: 'Current Affairs',
-    content: `This section focuses on recent events of national and international importance. Follow major newspapers and news portals daily. Pay special attention to significant legal and political developments, major government schemes, and international treaties.`,
+    content: `Stay updated with events from the last 12-18 months.
+    \n**Key Areas:**
+    \n- **National Affairs:** Major Supreme Court and High Court judgments, new legislation, constitutional amendments, government schemes (e.g., Swachh Bharat, Jan Dhan Yojana), major political events.
+    \n- **International Affairs:** India's foreign relations, major summits (G20, BRICS, SCO, G7), global conflicts, international appointments.
+    \n- **Economy & Business:** Key highlights of the Union Budget and Economic Survey, RBI's monetary policy updates, major mergers and acquisitions.
+    \n- **Science & Technology:** Major space missions by ISRO (e.g., Chandrayaan, Aditya-L1), developments in defense, significant breakthroughs in science.
+    \n- **Sports, Awards & Persons in News:** Winners of major sporting events (Grand Slams, World Cups), recipients of major awards (Nobel, Booker), and key appointments.
+    \n**Preparation Strategy:**
+    \n- Read at least one national newspaper daily (e.g., The Hindu, The Indian Express).
+    \n- Follow a monthly current affairs compilation or magazine.
+    \n- Make concise notes for quick revision.`,
     links: [
       { title: 'The Hindu', url: 'https://www.thehindu.com/' },
       { title: 'The Indian Express', url: 'https://indianexpress.com/' },
@@ -846,7 +907,21 @@ export const notes: Note[] = [
   },
   {
     topic: 'Logical Reasoning',
-    content: `Logical Reasoning is divided into Analytical Reasoning and Critical Reasoning. Analytical reasoning includes puzzles, arrangements, and sequences. Critical reasoning involves arguments, assumptions, and conclusions. Practice is key to improving speed and accuracy.`,
+    content: `This section evaluates your analytical and critical thinking abilities.
+    \n**Analytical Reasoning:**
+    \n- **Syllogisms:** Use Venn diagrams to solve problems with statements and conclusions.
+    \n- **Series Completion:** Identify the pattern in number, letter, or mixed series.
+    \n- **Coding-Decoding:** Decipher patterns in coded messages.
+    \n- **Blood Relations:** Use family tree diagrams to map relationships.
+    \n- **Direction Sense:** Keep track of directions (North, South, East, West) and distances.
+    \n- **Arrangements:** Solve puzzles based on linear, circular, and matrix arrangements.
+    \n**Critical Reasoning:**
+    \n- **Statements & Assumptions:** Identify the hidden assumption in a given statement.
+    \n- **Statements & Arguments:** Determine which arguments are 'strong' or 'weak'.
+    \n- **Statements & Conclusions:** Deduce a logically sound conclusion from given statements.
+    \n- **Cause & Effect:** Differentiate between cause and effect in two given statements.
+    \n- **Course of Action:** Decide on a logical and practical course of action for a problem.
+    \nPractice is the only way to master this section and improve both speed and accuracy.`,
     links: [{ title: 'Practice Logical Reasoning Questions', url: 'https://www.indiabix.com/logical-reasoning/questions-and-answers/' }],
   },
 ];
@@ -873,9 +948,111 @@ export const flashcards: Flashcard[] = [
   { id: 'fc-1', term: 'Habeas Corpus', definition: 'A writ requiring a person under arrest to be brought before a judge or into court, especially to secure the person\'s release unless lawful grounds are shown for their detention.', topic: 'Legal Writs' },
   { id: 'fc-2', term: 'Mens Rea', definition: 'The intention or knowledge of wrongdoing that constitutes part of a crime, as opposed to the action or conduct of the accused (actus reus).', topic: 'Criminal Law' },
   { id: 'fc-3', term: 'Stare Decisis', definition: 'The legal principle of determining points in litigation according to precedent.', topic: 'Legal Principles' },
-  { id: 'fc-4', term: 'Caveat Emptor', definition: 'The principle that the buyer alone is responsible for checking the quality and suitability of goods before a purchase is made.', topic: 'Contract Law' },
+  { id: 'fc-4', term: 'Caveat Emptor', definition: 'The principle that the buyer alone is responsible for checking the quality and suitability of goods before a purchase is made. "Let the buyer beware".', topic: 'Contract Law' },
   { id: 'fc-5', term: 'Void ab initio', definition: 'A contract or legal document that is void from the very beginning.', topic: 'Contract Law' },
   { id: 'fc-6', term: 'Doli Incapax', definition: 'A legal presumption that a child under a certain age is incapable of forming criminal intent.', topic: 'Criminal Law' },
   { id: 'fc-7', term: 'Amicus Curiae', definition: 'An impartial adviser, often voluntary, to a court of law in a particular case. Translates to "friend of the court".', topic: 'Legal Roles'},
   { id: 'fc-8', term: 'Ratio Decidendi', definition: 'The rule of law on which a judicial decision is based. It is the legally binding part of a judgment.', topic: 'Legal Principles'},
+  { id: 'fc-9', term: 'Mandamus', definition: 'A writ from a superior court to a lower court or government officer commanding them to perform a mandatory public duty. Translates to "we command".', topic: 'Legal Writs' },
+  { id: 'fc-10', term: 'Certiorari', definition: 'A writ by which a higher court reviews a decision of a lower court for errors of law. Translates to "to be certified".', topic: 'Legal Writs' },
+  { id: 'fc-11', term: 'Quo Warranto', definition: 'A writ requiring a person to show by what authority they exercise a public office. Translates to "by what authority?".', topic: 'Legal Writs' },
+  { id: 'fc-12', term: 'Prohibition', definition: 'A writ from a superior court to a lower court or tribunal to prevent it from exceeding its jurisdiction.', topic: 'Legal Writs' },
+  { id: 'fc-13', term: 'Actus Reus', definition: 'The wrongful act or omission that comprises the physical component of a crime.', topic: 'Criminal Law' },
+  { id: 'fc-14', term: 'Ab Initio', definition: 'From the beginning.', topic: 'Legal Maxims' },
+  { id: 'fc-15', term: 'Alibi', definition: 'A defense that the accused was in another place at the time the crime was committed.', topic: 'Criminal Law' },
+  { id: 'fc-16', term: 'Bona fide', definition: 'In good faith; genuine.', topic: 'Legal Maxims' },
+  { id: 'fc-17', term: 'De facto', definition: 'In fact; in reality. Describes practices that exist in reality, even if not legally recognized.', topic: 'Legal Maxims' },
+  { id: 'fc-18', term: 'De jure', definition: 'By law. Describes practices that are legally recognized, regardless of whether they exist in reality.', topic: 'Legal Maxims' },
+  { id: 'fc-19', term: 'Ipso facto', definition: 'By the fact itself. A direct consequence of an action.', topic: 'Legal Maxims' },
+  { id: 'fc-20', term: 'Lis pendens', definition: 'A pending lawsuit. A written notice that a lawsuit has been filed concerning real estate.', topic: 'Civil Law' },
+  { id: 'fc-21', term: 'Modus operandi', definition: 'A particular way or method of doing something, especially one that is characteristic or well-established.', topic: 'Legal Maxims' },
+  { id: 'fc-22', term: 'Prima facie', definition: 'Based on the first impression; accepted as correct until proved otherwise.', topic: 'Legal Maxims' },
+  { id: 'fc-23', term: 'Quid pro quo', definition: 'Something for something. An exchange of goods or services, where one transfer is contingent upon the other.', topic: 'Contract Law' },
+  { id: 'fc-24', term: 'Sine die', definition: '(Of a proceeding) adjourned indefinitely, without a day appointed for resumption.', topic: 'Legal Procedure' },
+  { id: 'fc-25', term: 'Sub judice', definition: 'Under judicial consideration and therefore prohibited from public discussion elsewhere.', topic: 'Legal Procedure' },
+  { id: 'fc-26', term: 'Suo motu', definition: 'On its own motion. An action by a court without any request by the parties involved.', topic: 'Legal Procedure' },
+  { id: 'fc-27', term: 'Ultra vires', definition: 'Beyond the powers. An act which requires legal authority but is done without it.', topic: 'Legal Principles' },
+  { id: 'fc-28', term: 'Volenti non fit injuria', definition: 'To a willing person, injury is not done. A defense in tort that a person who knowingly puts themselves at risk cannot sue for damages.', topic: 'Law of Torts' },
+  { id: 'fc-29', term: 'Plaintiff', definition: 'A person who brings a case against another in a court of law.', topic: 'Legal Roles' },
+  { id: 'fc-30', term: 'Defendant', definition: 'An individual, company, or institution sued or accused in a court of law.', topic: 'Legal Roles' },
+  { id: 'fc-31', term: 'Cognizable Offence', definition: 'An offence in which a police officer can arrest without a warrant.', topic: 'Criminal Law' },
+  { id: 'fc-32', term: 'Non-cognizable Offence', definition: 'An offence in which a police officer cannot arrest without a warrant.', topic: 'Criminal Law' },
+  { id: 'fc-33', term: 'Acquittal', definition: 'A judgment that a person is not guilty of the crime with which they have been charged.', topic: 'Criminal Law' },
+  { id: 'fc-34', term: 'Conviction', definition: 'A formal declaration that someone is guilty of a criminal offence, made by the verdict of a jury or the decision of a judge.', topic: 'Criminal Law' },
+  { id: 'fc-35', term: 'Affidavit', definition: 'A written statement confirmed by oath or affirmation, for use as evidence in court.', topic: 'Legal Documents' },
+  { id: 'fc-36', term: 'Appeal', definition: 'An application to a higher court for a reversal of the decision of a lower court.', topic: 'Legal Procedure' },
+  { id: 'fc-37', term: 'Arbitration', definition: 'A form of alternative dispute resolution (ADR), is a way to resolve disputes outside the judiciary courts.', topic: 'Legal Procedure' },
+  { id: 'fc-38', term: 'Coercion', definition: 'The practice of persuading someone to do something by using force or threats.', topic: 'Contract Law' },
+  { id: 'fc-39', term: 'Damages', definition: 'A sum of money awarded by a court to compensate for loss or injury.', topic: 'Law of Torts' },
+  { id: 'fc-40', term: 'Decree', definition: 'An official order that has the force of law.', topic: 'Legal Procedure' },
+  { id: 'fc-41', term: 'Estoppel', definition: 'A legal principle that prevents someone from arguing something or asserting a right that contradicts what they previously said or agreed to by law.', topic: 'Legal Principles' },
+  { id: 'fc-42', term: 'FIR (First Information Report)', definition: 'A written document prepared by police organizations when they receive information about the commission of a cognizable offence.', topic: 'Criminal Law' },
+  { id: 'fc-43', term: 'Injunction', definition: 'A judicial order restraining a person from beginning or continuing an action, or compelling a person to carry out a certain act.', topic: 'Civil Law' },
+  { id: 'fc-44', term: 'Indemnity', definition: 'Security or protection against a loss or other financial burden.', topic: 'Contract Law' },
+  { id: 'fc-45', term: 'Jurisdiction', definition: 'The official power to make legal decisions and judgments.', topic: 'Legal Principles' },
+  { id: 'fc-46', term: 'Libel', definition: 'A published false statement that is damaging to a person\'s reputation; a written defamation.', topic: 'Law of Torts' },
+  { id: 'fc-47', term: 'Slander', definition: 'The action or crime of making a false spoken statement damaging to a person\'s reputation.', topic: 'Law of Torts' },
+  { id: 'fc-48', term: 'Lien', definition: 'A right to keep possession of property belonging to another person until a debt owed by that person is discharged.', topic: 'Civil Law' },
+  { id: 'fc-49', term: 'Litigation', definition: 'The process of taking legal action.', topic: 'Legal Procedure' },
+  { id: 'fc-50', term: 'Negligence', definition: 'Failure to take proper care over something, resulting in damage or injury to another.', topic: 'Law of Torts' },
+  { id: 'fc-51', term: 'Ordinance', definition: 'A law promulgated by the President/Governor when the Parliament/State Legislature is not in session.', topic: 'Constitutional Law' },
+  { id: 'fc-52', term: 'Parole', definition: 'The temporary or permanent release of a prisoner before the expiry of a sentence, on the promise of good behavior.', topic: 'Criminal Law' },
+  { id: 'fc-53', term: 'Petition', definition: 'A formal written request, typically one signed by many people, appealing to authority in respect of a particular cause.', topic: 'Legal Procedure' },
+  { id: 'fc-54', term: 'Precedent', definition: 'An earlier event or action that is regarded as an example or guide to be considered in subsequent similar circumstances.', topic: 'Legal Principles' },
+  { id: 'fc-55', term: 'Summons', definition: 'An order to appear before a judge or magistrate.', topic: 'Legal Procedure' },
+  { id: 'fc-56', term: 'Warrant', definition: 'A document issued by a legal or government official authorizing the police or another body to make an arrest, search premises, or carry out some other action.', topic: 'Criminal Law' },
+  { id: 'fc-57', term: 'Secularism', definition: 'The principle of separation of the state from religious institutions.', topic: 'Constitutional Law' },
+  { id: 'fc-58', term: 'Sovereignty', definition: 'The supreme power or authority of a state to govern itself or another state.', topic: 'Constitutional Law' },
+  { id: 'fc-59', term: 'Republic', definition: 'A state in which supreme power is held by the people and their elected representatives, and which has an elected or nominated president rather than a monarch.', topic: 'Constitutional Law' },
+  { id: 'fc-60', term: 'Federalism', definition: 'A system of government in which entities such as states or provinces share power with a national government.', topic: 'Constitutional Law' },
+  { id: 'fc-61', term: 'Separation of Powers', definition: 'The division of government responsibilities into distinct branches (legislative, executive, judicial) to limit any one branch from exercising the core functions of another.', topic: 'Constitutional Law' },
+  { id: 'fc-62', term: 'Judicial Review', definition: 'The power of a court to review the constitutionality of legislative acts and executive orders.', topic: 'Constitutional Law' },
+  { id: 'fc-63', term: 'Double Jeopardy', definition: 'A procedural defence that prevents an accused person from being tried again on the same (or similar) charges following a valid acquittal or conviction.', topic: 'Criminal Law' },
+  { id: 'fc-64', term: 'Ex post facto law', definition: 'A law that retroactively changes the legal consequences of actions that were committed before the enactment of the law.', topic: 'Criminal Law' },
+  { id: 'fc-65', term: 'Locus standi', definition: 'The right or capacity to bring an action or to appear in a court.', topic: 'Legal Principles' },
+  { id: 'fc-66', term: 'Natural Justice', definition: 'Principles of justice that are based on the common-sense notions of fairness, including the right to a fair hearing and the rule against bias.', topic: 'Legal Principles' },
+  { id: 'fc-67', term: 'Obiter Dicta', definition: 'A judge\'s incidental expression of opinion, not essential to the decision and not legally binding as a precedent. "A saying by the way".', topic: 'Legal Principles' },
+  { id: 'fc-68', 'term': 'Res judicata', 'definition': 'A matter that has been adjudicated by a competent court and therefore may not be pursued further by the same parties. "A matter decided".', 'topic': 'Civil Law' },
+  { id: 'fc-69', 'term': 'Vicarious Liability', 'definition': 'A situation where someone is held responsible for the actions or omissions of another person.', 'topic': 'Law of Torts' },
+  { id: 'fc-70', 'term': 'Tortfeasor', 'definition': 'A person who commits a tort (a civil wrong).', 'topic': 'Law of Torts' },
+  { id: 'fc-71', 'term': 'Trespass', 'definition': 'Unlawful interference with one\'s person, property, or rights.', 'topic': 'Law of Torts' },
+  { id: 'fc-72', 'term': 'Nuisance', 'definition': 'An act which is harmful or offensive to the public or a member of it and for which there is a legal remedy.', 'topic': 'Law of Torts' },
+  { id: 'fc-73', 'term': 'Pacta Sunt Servanda', 'definition': 'Agreements must be kept. A fundamental principle of international and contract law.', 'topic': 'Contract Law' },
+  { id: 'fc-74', 'term': 'Assault', 'definition': 'An act that creates an apprehension in another of an imminent, harmful, or offensive contact.', 'topic': 'Law of Torts' },
+  { id: 'fc-75', 'term': 'Battery', 'definition': 'The actual intentional striking of someone, with intent to harm, or in a rude and insolent manner even if the injury is slight.', 'topic': 'Law of Torts' },
+  { id: 'fc-76', term: 'Bailment', definition: 'A legal relationship in common law where physical possession of personal property is transferred from one person (the bailor) to another (the bailee).', topic: 'Contract Law' },
+  { id: 'fc-77', term: 'Consideration', definition: 'The benefit that each party receives, or expects to receive when entering into a contract. It is a necessary element of a valid contract.', topic: 'Contract Law' },
+  { id: 'fc-78', term: 'Duress', definition: 'Threats, violence, constraints, or other action used to coerce someone into doing something against their will or better judgment.', topic: 'Contract Law' },
+  { id: 'fc-79', term: 'Frustration of Contract', definition: 'A situation where unforeseen events make the performance of a contract impossible, illegal, or radically different from what was intended.', topic: 'Contract Law' },
+  { id: 'fc-80', term: 'Misrepresentation', definition: 'A false statement of fact made by one party to another, which has the effect of inducing that party into the contract.', topic: 'Contract Law' },
+  { id: 'fc-81', term: 'Offer', definition: 'A definite promise to be bound provided that certain specified terms are accepted.', topic: 'Contract Law' },
+  { id: 'fc-82', term: 'Acceptance', definition: 'An unconditional agreement to all the terms of an offer.', topic: 'Contract Law' },
+  { id: 'fc-83', term: 'Specific Performance', definition: 'A court order which requires a party to perform a specific act, usually what is stated in a contract.', topic: 'Contract Law' },
+  { id: 'fc-84', term: 'Plea Bargaining', definition: 'An agreement between a defendant and a prosecutor, in which the defendant agrees to plead guilty to a particular charge in return for some concession from the prosecutor.', topic: 'Criminal Law' },
+  { id: 'fc-85', term: 'Extortion', definition: 'The practice of obtaining something, especially money, through force or threats.', topic: 'Criminal Law' },
+  { id: 'fc-86', term: 'Theft', definition: 'Dishonestly taking any movable property out of the possession of any person without that person\'s consent.', topic: 'Criminal Law' },
+  { id: 'fc-87', term: 'Robbery', definition: 'Theft by force or by threatening force.', topic: 'Criminal Law' },
+  { id: 'fc-88', term: 'Dacoity', definition: 'Robbery committed by five or more persons.', topic: 'Criminal Law' },
+  { id: 'fc-89', term: 'Culpable Homicide', definition: 'The act of causing death with the intention of causing death, or with the intention of causing such bodily injury as is likely to cause death.', topic: 'Criminal Law' },
+  { id: 'fc-90', term: 'Murder', definition: 'A more severe form of culpable homicide, committed with specific intentions like intent to kill or cause bodily injury sufficient in the ordinary course of nature to cause death.', topic: 'Criminal Law' },
+  { id: 'fc-91', term: 'Kidnapping', definition: 'Taking or enticing away a minor or a person of unsound mind out of the keeping of the lawful guardian without their consent.', topic: 'Criminal Law' },
+  { id: 'fc-92', term: 'Abduction', definition: 'Forcibly or by deceitful means compelling a person to go from any place.', topic: 'Criminal Law' },
+  { id: 'fc-93', term: 'Attorney', definition: 'A person appointed to act for another in business or legal matters; a lawyer.', topic: 'Legal Roles' },
+  { id: 'fc-94', term: 'Advocate', definition: 'A person who puts a case on someone else\'s behalf. In India, a legal professional who is registered with the Bar Council.', topic: 'Legal Roles' },
+  { id: 'fc-95', term: 'Public Prosecutor', definition: 'A law officer who conducts criminal proceedings on behalf of the state or in the public interest.', topic: 'Legal Roles' },
+  { id: 'fc-96', term: 'Bail', definition: 'The temporary release of an accused person awaiting trial, sometimes on condition that a sum of money is lodged to guarantee their appearance in court.', topic: 'Criminal Law' },
+  { id: 'fc-97', term: 'Adjournment', definition: 'The postponement of a court session or hearing until another date or time.', topic: 'Legal Procedure' },
+  { id: 'fc-98', term: 'Charge Sheet', definition: 'A final report prepared by the police after investigating a case. It contains all the charges against the accused.', topic: 'Criminal Law' },
+  { id: 'fc-99', term: 'Testimony', definition: 'A formal written or spoken statement, especially one given in a court of law.', topic: 'Legal Procedure' },
+  { id: 'fc-100', term: 'Fundamental Rights', definition: 'A group of rights that have been recognized by a high degree of protection from encroachment. These are the rights which are fundamental for the development of any human being.', topic: 'Constitutional Law' },
+  { id: 'fc-101', term: 'Directive Principles', definition: 'Guidelines for the central and state governments of India, to be kept in mind while framing laws and policies. They are not enforceable by any court.', topic: 'Constitutional Law' },
+  { id: 'fc-102', term: 'Amendment', definition: 'A formal or official change made to a law, contract, constitution, or other legal document.', topic: 'Constitutional Law' },
+  { id: 'fc-103', term: 'Impeachment', definition: 'A formal process in which an official is accused of unlawful activity, the outcome of which may include the removal of that official from office.', topic: 'Constitutional Law' },
+  { id: 'fc-104', term: 'Defamation', definition: 'The action of damaging the good reputation of someone; slander or libel.', topic: 'Law of Torts' },
+  { id: 'fc-105', term: 'Plaint', definition: 'The first document filed in a civil suit, which states the plaintiff\'s claim and the relief sought.', topic: 'Civil Law' },
+  { id: 'fc-106', term: 'Written Statement', definition: 'The defendant\'s reply to the plaint, in which they admit or deny the allegations.', topic: 'Civil Law' },
+  { id: 'fc-107', term: 'Will', definition: 'A legal document by which a person expresses their wishes as to how their property is to be distributed at death.', topic: 'Family Law' },
+  { id: 'fc-108', term: 'Perjury', definition: 'The offence of willfully telling an untruth or making a misrepresentation under oath.', topic: 'Criminal Law' }
 ];
+
+
