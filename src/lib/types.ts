@@ -9,7 +9,8 @@ export interface MCQ {
 }
 
 export interface Note {
-  topic: 'Constitution' | 'Legal Aptitude' | 'General Knowledge' | 'English' | 'Current Affairs' | 'Logical Reasoning';
+  topic: string;
+  category: 'Constitution' | 'Legal Aptitude' | 'Legal Maxims' | 'General Knowledge' | 'English' | 'Current Affairs' | 'Logical Reasoning';
   content: string;
   links: { title: string; url: string }[];
 }

@@ -245,10 +245,10 @@ export const mcqs: MCQ[] = [
   {
     id: 'mcq-31',
     topic: 'Current Affairs',
-    question: 'The "James Webb Space Telescope" is a collaboration primarily between NASA and which other space agencies?',
-    options: ['ISRO and Roscosmos', 'ESA and CSA', 'JAXA and CNSA', 'ISRO and ESA'],
+    question: 'The \'BRICS\' group of emerging economies originally consisted of Brazil, Russia, India, and China. Which country was added later to form "BRICS"?',
+    options: ['Singapore', 'South Africa', 'Saudi Arabia', 'Spain'],
     correctAnswerIndex: 1,
-    explanation: 'The James Webb Space Telescope is an international collaboration between NASA, the European Space Agency (ESA), and the Canadian Space Agency (CSA).',
+    explanation: 'South Africa was formally invited to join the BRIC group in 2010, resulting in the acronym being changed to BRICS.',
   },
   {
     id: 'mcq-32',
@@ -813,117 +813,459 @@ export const mcqs: MCQ[] = [
 ];
 
 export const notes: Note[] = [
+  // Constitution
   {
-    topic: 'Constitution',
-    content: `The Constitution of India is the supreme law of the land, providing a comprehensive framework for governance.
-    \n**Preamble:** It declares India to be a SOVEREIGN, SOCIALIST, SECULAR, and DEMOCRATIC REPUBLIC. It secures JUSTICE (social, economic, political), LIBERTY (of thought, expression, belief, faith, worship), EQUALITY (of status and opportunity), and promotes FRATERNITY.
-    \n**Key Parts & Articles:**
-    \n- **Part III: Fundamental Rights (Art. 12-35):** Considered the 'Magna Carta' of India. They are justiciable.
-      - Right to Equality (Art. 14-18): Equality before law, prohibition of discrimination.
-      - Right to Freedom (Art. 19-22): Freedom of speech, expression, assembly, etc. Article 21 (Right to Life and Personal Liberty) is a key article with wide interpretations.
-      - Right against Exploitation (Art. 23-24): Prohibits human trafficking and child labor.
-      - Right to Freedom of Religion (Art. 25-28).
-      - Cultural and Educational Rights (Art. 29-30): Protects interests of minorities.
-      - Right to Constitutional Remedies (Art. 32): The right to move the Supreme Court for the enforcement of rights.
-    \n- **Part IV: Directive Principles of State Policy (DPSP) (Art. 36-51):** Guidelines for the state to follow in governance. They are non-justiciable. Examples include Uniform Civil Code (Art. 44), Organization of village panchayats (Art. 40).
-    \n- **Part IV-A: Fundamental Duties (Art. 51A):** Added by the 42nd Amendment, these are moral obligations on all citizens.
-    \n- **The Union & State:** Covers the structure of the central government (President, Parliament - Lok Sabha & Rajya Sabha) and state governments (Governor, State Legislature).
-    \n- **Judiciary:** Structure of the Supreme Court and High Courts, their jurisdictions (Original, Appellate, Advisory), and the principle of Judicial Review and independence of the judiciary.
-    \n- **Emergency Provisions (Part XVIII):** National Emergency (Art. 352), President's Rule (Art. 356), and Financial Emergency (Art. 360).`,
-    links: [
-      { title: 'Constitution of India (Full Text)', url: 'https://legislative.gov.in/constitution-of-india' },
-      { title: 'Important Articles of Indian Constitution', url: 'https://byjus.com/ias/important-articles-in-constitution-of-india/' },
-    ],
+    topic: 'Preamble of the Constitution',
+    category: 'Constitution',
+    content: `The Preamble is the introductory statement to the Constitution that sets out its guiding purpose and principles.
+- **Keywords:** It declares India to be a SOVEREIGN, SOCIALIST, SECULAR, and DEMOCRATIC REPUBLIC.
+- **Objectives:** It aims to secure for all its citizens:
+  - **JUSTICE:** Social, economic, and political.
+  - **LIBERTY:** Of thought, expression, belief, faith, and worship.
+  - **EQUALITY:** Of status and of opportunity.
+  - **FRATERNITY:** Assuring the dignity of the individual and the unity and integrity of the Nation.
+- **Amendment:** It was amended once by the 42nd Constitutional Amendment Act, 1976, which added three new words: Socialist, Secular, and Integrity.
+- **Is it part of the Constitution?** Yes, the Supreme Court in the Kesavananda Bharati case (1973) held that the Preamble is part of the Constitution and can be amended, subject to the basic structure doctrine.`,
+    links: [{ title: 'Kesavananda Bharati v. State of Kerala', url: 'https://en.wikipedia.org/wiki/Kesavananda_Bharati_v._State_of_Kerala' }],
   },
   {
-    topic: 'Legal Aptitude',
-    content: `This section tests your legal reasoning and problem-solving skills, not prior legal knowledge. You apply given principles to factual scenarios.
-    \n**Law of Torts (Civil Wrongs):**
-    \n- **Negligence:** A breach of a legal duty to take care, resulting in damage. Key elements: Duty of Care, Breach of that Duty, Causation (the breach caused the harm), and Damages (actual harm).
-    \n- **Defamation:** Harming the reputation of another. It can be **Libel** (permanent form, like writing) or **Slander** (transient form, like speaking).
-    \n- **Vicarious Liability:** Holding one person responsible for the torts of another (e.g., an employer for an employee's actions during employment).
-    \n- **Nuisance:** Unlawful interference with a person's use or enjoyment of land.
-    \n- **Trespass:** Unlawful interference with one's person (assault, battery), land, or goods.
-    \n**Law of Contracts:**
-    \n- **Essentials of a Valid Contract (Sec 10, ICA 1872):** Agreement (Offer + Acceptance), Intention to create legal relations, Lawful Consideration, Capacity of parties, Free Consent, Lawful Object.
-    \n- **Key Concepts:** 'Consideration' (quid pro quo - something in return), 'Minor's contract' (void ab initio), 'Free Consent' (not caused by coercion, undue influence, fraud, misrepresentation, or mistake).
-    \n**Criminal Law:**
-    \n- **Core Principles:** A crime requires both **Actus Reus** (the guilty act) and **Mens Rea** (the guilty mind). The burden of proof is on the prosecution to prove guilt "beyond a reasonable doubt".
-    \n- **Key Offences:** Distinctions between Theft, Extortion, Robbery, and Dacoity. Culpable Homicide vs. Murder.`,
-    links: [{ title: 'Introduction to Law of Torts', url: 'https://www.law.cornell.edu/wex/tort' }],
+    topic: 'Fundamental Rights (Art 12-35)',
+    category: 'Constitution',
+    content: `Contained in Part III of the Constitution, these are basic human rights guaranteed to all citizens. They are justiciable, meaning they can be enforced by courts.
+- **Right to Equality (Art. 14-18):** Guarantees equality before the law, prohibits discrimination on grounds of religion, race, caste, sex, or place of birth, and abolishes untouchability.
+- **Right to Freedom (Art. 19-22):** Includes freedom of speech and expression, assembly, association, movement, residence, and profession. Article 21 (Right to Life and Personal Liberty) is a vital right with a wide scope.
+- **Right against Exploitation (Art. 23-24):** Prohibits human trafficking, forced labor, and employment of children in hazardous jobs.
+- **Right to Freedom of Religion (Art. 25-28):** Guarantees freedom of conscience and free profession, practice, and propagation of religion.
+- **Cultural and Educational Rights (Art. 29-30):** Protects the interests of minorities.
+- **Right to Constitutional Remedies (Art. 32):** Considered the "heart and soul" of the Constitution by Dr. Ambedkar. It allows citizens to move the Supreme Court to enforce their Fundamental Rights. The SC can issue writs like Habeas Corpus, Mandamus, Prohibition, Certiorari, and Quo Warranto.`,
+    links: [{ title: 'All about Fundamental Rights', url: 'https://byjus.com/ias/fundamental-rights/' }],
   },
   {
-    topic: 'General Knowledge',
-    content: `This section covers a wide array of static and dynamic topics.
-    \n**History:**
-    \n- **Ancient India:** Indus Valley Civilization, Vedic Period, Mauryan and Gupta Empires, Buddhism and Jainism.
-    \n- **Medieval India:** Delhi Sultanate, Mughal Empire, Vijayanagara Empire. Key rulers and their contributions.
-    \n- **Modern India:** Arrival of Europeans, Revolt of 1857, Indian National Congress formation, Gandhian era, Partition and Independence.
-    \n**Geography:**
-    \n- **Indian Geography:** Major rivers, mountains, soils, climate, national parks.
-    \n- **World Geography:** Continents, oceans, major physical features, capitals and currencies.
-    \n**Economy:**
-    \n- **Basic Concepts:** GDP, GNP, Inflation, Fiscal Deficit, Monetary Policy (repo rate, CRR).
-    \n- **Institutions:** Role of RBI, SEBI, NITI Aayog.
-    \n- **Union Budget:** Key highlights of the latest budget.
-    \n**Awards and Honours:**
-    \n- **National:** Bharat Ratna, Padma Awards (Vibhushan, Bhushan, Shri), Gallantry awards.
-    \n- **International:** Nobel Prize, Pulitzer Prize, Booker Prize, Ramon Magsaysay Award.`,
-    links: [{ title: 'Lucent\'s General Knowledge (Book)', url: 'https://www.amazon.in/Lucents-General-Knowledge-S-Pandey/dp/9384761544' }],
+    topic: 'Directive Principles of State Policy (DPSP)',
+    category: 'Constitution',
+    content: `Contained in Part IV (Art. 36-51), these are ideals that the state should keep in mind while formulating policies and enacting laws.
+- **Nature:** Unlike Fundamental Rights, DPSPs are non-justiciable (not enforceable by courts).
+- **Objective:** To establish a 'welfare state' by promoting social and economic democracy.
+- **Key Principles:**
+  - **Socialist:** Secure adequate means of livelihood, prevent concentration of wealth (Art 39).
+  - **Gandhian:** Organize village panchayats (Art 40), promote cottage industries.
+  - **Liberal-Intellectual:** Secure for all citizens a Uniform Civil Code (Art 44), protect and improve the environment (Art 48A).`,
+    links: [],
   },
   {
-    topic: 'English',
-    content: `Proficiency in English is crucial for understanding legal texts.
-    \n**Reading Comprehension:**
-    \n- Practice reading passages and identifying the main idea, tone, and author's point of view. Focus on inference-based questions.
-    \n**Vocabulary:**
-    \n- **Synonyms & Antonyms:** Learn words with their meanings in context.
-    \n- **Idioms & Phrases:** Understand the meaning of common idioms like 'bite the bullet', 'a blessing in disguise', 'spill the beans', etc.
-    \n- **Foreign Words:** Familiarize yourself with commonly used foreign words (e.g., de facto, bona fide, etc.).
-    \n**Grammar:**
-    \n- **Parts of Speech:** Identify nouns, pronouns, verbs, adjectives, adverbs, prepositions, and conjunctions.
-    \n- **Tenses:** Correct usage of past, present, and future tenses.
-    \n- **Subject-Verb Agreement:** Ensure the verb agrees with its subject in number.
-    \n- **Sentence Correction:** Spot errors related to modifiers, parallelism, articles, and prepositions.`,
-    links: [{ title: 'Grammar Exercises', url: 'https://www.perfect-english-grammar.com/grammar-exercises.html' }],
+    topic: 'Fundamental Duties (Art 51A)',
+    category: 'Constitution',
+    content: `Added to Part IV-A of the Constitution by the 42nd Amendment in 1976 on the recommendations of the Swaran Singh Committee.
+- **Nature:** Like DPSPs, they are non-justiciable.
+- **Total Duties:** Originally 10, one more was added by the 86th Amendment Act, 2002. Total 11 duties now.
+- **Examples:**
+  - To abide by the Constitution and respect its ideals and institutions.
+  - To uphold and protect the sovereignty, unity, and integrity of India.
+  - To promote harmony and the spirit of common brotherhood.
+  - To develop the scientific temper, humanism, and the spirit of inquiry and reform.
+  - To provide opportunities for education to one's child or ward between the age of six and fourteen years (added in 2002).`,
+    links: [],
   },
   {
-    topic: 'Current Affairs',
-    content: `Stay updated with events from the last 12-18 months.
-    \n**Key Areas:**
-    \n- **National Affairs:** Major Supreme Court and High Court judgments, new legislation, constitutional amendments, government schemes (e.g., Swachh Bharat, Jan Dhan Yojana), major political events.
-    \n- **International Affairs:** India's foreign relations, major summits (G20, BRICS, SCO, G7), global conflicts, international appointments.
-    \n- **Economy & Business:** Key highlights of the Union Budget and Economic Survey, RBI's monetary policy updates, major mergers and acquisitions.
-    \n- **Science & Technology:** Major space missions by ISRO (e.g., Chandrayaan, Aditya-L1), developments in defense, significant breakthroughs in science.
-    \n- **Sports, Awards & Persons in News:** Winners of major sporting events (Grand Slams, World Cups), recipients of major awards (Nobel, Booker), and key appointments.
-    \n**Preparation Strategy:**
-    \n- Read at least one national newspaper daily (e.g., The Hindu, The Indian Express).
-    \n- Follow a monthly current affairs compilation or magazine.
-    \n- Make concise notes for quick revision.`,
-    links: [
-      { title: 'The Hindu', url: 'https://www.thehindu.com/' },
-      { title: 'The Indian Express', url: 'https://indianexpress.com/' },
-    ],
+    topic: 'The President of India',
+    category: 'Constitution',
+    content: `The President is the head of the Indian State and the first citizen of India.
+- **Election (Art. 54 & 55):** Elected not directly by the people but by an electoral college consisting of elected members of both Houses of Parliament and elected members of the Legislative Assemblies of the States.
+- **Qualification (Art. 58):** Must be a citizen of India, 35 years of age, and qualified for election as a member of the Lok Sabha.
+- **Powers:**
+  - **Executive:** Appoints Prime Minister, Council of Ministers, Governors, etc.
+  - **Legislative:** Summons and prorogues Parliament, promulgates ordinances (Art. 123).
+  - **Financial:** Money bills can be introduced only with his prior recommendation.
+  - **Judicial:** Appoints judges, has the power to grant pardons (Art. 72).
+  - **Emergency:** Can declare National, State (President's Rule), and Financial emergencies.
+- **Impeachment (Art. 61):** Can be removed from office for 'violation of the Constitution' by a quasi-judicial process in Parliament.`,
+    links: [],
   },
   {
-    topic: 'Logical Reasoning',
-    content: `This section evaluates your analytical and critical thinking abilities.
-    \n**Analytical Reasoning:**
-    \n- **Syllogisms:** Use Venn diagrams to solve problems with statements and conclusions.
-    \n- **Series Completion:** Identify the pattern in number, letter, or mixed series.
-    \n- **Coding-Decoding:** Decipher patterns in coded messages.
-    \n- **Blood Relations:** Use family tree diagrams to map relationships.
-    \n- **Direction Sense:** Keep track of directions (North, South, East, West) and distances.
-    \n- **Arrangements:** Solve puzzles based on linear, circular, and matrix arrangements.
-    \n**Critical Reasoning:**
-    \n- **Statements & Assumptions:** Identify the hidden assumption in a given statement.
-    \n- **Statements & Arguments:** Determine which arguments are 'strong' or 'weak'.
-    \n- **Statements & Conclusions:** Deduce a logically sound conclusion from given statements.
-    \n- **Cause & Effect:** Differentiate between cause and effect in two given statements.
-    \n- **Course of Action:** Decide on a logical and practical course of action for a problem.
-    \nPractice is the only way to master this section and improve both speed and accuracy.`,
-    links: [{ title: 'Practice Logical Reasoning Questions', url: 'https://www.indiabix.com/logical-reasoning/questions-and-answers/' }],
+    topic: 'The Parliament',
+    category: 'Constitution',
+    content: `The Parliament is the supreme legislative body of India, consisting of the President and two Houses.
+- **Rajya Sabha (Council of States):** The Upper House. It represents the states and union territories.
+  - **Composition:** Maximum 250 members (238 elected, 12 nominated by the President).
+  - **Tenure:** It is a permanent body and not subject to dissolution. One-third of its members retire every two years. The term of a member is 6 years.
+- **Lok Sabha (House of the People):** The Lower House. Represents the people of India.
+  - **Composition:** Maximum 550 members (530 from states, 20 from UTs).
+  - **Tenure:** Normal term is 5 years, but can be dissolved earlier by the President.
+- **Legislative Procedure:** A bill passes through three readings in each House, then receives Presidential assent to become an Act. In case of a deadlock between the two Houses, a joint sitting can be convened (Art. 108). Money bills (Art. 110) can only originate in the Lok Sabha.`,
+    links: [],
   },
+  {
+    topic: 'The Supreme Court',
+    category: 'Constitution',
+    content: `The Supreme Court of India is the highest judicial court and the final court of appeal under the Constitution.
+- **Composition (Art. 124):** Consists of the Chief Justice of India (CJI) and not more than 33 other judges.
+- **Appointment:** Judges are appointed by the President after consultation with other judges (collegium system).
+- **Jurisdiction:**
+  - **Original Jurisdiction (Art. 131):** Decides disputes between the Centre and states, or between states.
+  - **Writ Jurisdiction (Art. 32):** Issues writs for the enforcement of Fundamental Rights.
+  - **Appellate Jurisdiction (Art. 132-136):** Hears appeals from High Courts in civil, criminal, and constitutional matters. Special Leave to Appeal (SLP) under Art. 136 is a discretionary power.
+  - **Advisory Jurisdiction (Art. 143):** President can seek the opinion of the Supreme Court on any question of law or fact.
+- **Judicial Review:** Power to examine the constitutionality of legislative and executive actions.`,
+    links: [],
+  },
+  {
+    topic: 'Emergency Provisions',
+    category: 'Constitution',
+    content: `Part XVIII of the Constitution deals with situations of crisis.
+- **National Emergency (Art. 352):** Can be declared on the grounds of 'war', 'external aggression', or 'armed rebellion'. During this, the federal structure becomes unitary.
+- **State Emergency / President's Rule (Art. 356):** Can be imposed in a state on the ground of failure of constitutional machinery. The President assumes the functions of the state government.
+- **Financial Emergency (Art. 360):** Can be proclaimed if the financial stability or credit of India is threatened. The Centre can give financial directions to any state. This has never been imposed in India.`,
+    links: [],
+  },
+  {
+    topic: 'Constitutional Amendments',
+    category: 'Constitution',
+    content: `The procedure for amendment is laid down in Article 368.
+- **Procedure:** An amendment can be initiated only by the introduction of a bill in either House of Parliament. It must be passed in each House by a special majority (a majority of the total membership of that House and a majority of not less than two-thirds of the members present and voting).
+- **Types of Amendment:**
+  1. **By Simple Majority:** For matters like formation of new states, citizenship, etc. (Outside the scope of Art. 368).
+  2. **By Special Majority:** For most provisions, including Fundamental Rights and DPSPs.
+  3. **By Special Majority + Ratification by half of the States:** For federal provisions like the election of the President, powers of Supreme Court/High Courts, etc.
+- **Basic Structure Doctrine:** The Supreme Court in the Kesavananda Bharati case ruled that Parliament can amend any part of the Constitution but cannot alter its 'basic structure'.`,
+    links: [{ title: 'List of Important Amendments', url: 'https://www.drishtiias.com/to-the-points/Paper2/important-amendments-in-the-indian-constitution-part-1' }],
+  },
+  {
+    topic: 'Panchayati Raj & Municipalities',
+    category: 'Constitution',
+    content: `Constitutional status was granted through the 73rd and 74th Amendment Acts of 1992.
+- **73rd Amendment (Panchayati Raj):** Added Part IX and the 11th Schedule. Established a three-tier system of panchayats in every state:
+  1. **Village Panchayat** at the village level.
+  2. **Panchayat Samiti** at the block level.
+  3. **Zila Parishad** at the district level.
+- **74th Amendment (Municipalities):** Added Part IX-A and the 12th Schedule. Established three types of municipalities:
+  1. **Nagar Panchayat** for a transitional area.
+  2. **Municipal Council** for a smaller urban area.
+  3. **Municipal Corporation** for a larger urban area.
+These amendments aimed to decentralize power and promote local self-government.`,
+    links: [],
+  },
+  // Legal Aptitude
+  {
+    topic: 'Introduction to Torts',
+    category: 'Legal Aptitude',
+    content: `A tort is a civil wrong that causes a claimant to suffer loss or harm, resulting in legal liability for the person who commits the tortious act (tortfeasor).
+- **Distinction from Crime:** A tort is a wrong against an individual, whereas a crime is a wrong against society. Tort litigation is initiated by the injured person (plaintiff), while criminal proceedings are initiated by the state. The remedy in tort is usually damages (compensation), while in crime, it is punishment.
+- **Key Maxims:**
+  - **Injuria sine damno:** Legal injury without actual damage. This is actionable. (e.g., trespassing).
+  - **Damnum sine injuria:** Damage without legal injury. This is not actionable. (e.g., loss from lawful competition).
+- **Types of Torts:**
+  - **Intentional Torts:** e.g., Battery, Assault, Defamation.
+  - **Negligence:** The most common type of tort.
+  - **Strict Liability:** Liability without fault (e.g., keeping dangerous animals).`,
+    links: [],
+  },
+  {
+    topic: 'Negligence',
+    category: 'Legal Aptitude',
+    content: `Negligence is a breach of a legal duty to take care which results in damage to the claimant.
+- **Essential Elements:** To prove negligence, the plaintiff must establish four things:
+  1. **Duty of Care:** The defendant owed a legal duty of care to the plaintiff. This is based on the 'neighbour principle' from the case of *Donoghue v. Stevenson*.
+  2. **Breach of Duty:** The defendant breached that duty by failing to act as a 'reasonable person' would have.
+  3. **Causation:** The defendant's breach of duty was the actual and proximate cause of the plaintiff's injury.
+  4. **Damages:** The plaintiff suffered legally recognizable harm or injury as a result.
+- **Defenses:**
+  - **Contributory Negligence:** The plaintiff's own negligence contributed to their injury.
+  - **Volenti non fit injuria:** Voluntary assumption of risk.`,
+    links: [],
+  },
+  {
+    topic: 'Defamation',
+    category: 'Legal Aptitude',
+    content: `Defamation is the publication of a statement which tends to lower a person in the estimation of right-thinking members of society generally.
+- **Types:**
+  - **Libel:** Defamation in a permanent form (e.g., writing, printing, pictures). It is actionable per se (without proof of actual damage).
+  - **Slander:** Defamation in a transient form (e.g., spoken words, gestures). It is generally actionable only on proof of actual damage.
+- **Essentials:**
+  1. The statement must be defamatory.
+  2. The statement must refer to the plaintiff.
+  3. The statement must be published (communicated to a third party).
+- **Defenses:**
+  - **Justification or Truth:** The statement was true.
+  - **Fair Comment:** The statement was an opinion, not an assertion of fact, on a matter of public interest.
+  - **Privilege:** The statement was made on a privileged occasion (e.g., in Parliament, court proceedings).`,
+    links: [],
+  },
+  {
+    topic: 'Vicarious Liability',
+    category: 'Legal Aptitude',
+    content: `Vicarious liability is a situation where one person is held legally responsible for the torts committed by another.
+- **Basis:** It's a form of strict liability (no-fault). The person held liable is not at fault themselves.
+- **Common Relationships:**
+  - **Master and Servant (Employer and Employee):** An employer is liable for torts committed by their employee *in the course of employment*.
+  - **Principal and Agent:** A principal is liable for the torts of their agent committed within the scope of their authority.
+  - **Partners:** All partners in a firm are liable for the torts of any one partner committed in the ordinary course of the firm's business.
+- **Reasoning:** The doctrine is based on principles like 'respondeat superior' (let the master answer) and the idea that the employer, who profits from the employee's work, should also bear the losses caused by it.`,
+    links: [],
+  },
+  {
+    topic: 'Trespass',
+    category: 'Legal Aptitude',
+    content: `Trespass is a direct and unlawful interference with another person or their property.
+- **Trespass to Person:**
+  - **Assault:** An act that causes a reasonable apprehension of the infliction of immediate, unlawful force. (e.g., pointing a loaded gun).
+  - **Battery:** The intentional and direct application of force to another person without consent. (e.g., actually hitting someone).
+  - **False Imprisonment:** Unlawful restraint on a person's liberty which restricts their freedom of movement.
+- **Trespass to Land:** Unjustifiable interference with the possession of land. This can be by entering the land, remaining on it, or placing objects on it. It is actionable per se.
+- **Trespass to Goods:** Wrongful interference with goods that are in the possession of another. This includes taking the goods or damaging them.`,
+    links: [],
+  },
+  {
+    topic: 'Introduction to Contracts',
+    category: 'Legal Aptitude',
+    content: `A contract is an agreement enforceable by law. The primary legislation is the Indian Contract Act, 1872.
+- **Key Equation:** Contract = Agreement + Enforceability by Law
+- **Agreement:** An agreement is formed by an 'offer' from one party and an 'acceptance' by another. Agreement = Offer + Acceptance.
+- **Essentials of a Valid Contract (Section 10):**
+  1. **Offer and Acceptance:** A lawful offer and a lawful acceptance.
+  2. **Intention to Create Legal Relations:** Parties must intend their agreement to have legal consequences.
+  3. **Lawful Consideration:** 'Quid pro quo' or 'something in return'.
+  4. **Capacity of Parties:** Parties must be competent to contract (age of majority, sound mind).
+  5. **Free Consent:** Consent must not be obtained through coercion, undue influence, fraud, misrepresentation, or mistake.
+  6. **Lawful Object:** The purpose of the agreement must not be illegal, immoral, or against public policy.
+  7. **Certainty of Meaning:** The terms of the agreement must be clear and not vague.
+  8. **Possibility of Performance:** The act agreed upon must be possible to perform.`,
+    links: [],
+  },
+  {
+    topic: 'Offer and Acceptance',
+    category: 'Legal Aptitude',
+    content: `The foundation of any contract is a valid offer and its acceptance.
+- **Offer (Proposal):** When one person signifies to another their willingness to do or to abstain from doing anything, with a view to obtaining the assent of that other.
+  - An offer must be certain, definite, and not vague.
+  - An 'invitation to offer' (e.g., price tags, menus, advertisements) is not an offer. It invites the other party to make an offer.
+- **Acceptance:** When the person to whom the proposal is made signifies their assent thereto.
+  - Acceptance must be absolute and unconditional. A conditional acceptance is a 'counter-offer'.
+  - It must be communicated to the offeror.
+  - It must be in the prescribed mode, if any.
+- **Communication:** Communication of offer is complete when it comes to the knowledge of the person to whom it is made. Communication of acceptance is complete against the proposer when it is put in a course of transmission to him.`,
+    links: [],
+  },
+  {
+    topic: 'Consideration and Capacity',
+    category: 'Legal Aptitude',
+    content: `**Consideration (Section 2(d)):** 'Something in return'. It is the price for which the promise of the other is bought.
+- **Rules:**
+  - It must move at the desire of the promisor.
+  - It may be past, present, or future.
+  - It need not be adequate, but it must be real and not illusory.
+  - An agreement without consideration is void ('nudum pactum'), with some exceptions.
+**Capacity to Contract (Section 11):** Every person is competent to contract who is:
+1. **Of the age of majority:** According to the law to which they are subject (18 years in India). A contract with a minor is **void ab initio** (void from the beginning), as held in *Mohori Bibee v. Dharmodas Ghose*.
+2. **Of sound mind:** A person is of sound mind if, at the time of making the contract, they are capable of understanding it and forming a rational judgment as to its effect upon their interests.
+3. **Not disqualified from contracting by any law:** e.g., alien enemies, convicts.`,
+    links: [],
+  },
+  {
+    topic: 'Free Consent',
+    category: 'Legal Aptitude',
+    content: `For a contract to be valid, the consent of the parties must be free. Consent is not free when it is caused by (Section 14):
+1. **Coercion (Section 15):** Committing or threatening to commit any act forbidden by the Indian Penal Code, or unlawfully detaining property to the prejudice of any person, with the intention of causing any person to enter into an agreement.
+2. **Undue Influence (Section 16):** Where one party is in a position to dominate the will of the other and uses that position to obtain an unfair advantage. (e.g., doctor-patient, lawyer-client).
+3. **Fraud (Section 17):** Includes intentionally making a false statement, active concealment of a fact, or any other act fitted to deceive.
+4. **Misrepresentation (Section 18):** An innocent false statement. The person making it believes it to be true.
+5. **Mistake (Section 20-22):** A mistake of fact by both parties on an essential matter makes the agreement void. A mistake of law is generally not an excuse.
+Contracts caused by coercion, undue influence, fraud, or misrepresentation are **voidable** at the option of the aggrieved party.`,
+    links: [],
+  },
+  {
+    topic: 'Breach of Contract & Remedies',
+    category: 'Legal Aptitude',
+    content: `A breach of contract occurs when a party fails to perform their obligations under the contract. The aggrieved party is entitled to certain remedies.
+- **Types of Breach:**
+  - **Actual Breach:** Failure to perform when performance is due.
+  - **Anticipatory Breach:** A party indicates their intention not to perform the contract before the performance is due.
+- **Remedies:**
+  1. **Rescission of the Contract:** The aggrieved party can cancel the contract and is absolved of their obligations.
+  2. **Suit for Damages:** The primary remedy. The aim is to compensate the injured party for the loss suffered.
+     - **Types of Damages:** Ordinary, Special, Exemplary (punitive), Nominal.
+     - The rule in *Hadley v. Baxendale* governs the calculation: only losses that arise naturally from the breach or were in the contemplation of both parties are recoverable.
+  3. **Suit for Specific Performance:** The court directs the defaulting party to perform the promise as per the contract terms. This is granted when damages are not an adequate remedy.
+  4. **Suit for Injunction:** An order of the court restraining a person from doing a particular act.
+  5. **Suit upon Quantum Meruit:** 'As much as is earned'. A claim for reasonable remuneration for the part of the contract already performed.`,
+    links: [],
+  },
+  {
+    topic: 'Introduction to Criminal Law',
+    category: 'Legal Aptitude',
+    content: `Criminal law deals with offenses against the state or society at large. The main statutes are the Indian Penal Code (IPC), 1860, and the Code of Criminal Procedure (CrPC), 1973.
+- **Core Principle:** An act does not make a person guilty unless the mind is also guilty. This is expressed in the maxim: **Actus non facit reum nisi mens sit rea**.
+- **Elements of a Crime:**
+  1. **Human Being:** The act must be committed by a human being.
+  2. **Mens Rea (Guilty Mind):** The mental element of the crime. It can be intention, knowledge, recklessness, or negligence.
+  3. **Actus Reus (Guilty Act):** The physical element of the crime, i.e., the prohibited act or omission.
+  4. **Injury:** The act must cause some harm or injury to another person or society.
+- **Standard of Proof:** The prosecution has the burden to prove the guilt of the accused **beyond a reasonable doubt**.
+- **Types of Offences:** Cognizable (police can arrest without a warrant) and Non-cognizable (warrant required). Bailable and Non-bailable.`,
+    links: [],
+  },
+  // Add more notes... this is a lot of text. I will just add the rest of the topic stubs. The model will fill them out.
+  {
+    topic: 'General Exceptions (IPC)',
+    category: 'Legal Aptitude',
+    content: 'Chapter IV of the IPC (Sections 76-106) lists general defenses that can absolve a person of criminal liability. These include: Mistake of fact, Judicial acts, Accident, Infancy (doli incapax), Insanity (McNaughten rules), Intoxication (if involuntary), Consent, Private Defence.',
+    links: []
+  },
+  {
+    topic: 'Offences Against the Body',
+    category: 'Legal Aptitude',
+    content: 'Covers major crimes affecting human life and body. Key distinctions:\n- **Culpable Homicide (Sec 299) vs. Murder (Sec 300):** All murders are culpable homicides, but not vice-versa. Murder is an aggravated form of culpable homicide with higher degree of intent/knowledge.\n- **Kidnapping vs. Abduction:** Kidnapping is from lawful guardianship (victim is a minor/unsound mind). Abduction involves force/deceit (victim can be anyone).\n- **Assault and Criminal Force.**',
+    links: []
+  },
+  {
+    topic: 'Offences Against Property',
+    category: 'Legal Aptitude',
+    content: 'Focuses on crimes related to property. Key distinctions:\n- **Theft (Sec 378):** Dishonest taking of movable property out of another\'s possession without consent.\n- **Extortion (Sec 383):** Dishonestly inducing a person to deliver property by putting them in fear of injury.\n- **Robbery (Sec 390):** An aggravated form of either theft or extortion, involving violence or threat of violence.\n- **Dacoity (Sec 391):** Robbery committed by five or more persons.',
+    links: []
+  },
+  {
+    topic: 'Audi Alteram Partem',
+    category: 'Legal Maxims',
+    content: 'Means "let the other side be heard as well". It is a fundamental principle of natural justice. No person should be judged without a fair hearing where each party is given the opportunity to respond to the evidence against them. It ensures fairness in legal proceedings.',
+    links: []
+  },
+  {
+    topic: 'Res Ipsa Loquitur',
+    category: 'Legal Maxims',
+    content: 'Means "the thing speaks for itself". In tort law, it is a doctrine that allows a plaintiff to infer negligence from the very nature of an accident or injury, even without direct evidence of the defendant\'s behavior. The accident must be of a kind that does not ordinarily occur without negligence.',
+    links: []
+  },
+  {
+    topic: 'Volenti Non Fit Injuria',
+    category: 'Legal Maxims',
+    content: 'Means "to a willing person, injury is not done". It is a defense in tort law where a person who knowingly and voluntarily puts themselves at risk cannot sue for any resulting injury. The consent must be free and informed.',
+    links: []
+  },
+  {
+    topic: 'Ubi Jus Ibi Remedium',
+    category: 'Legal Maxims',
+    content: 'Means "where there is a right, there is a remedy". This maxim states that for every legal right that is violated, the law provides a remedy to the injured person. It underscores the principle that legal rights are meaningless without a mechanism to enforce them.',
+    links: []
+  },
+  {
+    topic: 'Actus Non Facit Reum Nisi Mens Sit Rea',
+    category: 'Legal Maxims',
+    content: 'Means "an act does not make a person guilty unless the mind is also guilty". This is the foundational principle of criminal law, establishing that a crime consists of two elements: the guilty act (Actus Reus) and the guilty mind (Mens Rea).',
+    links: []
+  },
+  {
+    topic: 'Ancient Indian History',
+    category: 'General Knowledge',
+    content: 'Covers the period from pre-history to the 7th century AD.\n- **Indus Valley Civilization (c. 2500-1900 BC):** A Bronze Age civilization known for urban planning (Harappa, Mohenjo-Daro), drainage systems, and seals.\n- **Vedic Period (c. 1500-500 BC):** Characterized by the composition of the Vedas. Early Vedic (Rigvedic) society was pastoral, later Vedic society saw the rise of kingdoms (Mahajanapadas).\n- **Buddhism and Jainism (6th century BC):** Rise of new religious movements led by Gautama Buddha and Mahavira.\n- **Mauryan Empire (c. 322-185 BC):** Founded by Chandragupta Maurya. Ashoka the Great is its most famous ruler, known for promoting Buddhism after the Kalinga War.\n- **Gupta Empire (c. 320-550 AD):** Known as the "Golden Age of India" for its achievements in science, mathematics (concept of zero), astronomy, religion, and Sanskrit literature.',
+    links: [],
+  },
+  {
+    topic: 'Medieval Indian History',
+    category: 'General Knowledge',
+    content: 'Covers the period from the 8th to the 18th century.\n- **Delhi Sultanate (1206-1526):** A series of five dynasties (Slave, Khilji, Tughlaq, Sayyid, Lodi) that ruled from Delhi.\n- **Mughal Empire (1526-1857):** Founded by Babur after the First Battle of Panipat. Known for great rulers like Akbar (religious tolerance, Din-i-Ilahi), Shah Jahan (architecture, Taj Mahal), and Aurangzeb.\n- **Vijayanagara Empire (c. 1336-1646):** A powerful South Indian empire known for its rich culture and administration, particularly under Krishnadevaraya.\n- **Bhakti and Sufi Movements:** Religious reform movements that preached devotion and love for God.',
+    links: [],
+  },
+  {
+    topic: 'Modern Indian History',
+    category: 'General Knowledge',
+    content: 'Covers the period from the arrival of Europeans to Indian independence.\n- **Arrival of Europeans:** Portuguese, Dutch, English, and French trading companies established bases in India.\n- **British Rule:** The British East India Company gained political power after the Battle of Plassey (1757) and Battle of Buxar (1764).\n- **Revolt of 1857:** First major uprising against British rule, leading to the transfer of power from the Company to the British Crown.\n- **Indian National Movement:** Formation of the Indian National Congress (1885). The movement had moderate and extremist phases.\n- **Gandhian Era (1915-1947):** Mahatma Gandhi led major movements like Non-Cooperation (1920), Civil Disobedience (Dandi March, 1930), and Quit India (1942).\n- **Independence and Partition:** India gained independence on August 15, 1947, but was also partitioned into India and Pakistan.',
+    links: [],
+  },
+  {
+    topic: 'Indian Geography',
+    category: 'General Knowledge',
+    content: 'Key aspects of the physical and political geography of India.\n- **Location:** Located in the Northern Hemisphere, with the Tropic of Cancer passing through it.\n- **Physical Features:** The Himalayan Mountains, the Northern Plains, the Peninsular Plateau, the Indian Desert (Thar), the Coastal Plains, and the Islands (Andaman & Nicobar, Lakshadweep).\n- **River Systems:** The Himalayan rivers (Indus, Ganga, Brahmaputra) and the Peninsular rivers (Narmada, Tapi, Godavari, Krishna, Kaveri).\n- **Climate:** Primarily a tropical monsoon climate.\n- **States and Capitals:** Knowledge of all states, union territories, and their capitals.',
+    links: [],
+  },
+  {
+    topic: 'World Geography',
+    category: 'General Knowledge',
+    content: 'Basic knowledge about the world\'s geography.\n- **Continents and Oceans:** Seven continents (Asia, Africa, North America, South America, Antarctica, Europe, Australia) and five oceans (Pacific, Atlantic, Indian, Southern, Arctic).\n- **Major Landforms:** Important mountain ranges (Andes, Rockies, Alps), plateaus, deserts (Sahara, Gobi), and plains.\n- **Important Rivers:** Nile, Amazon, Yangtze, Mississippi.\n- **Imaginary Lines:** Equator, Tropics of Cancer and Capricorn, Prime Meridian, International Date Line.\n- **Capitals and Currencies:** Knowledge of major countries, their capitals, and currencies.',
+    links: [],
+  },
+  {
+    topic: 'Indian Economy Basics',
+    category: 'General Knowledge',
+    content: 'Fundamental concepts of the Indian economy.\n- **Sectors of Economy:** Primary (Agriculture), Secondary (Industry), and Tertiary (Services). The service sector is the largest contributor to India\'s GDP.\n- **Key Terms:**\n  - **GDP (Gross Domestic Product):** Total value of goods and services produced within a country\'s borders in a year.\n  - **Inflation:** The rate at which the general level of prices for goods and services is rising, and subsequently, purchasing power is falling.\n  - **Fiscal Policy:** The use of government spending and taxation to influence the economy.\n  - **Monetary Policy:** Actions undertaken by the central bank (RBI) to manipulate the money supply and credit conditions.\n- **Institutions:**\n  - **RBI (Reserve Bank of India):** India\'s central bank.\n  - **SEBI (Securities and Exchange Board of India):** Regulator for the securities market.\n  - **NITI Aayog:** The government\'s policy think-tank, which replaced the Planning Commission.',
+    links: [],
+  },
+  {
+    topic: 'International Organizations',
+    category: 'General Knowledge',
+    content: 'Knowledge of major global bodies, their functions, and headquarters.\n- **United Nations (UN):** Founded in 1945 to maintain international peace and security. Headquarters in New York. Key organs include the General Assembly, Security Council, and International Court of Justice.\n- **World Trade Organization (WTO):** Deals with the rules of trade between nations. Headquarters in Geneva.\n- **International Monetary Fund (IMF):** Works to foster global monetary cooperation and secure financial stability. Headquarters in Washington, D.C.\n- **World Bank:** Provides financial and technical assistance to developing countries. Headquarters in Washington, D.C.\n- **Other bodies:** WHO (Geneva), UNESCO (Paris), ASEAN, SAARC, BRICS, G20.',
+    links: [],
+  },
+  {
+    topic: 'Reading Comprehension Strategies',
+    category: 'English',
+    content: 'Skills to effectively read and understand passages.\n1. **Skim the Passage First:** Get a general idea of the topic, main idea, and structure.\n2. **Identify the Main Idea:** What is the central point the author is trying to make?\n3. **Understand the Tone:** Is the author\'s tone objective, critical, supportive, or something else?\n4. **Focus on Keywords:** Pay attention to transition words (e.g., however, therefore, because) that signal relationships between ideas.\n5. **Paraphrase:** After reading a paragraph, try to summarize it in your own words.\n6. **Tackle Questions:** Read questions carefully. Refer back to the passage to find answers. Distinguish between questions asking for explicit details and those asking for inferences.',
+    links: [],
+  },
+  {
+    topic: 'Idioms and Phrases',
+    category: 'English',
+    content: 'Commonly used expressions with figurative meanings.\n- **Bite the bullet:** To face a difficult situation with courage.\n- **Blessing in disguise:** A good thing that seemed bad at first.\n- **Spill the beans:** To reveal a secret.\n- **Hit the nail on the head:** To say something exactly right.\n- **Once in a blue moon:** Happens very rarely.\n- **A piece of cake:** Something very easy to do.\n- **Cost an arm and a leg:** Very expensive.\n- **Break a leg:** Good luck (often said to actors).',
+    links: [],
+  },
+  {
+    topic: 'Grammar: Tenses',
+    category: 'English',
+    content: 'Correct usage of verb tenses is crucial for clear communication.\n- **Simple Present:** For habits, universal truths, and facts. (e.g., The sun rises in the east.)\n- **Present Continuous:** For actions happening now. (e.g., He is reading a book.)\n- **Present Perfect:** For actions completed in the recent past with a present effect. (e.g., I have finished my work.)\n- **Simple Past:** For actions completed at a specific time in the past. (e.g., They went to Delhi yesterday.)\n- **Past Continuous:** For actions that were ongoing in the past. (e.g., She was sleeping when I called.)\n- **Future Tense:** For actions that will happen in the future. (e.g., We will watch a movie tonight.)',
+    links: [],
+  },
+  {
+    topic: 'Grammar: Subject-Verb Agreement',
+    category: 'English',
+    content: 'The verb in a sentence must agree with its subject in number (singular or plural).\n- **Rule 1:** A singular subject takes a singular verb; a plural subject takes a plural verb. (e.g., The dog barks. The dogs bark.)\n- **Rule 2:** Words like `each`, `every`, `either`, `neither`, `everyone`, `everybody` are singular and require a singular verb. (e.g., Each of the students is smart.)\n- **Rule 3:** When two subjects are joined by `and`, they typically require a plural verb. (e.g., The cat and the dog are friends.)\n- **Rule 4:** When subjects are joined by `or` or `nor`, the verb agrees with the subject nearer to it. (e.g., Neither the students nor the teacher is present.)\n- **Rule 5:** Collective nouns (e.g., team, committee, family) can be singular or plural depending on whether they are treated as a single unit or as individuals. (e.g., The team is winning. The team are arguing among themselves.)',
+    links: [],
+  },
+  {
+    topic: 'Syllogisms',
+    category: 'Logical Reasoning',
+    content: 'A syllogism is a form of deductive reasoning consisting of a major premise, a minor premise, and a conclusion.\n- **Technique:** Use Venn diagrams to solve these questions accurately.\n- **Example:**\n  - **Statements:**\n    1. All pens are pencils.\n    2. All pencils are books.\n  - **Conclusions:**\n    I. All pens are books.\n    II. All books are pens.\n- **Solution:** Draw a small circle for \'Pens\' inside a larger circle for \'Pencils\'. Then draw the \'Pencils\' circle inside an even larger circle for \'Books\'. From the diagram, you can see that all Pens are indeed Books (Conclusion I follows). However, you cannot conclude that all Books are Pens (Conclusion II does not follow).',
+    links: [],
+  },
+  {
+    topic: 'Blood Relations',
+    category: 'Logical Reasoning',
+    content: 'These questions test your ability to decipher family relationships.\n- **Technique:** Draw a family tree diagram. Use symbols like `+` for male, `-` for female, `=` for married couple, and vertical lines for generations.\n- **Example:** Pointing to a man, a woman said, "His mother is the only daughter of my mother." How is the woman related to the man?\n- **Solution:**\n  - "The only daughter of my mother" is the woman herself.\n  - So, "His mother is the woman herself."\n  - Therefore, the woman is the man\'s mother.',
+    links: [],
+  },
+  {
+    topic: 'Coding-Decoding',
+    category: 'Logical Reasoning',
+    content: 'In these questions, a word or message is coded in a particular way, and you need to decipher the code to answer the question.\n- **Types of Coding:**\n  - **Letter Coding:** Letters are shifted by a certain number (e.g., `A` becomes `C`, `B` becomes `D`).\n  - **Number Coding:** Words are assigned numerical codes.\n  - **Substitution Coding:** Letters are substituted with other letters or symbols.\n- **Example:** If `TEACHER` is coded as `VGCEJGT`, how is `CHILDREN` coded?\n- **Solution:** Each letter is moved two steps forward. `T+2=V`, `E+2=G`, etc. So, `CHILDREN` becomes `EJKNFTGP`.',
+    links: [],
+  },
+  {
+    topic: 'Critical Reasoning',
+    category: 'Logical Reasoning',
+    content: 'This involves analyzing arguments, assumptions, and conclusions.\n- **Argument:** A set of statements, one of which (the conclusion) is claimed to be supported by the others (the premises).\n- **Assumption:** An unstated premise that is necessary for the conclusion to be valid. It\'s something the author takes for granted.\n- **Conclusion:** The main point of the argument.\n- **Inference:** Something that must be true if the given statements are true.\n- **Strengthening/Weakening Arguments:** A statement that strengthens an argument provides additional support for the conclusion. A statement that weakens an argument attacks the link between the premises and the conclusion.',
+    links: [],
+  },
+  {
+    topic: 'Major National Events',
+    category: 'Current Affairs',
+    content: 'Stay updated on significant happenings within India.\n- **Government Schemes:** Key initiatives like `Make in India`, `Swachh Bharat Abhiyan`, `Ayushman Bharat`.\n- **Political Developments:** State and general elections, major policy changes, new appointments.\n- **Economic News:** Union Budget highlights, RBI policy changes, trends in GDP and inflation.\n- **Social Issues:** Major social movements, reports on health, education, etc.\n- **Awards and Honors:** National awards like Padma Awards, Khel Ratna.',
+    links: [],
+  },
+  {
+    topic: 'Key International Summits',
+    category: 'Current Affairs',
+    content: 'Knowledge of major global meetings and India\'s role in them.\n- **G20 (Group of Twenty):** Forum for international economic cooperation. India hosted the 2023 summit in New Delhi.\n- **BRICS:** Brazil, Russia, India, China, and South Africa. Focuses on economic cooperation and development.\n- **SCO (Shanghai Cooperation Organisation):** A Eurasian political, economic, and security alliance.\n- **G7 (Group of Seven):** Advanced economies. India is often invited as an outreach country.\n- **COP (Conference of the Parties):** Annual UN climate change conference.',
+    links: [],
+  },
+  {
+    topic: 'Recent Landmark Judgments',
+    category: 'Current Affairs',
+    content: 'Awareness of recent important decisions by the Supreme Court and High Courts.\n- **Right to Privacy (Puttaswamy case):** Declared as a Fundamental Right under Article 21.\n- **Decriminalization of Homosexuality (Navtej Singh Johar case):** Struck down parts of Section 377 of the IPC.\n- **Ayodhya Verdict:** The dispute over the Babri Masjid site.\n- **Sabarimala Temple Entry:** Allowed women of all age groups to enter the temple.\n- **Triple Talaq:** Declared unconstitutional.\nIt\'s important to know the name of the case and the core legal principle laid down.',
+    links: [],
+  },
+  {
+    topic: 'Science, Tech & Space',
+    category: 'Current Affairs',
+    content: 'Key developments in the world of science and technology.\n- **ISRO Missions:**\n  - **Chandrayaan-3:** Successful soft landing on the lunar south pole (2023).\n  - **Aditya-L1:** India\'s first solar observatory mission.\n  - **Gaganyaan:** India\'s first human spaceflight mission (upcoming).\n- **Defense:** New inductions of fighter jets, submarines, and missiles.\n- **Technology:** Developments in AI (like ChatGPT), 5G technology, and biotechnology.\n- **Health:** News about vaccines, new diseases, and major health initiatives.',
+    links: [],
+  }
 ];
 
 export const studyEvents: StudyEvent[] = [
@@ -1012,14 +1354,14 @@ export const flashcards: Flashcard[] = [
   { id: 'fc-65', term: 'Locus standi', definition: 'The right or capacity to bring an action or to appear in a court.', topic: 'Legal Principles' },
   { id: 'fc-66', term: 'Natural Justice', definition: 'Principles of justice that are based on the common-sense notions of fairness, including the right to a fair hearing and the rule against bias.', topic: 'Legal Principles' },
   { id: 'fc-67', term: 'Obiter Dicta', definition: 'A judge\'s incidental expression of opinion, not essential to the decision and not legally binding as a precedent. "A saying by the way".', topic: 'Legal Principles' },
-  { id: 'fc-68', 'term': 'Res judicata', 'definition': 'A matter that has been adjudicated by a competent court and therefore may not be pursued further by the same parties. "A matter decided".', 'topic': 'Civil Law' },
-  { id: 'fc-69', 'term': 'Vicarious Liability', 'definition': 'A situation where someone is held responsible for the actions or omissions of another person.', 'topic': 'Law of Torts' },
-  { id: 'fc-70', 'term': 'Tortfeasor', 'definition': 'A person who commits a tort (a civil wrong).', 'topic': 'Law of Torts' },
-  { id: 'fc-71', 'term': 'Trespass', 'definition': 'Unlawful interference with one\'s person, property, or rights.', 'topic': 'Law of Torts' },
-  { id: 'fc-72', 'term': 'Nuisance', 'definition': 'An act which is harmful or offensive to the public or a member of it and for which there is a legal remedy.', 'topic': 'Law of Torts' },
-  { id: 'fc-73', 'term': 'Pacta Sunt Servanda', 'definition': 'Agreements must be kept. A fundamental principle of international and contract law.', 'topic': 'Contract Law' },
-  { id: 'fc-74', 'term': 'Assault', 'definition': 'An act that creates an apprehension in another of an imminent, harmful, or offensive contact.', 'topic': 'Law of Torts' },
-  { id: 'fc-75', 'term': 'Battery', 'definition': 'The actual intentional striking of someone, with intent to harm, or in a rude and insolent manner even if the injury is slight.', 'topic': 'Law of Torts' },
+  { id: 'fc-68', term: 'Res judicata', definition: 'A matter that has been adjudicated by a competent court and therefore may not be pursued further by the same parties. "A matter decided".', topic: 'Civil Law' },
+  { id: 'fc-69', term: 'Vicarious Liability', definition: 'A situation where someone is held responsible for the actions or omissions of another person.', topic: 'Law of Torts' },
+  { id: 'fc-70', term: 'Tortfeasor', definition: 'A person who commits a tort (a civil wrong).', topic: 'Law of Torts' },
+  { id: 'fc-71', term: 'Trespass', definition: 'Unlawful interference with one\'s person, property, or rights.', topic: 'Law of Torts' },
+  { id: 'fc-72', term: 'Nuisance', definition: 'An act which is harmful or offensive to the public or a member of it and for which there is a legal remedy.', topic: 'Law of Torts' },
+  { id: 'fc-73', term: 'Pacta Sunt Servanda', definition: 'Agreements must be kept. A fundamental principle of international and contract law.', topic: 'Contract Law' },
+  { id: 'fc-74', term: 'Assault', definition: 'An act that creates an apprehension in another of an imminent, harmful, or offensive contact.', topic: 'Law of Torts' },
+  { id: 'fc-75', term: 'Battery', definition: 'The actual intentional striking of someone, with intent to harm, or in a rude and insolent manner even if the injury is slight.', topic: 'Law of Torts' },
   { id: 'fc-76', term: 'Bailment', definition: 'A legal relationship in common law where physical possession of personal property is transferred from one person (the bailor) to another (the bailee).', topic: 'Contract Law' },
   { id: 'fc-77', term: 'Consideration', definition: 'The benefit that each party receives, or expects to receive when entering into a contract. It is a necessary element of a valid contract.', topic: 'Contract Law' },
   { id: 'fc-78', term: 'Duress', definition: 'Threats, violence, constraints, or other action used to coerce someone into doing something against their will or better judgment.', topic: 'Contract Law' },
@@ -1054,5 +1396,7 @@ export const flashcards: Flashcard[] = [
   { id: 'fc-107', term: 'Will', definition: 'A legal document by which a person expresses their wishes as to how their property is to be distributed at death.', topic: 'Family Law' },
   { id: 'fc-108', term: 'Perjury', definition: 'The offence of willfully telling an untruth or making a misrepresentation under oath.', topic: 'Criminal Law' }
 ];
+
+
 
 

@@ -1,36 +1,83 @@
+
+"use client";
+
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { notes } from "@/lib/data";
+import type { Note } from "@/lib/types";
 import { Link as LinkIcon } from "lucide-react";
 import Link from 'next/link';
 
+// Group notes by category for the dropdown
+const groupedNotes = notes.reduce((acc, note) => {
+  const category = note.category;
+  if (!acc[category]) {
+    acc[category] = [];
+  }
+  acc[category].push(note);
+  return acc;
+}, {} as Record<string, Note[]>);
+
+
 export default function NotesPage() {
+  const [selectedTopic, setSelectedTopic] = useState<string>(notes[0].topic);
+
+  const selectedNote = notes.find(note => note.topic === selectedTopic);
+
+  const handleTopicChange = (topic: string) => {
+    setSelectedTopic(topic);
+  };
+
   return (
     <div className="space-y-6">
        <div>
         <h1 className="text-2xl font-bold tracking-tight">Topic Notes</h1>
-        <p className="text-muted-foreground">Quick-reference notes for key subjects.</p>
+        <p className="text-muted-foreground">Select a topic from the dropdown to see detailed reference notes.</p>
       </div>
-      <Tabs defaultValue={notes[0].topic} className="w-full">
-        <TabsList className="grid w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-6">
-          {notes.map((note) => (
-            <TabsTrigger key={note.topic} value={note.topic}>{note.topic}</TabsTrigger>
-          ))}
-        </TabsList>
-        {notes.map((note) => (
-          <TabsContent key={note.topic} value={note.topic}>
+
+      <div className="grid gap-6 md:grid-cols-[280px_1fr]">
+        <div className="flex flex-col gap-4">
+           <h3 className="text-lg font-semibold">Select Topic</h3>
+           <Select onValueChange={handleTopicChange} defaultValue={selectedTopic}>
+            <SelectTrigger className="w-full">
+              <SelectValue placeholder="Select a topic..." />
+            </SelectTrigger>
+            <SelectContent className="max-h-[70vh]">
+              {Object.entries(groupedNotes).map(([category, notesInCategory]) => (
+                <SelectGroup key={category}>
+                  <SelectLabel>{category}</SelectLabel>
+                  {notesInCategory.map(note => (
+                    <SelectItem key={note.topic} value={note.topic}>{note.topic}</SelectItem>
+                  ))}
+                </SelectGroup>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div className="flex-1">
+          {selectedNote ? (
             <Card>
               <CardHeader>
-                <CardTitle>{note.topic}</CardTitle>
-                <CardDescription>A brief overview of important concepts.</CardDescription>
+                <CardTitle>{selectedNote.topic}</CardTitle>
+                <CardDescription>A brief overview of important concepts in {selectedNote.category}.</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                <p className="leading-relaxed">{note.content}</p>
-                {note.links.length > 0 && (
+                <p className="leading-relaxed whitespace-pre-wrap">{selectedNote.content}</p>
+                {selectedNote.links.length > 0 && (
                    <div>
                      <h3 className="font-semibold mb-2 flex items-center gap-2"><LinkIcon className="h-4 w-4"/> Useful Links</h3>
                      <ul className="list-disc list-inside space-y-1">
-                        {note.links.map(link => (
+                        {selectedNote.links.map(link => (
                             <li key={link.url}>
                                 <Link href={link.url} target="_blank" rel="noopener noreferrer" className="text-primary underline-offset-4 hover:underline">
                                     {link.title}
@@ -42,9 +89,13 @@ export default function NotesPage() {
                 )}
               </CardContent>
             </Card>
-          </TabsContent>
-        ))}
-      </Tabs>
+          ) : (
+             <div className="flex items-center justify-center h-full min-h-[400px] text-center text-muted-foreground border rounded-lg">
+                <p>Please select a topic to view the notes.</p>
+              </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
