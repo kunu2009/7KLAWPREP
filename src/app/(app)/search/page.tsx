@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Input } from '@/components/ui/input';
 import { mcqs, notes } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,13 +9,25 @@ import Link from 'next/link';
 
 export default function SearchPage() {
   const [searchTerm, setSearchTerm] = useState('');
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState(searchTerm);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, 300); // Debounce delay of 300ms
+
+    // Cleanup function to cancel the timeout if the user keeps typing
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [searchTerm]);
 
   const searchResults = useMemo(() => {
-    if (!searchTerm.trim()) {
+    if (!debouncedSearchTerm.trim()) {
       return { mcqs: [], notes: [] };
     }
 
-    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+    const lowerCaseSearchTerm = debouncedSearchTerm.toLowerCase();
 
     const filteredMcqs = mcqs.filter(
       (mcq) =>
@@ -30,9 +42,10 @@ export default function SearchPage() {
     );
 
     return { mcqs: filteredMcqs, notes: filteredNotes };
-  }, [searchTerm]);
+  }, [debouncedSearchTerm]);
 
   const hasResults = searchResults.mcqs.length > 0 || searchResults.notes.length > 0;
+  const showResults = debouncedSearchTerm.trim() !== '';
 
   return (
     <div className="space-y-6">
@@ -49,7 +62,7 @@ export default function SearchPage() {
         />
       </div>
 
-      {searchTerm.trim() && (
+      {showResults && (
          <div className="space-y-6">
           {hasResults ? (
             <>
@@ -96,7 +109,7 @@ export default function SearchPage() {
               )}
             </>
           ) : (
-            <p className="text-muted-foreground text-center py-8">No results found for "{searchTerm}".</p>
+            <p className="text-muted-foreground text-center py-8">No results found for "{debouncedSearchTerm}".</p>
           )}
         </div>
       )}

@@ -9,6 +9,26 @@ import { Button } from '@/components/ui/button';
 import { RotateCw } from 'lucide-react';
 import { format } from 'date-fns';
 
+// More efficient shuffle algorithm (Fisher-Yates)
+const shuffleMcqs = (array: MCQ[]): MCQ[] => {
+  const newArray = [...array];
+  let currentIndex = newArray.length;
+  let randomIndex;
+
+  // While there remain elements to shuffle.
+  while (currentIndex !== 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [newArray[currentIndex], newArray[randomIndex]] = [
+      newArray[randomIndex], newArray[currentIndex]];
+  }
+
+  return newArray;
+}
+
 const getTodaysMcqs = (): MCQ[] => {
   const today = format(new Date(), 'yyyy-MM-dd');
   const storageKey = `lawPrepDailyMCQ_${today}`;
@@ -17,7 +37,6 @@ const getTodaysMcqs = (): MCQ[] => {
     const storedMcqIdsJson = localStorage.getItem(storageKey);
     if (storedMcqIdsJson) {
       const storedMcqIds = JSON.parse(storedMcqIdsJson);
-      // Ensure we have a valid array of IDs before proceeding
       if (Array.isArray(storedMcqIds) && storedMcqIds.length > 0) {
         const todaysMcqs = storedMcqIds.map((id: string) => mcqs.find(mcq => mcq.id === id)).filter((mcq): mcq is MCQ => !!mcq);
         if (todaysMcqs.length === 10) {
@@ -30,7 +49,7 @@ const getTodaysMcqs = (): MCQ[] => {
   }
   
   // If not found or invalid, generate new ones
-  const shuffled = [...mcqs].sort(() => 0.5 - Math.random());
+  const shuffled = shuffleMcqs(mcqs);
   const newDailyMcqs = shuffled.slice(0, 10);
   
   try {
@@ -52,15 +71,14 @@ export default function DailyMcqPage() {
   }, []);
 
   const refreshMcqs = useCallback(() => {
-    // Force a new set of questions, overriding today's saved set
     const today = format(new Date(), 'yyyy-MM-dd');
     const storageKey = `lawPrepDailyMCQ_${today}`;
     try {
-      localStorage.removeItem(storageKey); // Clear the old set
+      localStorage.removeItem(storageKey); 
     } catch (error) {
       console.error("Failed to remove item from localStorage", error);
     }
-    setDailyMcqs(getTodaysMcqs()); // This will now generate a new set
+    setDailyMcqs(getTodaysMcqs());
   }, []);
   
   return (
