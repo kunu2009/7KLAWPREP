@@ -6,6 +6,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Target, Check, Percent, BookOpenCheck } from 'lucide-react';
+import Link from 'next/link';
 
 export function ProgressTracker() {
   const { attempted, correct, history, resetProgress, isClient } = useProgress();
@@ -95,7 +96,7 @@ export function ProgressTracker() {
                 <Alert>
                     <AlertTitle>No Data Yet!</AlertTitle>
                     <AlertDescription>
-                        Attempt some MCQs from the "Daily MCQs" section to see your progress here.
+                        Attempt some MCQs from the <Link href="/mcqs" className="font-semibold text-primary hover:underline">Daily MCQs</Link> section to see your progress here.
                     </AlertDescription>
                 </Alert>
             )}

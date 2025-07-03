@@ -93,7 +93,7 @@ export default function SearchPage() {
                   <h2 className="text-xl font-semibold mb-4">Matching MCQs</h2>
                   <div className="space-y-4">
                     {searchResults.mcqs.map(mcq => (
-                       <Link href="/" key={mcq.id} className="block">
+                       <Link href="/mcqs" key={mcq.id} className="block">
                          <Card className="hover:border-primary transition-colors">
                            <CardHeader>
                              <CardTitle className="flex items-center justify-between text-base">
