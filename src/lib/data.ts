@@ -1103,167 +1103,287 @@ Contracts caused by coercion, undue influence, fraud, or misrepresentation are *
 - **Types of Offences:** Cognizable (police can arrest without a warrant) and Non-cognizable (warrant required). Bailable and Non-bailable.`,
     links: [],
   },
-  // Add more notes... this is a lot of text. I will just add the rest of the topic stubs. The model will fill them out.
   {
     topic: 'General Exceptions (IPC)',
     category: 'Legal Aptitude',
-    content: 'Chapter IV of the IPC (Sections 76-106) lists general defenses that can absolve a person of criminal liability. These include: Mistake of fact, Judicial acts, Accident, Infancy (doli incapax), Insanity (McNaughten rules), Intoxication (if involuntary), Consent, Private Defence.',
+    content: `Chapter IV of the IPC (Sections 76-106) lists general defenses that can absolve a person of criminal liability. These include: Mistake of fact, Judicial acts, Accident, Infancy (doli incapax), Insanity (McNaughten rules), Intoxication (if involuntary), Consent, Private Defence.`,
     links: []
   },
   {
     topic: 'Offences Against the Body',
     category: 'Legal Aptitude',
-    content: 'Covers major crimes affecting human life and body. Key distinctions:\n- **Culpable Homicide (Sec 299) vs. Murder (Sec 300):** All murders are culpable homicides, but not vice-versa. Murder is an aggravated form of culpable homicide with higher degree of intent/knowledge.\n- **Kidnapping vs. Abduction:** Kidnapping is from lawful guardianship (victim is a minor/unsound mind). Abduction involves force/deceit (victim can be anyone).\n- **Assault and Criminal Force.**',
+    content: `Covers major crimes affecting human life and body. Key distinctions:
+- **Culpable Homicide (Sec 299) vs. Murder (Sec 300):** All murders are culpable homicides, but not vice-versa. Murder is an aggravated form of culpable homicide with higher degree of intent/knowledge.
+- **Kidnapping vs. Abduction:** Kidnapping is from lawful guardianship (victim is a minor/unsound mind). Abduction involves force/deceit (victim can be anyone).
+- **Assault and Criminal Force.**`,
     links: []
   },
   {
     topic: 'Offences Against Property',
     category: 'Legal Aptitude',
-    content: 'Focuses on crimes related to property. Key distinctions:\n- **Theft (Sec 378):** Dishonest taking of movable property out of another\'s possession without consent.\n- **Extortion (Sec 383):** Dishonestly inducing a person to deliver property by putting them in fear of injury.\n- **Robbery (Sec 390):** An aggravated form of either theft or extortion, involving violence or threat of violence.\n- **Dacoity (Sec 391):** Robbery committed by five or more persons.',
+    content: `Focuses on crimes related to property. Key distinctions:
+- **Theft (Sec 378):** Dishonest taking of movable property out of another's possession without consent.
+- **Extortion (Sec 383):** Dishonestly inducing a person to deliver property by putting them in fear of injury.
+- **Robbery (Sec 390):** An aggravated form of either theft or extortion, involving violence or threat of violence.
+- **Dacoity (Sec 391):** Robbery committed by five or more persons.`,
     links: []
   },
   {
     topic: 'Audi Alteram Partem',
     category: 'Legal Maxims',
-    content: 'Means "let the other side be heard as well". It is a fundamental principle of natural justice. No person should be judged without a fair hearing where each party is given the opportunity to respond to the evidence against them. It ensures fairness in legal proceedings.',
+    content: `Means "let the other side be heard as well". It is a fundamental principle of natural justice. No person should be judged without a fair hearing where each party is given the opportunity to respond to the evidence against them. It ensures fairness in legal proceedings.`,
     links: []
   },
   {
     topic: 'Res Ipsa Loquitur',
     category: 'Legal Maxims',
-    content: 'Means "the thing speaks for itself". In tort law, it is a doctrine that allows a plaintiff to infer negligence from the very nature of an accident or injury, even without direct evidence of the defendant\'s behavior. The accident must be of a kind that does not ordinarily occur without negligence.',
+    content: `Means "the thing speaks for itself". In tort law, it is a doctrine that allows a plaintiff to infer negligence from the very nature of an accident or injury, even without direct evidence of the defendant's behavior. The accident must be of a kind that does not ordinarily occur without negligence.`,
     links: []
   },
   {
     topic: 'Volenti Non Fit Injuria',
     category: 'Legal Maxims',
-    content: 'Means "to a willing person, injury is not done". It is a defense in tort law where a person who knowingly and voluntarily puts themselves at risk cannot sue for any resulting injury. The consent must be free and informed.',
+    content: `Means "to a willing person, injury is not done". It is a defense in tort law where a person who knowingly and voluntarily puts themselves at risk cannot sue for any resulting injury. The consent must be free and informed.`,
     links: []
   },
   {
     topic: 'Ubi Jus Ibi Remedium',
     category: 'Legal Maxims',
-    content: 'Means "where there is a right, there is a remedy". This maxim states that for every legal right that is violated, the law provides a remedy to the injured person. It underscores the principle that legal rights are meaningless without a mechanism to enforce them.',
+    content: `Means "where there is a right, there is a remedy". This maxim states that for every legal right that is violated, the law provides a remedy to the injured person. It underscores the principle that legal rights are meaningless without a mechanism to enforce them.`,
     links: []
   },
   {
     topic: 'Actus Non Facit Reum Nisi Mens Sit Rea',
     category: 'Legal Maxims',
-    content: 'Means "an act does not make a person guilty unless the mind is also guilty". This is the foundational principle of criminal law, establishing that a crime consists of two elements: the guilty act (Actus Reus) and the guilty mind (Mens Rea).',
+    content: `Means "an act does not make a person guilty unless the mind is also guilty". This is the foundational principle of criminal law, establishing that a crime consists of two elements: the guilty act (Actus Reus) and the guilty mind (Mens Rea).`,
     links: []
   },
   {
     topic: 'Ancient Indian History',
     category: 'General Knowledge',
-    content: 'Covers the period from pre-history to the 7th century AD.\n- **Indus Valley Civilization (c. 2500-1900 BC):** A Bronze Age civilization known for urban planning (Harappa, Mohenjo-Daro), drainage systems, and seals.\n- **Vedic Period (c. 1500-500 BC):** Characterized by the composition of the Vedas. Early Vedic (Rigvedic) society was pastoral, later Vedic society saw the rise of kingdoms (Mahajanapadas).\n- **Buddhism and Jainism (6th century BC):** Rise of new religious movements led by Gautama Buddha and Mahavira.\n- **Mauryan Empire (c. 322-185 BC):** Founded by Chandragupta Maurya. Ashoka the Great is its most famous ruler, known for promoting Buddhism after the Kalinga War.\n- **Gupta Empire (c. 320-550 AD):** Known as the "Golden Age of India" for its achievements in science, mathematics (concept of zero), astronomy, religion, and Sanskrit literature.',
+    content: `Covers the period from pre-history to the 7th century AD.
+- **Indus Valley Civilization (c. 2500-1900 BC):** A Bronze Age civilization known for urban planning (Harappa, Mohenjo-Daro), drainage systems, and seals.
+- **Vedic Period (c. 1500-500 BC):** Characterized by the composition of the Vedas. Early Vedic (Rigvedic) society was pastoral, later Vedic society saw the rise of kingdoms (Mahajanapadas).
+- **Buddhism and Jainism (6th century BC):** Rise of new religious movements led by Gautama Buddha and Mahavira.
+- **Mauryan Empire (c. 322-185 BC):** Founded by Chandragupta Maurya. Ashoka the Great is its most famous ruler, known for promoting Buddhism after the Kalinga War.
+- **Gupta Empire (c. 320-550 AD):** Known as the "Golden Age of India" for its achievements in science, mathematics (concept of zero), astronomy, religion, and Sanskrit literature.`,
     links: [],
   },
   {
     topic: 'Medieval Indian History',
     category: 'General Knowledge',
-    content: 'Covers the period from the 8th to the 18th century.\n- **Delhi Sultanate (1206-1526):** A series of five dynasties (Slave, Khilji, Tughlaq, Sayyid, Lodi) that ruled from Delhi.\n- **Mughal Empire (1526-1857):** Founded by Babur after the First Battle of Panipat. Known for great rulers like Akbar (religious tolerance, Din-i-Ilahi), Shah Jahan (architecture, Taj Mahal), and Aurangzeb.\n- **Vijayanagara Empire (c. 1336-1646):** A powerful South Indian empire known for its rich culture and administration, particularly under Krishnadevaraya.\n- **Bhakti and Sufi Movements:** Religious reform movements that preached devotion and love for God.',
+    content: `Covers the period from the 8th to the 18th century.
+- **Delhi Sultanate (1206-1526):** A series of five dynasties (Slave, Khilji, Tughlaq, Sayyid, Lodi) that ruled from Delhi.
+- **Mughal Empire (1526-1857):** Founded by Babur after the First Battle of Panipat. Known for great rulers like Akbar (religious tolerance, Din-i-Ilahi), Shah Jahan (architecture, Taj Mahal), and Aurangzeb.
+- **Vijayanagara Empire (c. 1336-1646):** A powerful South Indian empire known for its rich culture and administration, particularly under Krishnadevaraya.
+- **Bhakti and Sufi Movements:** Religious reform movements that preached devotion and love for God.`,
     links: [],
   },
   {
     topic: 'Modern Indian History',
     category: 'General Knowledge',
-    content: 'Covers the period from the arrival of Europeans to Indian independence.\n- **Arrival of Europeans:** Portuguese, Dutch, English, and French trading companies established bases in India.\n- **British Rule:** The British East India Company gained political power after the Battle of Plassey (1757) and Battle of Buxar (1764).\n- **Revolt of 1857:** First major uprising against British rule, leading to the transfer of power from the Company to the British Crown.\n- **Indian National Movement:** Formation of the Indian National Congress (1885). The movement had moderate and extremist phases.\n- **Gandhian Era (1915-1947):** Mahatma Gandhi led major movements like Non-Cooperation (1920), Civil Disobedience (Dandi March, 1930), and Quit India (1942).\n- **Independence and Partition:** India gained independence on August 15, 1947, but was also partitioned into India and Pakistan.',
+    content: `Covers the period from the arrival of Europeans to Indian independence.
+- **Arrival of Europeans:** Portuguese, Dutch, English, and French trading companies established bases in India.
+- **British Rule:** The British East India Company gained political power after the Battle of Plassey (1757) and Battle of Buxar (1764).
+- **Revolt of 1857:** First major uprising against British rule, leading to the transfer of power from the Company to the British Crown.
+- **Indian National Movement:** Formation of the Indian National Congress (1885). The movement had moderate and extremist phases.
+- **Gandhian Era (1915-1947):** Mahatma Gandhi led major movements like Non-Cooperation (1920), Civil Disobedience (Dandi March, 1930), and Quit India (1942).
+- **Independence and Partition:** India gained independence on August 15, 1947, but was also partitioned into India and Pakistan.`,
     links: [],
   },
   {
     topic: 'Indian Geography',
     category: 'General Knowledge',
-    content: 'Key aspects of the physical and political geography of India.\n- **Location:** Located in the Northern Hemisphere, with the Tropic of Cancer passing through it.\n- **Physical Features:** The Himalayan Mountains, the Northern Plains, the Peninsular Plateau, the Indian Desert (Thar), the Coastal Plains, and the Islands (Andaman & Nicobar, Lakshadweep).\n- **River Systems:** The Himalayan rivers (Indus, Ganga, Brahmaputra) and the Peninsular rivers (Narmada, Tapi, Godavari, Krishna, Kaveri).\n- **Climate:** Primarily a tropical monsoon climate.\n- **States and Capitals:** Knowledge of all states, union territories, and their capitals.',
+    content: `Key aspects of the physical and political geography of India.
+- **Location:** Located in the Northern Hemisphere, with the Tropic of Cancer passing through it.
+- **Physical Features:** The Himalayan Mountains, the Northern Plains, the Peninsular Plateau, the Indian Desert (Thar), the Coastal Plains, and the Islands (Andaman & Nicobar, Lakshadweep).
+- **River Systems:** The Himalayan rivers (Indus, Ganga, Brahmaputra) and the Peninsular rivers (Narmada, Tapi, Godavari, Krishna, Kaveri).
+- **Climate:** Primarily a tropical monsoon climate.
+- **States and Capitals:** Knowledge of all states, union territories, and their capitals.`,
     links: [],
   },
   {
     topic: 'World Geography',
     category: 'General Knowledge',
-    content: 'Basic knowledge about the world\'s geography.\n- **Continents and Oceans:** Seven continents (Asia, Africa, North America, South America, Antarctica, Europe, Australia) and five oceans (Pacific, Atlantic, Indian, Southern, Arctic).\n- **Major Landforms:** Important mountain ranges (Andes, Rockies, Alps), plateaus, deserts (Sahara, Gobi), and plains.\n- **Important Rivers:** Nile, Amazon, Yangtze, Mississippi.\n- **Imaginary Lines:** Equator, Tropics of Cancer and Capricorn, Prime Meridian, International Date Line.\n- **Capitals and Currencies:** Knowledge of major countries, their capitals, and currencies.',
+    content: `Basic knowledge about the world's geography.
+- **Continents and Oceans:** Seven continents (Asia, Africa, North America, South America, Antarctica, Europe, Australia) and five oceans (Pacific, Atlantic, Indian, Southern, Arctic).
+- **Major Landforms:** Important mountain ranges (Andes, Rockies, Alps), plateaus, deserts (Sahara, Gobi), and plains.
+- **Important Rivers:** Nile, Amazon, Yangtze, Mississippi.
+- **Imaginary Lines:** Equator, Tropics of Cancer and Capricorn, Prime Meridian, International Date Line.
+- **Capitals and Currencies:** Knowledge of major countries, their capitals, and currencies.`,
     links: [],
   },
   {
     topic: 'Indian Economy Basics',
     category: 'General Knowledge',
-    content: 'Fundamental concepts of the Indian economy.\n- **Sectors of Economy:** Primary (Agriculture), Secondary (Industry), and Tertiary (Services). The service sector is the largest contributor to India\'s GDP.\n- **Key Terms:**\n  - **GDP (Gross Domestic Product):** Total value of goods and services produced within a country\'s borders in a year.\n  - **Inflation:** The rate at which the general level of prices for goods and services is rising, and subsequently, purchasing power is falling.\n  - **Fiscal Policy:** The use of government spending and taxation to influence the economy.\n  - **Monetary Policy:** Actions undertaken by the central bank (RBI) to manipulate the money supply and credit conditions.\n- **Institutions:**\n  - **RBI (Reserve Bank of India):** India\'s central bank.\n  - **SEBI (Securities and Exchange Board of India):** Regulator for the securities market.\n  - **NITI Aayog:** The government\'s policy think-tank, which replaced the Planning Commission.',
+    content: `Fundamental concepts of the Indian economy.
+- **Sectors of Economy:** Primary (Agriculture), Secondary (Industry), and Tertiary (Services). The service sector is the largest contributor to India's GDP.
+- **Key Terms:**
+  - **GDP (Gross Domestic Product):** Total value of goods and services produced within a country's borders in a year.
+  - **Inflation:** The rate at which the general level of prices for goods and services is rising, and subsequently, purchasing power is falling.
+  - **Fiscal Policy:** The use of government spending and taxation to influence the economy.
+  - **Monetary Policy:** Actions undertaken by the central bank (RBI) to manipulate the money supply and credit conditions.
+- **Institutions:**
+  - **RBI (Reserve Bank of India):** India's central bank.
+  - **SEBI (Securities and Exchange Board of India):** Regulator for the securities market.
+  - **NITI Aayog:** The government's policy think-tank, which replaced the Planning Commission.`,
     links: [],
   },
   {
     topic: 'International Organizations',
     category: 'General Knowledge',
-    content: 'Knowledge of major global bodies, their functions, and headquarters.\n- **United Nations (UN):** Founded in 1945 to maintain international peace and security. Headquarters in New York. Key organs include the General Assembly, Security Council, and International Court of Justice.\n- **World Trade Organization (WTO):** Deals with the rules of trade between nations. Headquarters in Geneva.\n- **International Monetary Fund (IMF):** Works to foster global monetary cooperation and secure financial stability. Headquarters in Washington, D.C.\n- **World Bank:** Provides financial and technical assistance to developing countries. Headquarters in Washington, D.C.\n- **Other bodies:** WHO (Geneva), UNESCO (Paris), ASEAN, SAARC, BRICS, G20.',
+    content: `Knowledge of major global bodies, their functions, and headquarters.
+- **United Nations (UN):** Founded in 1945 to maintain international peace and security. Headquarters in New York. Key organs include the General Assembly, Security Council, and International Court of Justice.
+- **World Trade Organization (WTO):** Deals with the rules of trade between nations. Headquarters in Geneva.
+- **International Monetary Fund (IMF):** Works to foster global monetary cooperation and secure financial stability. Headquarters in Washington, D.C.
+- **World Bank:** Provides financial and technical assistance to developing countries. Headquarters in Washington, D.C.
+- **Other bodies:** WHO (Geneva), UNESCO (Paris), ASEAN, SAARC, BRICS, G20.`,
     links: [],
   },
   {
     topic: 'Reading Comprehension Strategies',
     category: 'English',
-    content: 'Skills to effectively read and understand passages.\n1. **Skim the Passage First:** Get a general idea of the topic, main idea, and structure.\n2. **Identify the Main Idea:** What is the central point the author is trying to make?\n3. **Understand the Tone:** Is the author\'s tone objective, critical, supportive, or something else?\n4. **Focus on Keywords:** Pay attention to transition words (e.g., however, therefore, because) that signal relationships between ideas.\n5. **Paraphrase:** After reading a paragraph, try to summarize it in your own words.\n6. **Tackle Questions:** Read questions carefully. Refer back to the passage to find answers. Distinguish between questions asking for explicit details and those asking for inferences.',
+    content: `Skills to effectively read and understand passages.
+1. **Skim the Passage First:** Get a general idea of the topic, main idea, and structure.
+2. **Identify the Main Idea:** What is the central point the author is trying to make?
+3. **Understand the Tone:** Is the author's tone objective, critical, supportive, or something else?
+4. **Focus on Keywords:** Pay attention to transition words (e.g., however, therefore, because) that signal relationships between ideas.
+5. **Paraphrase:** After reading a paragraph, try to summarize it in your own words.
+6. **Tackle Questions:** Read questions carefully. Refer back to the passage to find answers. Distinguish between questions asking for explicit details and those asking for inferences.`,
     links: [],
   },
   {
     topic: 'Idioms and Phrases',
     category: 'English',
-    content: 'Commonly used expressions with figurative meanings.\n- **Bite the bullet:** To face a difficult situation with courage.\n- **Blessing in disguise:** A good thing that seemed bad at first.\n- **Spill the beans:** To reveal a secret.\n- **Hit the nail on the head:** To say something exactly right.\n- **Once in a blue moon:** Happens very rarely.\n- **A piece of cake:** Something very easy to do.\n- **Cost an arm and a leg:** Very expensive.\n- **Break a leg:** Good luck (often said to actors).',
+    content: `Commonly used expressions with figurative meanings.
+- **Bite the bullet:** To face a difficult situation with courage.
+- **Blessing in disguise:** A good thing that seemed bad at first.
+- **Spill the beans:** To reveal a secret.
+- **Hit the nail on the head:** To say something exactly right.
+- **Once in a blue moon:** Happens very rarely.
+- **A piece of cake:** Something very easy to do.
+- **Cost an arm and a leg:** Very expensive.
+- **Break a leg:** Good luck (often said to actors).`,
     links: [],
   },
   {
     topic: 'Grammar: Tenses',
     category: 'English',
-    content: 'Correct usage of verb tenses is crucial for clear communication.\n- **Simple Present:** For habits, universal truths, and facts. (e.g., The sun rises in the east.)\n- **Present Continuous:** For actions happening now. (e.g., He is reading a book.)\n- **Present Perfect:** For actions completed in the recent past with a present effect. (e.g., I have finished my work.)\n- **Simple Past:** For actions completed at a specific time in the past. (e.g., They went to Delhi yesterday.)\n- **Past Continuous:** For actions that were ongoing in the past. (e.g., She was sleeping when I called.)\n- **Future Tense:** For actions that will happen in the future. (e.g., We will watch a movie tonight.)',
+    content: `Correct usage of verb tenses is crucial for clear communication.
+- **Simple Present:** For habits, universal truths, and facts. (e.g., The sun rises in the east.)
+- **Present Continuous:** For actions happening now. (e.g., He is reading a book.)
+- **Present Perfect:** For actions completed in the recent past with a present effect. (e.g., I have finished my work.)
+- **Simple Past:** For actions completed at a specific time in the past. (e.g., They went to Delhi yesterday.)
+- **Past Continuous:** For actions that were ongoing in the past. (e.g., She was sleeping when I called.)
+- **Future Tense:** For actions that will happen in the future. (e.g., We will watch a movie tonight.)`,
     links: [],
   },
   {
     topic: 'Grammar: Subject-Verb Agreement',
     category: 'English',
-    content: 'The verb in a sentence must agree with its subject in number (singular or plural).\n- **Rule 1:** A singular subject takes a singular verb; a plural subject takes a plural verb. (e.g., The dog barks. The dogs bark.)\n- **Rule 2:** Words like `each`, `every`, `either`, `neither`, `everyone`, `everybody` are singular and require a singular verb. (e.g., Each of the students is smart.)\n- **Rule 3:** When two subjects are joined by `and`, they typically require a plural verb. (e.g., The cat and the dog are friends.)\n- **Rule 4:** When subjects are joined by `or` or `nor`, the verb agrees with the subject nearer to it. (e.g., Neither the students nor the teacher is present.)\n- **Rule 5:** Collective nouns (e.g., team, committee, family) can be singular or plural depending on whether they are treated as a single unit or as individuals. (e.g., The team is winning. The team are arguing among themselves.)',
+    content: `The verb in a sentence must agree with its subject in number (singular or plural).
+- **Rule 1:** A singular subject takes a singular verb; a plural subject takes a plural verb. (e.g., The dog barks. The dogs bark.)
+- **Rule 2:** Words like 'each', 'every', 'either', 'neither', 'everyone', 'everybody' are singular and require a singular verb. (e.g., Each of the students is smart.)
+- **Rule 3:** When two subjects are joined by 'and', they typically require a plural verb. (e.g., The cat and the dog are friends.)
+- **Rule 4:** When subjects are joined by 'or' or 'nor', the verb agrees with the subject nearer to it. (e.g., Neither the students nor the teacher is present.)
+- **Rule 5:** Collective nouns (e.g., team, committee, family) can be singular or plural depending on whether they are treated as a single unit or as individuals. (e.g., The team is winning. The team are arguing among themselves.)`,
     links: [],
   },
   {
     topic: 'Syllogisms',
     category: 'Logical Reasoning',
-    content: 'A syllogism is a form of deductive reasoning consisting of a major premise, a minor premise, and a conclusion.\n- **Technique:** Use Venn diagrams to solve these questions accurately.\n- **Example:**\n  - **Statements:**\n    1. All pens are pencils.\n    2. All pencils are books.\n  - **Conclusions:**\n    I. All pens are books.\n    II. All books are pens.\n- **Solution:** Draw a small circle for \'Pens\' inside a larger circle for \'Pencils\'. Then draw the \'Pencils\' circle inside an even larger circle for \'Books\'. From the diagram, you can see that all Pens are indeed Books (Conclusion I follows). However, you cannot conclude that all Books are Pens (Conclusion II does not follow).',
+    content: `A syllogism is a form of deductive reasoning consisting of a major premise, a minor premise, and a conclusion.
+- **Technique:** Use Venn diagrams to solve these questions accurately.
+- **Example:**
+  - **Statements:**
+    1. All pens are pencils.
+    2. All pencils are books.
+  - **Conclusions:**
+    I. All pens are books.
+    II. All books are pens.
+- **Solution:** Draw a small circle for 'Pens' inside a larger circle for 'Pencils'. Then draw the 'Pencils' circle inside an even larger circle for 'Books'. From the diagram, you can see that all Pens are indeed Books (Conclusion I follows). However, you cannot conclude that all Books are Pens (Conclusion II does not follow).`,
     links: [],
   },
   {
     topic: 'Blood Relations',
     category: 'Logical Reasoning',
-    content: 'These questions test your ability to decipher family relationships.\n- **Technique:** Draw a family tree diagram. Use symbols like `+` for male, `-` for female, `=` for married couple, and vertical lines for generations.\n- **Example:** Pointing to a man, a woman said, "His mother is the only daughter of my mother." How is the woman related to the man?\n- **Solution:**\n  - "The only daughter of my mother" is the woman herself.\n  - So, "His mother is the woman herself."\n  - Therefore, the woman is the man\'s mother.',
+    content: `These questions test your ability to decipher family relationships.
+- **Technique:** Draw a family tree diagram. Use symbols like \`+\` for male, \`-\` for female, \`=\` for married couple, and vertical lines for generations.
+- **Example:** Pointing to a man, a woman said, "His mother is the only daughter of my mother." How is the woman related to the man?
+- **Solution:**
+  - "The only daughter of my mother" is the woman herself.
+  - So, "His mother is the woman herself."
+  - Therefore, the woman is the man's mother.`,
     links: [],
   },
   {
     topic: 'Coding-Decoding',
     category: 'Logical Reasoning',
-    content: 'In these questions, a word or message is coded in a particular way, and you need to decipher the code to answer the question.\n- **Types of Coding:**\n  - **Letter Coding:** Letters are shifted by a certain number (e.g., `A` becomes `C`, `B` becomes `D`).\n  - **Number Coding:** Words are assigned numerical codes.\n  - **Substitution Coding:** Letters are substituted with other letters or symbols.\n- **Example:** If `TEACHER` is coded as `VGCEJGT`, how is `CHILDREN` coded?\n- **Solution:** Each letter is moved two steps forward. `T+2=V`, `E+2=G`, etc. So, `CHILDREN` becomes `EJKNFTGP`.',
+    content: `In these questions, a word or message is coded in a particular way, and you need to decipher the code to answer the question.
+- **Types of Coding:**
+  - **Letter Coding:** Letters are shifted by a certain number (e.g., \`A\` becomes \`C\`, \`B\` becomes \`D\`).
+  - **Number Coding:** Words are assigned numerical codes.
+  - **Substitution Coding:** Letters are substituted with other letters or symbols.
+- **Example:** If \`TEACHER\` is coded as \`VGCEJGT\`, how is \`CHILDREN\` coded?
+- **Solution:** Each letter is moved two steps forward. \`T+2=V\`, \`E+2=G\`, etc. So, \`CHILDREN\` becomes \`EJKNFTGP\`.`,
     links: [],
   },
   {
     topic: 'Critical Reasoning',
     category: 'Logical Reasoning',
-    content: 'This involves analyzing arguments, assumptions, and conclusions.\n- **Argument:** A set of statements, one of which (the conclusion) is claimed to be supported by the others (the premises).\n- **Assumption:** An unstated premise that is necessary for the conclusion to be valid. It\'s something the author takes for granted.\n- **Conclusion:** The main point of the argument.\n- **Inference:** Something that must be true if the given statements are true.\n- **Strengthening/Weakening Arguments:** A statement that strengthens an argument provides additional support for the conclusion. A statement that weakens an argument attacks the link between the premises and the conclusion.',
+    content: `This involves analyzing arguments, assumptions, and conclusions.
+- **Argument:** A set of statements, one of which (the conclusion) is claimed to be supported by the others (the premises).
+- **Assumption:** An unstated premise that is necessary for the conclusion to be valid. It's something the author takes for granted.
+- **Conclusion:** The main point of the argument.
+- **Inference:** Something that must be true if the given statements are true.
+- **Strengthening/Weakening Arguments:** A statement that strengthens an argument provides additional support for the conclusion. A statement that weakens an argument attacks the link between the premises and the conclusion.`,
     links: [],
   },
   {
     topic: 'Major National Events',
     category: 'Current Affairs',
-    content: 'Stay updated on significant happenings within India.\n- **Government Schemes:** Key initiatives like `Make in India`, `Swachh Bharat Abhiyan`, `Ayushman Bharat`.\n- **Political Developments:** State and general elections, major policy changes, new appointments.\n- **Economic News:** Union Budget highlights, RBI policy changes, trends in GDP and inflation.\n- **Social Issues:** Major social movements, reports on health, education, etc.\n- **Awards and Honors:** National awards like Padma Awards, Khel Ratna.',
+    content: `Stay updated on significant happenings within India.
+- **Government Schemes:** Key initiatives like 'Make in India', 'Swachh Bharat Abhiyan', 'Ayushman Bharat'.
+- **Political Developments:** State and general elections, major policy changes, new appointments.
+- **Economic News:** Union Budget highlights, RBI policy changes, trends in GDP and inflation.
+- **Social Issues:** Major social movements, reports on health, education, etc.
+- **Awards and Honors:** National awards like Padma Awards, Khel Ratna.`,
     links: [],
   },
   {
     topic: 'Key International Summits',
     category: 'Current Affairs',
-    content: 'Knowledge of major global meetings and India\'s role in them.\n- **G20 (Group of Twenty):** Forum for international economic cooperation. India hosted the 2023 summit in New Delhi.\n- **BRICS:** Brazil, Russia, India, China, and South Africa. Focuses on economic cooperation and development.\n- **SCO (Shanghai Cooperation Organisation):** A Eurasian political, economic, and security alliance.\n- **G7 (Group of Seven):** Advanced economies. India is often invited as an outreach country.\n- **COP (Conference of the Parties):** Annual UN climate change conference.',
+    content: `Knowledge of major global meetings and India's role in them.
+- **G20 (Group of Twenty):** Forum for international economic cooperation. India hosted the 2023 summit in New Delhi.
+- **BRICS:** Brazil, Russia, India, China, and South Africa. Focuses on economic cooperation and development.
+- **SCO (Shanghai Cooperation Organisation):** A Eurasian political, economic, and security alliance.
+- **G7 (Group of Seven):** Advanced economies. India is often invited as an outreach country.
+- **COP (Conference of the Parties):** Annual UN climate change conference.`,
     links: [],
   },
   {
     topic: 'Recent Landmark Judgments',
     category: 'Current Affairs',
-    content: 'Awareness of recent important decisions by the Supreme Court and High Courts.\n- **Right to Privacy (Puttaswamy case):** Declared as a Fundamental Right under Article 21.\n- **Decriminalization of Homosexuality (Navtej Singh Johar case):** Struck down parts of Section 377 of the IPC.\n- **Ayodhya Verdict:** The dispute over the Babri Masjid site.\n- **Sabarimala Temple Entry:** Allowed women of all age groups to enter the temple.\n- **Triple Talaq:** Declared unconstitutional.\nIt\'s important to know the name of the case and the core legal principle laid down.',
+    content: `Awareness of recent important decisions by the Supreme Court and High Courts.
+- **Right to Privacy (Puttaswamy case):** Declared as a Fundamental Right under Article 21.
+- **Decriminalization of Homosexuality (Navtej Singh Johar case):** Struck down parts of Section 377 of the IPC.
+- **Ayodhya Verdict:** The dispute over the Babri Masjid site.
+- **Sabarimala Temple Entry:** Allowed women of all age groups to enter the temple.
+- **Triple Talaq:** Declared unconstitutional.
+It's important to know the name of the case and the core legal principle laid down.`,
     links: [],
   },
   {
     topic: 'Science, Tech & Space',
     category: 'Current Affairs',
-    content: 'Key developments in the world of science and technology.\n- **ISRO Missions:**\n  - **Chandrayaan-3:** Successful soft landing on the lunar south pole (2023).\n  - **Aditya-L1:** India\'s first solar observatory mission.\n  - **Gaganyaan:** India\'s first human spaceflight mission (upcoming).\n- **Defense:** New inductions of fighter jets, submarines, and missiles.\n- **Technology:** Developments in AI (like ChatGPT), 5G technology, and biotechnology.\n- **Health:** News about vaccines, new diseases, and major health initiatives.',
+    content: `Key developments in the world of science and technology.
+- **ISRO Missions:**
+  - **Chandrayaan-3:** Successful soft landing on the lunar south pole (2023).
+  - **Aditya-L1:** India's first solar observatory mission.
+  - **Gaganyaan:** India's first human spaceflight mission (upcoming).
+- **Defense:** New inductions of fighter jets, submarines, and missiles.
+- **Technology:** Developments in AI (like 'ChatGPT'), 5G technology, and biotechnology.
+- **Health:** News about vaccines, new diseases, and major health initiatives.`,
     links: [],
   }
 ];
@@ -1396,6 +1516,7 @@ export const flashcards: Flashcard[] = [
   { id: 'fc-107', term: 'Will', definition: 'A legal document by which a person expresses their wishes as to how their property is to be distributed at death.', topic: 'Family Law' },
   { id: 'fc-108', term: 'Perjury', definition: 'The offence of willfully telling an untruth or making a misrepresentation under oath.', topic: 'Criminal Law' }
 ];
+
 
 
 
