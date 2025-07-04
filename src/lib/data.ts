@@ -1552,7 +1552,7 @@ export const reels: Reel[] = [
     id: 'reel-6',
     title: 'Preamble Keywords',
     content: 'Sovereign, Socialist, Secular, Democratic, Republic. Remember the order!',
-    icon: 'BookMarked',
+    icon: 'BookMark',
   },
   {
     id: 'reel-7',

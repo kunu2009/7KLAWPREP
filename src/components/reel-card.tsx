@@ -3,7 +3,7 @@
 
 import type { Reel } from '@/lib/types';
 import { Card, CardContent } from '@/components/ui/card';
-import { icons } from 'lucide-react';
+import { icons, AlertTriangle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface ReelCardProps {
@@ -12,7 +12,7 @@ interface ReelCardProps {
 
 export function ReelCard({ reel }: ReelCardProps) {
   // A small set of default icons or a fallback is good practice
-  const LucideIcon = icons[reel.icon as keyof typeof icons] || icons['AlertTriangle'];
+  const LucideIcon = icons[reel.icon as keyof typeof icons] || AlertTriangle;
 
   return (
     <div className="h-full w-full snap-start flex items-center justify-center p-4 md:p-8">
