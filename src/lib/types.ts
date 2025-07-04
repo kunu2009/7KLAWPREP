@@ -41,15 +41,6 @@ export interface Reel {
   icon: string;
 }
 
-export interface VisualLawItem {
-  id: string;
-  title: string;
-  category: 'Legal Procedures' | 'Core Concepts';
-  imageUrl: string;
-  aiHint: string;
-  description: string;
-}
-
 export interface CareerPath {
   id: string;
   title: string;

@@ -1,5 +1,5 @@
 
-import type { MCQ, Note, StudyEvent, Flashcard, Reel, VisualLawItem, CareerPath, CaseSimulation } from './types';
+import type { MCQ, Note, StudyEvent, Flashcard, Reel, CareerPath, CaseSimulation } from './types';
 
 export const mcqs: MCQ[] = [
   {
@@ -2082,57 +2082,6 @@ export const reels: Reel[] = [
     content: 'A contract to perform the promise or discharge the liability of a third person in case of their default.',
     icon: 'ThumbsUp',
   },
-];
-
-export const visualLawData: VisualLawItem[] = [
-  {
-    id: 'vl-1',
-    title: 'How a Bill Becomes an Act',
-    category: 'Legal Procedures',
-    imageUrl: 'https://placehold.co/800x600.png',
-    aiHint: 'flowchart bill to act',
-    description: 'A flowchart detailing the journey of a bill through both houses of Parliament, presidential assent, and its final enactment as a law.',
-  },
-  {
-    id: 'vl-2',
-    title: 'Criminal Trial Process',
-    category: 'Legal Procedures',
-    imageUrl: 'https://placehold.co/800x600.png',
-    aiHint: 'flowchart criminal trial',
-    description: 'Follow the process from filing an FIR, through investigation, charges, trial stages, and final judgment.',
-  },
-  {
-    id: 'vl-3',
-    title: 'Hierarchy of Indian Judiciary',
-    category: 'Legal Procedures',
-    imageUrl: 'https://placehold.co/800x600.png',
-    aiHint: 'diagram court hierarchy',
-    description: 'A diagram illustrating the structure of the Indian judicial system, from the Supreme Court down to subordinate courts.',
-  },
-  {
-    id: 'vl-4',
-    title: 'Mindmap: Fundamental Rights',
-    category: 'Core Concepts',
-    imageUrl: 'https://placehold.co/800x600.png',
-    aiHint: 'mindmap fundamental rights',
-    description: 'A mindmap breaking down the six fundamental rights, their corresponding articles, and key concepts.',
-  },
-  {
-    id: 'vl-5',
-    title: 'Mindmap: Elements of a Contract',
-    category: 'Core Concepts',
-    imageUrl: 'https://placehold.co/800x600.png',
-    aiHint: 'mindmap contract elements',
-    description: 'A visual summary of the essential elements required for a valid contract, such as offer, acceptance, and consideration.',
-  },
-  {
-    id: 'vl-6',
-    title: 'Mindmap: Indian Penal Code (IPC) Structure',
-    category: 'Core Concepts',
-    imageUrl: 'https://placehold.co/800x600.png',
-    aiHint: 'mindmap IPC structure',
-    description: 'A high-level mindmap showing the main chapters and categories of offences covered under the IPC.',
-  }
 ];
 
 export const careerRoadmaps: CareerPath[] = [
