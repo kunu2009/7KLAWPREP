@@ -24,7 +24,8 @@ import {
   FileText,
   Layers,
   ListChecks,
-  PanelLeft
+  PanelLeft,
+  PlaySquare
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { Button } from "./ui/button";
@@ -34,6 +35,7 @@ const menuItems = [
   { href: "/mcqs", label: "Daily MCQs", icon: ListChecks },
   { href: "/notes", label: "Topic Notes", icon: BookText },
   { href: "/flashcards", label: "Flashcards", icon: Layers },
+  { href: "/reels", label: "Legal Reels", icon: PlaySquare },
   { href: "/planner", label: "Study Planner", icon: CalendarClock },
   { href: "/progress", label: "Progress Tracker", icon: LineChart },
   { href: "/summarizer", label: "Summarizer", icon: FileText },

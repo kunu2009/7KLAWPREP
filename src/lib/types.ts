@@ -33,3 +33,10 @@ export interface Flashcard {
   definition: string;
   topic: string;
 }
+
+export interface Reel {
+  id: string;
+  title: string;
+  content: string;
+  icon: string;
+}

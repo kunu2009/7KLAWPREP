@@ -1,5 +1,5 @@
 
-import type { MCQ, Note, StudyEvent, Flashcard } from './types';
+import type { MCQ, Note, StudyEvent, Flashcard, Reel } from './types';
 
 export const mcqs: MCQ[] = [
   {
@@ -1517,7 +1517,125 @@ export const flashcards: Flashcard[] = [
   { id: 'fc-108', term: 'Perjury', definition: 'The offence of willfully telling an untruth or making a misrepresentation under oath.', topic: 'Criminal Law' }
 ];
 
-
-
-
-
+export const reels: Reel[] = [
+  {
+    id: 'reel-1',
+    title: 'Actus Reus',
+    content: 'The "guilty act." It is the physical component of a crime. No act, no crime!',
+    icon: 'Gavel',
+  },
+  {
+    id: 'reel-2',
+    title: 'Mens Rea',
+    content: 'The "guilty mind." It is the mental element, the intention to commit a crime.',
+    icon: 'BrainCircuit',
+  },
+  {
+    id: 'reel-3',
+    title: 'Ubi Jus Ibi Remedium',
+    content: 'A famous maxim meaning "Where there is a right, there is a remedy." The law will provide a way to enforce a right.',
+    icon: 'ShieldCheck',
+  },
+  {
+    id: 'reel-4',
+    title: 'Article 14: Equality',
+    content: 'The State shall not deny to any person equality before the law or the equal protection of the laws within India.',
+    icon: 'Scale',
+  },
+  {
+    id: 'reel-5',
+    title: 'Article 21: Heart of Rights',
+    content: 'No person shall be deprived of their life or personal liberty except according to the procedure established by law.',
+    icon: 'HeartPulse',
+  },
+  {
+    id: 'reel-6',
+    title: 'Preamble Keywords',
+    content: 'Sovereign, Socialist, Secular, Democratic, Republic. Remember the order!',
+    icon: 'BookMarked',
+  },
+  {
+    id: 'reel-7',
+    title: 'Libel vs. Slander',
+    content: 'Libel is written defamation (permanent). Slander is spoken defamation (transient). Both harm reputation!',
+    icon: 'MessagesSquare',
+  },
+  {
+    id: 'reel-8',
+    title: 'Vicarious Liability',
+    content: 'Holding one person responsible for the actions of another, like an employer for an employee\'s torts.',
+    icon: 'Users',
+  },
+  {
+    id: 'reel-9',
+    title: 'What makes a contract?',
+    content: 'Offer + Acceptance + Consideration + Intention to create legal relations = A valid contract.',
+    icon: 'FileSignature',
+  },
+  {
+    id: 'reel-10',
+    title: 'Void vs. Voidable',
+    content: 'A void contract is invalid from the start. A voidable contract is valid until one party chooses to cancel it.',
+    icon: 'FileX2',
+  },
+  {
+    id: 'reel-11',
+    title: 'Theft vs. Extortion',
+    content: 'Theft is taking property without consent. Extortion is getting property by threatening harm.',
+    icon: 'AlertTriangle',
+  },
+  {
+    id: 'reel-12',
+    title: 'Writ of Habeas Corpus',
+    content: 'A powerful writ that means "You may have the body." It protects against unlawful detention.',
+    icon: 'Link',
+  },
+  {
+    id: 'reel-13',
+    title: 'Basic Structure Doctrine',
+    content: 'Parliament can amend the Constitution, but it cannot alter its "basic structure." A landmark ruling from Kesavananda Bharati case.',
+    icon: 'Building',
+  },
+  {
+    id: 'reel-14',
+    title: 'Donoghue v Stevenson',
+    content: 'The famous "snail in the bottle" case that established the modern concept of negligence and the "neighbour principle".',
+    icon: 'Bug',
+  },
+  {
+    id: 'reel-15',
+    title: 'Res Ipsa Loquitur',
+    content: 'A maxim meaning "the thing speaks for itself." Used in torts when negligence is obvious from the facts.',
+    icon: 'Pointer',
+  },
+  {
+    id: 'reel-16',
+    title: 'Quid Pro Quo',
+    content: 'A Latin phrase meaning "something for something." It\'s the foundation of consideration in a contract.',
+    icon: 'GitCommit',
+  },
+  {
+    id: 'reel-17',
+    title: 'Doli Incapax',
+    content: 'A presumption in criminal law that a child under a certain age is incapable of having criminal intent.',
+    icon: 'Baby',
+  },
+  {
+    id: 'reel-18',
+    title: 'Federalism in India',
+    content: 'India is "quasi-federal," a union of states with a strong central government, combining federal and unitary features.',
+    icon: 'Library',
+  },
+  {
+    id: 'reel-19',
+    title: '42nd Amendment',
+    content: 'Known as the "Mini-Constitution" for its vast changes, it added "Socialist," "Secular," and "Integrity" to the Preamble.',
+    icon: 'FileEdit',
+  },
+  {
+    id: 'reel-20',
+    title: 'President vs. Governor Pardon',
+    content: 'The President can pardon a death sentence (Article 72), but a Governor cannot (Article 161).',
+    icon: 'UserCheck',
+  },
+];
