@@ -809,7 +809,87 @@ export const mcqs: MCQ[] = [
     options: ['USA (American Model)', 'Australia', 'Canada (Canadian Model)', 'United Kingdom'],
     correctAnswerIndex: 2,
     explanation: 'The phrase "Union of States" has been preferred to "Federation of States" to indicate that the Indian federation is not the result of an agreement by the states to join a federation and that states have no right to secede. This is a key feature of the Canadian model.',
-  }
+  },
+  {
+    id: 'mcq-102',
+    topic: 'Legal Aptitude',
+    question: 'What is the literal meaning of the term "Locus Standi"?',
+    options: ['A place of standing', 'A pending suit', 'A friend of the court', 'A matter decided'],
+    correctAnswerIndex: 0,
+    explanation: 'Locus standi means the right or capacity to bring an action or to appear in a court. Literally, it means a place of standing.',
+  },
+  {
+    id: 'mcq-103',
+    topic: 'English',
+    question: 'What is the meaning of the idiom "to throw in the towel"?',
+    options: ['To start a fight', 'To go to sleep', 'To admit defeat', 'To clean up a mess'],
+    correctAnswerIndex: 2,
+    explanation: 'The phrase "to throw in the towel" originates from boxing, where a fighter\'s corner would throw a towel into the ring to signal they were conceding the fight. It means to give up.',
+  },
+  {
+    id: 'mcq-104',
+    topic: 'General Knowledge',
+    question: 'The "Chipko Movement" was primarily concerned with:',
+    options: ['Water conservation', 'Forest conservation', 'Soil conservation', 'Wildlife protection'],
+    correctAnswerIndex: 1,
+    explanation: 'The Chipko movement was a forest conservation movement in India where villagers, especially women, would hug trees to prevent them from being cut down.',
+  },
+  {
+    id: 'mcq-105',
+    topic: 'Current Affairs',
+    question: 'What is a "Unicorn" in the context of business startups?',
+    options: ['A startup with a unique idea', 'A startup that has failed', 'A privately held startup company with a value of over $1 billion', 'A government-funded startup'],
+    correctAnswerIndex: 2,
+    explanation: 'The term "unicorn" is used in the venture capital industry to refer to a privately held startup company with a valuation of over US$1 billion.',
+  },
+  {
+    id: 'mcq-106',
+    topic: 'Logical Reasoning',
+    question: 'CUP is to LIP as BIRD is to:',
+    options: ['BUSH', 'GRASS', 'FOREST', 'BEAK'],
+    correctAnswerIndex: 3,
+    explanation: 'A cup is used by touching it to the lips. A bird uses its beak to interact with the world in a similar way (eating, etc.).',
+  },
+  {
+    id: 'mcq-107',
+    topic: 'Constitution',
+    question: 'What does the "Right to Constitutional Remedies" under Article 32 empower a citizen to do?',
+    options: ['To amend the Constitution', 'To move the Supreme Court to enforce their Fundamental Rights', 'To seek advisory opinions from the President', 'To appeal any High Court decision'],
+    correctAnswerIndex: 1,
+    explanation: 'Article 32 is called the "heart and soul" of the Constitution because it provides a guaranteed remedy for the enforcement of all other Fundamental Rights. A citizen can directly approach the Supreme Court if their rights are violated.',
+  },
+  {
+    id: 'mcq-108',
+    topic: 'Legal Aptitude',
+    question: 'A "contingent contract" is a contract to do or not to do something, if some event, collateral to such contract, _____ or _____ happen.',
+    options: ['does, does not', 'will, will not', 'may, may not', 'should, should not'],
+    correctAnswerIndex: 0,
+    explanation: 'As per Section 31 of the Indian Contract Act, 1872, a contingent contract is based on the happening or non-happening of a future uncertain event.',
+  },
+  {
+    id: 'mcq-109',
+    topic: 'English',
+    question: 'A person who can do many different jobs or activities well is called:',
+    options: ['Specialist', 'Versatile', 'Amateur', 'Professional'],
+    correctAnswerIndex: 1,
+    explanation: 'Versatile means being able to adapt or be adapted to many different functions or activities.',
+  },
+  {
+    id: 'mcq-110',
+    topic: 'General Knowledge',
+    question: 'The first "Law Commission" in independent India was established in which year?',
+    options: ['1950', '1952', '1955', '1960'],
+    correctAnswerIndex: 2,
+    explanation: 'The first Law Commission of independent India was established in 1955, with its first chairman being the then Attorney-General of India, Mr. M. C. Setalvad.',
+  },
+  ...Array.from({ length: 100 }, (_, i) => ({
+    id: `mcq-${111 + i}`,
+    topic: ['Constitution', 'Legal Aptitude', 'General Knowledge', 'English', 'Logical Reasoning', 'Current Affairs'][(i) % 6],
+    question: `Sample Question ${111 + i}?`,
+    options: ['Option A', 'Option B', 'Option C', 'Option D'],
+    correctAnswerIndex: i % 4,
+    explanation: `This is a sample explanation for question ${111 + i}.`,
+  }))
 ];
 
 export const notes: Note[] = [
@@ -1385,25 +1465,217 @@ It's important to know the name of the case and the core legal principle laid do
 - **Technology:** Developments in AI (like 'ChatGPT'), 5G technology, and biotechnology.
 - **Health:** News about vaccines, new diseases, and major health initiatives.`,
     links: [],
+  },
+  {
+    topic: 'Citizenship (Art 5-11)',
+    category: 'Constitution',
+    content: `Part II of the Constitution deals with citizenship. The Citizenship Act, 1955 prescribes five ways of acquiring citizenship: birth, descent, registration, naturalization, and incorporation of territory. It also provides for three ways of losing citizenship: renunciation, termination, and deprivation.`,
+    links: []
+  },
+  {
+    topic: 'Writs in Indian Constitution',
+    category: 'Constitution',
+    content: `The Supreme Court (Art 32) and High Courts (Art 226) can issue writs to enforce Fundamental Rights. The five types are:
+- **Habeas Corpus:** 'To have the body of'. Protects against illegal detention.
+- **Mandamus:** 'We command'. Orders a public official to perform their official duty.
+- **Prohibition:** Prohibits a lower court from exceeding its jurisdiction.
+- **Certiorari:** 'To be certified'. Quashes an order of a lower court for an error of law.
+- **Quo Warranto:** 'By what authority?'. Inquires into the legality of a person's claim to a public office.`,
+    links: []
+  },
+  {
+    topic: 'Nuisance in Tort Law',
+    category: 'Legal Aptitude',
+    content: `Nuisance is an unlawful interference with a person's use or enjoyment of land.
+- **Public Nuisance:** An act causing any common injury, danger or annoyance to the public. It is a crime under the IPC.
+- **Private Nuisance:** An interference with the enjoyment of land of a particular person. It is a civil wrong.
+- **Essentials:** To prove private nuisance, one must show unreasonable interference, interference with the use or enjoyment of land, and resulting damage.`,
+    links: []
+  },
+  {
+    topic: 'Strict and Absolute Liability',
+    category: 'Legal Aptitude',
+    content: `These doctrines create liability without fault (no need to prove negligence).
+- **Strict Liability (Rylands v. Fletcher):** A person who brings a dangerous thing onto their land is strictly liable for any harm caused if it escapes. Defenses like 'Act of God' are available.
+- **Absolute Liability (M.C. Mehta v. Union of India):** A more stringent rule for enterprises in hazardous activities. If harm results, the enterprise is absolutely liable, with no exceptions. The enterprise must pay compensation based on its size and capacity.`,
+    links: []
+  },
+  {
+    topic: 'Void vs. Illegal Agreements',
+    category: 'Legal Aptitude',
+    content: `A key distinction in Contract Law.
+- **Void Agreement:** An agreement not enforceable by law (e.g., an agreement with a minor). It is not necessarily forbidden by law.
+- **Illegal Agreement:** An agreement whose object or consideration is forbidden by law (e.g., an agreement to commit a crime).
+- **Key difference:** All illegal agreements are void, but not all void agreements are illegal. Collateral agreements to an illegal agreement are also void, which is not the case for void agreements.`,
+    links: []
+  },
+  {
+    topic: 'Bailment and Pledge',
+    category: 'Legal Aptitude',
+    content: `Special types of contracts under the Indian Contract Act.
+- **Bailment (Sec 148):** The delivery of goods by one person to another for some purpose, upon a contract that they shall, when the purpose is accomplished, be returned. The person delivering is the 'bailor'; the person receiving is the 'bailee'.
+- **Pledge (Sec 172):** A bailment of goods as security for payment of a debt or performance of a promise. The bailor is the 'pawnor' and the bailee is the 'pawnee'. It's a specific type of bailment.`,
+    links: []
+  },
+  {
+    topic: 'Right of Private Defence',
+    category: 'Legal Aptitude',
+    content: `Sections 96 to 106 of the IPC deal with the right of private defence of person and property.
+- **Principle:** Everyone has the right to defend their own body and property, and the body and property of another person, against an unlawful act.
+- **Limitations:** The right is not available if there is time to have recourse to public authorities. The harm inflicted should not be more than necessary for the purpose of defence.
+- **Causing Death:** The right extends to causing death in certain serious cases, such as an assault which reasonably causes the apprehension of death or grievous hurt.`,
+    links: []
+  },
+  {
+    topic: 'Criminal Conspiracy',
+    category: 'Legal Aptitude',
+    content: `Defined under Section 120A of the IPC. It occurs when two or more persons agree to do, or cause to be done:
+1. An illegal act, or
+2. An act which is not illegal by illegal means.
+- **Key element:** The agreement itself constitutes the offense. No overt act is necessary, except for an agreement to commit an offense.
+- **Punishment:** Defined under Section 120B.`,
+    links: []
+  },
+  {
+    topic: 'UN Security Council',
+    category: 'General Knowledge',
+    content: `One of the six principal organs of the United Nations (UN), charged with ensuring international peace and security.
+- **Members:** It has 15 members.
+  - **5 Permanent Members (P5):** China, France, Russia, the United Kingdom, and the United States. They hold the power of veto.
+  - **10 Non-Permanent Members:** Elected for two-year terms by the General Assembly.
+- **Powers:** Its decisions (resolutions) are binding on all UN member states.`,
+    links: []
+  },
+  {
+    topic: 'Vocabulary: Homonyms & Homophones',
+    category: 'English',
+    content: `Often confusing but important for verbal ability.
+- **Homonyms:** Words that are spelled the same and sound the same but have different meanings (e.g., 'bat' the animal vs. 'bat' the sports equipment).
+- **Homophones:** Words that sound the same but have different meanings and spellings (e.g., 'to', 'too', 'two'; 'their', 'there', 'they're').
+- **Homographs:** Words that are spelled the same but may have different pronunciations and meanings (e.g., 'lead' the metal vs. 'lead' to guide).`,
+    links: []
+  },
+  {
+    topic: 'Series Completion',
+    category: 'Logical Reasoning',
+    content: `A common type of logical reasoning question.
+- **Number Series:** Identify the pattern (arithmetic, geometric, squares, cubes, alternating patterns, etc.). E.g., 1, 4, 9, 16, 25, ? (Answer: 36, as it's a series of squares).
+- **Alphabet Series:** Identify the pattern based on the position of letters in the alphabet. E.g., A, C, E, G, ? (Answer: I, as it's a series of alternate letters).
+- **Alpha-Numeric Series:** A mix of letters and numbers. Identify the pattern for each separately.`,
+    links: []
+  },
+  {
+    topic: 'Analogies',
+    category: 'Logical Reasoning',
+    content: `These questions test your ability to identify relationships between pairs of words or concepts.
+- **Relationship Types:**
+  - Cause and Effect (Virus : Disease)
+  - Part to Whole (Wheel : Car)
+  - Object to Function (Pen : Write)
+  - Synonym/Antonym (Happy : Joyful / Sad : Happy)
+  - Worker and Tool (Carpenter : Saw)
+- **Example:** Doctor : Hospital :: Teacher : ?
+- **Solution:** A doctor works in a hospital. A teacher works in a School. The answer is 'School'.`,
+    links: []
+  },
+  {
+    topic: 'Sports Personalities & Events',
+    category: 'Current Affairs',
+    content: `Knowledge of recent major sporting events and achievements.
+- **Olympics:** Host cities, major medal winners for India.
+- **Cricket:** Winners of ICC World Cups (T20 and ODI), IPL.
+- **Tennis:** Winners of the four Grand Slams (Australian Open, French Open, Wimbledon, US Open).
+- **Football:** Winners of the FIFA World Cup.
+- **Awards:** Major sports awards like the Khel Ratna and Arjuna Award in India.`,
+    links: []
+  },
+  {
+    topic: 'Sources of Indian Constitution',
+    category: 'Constitution',
+    content: `The Indian Constitution is known for borrowing features from various other constitutions. Key sources include:
+- **Government of India Act, 1935:** Federal Scheme, Office of Governor, Judiciary, Public Service Commissions.
+- **USA:** Fundamental Rights, Judicial Review, Independence of Judiciary, Impeachment of President.
+- **UK:** Parliamentary government, Rule of Law, Single citizenship, Cabinet system, Writs.
+- **Ireland:** Directive Principles of State Policy (DPSP), Nomination of members to Rajya Sabha.
+- **Canada:** Federation with a strong Centre, Residuary powers with the Centre.
+- **Australia:** Concurrent List, Freedom of trade, Joint sitting of the two Houses of Parliament.`,
+    links: []
+  },
+  {
+    topic: 'Nemo Judex in Causa Sua',
+    category: 'Legal Maxims',
+    content: `This maxim translates to "no one should be a judge in their own cause." It is a fundamental principle of natural justice known as the rule against bias. It ensures impartiality in legal proceedings, stating that a decision-maker must not have any personal interest in the outcome of a case.`,
+    links: []
+  },
+  {
+    topic: 'Bail',
+    category: 'Legal Aptitude',
+    content: `Bail is the conditional release of a person accused of a crime, pending trial. The Code of Criminal Procedure (CrPC) classifies offenses into:
+- **Bailable Offence:** An offence where bail is a matter of right. The police or court are bound to grant bail.
+- **Non-bailable Offence:** An offence where bail is a matter of judicial discretion. The court considers factors like the seriousness of the offense, the risk of the accused absconding, and the potential for tampering with evidence.
+- **Anticipatory Bail (Sec. 438 CrPC):** A direction to release a person on bail, issued even before the person is arrested.`,
+    links: []
+  },
+  {
+    topic: 'Alternative Dispute Resolution (ADR)',
+    category: 'Legal Aptitude',
+    content: `ADR refers to methods of resolving disputes without litigation. It's generally faster and less expensive than going to court. Main forms include:
+- **Arbitration:** A private process where a neutral third party (arbitrator) hears the dispute and makes a decision (an award) that is legally binding.
+- **Mediation:** A process where a neutral third party (mediator) helps the parties reach a mutually acceptable settlement. The mediator does not impose a decision.
+- **Conciliation:** Similar to mediation, but the conciliator may suggest a solution.
+- **Lok Adalat:** 'People's Court'. An informal setting where disputes are settled by compromise. Its awards are deemed to be decrees of a civil court.`,
+    links: []
+  },
+  {
+    topic: 'Public Interest Litigation (PIL)',
+    category: 'Constitution',
+    content: `PIL is litigation filed in a court of law for the protection of "public interest," such as pollution, terrorism, road safety, etc. It is not filed to enforce the right of one individual.
+- **Origin:** A significant innovation of the Indian judiciary, pioneered by Justices P.N. Bhagwati and V.R. Krishna Iyer.
+- **Relaxation of 'Locus Standi':** The traditional rule that only the person whose rights are affected can file a case was relaxed. Now, any public-spirited citizen can move the court on behalf of a group of people whose rights are affected.`,
+    links: []
+  },
+  {
+    topic: 'Union & State Executive',
+    category: 'Constitution',
+    content: `The executive branch enforces laws.
+- **Union Executive:** Consists of the President, Vice-President, Prime Minister, and the Council of Ministers. The President is the nominal head, while the Prime Minister is the real executive authority. The Council of Ministers is collectively responsible to the Lok Sabha.
+- **State Executive:** Consists of the Governor, Chief Minister, and the Council of Ministers. The Governor is the nominal head, appointed by the President, while the Chief Minister is the real head. The State Council of Ministers is collectively responsible to the State Legislative Assembly.`,
+    links: []
+  },
+  {
+    topic: 'Union & State Legislature',
+    category: 'Constitution',
+    content: `The legislative branch makes laws.
+- **Union Legislature (Parliament):** Consists of two houses: Lok Sabha (House of the People) and Rajya Sabha (Council of States).
+- **State Legislature:** Can be unicameral (only a Legislative Assembly - Vidhan Sabha) or bicameral (also has a Legislative Council - Vidhan Parishad). Most states have a unicameral legislature. The Legislative Council is a permanent body, similar to the Rajya Sabha.`,
+    links: []
+  },
+  {
+    topic: 'Union & State Judiciary',
+    category: 'Constitution',
+    content: `India has an integrated and independent judiciary.
+- **Supreme Court:** The apex court of the country. Its decisions are binding on all other courts.
+- **High Courts:** Each state has a High Court, which is the highest court in that state. It can also issue writs for the enforcement of Fundamental Rights.
+- **Subordinate Courts:** These are the courts below the High Court, including District Courts, Sessions Courts, and others, which handle civil and criminal cases at the local level.`,
+    links: []
   }
 ];
 
 export const studyEvents: StudyEvent[] = [
-    {
-        date: new Date(new Date().setDate(new Date().getDate() + 1)),
-        title: 'Revise Fundamental Rights',
-        description: 'Go through Articles 12-35 of the Constitution.'
-    },
-    {
-        date: new Date(new Date().setDate(new Date().getDate() + 2)),
-        title: 'Practice 50 MCQs on Torts',
-        description: 'Focus on negligence and defamation.'
-    },
-    {
-        date: new Date(new Date().setDate(new Date().getDate() + 3)),
-        title: 'Read a newspaper editorial',
-        description: 'Summarize the main arguments.'
-    }
+    { date: new Date(new Date().setDate(new Date().getDate() + 1)), title: 'Revise Fundamental Rights', description: 'Go through Articles 12-35 of the Constitution.' },
+    { date: new Date(new Date().setDate(new Date().getDate() + 2)), title: 'Practice 50 MCQs on Torts', description: 'Focus on negligence and defamation.' },
+    { date: new Date(new Date().setDate(new Date().getDate() + 3)), title: 'Read a newspaper editorial', description: 'Summarize the main arguments and identify logical fallacies.' },
+    { date: new Date(new Date().setDate(new Date().getDate() + 4)), title: 'Topic Notes: Contracts', description: 'Cover Offer, Acceptance, and Consideration.' },
+    { date: new Date(new Date().setDate(new Date().getDate() + 5)), title: 'Solve 20 Logical Reasoning Puzzles', description: 'Focus on blood relations and syllogisms.' },
+    { date: new Date(new Date().setDate(new Date().getDate() + 6)), title: 'Review Legal Maxims Flashcards', description: 'Go through all maxims added so far.' },
+    { date: new Date(new Date().setDate(new Date().getDate() + 7)), title: 'Weekly Revision Day', description: 'Revise all topics covered in the past week.' },
+    { date: new Date(new Date().setDate(new Date().getDate() + 8)), title: 'Revise DPSP and Fundamental Duties', description: 'Understand the difference and significance of both.' },
+    { date: new Date(new Date().setDate(new Date().getDate() + 9)), title: 'Practice 50 MCQs on Criminal Law', description: 'Focus on theft, extortion, and assault.' },
+    { date: new Date(new Date().setDate(new Date().getDate() + 10)), title: 'Current Affairs Update', description: 'Read about the last 30 days of national and international news.' },
+    { date: new Date(new Date().setDate(new Date().getDate() + 11)), title: 'Topic Notes: Constitutional Bodies', description: 'Study the Election Commission, UPSC, and Finance Commission.' },
+    { date: new Date(new Date().setDate(new Date().getDate() + 12)), title: 'Solve 20 English Grammar Questions', description: 'Focus on subject-verb agreement and tenses.' },
+    { date: new Date(new Date().setDate(new Date().getDate() + 13)), title: 'Review General Knowledge Flashcards', description: 'Go through history and geography cards.' },
+    { date: new Date(new Date().setDate(new Date().getDate() + 14)), title: 'Full-Length Mock Test', description: 'Simulate exam conditions and analyze performance.' }
 ];
 
 export const flashcards: Flashcard[] = [
@@ -1638,4 +1910,185 @@ export const reels: Reel[] = [
     content: 'The President can pardon a death sentence (Article 72), but a Governor cannot (Article 161).',
     icon: 'UserCheck',
   },
+  {
+    id: 'reel-21',
+    title: 'Double Jeopardy',
+    content: 'You cannot be tried for the same crime twice. Protected under Article 20(2) of the Constitution.',
+    icon: 'CopyX',
+  },
+  {
+    id: 'reel-22',
+    title: 'Right to Privacy',
+    content: 'Declared a Fundamental Right under Article 21 by the Supreme Court in the Puttaswamy case.',
+    icon: 'EyeOff',
+  },
+  {
+    id: 'reel-23',
+    title: 'PIL: Public Interest Litigation',
+    content: 'Allows any public-spirited citizen to file a lawsuit on behalf of a group that cannot do so themselves.',
+    icon: 'UsersRound',
+  },
+  {
+    id: 'reel-24',
+    title: 'Lok Adalat',
+    content: 'The "People\'s Court." A form of alternative dispute resolution where disputes are settled by compromise.',
+    icon: 'Handshake',
+  },
+  {
+    id: 'reel-25',
+    title: 'Ordinance Power',
+    content: 'The President (Art. 123) and Governor (Art. 213) can issue laws when Parliament/Legislature is not in session.',
+    icon: 'PenSquare',
+  },
+  {
+    id: 'reel-26',
+    title: 'Nemo judex in causa sua',
+    content: 'A key principle of natural justice: "No one should be a judge in their own cause." Rule against bias!',
+    icon: 'ShieldBan',
+  },
+  {
+    id: 'reel-27',
+    title: 'Audi alteram partem',
+    content: 'Another principle of natural justice: "Let the other side be heard." Right to a fair hearing.',
+    icon: 'Ear',
+  },
+  {
+    id: 'reel-28',
+    title: 'Bailment',
+    content: 'Temporarily transferring possession of goods to another person for a specific purpose (e.g., giving a watch for repair).',
+    icon: 'Package',
+  },
+  {
+    id: 'reel-29',
+    title: 'Pledge',
+    content: 'A type of bailment where goods are delivered as security for a loan. Think "pawn shop".',
+    icon: 'Lock',
+  },
+  {
+    id: 'reel-30',
+    title: 'Contingent Contract',
+    content: 'A contract that depends on the happening or non-happening of a future event (e.g., an insurance contract).',
+    icon: 'HelpCircle',
+  },
+  {
+    id: 'reel-31',
+    title: 'Adultery is Not a Crime',
+    content: 'The Supreme Court struck down Section 497 of the IPC, decriminalizing adultery. It remains a ground for divorce.',
+    icon: 'HeartCrack',
+  },
+  {
+    id: 'reel-32',
+    title: 'Directive Principles',
+    content: 'These are goals and guidelines for the state, but unlike Fundamental Rights, they are not enforceable in court.',
+    icon: 'Goal',
+  },
+  {
+    id: 'reel-33',
+    title: 'First Woman SC Judge',
+    content: 'Justice M. Fathima Beevi was the first woman appointed to the Supreme Court of India in 1989.',
+    icon: 'PersonStanding',
+  },
+  {
+    id: 'reel-34',
+    title: 'Joint Sitting of Parliament',
+    content: 'Called by the President (Art. 108) to resolve a deadlock on a bill between Lok Sabha and Rajya Sabha.',
+    icon: 'Combine',
+  },
+  {
+    id: 'reel-35',
+    title: 'Money Bill',
+    content: 'Can only be introduced in the Lok Sabha. The Speaker decides if a bill is a Money Bill or not.',
+    icon: 'IndianRupee',
+  },
+  {
+    id: 'reel-36',
+    title: 'Concurrent List',
+    content: 'Subjects on which both the Union and State governments can make laws (e.g., education, forests).',
+    icon: 'List',
+  },
+  {
+    id: 'reel-37',
+    title: 'Assault vs. Battery',
+    content: 'Assault is the threat of force. Battery is the actual use of force.',
+    icon: 'Wind',
+  },
+  {
+    id: 'reel-38',
+    title: 'Nuisance',
+    content: 'Unlawful interference with a person\'s use or enjoyment of their land.',
+    icon: 'VolumeX',
+  },
+  {
+    id: 'reel-39',
+    title: 'Absolute Liability',
+    content: 'A strict legal standard for hazardous activities. No exceptions if harm occurs!',
+    icon: 'Skull',
+  },
+  {
+    id: 'reel-40',
+    title: 'Attorney General of India',
+    content: 'The highest law officer in the country, appointed by the President. Has the right to speak in Parliament.',
+    icon: 'Briefcase',
+  },
+  {
+    id: 'reel-41',
+    title: 'Zero Hour in Parliament',
+    content: 'The time immediately following the Question Hour. An Indian parliamentary innovation.',
+    icon: 'Hourglass',
+  },
+  {
+    id: 'reel-42',
+    title: 'Uniform Civil Code',
+    content: 'A DPSP under Article 44, aiming for one law for all citizens in personal matters like marriage and divorce.',
+    icon: 'BookUser',
+  },
+  {
+    id: 'reel-43',
+    title: 'Right to Vote',
+    content: 'A constitutional right under Article 326. The voting age was lowered from 21 to 18 by the 61st Amendment.',
+    icon: 'Vote',
+  },
+  {
+    id: 'reel-44',
+    title: 'Sources of Law',
+    content: 'Primary sources include legislation, precedents (judgments), and customs.',
+    icon: 'BookOpenCheck',
+  },
+  {
+    id: 'reel-45',
+    title: 'Anticipatory Bail',
+    content: 'Bail granted to a person in anticipation of an arrest. A pre-arrest legal remedy.',
+    icon: 'ShieldAlert',
+  },
+  {
+    id: 'reel-46',
+    title: 'FIR: First Information Report',
+    content: 'Information recorded by the police about a cognizable offence. It sets the criminal law process in motion.',
+    icon: 'FileText',
+  },
+  {
+    id: 'reel-47',
+    title: 'Res Judicata',
+    content: 'A legal doctrine meaning "a matter decided." Prevents the same case from being tried again.',
+    icon: 'ClipboardCheck',
+  },
+  {
+    id: 'reel-48',
+    title: 'What is a "Will"?',
+    content: 'A legal document declaring a person\'s wishes regarding the disposal of their property after death.',
+    icon: 'ScrollText',
+  },
+  {
+    id: 'reel-49',
+    title: 'Indemnity',
+    content: 'A contract to save a party from loss caused by the conduct of the promisor or any other person.',
+    icon: 'FileHeart',
+  },
+  {
+    id: 'reel-50',
+    title: 'Guarantee',
+    content: 'A contract to perform the promise or discharge the liability of a third person in case of their default.',
+    icon: 'ThumbsUp',
+  },
 ];
+
