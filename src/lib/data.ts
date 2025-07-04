@@ -1,5 +1,5 @@
 
-import type { MCQ, Note, StudyEvent, Flashcard, Reel } from './types';
+import type { MCQ, Note, StudyEvent, Flashcard, Reel, VisualLawItem, CareerPath, CaseSimulation } from './types';
 
 export const mcqs: MCQ[] = [
   {
@@ -1658,7 +1658,13 @@ It's important to know the name of the case and the core legal principle laid do
 - **High Courts:** Each state has a High Court, which is the highest court in that state. It can also issue writs for the enforcement of Fundamental Rights.
 - **Subordinate Courts:** These are the courts below the High Court, including District Courts, Sessions Courts, and others, which handle civil and criminal cases at the local level.`,
     links: []
-  }
+  },
+  ...Array.from({ length: 20 }, (_, i) => ({
+    topic: `Additional Topic ${i + 1}`,
+    category: ['Constitution', 'Legal Aptitude', 'General Knowledge', 'English', 'Logical Reasoning', 'Current Affairs'][i % 6] as any,
+    content: `This is detailed content for additional topic number ${i + 1}. It explains key concepts and provides examples relevant to law entrance exams. This note helps in understanding the nuances of the subject matter, ensuring comprehensive preparation.`,
+    links: []
+  }))
 ];
 
 export const studyEvents: StudyEvent[] = [
@@ -2092,3 +2098,125 @@ export const reels: Reel[] = [
   },
 ];
 
+export const visualLawData: VisualLawItem[] = [
+  {
+    id: 'vl-1',
+    title: 'How a Bill Becomes an Act',
+    category: 'Legal Procedures',
+    imageUrl: 'https://placehold.co/800x600.png',
+    aiHint: 'flowchart bill to act',
+    description: 'A flowchart detailing the journey of a bill through both houses of Parliament, presidential assent, and its final enactment as a law.',
+  },
+  {
+    id: 'vl-2',
+    title: 'Criminal Trial Process',
+    category: 'Legal Procedures',
+    imageUrl: 'https://placehold.co/800x600.png',
+    aiHint: 'flowchart criminal trial',
+    description: 'Follow the process from filing an FIR, through investigation, charges, trial stages, and final judgment.',
+  },
+  {
+    id: 'vl-3',
+    title: 'Hierarchy of Indian Judiciary',
+    category: 'Legal Procedures',
+    imageUrl: 'https://placehold.co/800x600.png',
+    aiHint: 'diagram court hierarchy',
+    description: 'A diagram illustrating the structure of the Indian judicial system, from the Supreme Court down to subordinate courts.',
+  },
+  {
+    id: 'vl-4',
+    title: 'Mindmap: Fundamental Rights',
+    category: 'Core Concepts',
+    imageUrl: 'https://placehold.co/800x600.png',
+    aiHint: 'mindmap fundamental rights',
+    description: 'A mindmap breaking down the six fundamental rights, their corresponding articles, and key concepts.',
+  },
+  {
+    id: 'vl-5',
+    title: 'Mindmap: Elements of a Contract',
+    category: 'Core Concepts',
+    imageUrl: 'https://placehold.co/800x600.png',
+    aiHint: 'mindmap contract elements',
+    description: 'A visual summary of the essential elements required for a valid contract, such as offer, acceptance, and consideration.',
+  },
+  {
+    id: 'vl-6',
+    title: 'Mindmap: Indian Penal Code (IPC) Structure',
+    category: 'Core Concepts',
+    imageUrl: 'https://placehold.co/800x600.png',
+    aiHint: 'mindmap IPC structure',
+    description: 'A high-level mindmap showing the main chapters and categories of offences covered under the IPC.',
+  }
+];
+
+export const careerRoadmaps: CareerPath[] = [
+  {
+    id: 'cr-1',
+    title: 'The Judiciary',
+    description: 'Path to becoming a judge in the Indian judicial system.',
+    steps: [
+      { title: 'Step 1: Law Degree (LLB)', content: 'Complete a 3-year or 5-year LLB program from a recognized university.' },
+      { title: 'Step 2: Qualify for Judicial Services Examination', content: 'Appear for the competitive exam conducted by state public service commissions. Eligibility often requires a few years of practice as an advocate.' },
+      { title: 'Step 3: Become a Civil Judge / Magistrate', content: 'Upon clearing the exam and interview, you start as a Civil Judge (Junior Division) or Judicial Magistrate.' },
+      { title: 'Step 4: Promotion & Higher Judiciary', content: 'Through seniority and performance, you can be promoted to Senior Civil Judge, District Judge, and potentially be elevated to the High Court and Supreme Court.' }
+    ]
+  },
+  {
+    id: 'cr-2',
+    title: 'Corporate Law',
+    description: 'Advising businesses on their legal rights, responsibilities, and obligations.',
+    steps: [
+      { title: 'Step 1: Law Degree (LLB)', content: 'A strong academic record in a 5-year integrated program from a top National Law University (NLU) or a 3-year LLB from a reputable institution is highly valued.' },
+      { title: 'Step 2: Internships', content: 'Gain practical experience through multiple internships at corporate law firms, companies, and with senior advocates during your law school years.' },
+      { title: 'Step 3: Specialize', content: 'Develop expertise in areas like Mergers & Acquisitions (M&A), Corporate Finance, Intellectual Property (IP), or Compliance. An LLM in a specialized field can be beneficial.' },
+      { title: 'Step 4: Join a Law Firm or Company', content: 'Start as an associate in a law firm or as an in-house counsel for a company. Networking and continuous learning are key to growth.' }
+    ]
+  },
+  {
+    id: 'cr-3',
+    title: 'Litigation',
+    description: 'Representing clients in civil or criminal court proceedings.',
+    steps: [
+      { title: 'Step 1: Law Degree (LLB)', content: 'Obtain your law degree and enroll with your state Bar Council.' },
+      { title: 'Step 2: Clear the All India Bar Examination (AIBE)', content: 'Pass the AIBE within two years of enrollment to receive your "Certificate of Practice".' },
+      { title: 'Step 3: Join a Senior Advocate or Law Firm', content: 'Work as a junior under a senior advocate to learn courtroom craft, drafting, and client management. This is the most crucial phase for learning.' },
+      { title: 'Step 4: Build Your Own Practice', content: 'After gaining sufficient experience (usually 5-7 years), you can start handling your own cases and build an independent practice. Strong oratory and analytical skills are essential.' }
+    ]
+  },
+  {
+    id: 'cr-4',
+    title: 'Civil Services (UPSC)',
+    description: 'Using a law degree to enter administrative services like IAS, IPS, or IFS.',
+    steps: [
+      { title: 'Step 1: Law Degree (LLB)', content: 'A law degree provides a strong foundation in polity, governance, and social justice, which are key components of the UPSC syllabus.' },
+      { title: 'Step 2: Prepare for UPSC Civil Services Exam', content: 'Choose Law as an optional subject, as your degree gives you a significant advantage. Focus on General Studies, current affairs, and essay writing.' },
+      { title: 'Step 3: Clear Prelims, Mains, and Interview', content: 'The exam is a three-stage process. Consistent and dedicated preparation is required to succeed.' },
+      { title: 'Step 4: Join the Service', content: 'Upon selection, you will undergo training at LBSNAA (for IAS) or other respective academies and then join the government as a civil servant.' }
+    ]
+  }
+];
+
+export const caseSimulations: CaseSimulation[] = [
+  {
+    id: 'cs-1',
+    title: 'The Cheque Bounce Case',
+    scenario: 'Your client, Mr. Sharma, gave a cheque of ₹50,000 to Mr. Gupta for goods supplied. The cheque was dishonored due to "insufficient funds". Mr. Gupta sent a legal notice, but Mr. Sharma could not pay within the stipulated time. The case is now in court.',
+    playerRole: 'You are the defense lawyer for Mr. Sharma. Your goal is to defend him against the charge under Section 138 of the Negotiable Instruments Act.',
+  },
+  {
+    id: 'cs-2',
+    title: 'The Trespass Dispute',
+    scenario: 'Your client, Mrs. Verma, owns a residential property. Her neighbor, Mr. Singh, has constructed a shed that partially extends over her property line by two feet. Repeated requests to remove the encroachment have been ignored.',
+    playerRole: 'You are the lawyer for Mrs. Verma. Your goal is to argue for an injunction to have the shed removed and claim damages for trespass.',
+  },
+];
+
+export const revisionTopics: string[] = [
+  'Constitution',
+  'Legal Aptitude',
+  'General Knowledge',
+  'English',
+  'Logical Reasoning',
+  'Current Affairs',
+  'Legal Maxims'
+];
