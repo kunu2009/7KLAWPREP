@@ -881,15 +881,7 @@ export const mcqs: MCQ[] = [
     options: ['1950', '1952', '1955', '1960'],
     correctAnswerIndex: 2,
     explanation: 'The first Law Commission of independent India was established in 1955, with its first chairman being the then Attorney-General of India, Mr. M. C. Setalvad.',
-  },
-  ...Array.from({ length: 100 }, (_, i) => ({
-    id: `mcq-${111 + i}`,
-    topic: ['Constitution', 'Legal Aptitude', 'General Knowledge', 'English', 'Logical Reasoning', 'Current Affairs'][(i) % 6],
-    question: `Sample Question ${111 + i}?`,
-    options: ['Option A', 'Option B', 'Option C', 'Option D'],
-    correctAnswerIndex: i % 4,
-    explanation: `This is a sample explanation for question ${111 + i}.`,
-  }))
+  }
 ];
 
 export const notes: Note[] = [
@@ -1193,7 +1185,7 @@ Contracts caused by coercion, undue influence, fraud, or misrepresentation are *
     topic: 'Offences Against the Body',
     category: 'Legal Aptitude',
     content: `Covers major crimes affecting human life and body. Key distinctions:
-- **Culpable Homicide (Sec 299) vs. Murder (Sec 300):** All murders are culpable homicides, but not vice-versa. Murder is an aggravated form of culpable homicide with higher degree of intent/knowledge.
+- **Culpable Homicide (Sec 299) vs. Murder (Sec 300):** All murders are culpable homicides, but not vice-versa. Murder is an aggravated form of culpable homicide with a higher degree of intent/knowledge.
 - **Kidnapping vs. Abduction:** Kidnapping is from lawful guardianship (victim is a minor/unsound mind). Abduction involves force/deceit (victim can be anyone).
 - **Assault and Criminal Force.**`,
     links: []
@@ -1658,13 +1650,7 @@ It's important to know the name of the case and the core legal principle laid do
 - **High Courts:** Each state has a High Court, which is the highest court in that state. It can also issue writs for the enforcement of Fundamental Rights.
 - **Subordinate Courts:** These are the courts below the High Court, including District Courts, Sessions Courts, and others, which handle civil and criminal cases at the local level.`,
     links: []
-  },
-  ...Array.from({ length: 20 }, (_, i) => ({
-    topic: `Additional Topic ${i + 1}`,
-    category: ['Constitution', 'Legal Aptitude', 'General Knowledge', 'English', 'Logical Reasoning', 'Current Affairs'][i % 6] as any,
-    content: `This is detailed content for additional topic number ${i + 1}. It explains key concepts and provides examples relevant to law entrance exams. This note helps in understanding the nuances of the subject matter, ensuring comprehensive preparation.`,
-    links: []
-  }))
+  }
 ];
 
 export const studyEvents: StudyEvent[] = [
