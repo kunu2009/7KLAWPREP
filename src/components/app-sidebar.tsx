@@ -9,7 +9,9 @@ import {
   SidebarMenuItem,
   SidebarMenuButton,
   SidebarContent,
-  SidebarFooter
+  SidebarFooter,
+  SidebarTrigger,
+  useSidebar
 } from "@/components/ui/sidebar";
 import {
   BookText,
@@ -21,8 +23,11 @@ import {
   Scale,
   FileText,
   Layers,
-  ListChecks
+  ListChecks,
+  PanelLeft
 } from "lucide-react";
+import { ThemeToggle } from "./theme-toggle";
+import { Button } from "./ui/button";
 
 const menuItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
@@ -38,13 +43,14 @@ const menuItems = [
 
 export function AppSidebar() {
   const pathname = usePathname();
+  const { toggleSidebar } = useSidebar();
 
   return (
     <>
       <SidebarHeader>
         <div className="flex items-center gap-2 p-2">
             <Scale className="size-6 text-primary" />
-            <h1 className="text-lg font-semibold">LawPrep Sprint</h1>
+            <h1 className="text-lg font-semibold group-data-[collapsible=icon]:hidden">LawPrep Sprint</h1>
         </div>
       </SidebarHeader>
       <SidebarContent>
@@ -52,10 +58,10 @@ export function AppSidebar() {
           {menuItems.map((item) => (
             <SidebarMenuItem key={item.href}>
               <Link href={item.href} passHref legacyBehavior>
-                <SidebarMenuButton asChild isActive={pathname === item.href}>
+                <SidebarMenuButton asChild isActive={pathname === item.href} tooltip={{ children: item.label, side: 'right' }}>
                   <a>
                     <item.icon />
-                    <span>{item.label}</span>
+                    <span className="group-data-[collapsible=icon]:hidden">{item.label}</span>
                   </a>
                 </SidebarMenuButton>
               </Link>
@@ -63,8 +69,18 @@ export function AppSidebar() {
           ))}
         </SidebarMenu>
       </SidebarContent>
-      <SidebarFooter>
-         {/* Can add elements to the footer here later */}
+      <SidebarFooter className="mt-auto flex flex-col items-center gap-2 p-2">
+        <ThemeToggle />
+         <div className="w-full group-data-[collapsible=icon]:hidden">
+            <SidebarMenu>
+                <SidebarMenuItem>
+                    <SidebarMenuButton onClick={toggleSidebar} className="w-full">
+                        <PanelLeft />
+                        <span>Collapse</span>
+                    </SidebarMenuButton>
+                </SidebarMenuItem>
+            </SidebarMenu>
+        </div>
       </SidebarFooter>
     </>
   );

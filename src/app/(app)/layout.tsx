@@ -5,7 +5,7 @@ import { ReactNode } from "react";
 export default function AppLayout({ children }: { children: ReactNode }) {
   return (
     <SidebarProvider>
-      <Sidebar>
+      <Sidebar collapsible="icon">
         <AppSidebar />
       </Sidebar>
       <SidebarInset className="flex flex-col">
