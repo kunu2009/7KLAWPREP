@@ -8,7 +8,7 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
       <WebView
-        source={{ uri: 'https://your-nextjs-app-url.com' }} // Replace with your deployed URL
+        source={{ uri: 'https://7-klawprep.vercel.app/' }}
         style={styles.webview}
         javaScriptEnabled={true}
         domStorageEnabled={true}
