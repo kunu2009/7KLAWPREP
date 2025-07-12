@@ -30,7 +30,8 @@ import {
   Disc3,
   SmilePlus,
   Gavel,
-  ClipboardList
+  ClipboardList,
+  Wand2
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -53,8 +54,7 @@ const newFeatures = [
 ];
 
 const aiTools = [
-  { href: "/summarizer", label: "Summarizer", icon: FileText },
-  { href: "/assistant", label: "AI Assistant", icon: MessageCircle },
+  { href: "/ai-tools", label: "AI Tools", icon: Wand2 },
   { href: "/mood-study", label: "Mood Study", icon: SmilePlus },
   { href: "/courtroom-sim", label: "Courtroom Sim", icon: Gavel },
 ];

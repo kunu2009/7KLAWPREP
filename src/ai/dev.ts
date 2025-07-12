@@ -7,4 +7,4 @@ import '@/ai/flows/summarize-legal-text.ts';
 import '@/ai/flows/suggest-study-activity.ts';
 import '@/ai/flows/courtroom-agent.ts';
 import '@/ai/flows/generate-visual-law.ts';
-
+import '@/ai/flows/brief-case-flow.ts';

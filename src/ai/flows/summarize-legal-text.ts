@@ -1,3 +1,4 @@
+
 'use server';
 /**
  * @fileOverview An AI agent that summarizes legal text.
@@ -16,8 +17,7 @@ const SummarizeLegalTextInputSchema = z.object({
 export type SummarizeLegalTextInput = z.infer<typeof SummarizeLegalTextInputSchema>;
 
 const SummarizeLegalTextOutputSchema = z.object({
-  summary: z.string().describe('The summary of the legal text.'),
-  progress: z.string().describe('Progress of the summarization process'),
+  summary: z.string().describe('A concise summary of the legal text, formatted in markdown with bullet points for key takeaways.'),
 });
 export type SummarizeLegalTextOutput = z.infer<typeof SummarizeLegalTextOutputSchema>;
 
@@ -29,7 +29,12 @@ const prompt = ai.definePrompt({
   name: 'summarizeLegalTextPrompt',
   input: {schema: SummarizeLegalTextInputSchema},
   output: {schema: SummarizeLegalTextOutputSchema},
-  prompt: `You are an expert legal professional, skilled at summarizing legal texts. Please provide a concise and accurate summary of the following legal text:\n\n{{{legalText}}}\n\nSummary:`,
+  prompt: `You are an expert legal professional, skilled at summarizing complex legal texts for law students. Please provide a concise and accurate summary of the following legal text. The summary should be easy to understand and must include a bulleted list of the key takeaways at the end. Use markdown for formatting.
+
+Legal Text:
+{{{legalText}}}
+
+Summary:`,
 });
 
 const summarizeLegalTextFlow = ai.defineFlow(
@@ -40,9 +45,6 @@ const summarizeLegalTextFlow = ai.defineFlow(
   },
   async input => {
     const {output} = await prompt(input);
-    return {
-      ...output!,
-      progress: 'The legal text has been summarized.',
-    };
+    return output!;
   }
 );

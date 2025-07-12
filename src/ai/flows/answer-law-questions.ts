@@ -1,4 +1,3 @@
-// This file is machine-generated - edit at your own risk.
 
 'use server';
 
@@ -19,8 +18,7 @@ const AnswerLawQuestionInputSchema = z.object({
 export type AnswerLawQuestionInput = z.infer<typeof AnswerLawQuestionInputSchema>;
 
 const AnswerLawQuestionOutputSchema = z.object({
-  answer: z.string().describe('The answer to the law-related question.'),
-  progress: z.string().describe('Progress of answering the law-related question'),
+  answer: z.string().describe('The answer to the law-related question, formatted in markdown.'),
 });
 export type AnswerLawQuestionOutput = z.infer<typeof AnswerLawQuestionOutputSchema>;
 
@@ -32,7 +30,7 @@ const prompt = ai.definePrompt({
   name: 'answerLawQuestionPrompt',
   input: {schema: AnswerLawQuestionInputSchema},
   output: {schema: AnswerLawQuestionOutputSchema},
-  prompt: `You are a helpful AI assistant for law students. Your goal is to answer their questions about legal concepts in a clear and concise manner.
+  prompt: `You are a helpful AI assistant for law students preparing for competitive exams like CLAT in India. Your goal is to answer their questions about legal concepts in a clear, concise, and accurate manner. Use markdown for formatting, like headings, lists, and bold text to improve readability.
 
 Question: {{{question}}}`,
 });
@@ -45,10 +43,6 @@ const answerLawQuestionFlow = ai.defineFlow(
   },
   async input => {
     const {output} = await prompt(input);
-    return {
-      ...output!,
-      progress: 'The law-related question has been answered.',
-    };
+    return output!;
   }
 );
-
