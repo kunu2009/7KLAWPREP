@@ -28,16 +28,16 @@ import {
   Projector,
   Map,
   Disc3,
-  Smile,
+  SmilePlus,
   Gavel,
-  TrendingUp,
-  SmilePlus
+  ClipboardList
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 
 const menuItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
   { href: "/mcqs", label: "Daily MCQs", icon: ListChecks },
+  { href: "/practice-quiz", label: "Practice Quiz", icon: ClipboardList },
   { href: "/notes", label: "Topic Notes", icon: BookText },
   { href: "/flashcards", label: "Flashcards", icon: Layers },
   { href: "/reels", label: "Legal Reels", icon: PlaySquare },
