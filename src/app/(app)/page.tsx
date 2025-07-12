@@ -7,9 +7,9 @@ import { mcqs, flashcards, notes } from '@/lib/data';
 import { Database, FileText, Layers3, Server } from 'lucide-react';
 
 const StatCard = ({ title, value, icon: Icon, unit, description }: { title: string, value: string | number, icon: React.ElementType, unit?: string, description?: string }) => (
-    <Card>
+    <Card className="shadow-md">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{title}</CardTitle>
+            <CardTitle>{title}</CardTitle>
             <Icon className="h-4 w-4 text-muted-foreground" />
         </CardHeader>
         <CardContent>
@@ -45,7 +45,7 @@ export default function DashboardPage() {
                 <StatCard title="Note Topics" value={notes.length} icon={FileText} unit="subjects" description="Covering key areas" />
                 <StatCard title="Approx. Data Size" value={formattedSize} icon={Server} unit="KB" description="Loaded on client" />
             </div>
-             <Card>
+             <Card className="shadow-md">
                 <CardHeader>
                     <CardTitle>Content Breakdown</CardTitle>
                     <CardDescription>

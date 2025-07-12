@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useProgress } from '@/hooks/use-progress';
@@ -7,6 +8,21 @@ import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { Target, Check, Percent, BookOpenCheck } from 'lucide-react';
 import Link from 'next/link';
+
+const StatCard = ({ title, value, icon: Icon, unit, description }: { title: string, value: string | number, icon: React.ElementType, unit?: string, description?: string }) => (
+  <Card className="shadow-sm">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-sm font-medium">{title}</CardTitle>
+          <Icon className="h-4 w-4 text-muted-foreground" />
+      </CardHeader>
+      <CardContent>
+          <div className="text-2xl font-bold">
+              {value} {unit && <span className="text-base font-medium text-muted-foreground">{unit}</span>}
+          </div>
+          {description && <p className="text-xs text-muted-foreground">{description}</p>}
+      </CardContent>
+  </Card>
+);
 
 export function ProgressTracker() {
   const { attempted, correct, history, resetProgress, isClient } = useProgress();
@@ -24,49 +40,13 @@ export function ProgressTracker() {
   return (
     <div className="space-y-6">
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Attempted</CardTitle>
-            <Target className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{attempted}</div>
-            <p className="text-xs text-muted-foreground">questions answered</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Correct Answers</CardTitle>
-            <Check className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{correct}</div>
-             <p className="text-xs text-muted-foreground">out of {attempted} attempted</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Accuracy</CardTitle>
-            <Percent className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{accuracy}%</div>
-            <p className="text-xs text-muted-foreground">your current success rate</p>
-          </CardContent>
-        </Card>
-         <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Questions Mastered</CardTitle>
-            <BookOpenCheck className="h-4 w-4 text-muted-foreground" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">{Object.keys(history).length}</div>
-            <p className="text-xs text-muted-foreground">unique questions seen</p>
-          </CardContent>
-        </Card>
+        <StatCard title="Total Attempted" value={attempted} icon={Target} unit="questions" description="questions answered" />
+        <StatCard title="Correct Answers" value={correct} icon={Check} unit="correct" description={`out of ${attempted} attempted`} />
+        <StatCard title="Accuracy" value={accuracy} icon={Percent} unit="%" description="your current success rate" />
+        <StatCard title="Questions Mastered" value={Object.keys(history).length} icon={BookOpenCheck} unit="unique" description="unique questions seen" />
       </div>
 
-      <Card>
+      <Card className="shadow-md">
         <CardHeader>
           <CardTitle>Performance Overview</CardTitle>
           <CardDescription>
