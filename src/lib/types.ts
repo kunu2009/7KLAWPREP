@@ -13,6 +13,7 @@ export interface Note {
   category: 'Constitution' | 'Legal Aptitude' | 'Legal Maxims' | 'General Knowledge' | 'English' | 'Current Affairs' | 'Logical Reasoning';
   content: string;
   links: { title: string; url: string }[];
+  userNotes?: string;
 }
 
 export interface StudyEvent {
