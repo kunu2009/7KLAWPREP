@@ -80,18 +80,15 @@ const Sidebar = React.forwardRef<
     collapsible?: "icon" | "none"
   }
 >(({ side = "left", collapsible = "icon", className, children, ...props }, ref) => {
-  const { isCollapsed } = useSidebar()
-  const state = isCollapsed ? "collapsed" : "expanded"
-
+  
   return (
     <div
       ref={ref}
-      data-state={state}
       data-collapsible={collapsible}
       data-side={side}
       className={cn(
         "group sticky top-0 flex h-svh flex-col text-sidebar-foreground z-10 transition-all duration-200",
-        "w-[16rem]",
+        "w-[var(--sidebar-width-icon)]",
         className
       )}
       {...props}
@@ -210,8 +207,7 @@ const SidebarMenuButton = React.forwardRef<
   } & VariantProps<typeof sidebarMenuButtonVariants>
 >(({ asChild = false, isActive = false, variant = "default", size = "default", tooltip, className, ...props }, ref) => {
   const Comp = asChild ? Slot : "button"
-  const { isCollapsed } = useSidebar()
-
+  
   const button = (
     <Comp
       ref={ref}
@@ -231,9 +227,8 @@ const SidebarMenuButton = React.forwardRef<
     <Tooltip>
       <TooltipTrigger asChild>{button}</TooltipTrigger>
       <TooltipContent
-        side="right"
+        side="left"
         align="center"
-        hidden={!isCollapsed}
         {...tooltip}
       />
     </Tooltip>

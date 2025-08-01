@@ -65,7 +65,7 @@ const aiTools = [
 
 export function AppSidebar() {
   const pathname = usePathname();
-  const { toggleSidebar, isCollapsed } = useSidebar();
+  const { toggleSidebar } = useSidebar();
 
   const renderMenuItems = (items: typeof menuItems) => items.map((item) => (
     <SidebarMenuItem key={item.href}>
@@ -80,14 +80,6 @@ export function AppSidebar() {
 
   return (
     <>
-      {isCollapsed && (
-         <div className="fixed top-4 right-4 z-20">
-            <Button size="icon" onClick={toggleSidebar} variant="outline" className="shadow-md">
-                <PanelLeft/>
-                <span className="sr-only">Open Sidebar</span>
-            </Button>
-         </div>
-      )}
       <SidebarHeader>
         <div className="flex items-center gap-2 p-2">
             <Scale className="size-6 text-primary" />
@@ -114,7 +106,7 @@ export function AppSidebar() {
          <div className="w-full">
             <SidebarMenu>
                 <SidebarMenuItem>
-                    <SidebarMenuButton onClick={toggleSidebar} className="w-full">
+                    <SidebarMenuButton onClick={toggleSidebar} className="w-full" tooltip={{ children: 'Collapse Sidebar', side: 'left' }}>
                         <PanelRight />
                         <span className="group-data-[collapsible=icon]:hidden">Collapse</span>
                     </SidebarMenuButton>
