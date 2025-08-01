@@ -16,14 +16,12 @@ import {
   BookText,
   CalendarClock,
   LayoutDashboard,
-  MessageCircle,
   Search,
   LineChart,
   Scale,
-  FileText,
   Layers,
   ListChecks,
-  PanelLeft,
+  PanelRight,
   PlaySquare,
   Projector,
   Map,
@@ -64,11 +62,11 @@ const aiTools = [
 
 export function AppSidebar() {
   const pathname = usePathname();
-  const { toggleSidebar } = useSidebar();
+  const { toggleSidebar, state } = useSidebar();
 
-  const renderMenuItems = (items: typeof menuItems | typeof newFeatures | typeof aiTools) => items.map((item) => (
+  const renderMenuItems = (items: typeof menuItems) => items.map((item) => (
     <SidebarMenuItem key={item.href}>
-      <SidebarMenuButton asChild isActive={pathname === item.href} tooltip={{ children: item.label, side: 'right' }}>
+      <SidebarMenuButton asChild isActive={pathname === item.href} tooltip={{ children: item.label, side: 'left' }}>
         <Link href={item.href}>
           <item.icon />
           <span className="group-data-[collapsible=icon]:hidden">{item.label}</span>
@@ -102,12 +100,12 @@ export function AppSidebar() {
       </SidebarContent>
       <SidebarFooter className="mt-auto flex flex-col items-center gap-2 p-2">
         <ThemeToggle />
-         <div className="w-full group-data-[collapsible=icon]:hidden">
+         <div className="w-full">
             <SidebarMenu>
                 <SidebarMenuItem>
                     <SidebarMenuButton onClick={toggleSidebar} className="w-full">
-                        <PanelLeft />
-                        <span>Collapse</span>
+                        <PanelRight />
+                        <span className="group-data-[collapsible=icon]:hidden">Collapse</span>
                     </SidebarMenuButton>
                 </SidebarMenuItem>
             </SidebarMenu>
