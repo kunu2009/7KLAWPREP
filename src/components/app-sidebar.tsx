@@ -21,6 +21,7 @@ import {
   Scale,
   Layers,
   ListChecks,
+  PanelLeft,
   PanelRight,
   PlaySquare,
   Projector,
@@ -30,9 +31,11 @@ import {
   Gavel,
   ClipboardList,
   Wand2,
-  Newspaper
+  Newspaper,
+  Menu
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
+import { Button } from "./ui/button";
 
 const menuItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
@@ -62,7 +65,7 @@ const aiTools = [
 
 export function AppSidebar() {
   const pathname = usePathname();
-  const { toggleSidebar, state } = useSidebar();
+  const { toggleSidebar, isCollapsed } = useSidebar();
 
   const renderMenuItems = (items: typeof menuItems) => items.map((item) => (
     <SidebarMenuItem key={item.href}>
@@ -77,6 +80,14 @@ export function AppSidebar() {
 
   return (
     <>
+      {isCollapsed && (
+         <div className="fixed top-4 right-4 z-20">
+            <Button size="icon" onClick={toggleSidebar} variant="outline" className="shadow-md">
+                <PanelLeft/>
+                <span className="sr-only">Open Sidebar</span>
+            </Button>
+         </div>
+      )}
       <SidebarHeader>
         <div className="flex items-center gap-2 p-2">
             <Scale className="size-6 text-primary" />
