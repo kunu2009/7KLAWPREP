@@ -222,7 +222,7 @@ const Sidebar = React.forwardRef<
             data-variant={variant}
             data-side={side}
             className={cn(
-                "group sticky top-0 hidden md:flex h-svh text-sidebar-foreground flex-col z-10",
+                "group sticky top-0 flex h-svh text-sidebar-foreground flex-col z-10",
                 "duration-200 transition-[width] ease-linear",
                 "w-[var(--sidebar-width-icon)]",
                 "group-data-[state=expanded]:w-[var(--sidebar-width)]",
