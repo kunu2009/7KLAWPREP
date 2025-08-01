@@ -31,7 +31,8 @@ import {
   SmilePlus,
   Gavel,
   ClipboardList,
-  Wand2
+  Wand2,
+  Newspaper
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -48,6 +49,7 @@ const menuItems = [
 ];
 
 const newFeatures = [
+  { href: "/current-affairs", label: "Current Affairs", icon: Newspaper },
   { href: "/visual-law", label: "Visual Law", icon: Projector },
   { href: "/career-roadmap", label: "Career Roadmap", icon: Map },
   { href: "/revision-wheel", label: "Revision Wheel", icon: Disc3 },
@@ -64,7 +66,7 @@ export function AppSidebar() {
   const pathname = usePathname();
   const { toggleSidebar } = useSidebar();
 
-  const renderMenuItems = (items: typeof menuItems) => items.map((item) => (
+  const renderMenuItems = (items: typeof menuItems | typeof newFeatures | typeof aiTools) => items.map((item) => (
     <SidebarMenuItem key={item.href}>
       <SidebarMenuButton asChild isActive={pathname === item.href} tooltip={{ children: item.label, side: 'right' }}>
         <Link href={item.href}>

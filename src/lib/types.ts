@@ -58,3 +58,39 @@ export interface CaseSimulation {
   scenario: string;
   playerRole: string;
 }
+
+export type CurrentAffairsCategory = 
+  | 'National Affairs'
+  | 'International Affairs'
+  | 'Legal & Judicial News'
+  | 'Government Schemes & Policies'
+  | 'Science & Tech'
+  | 'Sports'
+  | 'Awards & Rankings'
+  | 'Bills, Acts & Amendments'
+  | 'Appointments & Resignations'
+  | 'Important Days & Events';
+
+export interface CurrentAffairsItem {
+  id: string;
+  headline: string;
+  category: CurrentAffairsCategory;
+  summary: string;
+  importance: string;
+  date: string; // Using string to avoid timezone issues, format "YYYY-MM-DD"
+  probableQuestion: string;
+}
+
+export interface MonthlyCurrentAffairs {
+  month: string; // e.g., "May 2024"
+  items: CurrentAffairsItem[];
+}
+
+export interface VisualLawItem {
+    id: string;
+    title: string;
+    description: string;
+    category: string;
+    imageUrl: string;
+    aiHint: string;
+}
