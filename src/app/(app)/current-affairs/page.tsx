@@ -11,7 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { monthlyAffairs } from "@/lib/current-affairs-data";
 import type { CurrentAffairsCategory, CurrentAffairsItem } from "@/lib/types";
-import { Calendar, HelpCircle, Newspaper, Pin } from "lucide-react";
+import { Calendar, HelpCircle, Newspaper, Pin, History, Landmark, GanttChartSquare } from "lucide-react";
 
 // Group items by category for each month
 const categorizedMonthlyAffairs = monthlyAffairs.map(month => {
@@ -62,23 +62,44 @@ export default function CurrentAffairsPage() {
                                 {items.map(item => (
                                     <Card key={item.id} className="shadow-sm">
                                         <CardHeader>
-                                            <CardTitle className="text-base">{item.headline}</CardTitle>
+                                            <CardTitle className="text-base">{item.title}</CardTitle>
                                             <CardDescription className="flex items-center gap-2 pt-1">
-                                                <Calendar className="h-4 w-4" /> {new Date(item.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+                                                <Calendar className="h-4 w-4" /> {item.date}
                                             </CardDescription>
                                         </CardHeader>
                                         <CardContent className="space-y-4 text-sm">
                                             <div>
-                                                <h4 className="font-semibold mb-1 flex items-center gap-2"><Pin className="h-4 w-4 text-primary"/>What Happened</h4>
-                                                <p className="text-muted-foreground">{item.summary}</p>
+                                                <h4 className="font-semibold mb-2 flex items-center gap-2"><Pin className="h-4 w-4 text-primary"/>What Happened</h4>
+                                                <p className="text-muted-foreground ml-6">{item.whatHappened}</p>
                                             </div>
                                             <div>
-                                                <h4 className="font-semibold mb-1 flex items-center gap-2"><Pin className="h-4 w-4 text-primary"/>Why It's Important</h4>
-                                                <p className="text-muted-foreground">{item.importance}</p>
+                                                <h4 className="font-semibold mb-2 flex items-center gap-2"><GanttChartSquare className="h-4 w-4 text-primary"/>Summary</h4>
+                                                <p className="text-muted-foreground ml-6">{item.summary}</p>
+                                            </div>
+                                            <div>
+                                                <h4 className="font-semibold mb-2 flex items-center gap-2"><History className="h-4 w-4 text-primary"/>Previous Context</h4>
+                                                <p className="text-muted-foreground ml-6">{item.previousContext}</p>
                                             </div>
                                              <div>
-                                                <h4 className="font-semibold mb-1 flex items-center gap-2"><HelpCircle className="h-4 w-4 text-primary"/>Probable Question</h4>
-                                                <p className="text-muted-foreground italic">{item.probableQuestion}</p>
+                                                <h4 className="font-semibold mb-2 flex items-center gap-2"><Newspaper className="h-4 w-4 text-primary"/>Latest News</h4>
+                                                <p className="text-muted-foreground ml-6">{item.latestNews}</p>
+                                            </div>
+                                            <div>
+                                                <h4 className="font-semibold mb-2 flex items-center gap-2"><Landmark className="h-4 w-4 text-primary"/>Why It's Important</h4>
+                                                <p className="text-muted-foreground ml-6">{item.importance}</p>
+                                            </div>
+                                             <div>
+                                                <h4 className="font-semibold mb-2 flex items-center gap-2"><HelpCircle className="h-4 w-4 text-primary"/>Probable Question</h4>
+                                                <div className="text-muted-foreground italic ml-6">
+                                                  <p>{item.probableQuestion.question}</p>
+                                                  <ul className="list-disc list-inside mt-1">
+                                                    {item.probableQuestion.options.map((opt, index) => (
+                                                      <li key={index} className={opt === item.probableQuestion.answer ? 'font-bold text-primary' : ''}>
+                                                        {String.fromCharCode(65 + index)}. {opt}
+                                                      </li>
+                                                    ))}
+                                                  </ul>
+                                                </div>
                                             </div>
                                         </CardContent>
                                     </Card>

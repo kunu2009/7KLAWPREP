@@ -69,16 +69,24 @@ export type CurrentAffairsCategory =
   | 'Awards & Rankings'
   | 'Bills, Acts & Amendments'
   | 'Appointments & Resignations'
-  | 'Important Days & Events';
+  | 'Important Days & Events'
+  | 'Economy';
 
 export interface CurrentAffairsItem {
   id: string;
-  headline: string;
+  title: string;
+  date: string;
   category: CurrentAffairsCategory;
+  whatHappened: string;
   summary: string;
+  previousContext: string;
+  latestNews: string;
   importance: string;
-  date: string; // Using string to avoid timezone issues, format "YYYY-MM-DD"
-  probableQuestion: string;
+  probableQuestion: {
+    question: string;
+    options: string[];
+    answer: string;
+  };
 }
 
 export interface MonthlyCurrentAffairs {
