@@ -8,9 +8,16 @@
   "theme_color": "#3F51B5",
   "icons": [
     {
-      "src": "/logo.svg",
-      "sizes": "any",
-      "type": "image/svg+xml"
+      "src": "logo.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "splash-logo.svg",
+      "sizes": "1024x1536",
+      "type": "image/svg+xml",
+      "purpose": "any"
     }
   ]
 }
