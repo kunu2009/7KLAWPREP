@@ -5,17 +5,17 @@
 
 @layer base {
   :root {
-    --background: 33 11% 81%; /* #D4CFC9 */
+    --background: 0 0% 94%; /* #F0F0F0 */
     --foreground: 222.2 84% 4.9%;
-    --card: 33 11% 81%;
+    --card: 33 11% 81%; /* #D4CFC9 */
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
     --primary: 231 48% 48%; /* #3F51B5 */
     --primary-foreground: 0 0% 100%;
-    --secondary: 33 11% 81%;
+    --secondary: 33 11% 81%; /* #D4CFC9 */
     --secondary-foreground: 0 0% 9%;
-    --muted: 33 11% 81%;
+    --muted: 33 11% 81%; /* #D4CFC9 */
     --muted-foreground: 240 4% 46%;
     --accent: 36 100% 50%; /* #FF9800 */
     --accent-foreground: 0 0% 9%;
@@ -30,13 +30,13 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
-    --sidebar-background: 0 0% 100%;
+    --sidebar-background: 33 11% 81%; /* #D4CFC9 */
     --sidebar-foreground: 222.2 84% 4.9%;
     --sidebar-primary: 231 48% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 5% 96%;
+    --sidebar-accent: 0 0% 94%; /* #F0F0F0 */
     --sidebar-accent-foreground: 0 0% 9%;
-    --sidebar-border: 240 6% 90%;
+    --sidebar-border: 33 6% 75%;
     --sidebar-ring: 231 48% 48%;
   }
   .dark {
