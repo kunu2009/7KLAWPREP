@@ -36,6 +36,7 @@ import {
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { Button } from "./ui/button";
+import { Logo } from "./logo";
 
 const menuItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
@@ -82,7 +83,7 @@ export function AppSidebar() {
     <>
       <SidebarHeader>
         <div className="flex items-center gap-2 p-2">
-            <Scale className="size-6 text-primary" />
+            <Logo className="size-6 text-primary" />
             <h1 className="text-lg font-semibold group-data-[collapsible=icon]:hidden">LawPrep Sprint</h1>
         </div>
       </SidebarHeader>
