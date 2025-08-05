@@ -63,13 +63,13 @@
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-    --sidebar-background: 203 44% 13%; /* Deepest base */
-    --sidebar-foreground: 33 11% 81%;
+    --sidebar-background: 203 39% 15%; /* #18282f - Sidebar BG */
+    --sidebar-foreground: 204 5% 62%; /* #9e9f9f - Sidebar Text */
     --sidebar-primary: 231 48% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 203 33% 16%; /* Lighter shade for hover/active */
-    --sidebar-accent-foreground: 33 11% 81%;
-    --sidebar-border: 203 26% 23%;
+    --sidebar-accent: 203 26% 21%; /* #2a3f49 - Sidebar Hover */
+    --sidebar-accent-foreground: 33 11% 81%; /* Primary text color for hover */
+    --sidebar-border: 203 38% 20%; /* #1f3b47 - Sidebar Border */
     --sidebar-ring: 231 48% 48%;
   }
 }
