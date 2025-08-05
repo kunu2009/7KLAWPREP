@@ -42,23 +42,23 @@
   .dark {
     --background: 203 44% 13%; /* #13262f */
     --foreground: 33 11% 81%; /* #d4cfc9 */
-    --card: 203 33% 16%; /* #1a2f38 - Lighter than background */
-    --card-foreground: 33 11% 81%;
-    --popover: 203 33% 16%;
-    --popover-foreground: 33 11% 81%;
+    --card: 203 38% 17%; /* #1c343e */
+    --card-foreground: 33 11% 81%; /* #d4cfc9 */
+    --popover: 203 39% 16%; /* #1b3038 */
+    --popover-foreground: 33 11% 81%; /* #d4cfc9 */
     --primary: 231 48% 48%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 203 33% 16%; /* Lighter surface for secondary elements */
+    --secondary: 203 33% 16%;
     --secondary-foreground: 33 11% 81%;
     --muted: 203 33% 16%;
-    --muted-foreground: 203 10% 65%; /* Edward color for better contrast */
+    --muted-foreground: 203 10% 65%;
     --accent: 36 100% 50%;
     --accent-foreground: 0 0% 9%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 203 26% 23%; /* #2a3f49 - Border color */
-    --input: 203 26% 23%;
-    --ring: 231 48% 48%;
+    --border: 203 38% 20%; /* #1f3b47 */
+    --input: 203 39% 16%; /* #1a2f37 */
+    --ring: 203 40% 26%; /* #2b4e5a */
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
