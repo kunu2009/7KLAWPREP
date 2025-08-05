@@ -42,35 +42,35 @@
   .dark {
     --background: 203 44% 13%; /* #13262f */
     --foreground: 33 11% 81%; /* #d4cfc9 */
-    --card: 203 44% 13%;
+    --card: 203 33% 16%; /* #1a2f38 - Lighter than background */
     --card-foreground: 33 11% 81%;
-    --popover: 203 44% 13%;
+    --popover: 203 33% 16%;
     --popover-foreground: 33 11% 81%;
     --primary: 231 48% 48%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 203 30% 18%; /* A slightly lighter shade for secondary surfaces */
+    --secondary: 203 33% 16%; /* Lighter surface for secondary elements */
     --secondary-foreground: 33 11% 81%;
-    --muted: 203 30% 18%;
-    --muted-foreground: 203 10% 65%;
+    --muted: 203 33% 16%;
+    --muted-foreground: 203 10% 65%; /* Edward color for better contrast */
     --accent: 36 100% 50%;
     --accent-foreground: 0 0% 9%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 203 30% 25%;
-    --input: 203 30% 25%;
+    --border: 203 26% 23%; /* #2a3f49 - Border color */
+    --input: 203 26% 23%;
     --ring: 231 48% 48%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
-    --sidebar-background: 203 44% 13%;
+    --sidebar-background: 203 44% 13%; /* Deepest base */
     --sidebar-foreground: 33 11% 81%;
     --sidebar-primary: 231 48% 48%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 203 30% 18%;
+    --sidebar-accent: 203 33% 16%; /* Lighter shade for hover/active */
     --sidebar-accent-foreground: 33 11% 81%;
-    --sidebar-border: 203 30% 25%;
+    --sidebar-border: 203 26% 23%;
     --sidebar-ring: 231 48% 48%;
   }
 }
