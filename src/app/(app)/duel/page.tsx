@@ -26,7 +26,8 @@ const shuffleMcqs = (array: MCQ[]): MCQ[] => {
   return newArray;
 };
 
-export default function DuelPage() {
+// The page now accepts searchParams as a prop, as is standard in Next.js App Router
+export default function DuelPage({ searchParams }: { searchParams: { join?: string } }) {
   const [duelId, setDuelId] = useState<string | null>(null);
   const [duel, setDuel] = useState<Duel | null>(null);
   const [playerId, setPlayerId] = useState<string | null>(null);
@@ -46,12 +47,11 @@ export default function DuelPage() {
   }, []);
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const joinDuelId = urlParams.get('join');
+    const joinDuelId = searchParams.join;
     if (joinDuelId && playerId) {
       joinDuel(joinDuelId);
     }
-  }, [playerId]);
+  }, [playerId, searchParams.join]);
 
   useEffect(() => {
     if (!duelId) return;
@@ -107,20 +107,25 @@ export default function DuelPage() {
     if (!playerId) return;
     setIsLoading(true);
     const duelRef = doc(db, 'duels', idToJoin);
-    const duelSnap = await getDoc(duelRef);
+    try {
+        const duelSnap = await getDoc(duelRef);
 
-    if (duelSnap.exists()) {
-      const existingDuel = duelSnap.data() as Duel;
-      if (Object.keys(existingDuel.players).length < 2 && !existingDuel.players[playerId]) {
-        const player2: Player = { id: playerId, score: 0, answers: {}, time: 0 };
-        await updateDoc(duelRef, {
-          [`players.${playerId}`]: player2,
-          status: 'active'
-        });
-      }
-      setDuelId(idToJoin);
-    } else {
-      toast({ variant: 'destructive', title: 'Duel not found or is already full.' });
+        if (duelSnap.exists()) {
+            const existingDuel = duelSnap.data() as Duel;
+            if (Object.keys(existingDuel.players).length < 2 && !existingDuel.players[playerId]) {
+                const player2: Player = { id: playerId, score: 0, answers: {}, time: 0 };
+                await updateDoc(duelRef, {
+                [`players.${playerId}`]: player2,
+                status: 'active'
+                });
+            }
+            setDuelId(idToJoin);
+        } else {
+            toast({ variant: 'destructive', title: 'Duel not found or is already full.' });
+        }
+    } catch (error) {
+        toast({ variant: 'destructive', title: 'Could not join duel.', description: 'Please check the link or try again later.' });
+        console.error("Error joining duel:", error);
     }
     setIsLoading(false);
   };
