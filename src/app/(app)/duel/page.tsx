@@ -37,6 +37,8 @@ export default function DuelPage({ searchParams }: { searchParams: { join?: stri
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
+  const joinDuelId = searchParams.join;
+
   useEffect(() => {
     let pId = sessionStorage.getItem('playerId');
     if (!pId) {
@@ -46,12 +48,38 @@ export default function DuelPage({ searchParams }: { searchParams: { join?: stri
     setPlayerId(pId);
   }, []);
 
+  const joinDuel = useCallback(async (idToJoin: string) => {
+    if (!playerId) return;
+    setIsLoading(true);
+    const duelRef = doc(db, 'duels', idToJoin);
+    try {
+        const duelSnap = await getDoc(duelRef);
+
+        if (duelSnap.exists()) {
+            const existingDuel = duelSnap.data() as Duel;
+            if (Object.keys(existingDuel.players).length < 2 && !existingDuel.players[playerId]) {
+                const player2: Player = { id: playerId, score: 0, answers: {}, time: 0 };
+                await updateDoc(duelRef, {
+                [`players.${playerId}`]: player2,
+                status: 'active'
+                });
+            }
+            setDuelId(idToJoin);
+        } else {
+            toast({ variant: 'destructive', title: 'Duel not found or is already full.' });
+        }
+    } catch (error) {
+        toast({ variant: 'destructive', title: 'Could not join duel.', description: 'Please check the link or try again later.' });
+        console.error("Error joining duel:", error);
+    }
+    setIsLoading(false);
+  }, [playerId, toast]);
+
   useEffect(() => {
-    const joinDuelId = searchParams.join;
     if (joinDuelId && playerId) {
       joinDuel(joinDuelId);
     }
-  }, [playerId, searchParams.join]);
+  }, [playerId, joinDuelId, joinDuel]);
 
   useEffect(() => {
     if (!duelId) return;
@@ -99,33 +127,6 @@ export default function DuelPage({ searchParams }: { searchParams: { join?: stri
     } catch (e) {
       console.error("Error creating duel: ", e);
       toast({ variant: 'destructive', title: 'Failed to create duel.' });
-    }
-    setIsLoading(false);
-  };
-  
-  const joinDuel = async (idToJoin: string) => {
-    if (!playerId) return;
-    setIsLoading(true);
-    const duelRef = doc(db, 'duels', idToJoin);
-    try {
-        const duelSnap = await getDoc(duelRef);
-
-        if (duelSnap.exists()) {
-            const existingDuel = duelSnap.data() as Duel;
-            if (Object.keys(existingDuel.players).length < 2 && !existingDuel.players[playerId]) {
-                const player2: Player = { id: playerId, score: 0, answers: {}, time: 0 };
-                await updateDoc(duelRef, {
-                [`players.${playerId}`]: player2,
-                status: 'active'
-                });
-            }
-            setDuelId(idToJoin);
-        } else {
-            toast({ variant: 'destructive', title: 'Duel not found or is already full.' });
-        }
-    } catch (error) {
-        toast({ variant: 'destructive', title: 'Could not join duel.', description: 'Please check the link or try again later.' });
-        console.error("Error joining duel:", error);
     }
     setIsLoading(false);
   };
@@ -344,3 +345,5 @@ const DuelResults = ({ duel, playerId }: { duel: Duel, playerId: string }) => {
         </Card>
     );
 }
+
+    
