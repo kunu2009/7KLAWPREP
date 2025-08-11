@@ -157,7 +157,7 @@ export default function Home() {
   const [level, setLevel] = useState(1);
   const [xp, setXp] = useState(0);
   const { toast } = useToast();
-  const { history } = useProgress();
+  const { history, isClient } = useProgress();
 
   const xpForNextLevel = level * 100;
   const levelProgress = (xp / xpForNextLevel) * 100;
@@ -206,6 +206,8 @@ export default function Home() {
   
   // Load state from localStorage on mount
   useEffect(() => {
+    if (!isClient) return;
+
     const savedPoints = localStorage.getItem('lawPrepTotalPoints');
     const savedDate = localStorage.getItem('lawPrepLastCompletionDate');
     const savedStreak = localStorage.getItem('lawPrepStudyStreak');
@@ -236,17 +238,19 @@ export default function Home() {
     } else {
       fetchTasks();
     }
-  }, [fetchTasks]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isClient]);
 
   // Save state to localStorage whenever it changes
   useEffect(() => {
+    if (!isClient) return;
     localStorage.setItem('lawPrepTotalPoints', JSON.stringify(totalPoints));
     if (lastCompletionDate) localStorage.setItem('lawPrepLastCompletionDate', lastCompletionDate);
     localStorage.setItem('lawPrepStudyStreak', JSON.stringify(studyStreak));
     localStorage.setItem('lawPrepLevel', JSON.stringify(level));
     localStorage.setItem('lawPrepXp', JSON.stringify(xp));
     localStorage.setItem('lawPrepTasks', JSON.stringify(tasks));
-  }, [totalPoints, lastCompletionDate, studyStreak, level, xp, tasks]);
+  }, [totalPoints, lastCompletionDate, studyStreak, level, xp, tasks, isClient]);
 
 
   const handleTaskComplete = (taskId: string, points: number) => {

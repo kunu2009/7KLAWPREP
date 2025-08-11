@@ -65,6 +65,11 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
   
   const resetProgress = useCallback(() => {
     setProgress(defaultState);
+     try {
+        localStorage.removeItem('lawPrepProgress');
+    } catch (error) {
+        console.error("Could not remove progress from localStorage", error);
+    }
   }, []);
 
   return (
