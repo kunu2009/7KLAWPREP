@@ -2097,7 +2097,7 @@ The maxim breaks down a crime into two components:
 
 2. Mens Rea (The Guilty Mind):
 - This is the mental element of a crime. It refers to the blameworthy state of mind, fault, or intention of the accused at the time of the *actus reus*.
-- *Mens Rea* is not a single concept but a range of mental states. The specific *mens rea* required varies from crime to crime. The main levels include:
+- *Mens Rea* is not a single concept but a range of of mental states. The specific *mens rea* required varies from crime to crime. The main levels include:
   - Intention: The highest level of fault. The accused has a clear purpose to bring about the prohibited result.
   - Knowledge: The accused is aware that their actions are certain or highly likely to cause the prohibited result.
   - Recklessness: The accused foresees a risk of harm but decides to take that risk anyway.
@@ -2447,7 +2447,7 @@ The economy is generally divided into three sectors:
 - ASEAN (Association of Southeast Asian Nations):
   - A political and economic union of 10 member states in Southeast Asia. Headquarters in Jakarta, Indonesia.
 - BRICS:
-  - An association of five major emerging economies: Brazil, Russia, India, China, and South Africa. It does not have a formal headquarters.
+  - An association of five major emerging national economies: Brazil, Russia, India, China, and South Africa. It does not have a formal headquarters.
 - G20 (Group of Twenty):
   - An international forum for the governments and central bank governors from 19 countries and the European Union. It focuses on international economic cooperation.
 
@@ -3428,7 +3428,7 @@ Proving a conspiracy can be difficult because the agreement is often made in sec
     topic: 'UN Security Council',
     category: 'General Knowledge',
     content: `
-📘 Summary: The United Nations Security Council (UNSC) is one of the six principal organs of the United Nations and is charged with the primary responsibility for maintaining international peace and security. Its powers, outlined in the UN Charter, are significant and include the establishment of peacekeeping operations, the imposition of international sanctions, and the authorization of military action. Its decisions (resolutions) are legally binding on all UN member states.
+📘 Summary: The United Nations Security Council (UNSC) is one of the six principal organs of the UN and is charged with the primary responsibility for maintaining international peace and security. Its powers, outlined in the UN Charter, are significant and include the establishment of peacekeeping operations, the imposition of international sanctions, and the authorization of military action. Its decisions (resolutions) are legally binding on all UN member states.
 
 ### Composition of the Security Council
 
@@ -4682,6 +4682,7 @@ export const visualLawItems: VisualLawItem[] = [
     aiHint: 'trial process'
   }
 ];
+
 
 
 

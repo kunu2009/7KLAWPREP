@@ -9,3 +9,4 @@ import '@/ai/flows/courtroom-agent.ts';
 import '@/ai/flows/generate-visual-law.ts';
 import '@/ai/flows/brief-case-flow.ts';
 import '@/ai/flows/generate-daily-tasks.ts';
+
