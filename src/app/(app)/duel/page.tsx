@@ -2,8 +2,8 @@
 "use client";
 
 import { useState, useEffect, useCallback } from 'react';
-import { doc, getDoc, onSnapshot, setDoc, updateDoc, collection, addDoc, getFirestore } from 'firebase/firestore';
-import { app } from '@/lib/firebase-config';
+import { doc, getDoc, onSnapshot, setDoc, updateDoc, collection, addDoc } from 'firebase/firestore';
+import { db } from '@/lib/firebase-config';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -16,8 +16,6 @@ import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
-
-const db = getFirestore(app);
 
 const shuffleMcqs = (array: MCQ[]): MCQ[] => {
   const newArray = [...array];
@@ -341,4 +339,3 @@ const DuelResults = ({ duel, playerId }: { duel: Duel, playerId: string }) => {
         </Card>
     );
 }
-
