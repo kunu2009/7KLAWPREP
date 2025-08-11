@@ -3734,7 +3734,7 @@ These are the four major annual tennis tournaments. You should know the winners 
 - Indian Awards: Khel Ratna is the highest honor.
 - Focus on Indian athletes' achievements in international events.
 `,
-    links: []
+    links: [],
   },
   {
     topic: 'Sources of Indian Constitution',
@@ -4682,5 +4682,6 @@ export const visualLawItems: VisualLawItem[] = [
     aiHint: 'trial process'
   }
 ];
+
 
 
