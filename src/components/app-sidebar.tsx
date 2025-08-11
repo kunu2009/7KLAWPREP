@@ -32,7 +32,8 @@ import {
   ClipboardList,
   Wand2,
   Newspaper,
-  Menu
+  Menu,
+  Swords
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { Button } from "./ui/button";
@@ -61,6 +62,10 @@ const aiTools = [
   { href: "/ai-tools", label: "AI Tools", icon: Wand2 },
   { href: "/mood-study", label: "Mood Study", icon: SmilePlus },
   { href: "/courtroom-sim", label: "Courtroom Sim", icon: Gavel },
+];
+
+const competition = [
+    { href: "/duel", label: "Duel Arena", icon: Swords }
 ];
 
 
@@ -101,6 +106,12 @@ export function AppSidebar() {
             <h3 className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">AI Tools</h3>
             {renderMenuItems(aiTools)}
         </SidebarMenu>
+
+        <SidebarMenu>
+            <h3 className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">Competition</h3>
+            {renderMenuItems(competition)}
+        </SidebarMenu>
+
       </SidebarContent>
       <SidebarFooter className="mt-auto flex flex-col items-center gap-2 p-2">
         <ThemeToggle />

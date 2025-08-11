@@ -102,3 +102,20 @@ export interface VisualLawItem {
     imageUrl: string;
     aiHint: string;
 }
+
+export interface Player {
+  id: string;
+  score: number;
+  answers: { [questionId: string]: number };
+  time: number;
+}
+
+export interface Duel {
+  questions: Omit<MCQ, 'explanation' | 'topic'>[];
+  players: { [playerId: string]: Player };
+  status: 'waiting' | 'active' | 'finished';
+  createdAt: number;
+  topic: string;
+  questionCount: number;
+  currentQuestion: number;
+}
