@@ -10,6 +10,8 @@ import { generateVisualLaw } from '@/ai/flows/generate-visual-law';
 import { useToast } from '@/hooks/use-toast';
 import { revisionTopics } from '@/lib/data';
 import { Loader2, Projector, Wand2 } from 'lucide-react';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '@/lib/firebase-config';
 
 interface GeneratedVisual {
   description: string;
@@ -34,6 +36,16 @@ export default function VisualLawPage() {
     setGeneratedVisual(null);
     startTransition(async () => {
       try {
+        // First, check if a visual already exists in Firestore
+        const visualLawDocRef = doc(db, 'visualLaw', selectedTopic);
+        const docSnap = await getDoc(visualLawDocRef);
+
+        if (docSnap.exists() && docSnap.data().imageUrl) {
+           setGeneratedVisual(docSnap.data() as GeneratedVisual);
+           return;
+        }
+
+        // If not, generate a new one
         const response = await generateVisualLaw({ topic: selectedTopic });
         if (response && response.imageUrl && response.description) {
           setGeneratedVisual(response);
@@ -41,10 +53,11 @@ export default function VisualLawPage() {
           throw new Error('Invalid response from AI.');
         }
       } catch (error) {
+        console.error("Error in VisualLawPage:", error);
         toast({
           variant: 'destructive',
           title: 'An error occurred',
-          description: 'Failed to generate visual guide. Please try again.',
+          description: 'Failed to generate or fetch visual guide. Please try again.',
         });
       }
     });
@@ -96,7 +109,7 @@ export default function VisualLawPage() {
             {isPending ? (
               <div className="text-center text-muted-foreground">
                 <Loader2 className="mx-auto h-8 w-8 animate-spin" />
-                <p className="mt-2">Generating your visual guide...</p>
+                <p className="mt-2">Generating your visual guide... this may take a moment.</p>
               </div>
             ) : generatedVisual ? (
               <div className="space-y-4 w-full">
@@ -110,7 +123,7 @@ export default function VisualLawPage() {
                 </div>
                 <div className="prose prose-sm dark:prose-invert max-w-none p-4 border rounded-lg bg-muted/50">
                     <h3 className="text-lg font-semibold">Diagram Description</h3>
-                    <div dangerouslySetInnerHTML={{ __html: generatedVisual.description.replace(/\n/g, '<br />') }} />
+                    <div dangerouslySetInnerHTML={{ __html: generatedVisual.description.replace(/\\n/g, '<br />') }} />
                 </div>
               </div>
             ) : (
@@ -125,3 +138,4 @@ export default function VisualLawPage() {
     </div>
   );
 }
+

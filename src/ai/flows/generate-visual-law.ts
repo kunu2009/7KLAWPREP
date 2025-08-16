@@ -10,6 +10,10 @@
 
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
+import { getStorage } from 'firebase-admin/storage';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from '@/lib/firebase-config-admin';
+import { randomUUID } from 'crypto';
 
 const GenerateVisualLawInputSchema = z.object({
   topic: z.string().describe('The legal topic for which to generate a visual guide.'),
@@ -18,7 +22,7 @@ export type GenerateVisualLawInput = z.infer<typeof GenerateVisualLawInputSchema
 
 const GenerateVisualLawOutputSchema = z.object({
   description: z.string().describe('A detailed markdown description of the mindmap or flowchart.'),
-  imageUrl: z.string().describe('A data URI of the generated image of the diagram.'),
+  imageUrl: z.string().describe('A public URL to the generated image of the diagram.'),
 });
 export type GenerateVisualLawOutput = z.infer<typeof GenerateVisualLawOutputSchema>;
 
@@ -44,6 +48,23 @@ For example, for "How a Bill Becomes an Act", you might describe:
 Provide a similarly structured description for the topic: "{{topic}}".`
 });
 
+async function uploadImageToStorage(dataUri: string, topic: string): Promise<string> {
+    const bucket = getStorage().bucket();
+    const buffer = Buffer.from(dataUri.split(',')[1], 'base64');
+    const fileExtension = dataUri.split(';')[0].split('/')[1] || 'png';
+    const fileName = `visual-law/${topic.replace(/\s+/g, '_')}_${randomUUID()}.${fileExtension}`;
+    const file = bucket.file(fileName);
+
+    await file.save(buffer, {
+        metadata: {
+            contentType: `image/${fileExtension}`,
+        },
+        public: true,
+    });
+    
+    return file.publicUrl();
+}
+
 const generateVisualLawFlow = ai.defineFlow(
   {
     name: 'generateVisualLawFlow',
@@ -51,6 +72,19 @@ const generateVisualLawFlow = ai.defineFlow(
     outputSchema: GenerateVisualLawOutputSchema,
   },
   async (input) => {
+    const visualLawDocRef = doc(db, 'visualLaw', input.topic);
+    const docSnap = await getDoc(visualLawDocRef);
+
+    if (docSnap.exists()) {
+        const data = docSnap.data();
+        if(data.imageUrl && data.description) {
+            return {
+                description: data.description,
+                imageUrl: data.imageUrl,
+            };
+        }
+    }
+
     // Step 1: Generate a structured description of the diagram.
     const { output: descriptionOutput } = await descriptionPrompt(input);
     const description = descriptionOutput?.description || `A mindmap about ${input.topic}`;
@@ -71,9 +105,20 @@ const generateVisualLawFlow = ai.defineFlow(
         throw new Error('Failed to generate image for the visual law guide.');
     }
     
+    // Step 3: Upload the image to Firebase Storage and get the public URL.
+    const imageUrl = await uploadImageToStorage(media.url, input.topic);
+
+    // Step 4: Save the description and public URL to Firestore.
+    await setDoc(visualLawDocRef, {
+        topic: input.topic,
+        description: description,
+        imageUrl: imageUrl,
+        createdAt: new Date().toISOString(),
+    });
+
     return {
         description,
-        imageUrl: media.url,
+        imageUrl,
     };
   }
 );
