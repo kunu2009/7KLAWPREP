@@ -1,6 +1,7 @@
+
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardContent, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
@@ -20,8 +21,15 @@ export function McqCard({ mcq, questionNumber }: McqCardProps) {
   const { recordAnswer, history } = useProgress();
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [isRevealed, setIsRevealed] = useState(false);
+  
+  const hasBeenAnswered = history && history[mcq.id] !== undefined;
 
-  const hasBeenAnswered = history[mcq.id] !== undefined;
+  useEffect(() => {
+    // When history loads, if the question has been answered, reveal it.
+    if (hasBeenAnswered) {
+      setIsRevealed(true);
+    }
+  }, [hasBeenAnswered]);
 
   const handleCheckAnswer = () => {
     if (selectedOption === null) return;
@@ -33,35 +41,28 @@ export function McqCard({ mcq, questionNumber }: McqCardProps) {
   };
 
   const getOptionLabelClass = (index: number) => {
-    if (!isRevealed && !hasBeenAnswered) return '';
-    if (index === mcq.correctAnswerIndex) return 'text-green-600 dark:text-green-500 font-semibold';
-    if (index === selectedOption && index !== mcq.correctAnswerIndex) return 'text-red-600 dark:text-red-500 font-semibold';
-    if (hasBeenAnswered && history[mcq.id] === 'correct' && index === mcq.correctAnswerIndex) return 'text-green-600 dark:text-green-500 font-semibold';
-    if (hasBeenAnswered && history[mcq.id] === 'incorrect' && index === mcq.correctAnswerIndex) return 'text-green-600 dark:text-green-500 font-semibold';
-    if (hasBeenAnswered && history[mcq.id] === 'incorrect' && index !== mcq.correctAnswerIndex) {
-        // Find the incorrect answer they selected from history (not currently possible with this state structure, but a good thought)
+    const isCorrectAnswer = index === mcq.correctAnswerIndex;
+    const answerResult = history[mcq.id];
+
+    if (isRevealed || hasBeenAnswered) {
+        if (isCorrectAnswer) {
+            return 'text-green-600 dark:text-green-500 font-semibold';
+        }
+        if (answerResult === 'incorrect' && selectedOption === index) {
+             return 'text-red-600 dark:text-red-500 font-semibold';
+        }
     }
     return '';
   };
-
-  const isOptionDisabled = (index: number) => {
-     if (isRevealed || hasBeenAnswered) {
-        if(index === mcq.correctAnswerIndex) return false;
-        if(selectedOption === index) return false;
-        if (hasBeenAnswered && history[mcq.id] === 'incorrect' && index !== mcq.correctAnswerIndex) return true;
-        if (hasBeenAnswered && history[mcq.id] === 'correct' && index !== mcq.correctAnswerIndex) return true;
-        return true;
-     }
-     return false;
-  }
   
   const getAlertVariant = () => {
-    if (!isRevealed && !hasBeenAnswered) return null;
-    if (isRevealed) {
-        return selectedOption === mcq.correctAnswerIndex ? 'correct' : 'incorrect';
-    }
-    if (hasBeenAnswered) {
-        return history[mcq.id];
+    if (!isRevealed) return null;
+    const result = history[mcq.id];
+    if (result === 'correct') return 'correct';
+    if (result === 'incorrect') return 'incorrect';
+    // Handle the case where the answer has just been submitted but history might not be updated yet
+    if (selectedOption !== null) {
+      return selectedOption === mcq.correctAnswerIndex ? 'correct' : 'incorrect';
     }
     return null;
   }
@@ -77,14 +78,14 @@ export function McqCard({ mcq, questionNumber }: McqCardProps) {
       </CardHeader>
       <CardContent>
         <RadioGroup
-          value={selectedOption?.toString()}
+          value={hasBeenAnswered ? (Object.keys(mcq.options).find(key => mcq.options[parseInt(key)] === mcq.options[mcq.correctAnswerIndex])) : selectedOption?.toString()}
           onValueChange={(value) => setSelectedOption(parseInt(value))}
           disabled={isRevealed || hasBeenAnswered}
           className="space-y-2"
         >
           {mcq.options.map((option, index) => (
             <div key={index} className="flex items-center space-x-2">
-              <RadioGroupItem value={index.toString()} id={`${mcq.id}-option-${index}`} disabled={isOptionDisabled(index)} />
+              <RadioGroupItem value={index.toString()} id={`${mcq.id}-option-${index}`} />
               <Label htmlFor={`${mcq.id}-option-${index}`} className={cn("cursor-pointer", getOptionLabelClass(index))}>
                 {option}
               </Label>
@@ -117,14 +118,6 @@ export function McqCard({ mcq, questionNumber }: McqCardProps) {
               {mcq.explanation}
             </AlertDescription>
           </Alert>
-        )}
-
-        {(isRevealed || hasBeenAnswered) && !alertVariant && (
-             <Alert>
-                <Lightbulb className="h-4 w-4" />
-                <AlertTitle>Explanation</AlertTitle>
-                <AlertDescription>{mcq.explanation}</AlertDescription>
-            </Alert>
         )}
       </CardFooter>
     </Card>

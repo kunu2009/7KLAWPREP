@@ -1,12 +1,16 @@
+
 "use client";
 
 import React, { createContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import type { ProgressState } from '@/lib/types';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { db } from '@/lib/firebase-config';
 
 interface ProgressContextType extends ProgressState {
   recordAnswer: (mcqId: string, isCorrect: boolean) => void;
   resetProgress: () => void;
   isClient: boolean;
+  playerId: string | null;
 }
 
 const defaultState: ProgressState = {
@@ -20,60 +24,85 @@ export const ProgressContext = createContext<ProgressContextType>({
   recordAnswer: () => {},
   resetProgress: () => {},
   isClient: false,
+  playerId: null,
 });
 
 export const ProgressProvider = ({ children }: { children: ReactNode }) => {
   const [progress, setProgress] = useState<ProgressState>(defaultState);
   const [isClient, setIsClient] = useState(false);
+  const [playerId, setPlayerId] = useState<string | null>(null);
 
   useEffect(() => {
     setIsClient(true);
-    try {
-      const savedProgress = localStorage.getItem('lawPrepProgress');
-      if (savedProgress) {
-        setProgress(JSON.parse(savedProgress));
-      }
-    } catch (error) {
-      console.error("Could not load progress from localStorage", error);
+    const pId = sessionStorage.getItem('playerId');
+    if (pId) {
+      setPlayerId(pId);
     }
   }, []);
 
   useEffect(() => {
-    if (isClient) {
-      try {
-        localStorage.setItem('lawPrepProgress', JSON.stringify(progress));
-      } catch (error) {
-        console.error("Could not save progress to localStorage", error);
+    const loadProgress = async () => {
+      if (playerId) {
+        try {
+          const progressDocRef = doc(db, 'userProgress', playerId, 'mcq', 'history');
+          const progressDocSnap = await getDoc(progressDocRef);
+          if (progressDocSnap.exists()) {
+            const data = progressDocSnap.data();
+            setProgress({
+              history: data.history || {},
+              attempted: Object.keys(data.history || {}).length,
+              correct: Object.values(data.history || {}).filter(v => v === 'correct').length
+            });
+          }
+        } catch (error) {
+          console.error("Could not load progress from Firestore", error);
+        }
       }
+    };
+    loadProgress();
+  }, [playerId]);
+
+
+  const recordAnswer = useCallback(async (mcqId: string, isCorrect: boolean) => {
+    if (!playerId || progress.history[mcqId]) {
+      return;
     }
-  }, [progress, isClient]);
+    
+    const newHistory = { ...progress.history, [mcqId]: isCorrect ? 'correct' : 'incorrect' as 'correct' | 'incorrect' };
 
-  const recordAnswer = useCallback((mcqId: string, isCorrect: boolean) => {
-    setProgress(prev => {
-      // Only update stats if the question hasn't been answered before
-      if (prev.history[mcqId]) {
-        return prev;
-      }
+    // Optimistic UI update
+    setProgress(prev => ({
+      attempted: prev.attempted + 1,
+      correct: isCorrect ? prev.correct + 1 : prev.correct,
+      history: newHistory,
+    }));
+    
+    try {
+        const progressDocRef = doc(db, 'userProgress', playerId, 'mcq', 'history');
+        // Use set with merge to create or update the document
+        await setDoc(progressDocRef, { history: newHistory }, { merge: true });
+    } catch (error) {
+        console.error("Could not save progress to Firestore", error);
+        // Revert on failure (optional, might cause UI flicker)
+        setProgress(progress);
+    }
 
-      return {
-        attempted: prev.attempted + 1,
-        correct: isCorrect ? prev.correct + 1 : prev.correct,
-        history: { ...prev.history, [mcqId]: isCorrect ? 'correct' : 'incorrect' },
-      };
-    });
-  }, []);
+  }, [playerId, progress]);
   
-  const resetProgress = useCallback(() => {
+  const resetProgress = useCallback(async () => {
+    if (!playerId) return;
+
     setProgress(defaultState);
      try {
-        localStorage.removeItem('lawPrepProgress');
+        const progressDocRef = doc(db, 'userProgress', playerId, 'mcq', 'history');
+        await setDoc(progressDocRef, { history: {} });
     } catch (error) {
-        console.error("Could not remove progress from localStorage", error);
+        console.error("Could not reset progress in Firestore", error);
     }
-  }, []);
+  }, [playerId]);
 
   return (
-    <ProgressContext.Provider value={{ ...progress, recordAnswer, resetProgress, isClient }}>
+    <ProgressContext.Provider value={{ ...progress, recordAnswer, resetProgress, isClient, playerId }}>
       {children}
     </ProgressContext.Provider>
   );

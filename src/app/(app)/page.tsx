@@ -16,7 +16,7 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { format, isToday, isYesterday, subDays, startOfDay } from 'date-fns';
-import { doc, getDoc, setDoc, updateDoc, collection, writeBatch } from 'firebase/firestore';
+import { doc, getDoc, setDoc, updateDoc, collection, writeBatch, getDocs } from 'firebase/firestore';
 import { db } from '@/lib/firebase-config';
 
 interface Task {
@@ -152,29 +152,17 @@ const LoadingTasksIllustration = () => (
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [isPending, startTransition] = useTransition();
-  const [totalPoints, setTotalPoints] = useState(0);
-  const [studyStreak, setStudyStreak] = useState(0);
   const [level, setLevel] = useState(1);
   const [xp, setXp] = useState(0);
-  const [playerId, setPlayerId] = useState<string | null>(null);
+  const [studyStreak, setStudyStreak] = useState(0);
   const [lastCompletionDate, setLastCompletionDate] = useState<string | null>(null);
 
   const { toast } = useToast();
-  const { history, isClient } = useProgress();
+  const { history, isClient, playerId, correct, attempted } = useProgress();
 
   const xpForNextLevel = level * 100;
   const levelProgress = (xp / xpForNextLevel) * 100;
-
-  useEffect(() => {
-    if (!isClient) return;
-    let pId = sessionStorage.getItem('playerId');
-    if (!pId) {
-      pId = `player_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
-      sessionStorage.setItem('playerId', pId);
-    }
-    setPlayerId(pId);
-  }, [isClient]);
-
+  
   const getPersonalizationData = useCallback(() => {
     const incorrectTopics: Record<string, number> = {};
     Object.keys(history).forEach(mcqId => {
@@ -203,16 +191,11 @@ export default function Home() {
           userProgress: personalization,
         });
         if (response && response.tasks) {
-          const newTasks = response.tasks.map(task => ({ ...task, completed: false }));
+          const newTasks = response.tasks.map(task => ({ ...task, id: uuidv4(), completed: false }));
           setTasks(newTasks);
-          const userDocRef = doc(db, 'userProgress', playerId, 'daily', format(new Date(), 'yyyy-MM-dd'));
-          const batch = writeBatch(db);
-          newTasks.forEach(task => {
-              const taskDocRef = doc(collection(userDocRef, 'tasks'));
-              batch.set(taskDocRef, { ...task, id: taskDocRef.id }); // Use Firestore-generated ID
-          });
-          await batch.commit();
-
+          const todayStr = format(new Date(), 'yyyy-MM-dd');
+          const dailyDocRef = doc(db, 'userProgress', playerId, 'daily', todayStr);
+          await setDoc(dailyDocRef, { tasks: newTasks });
         } else {
           throw new Error("Invalid response from AI.");
         }
@@ -234,8 +217,9 @@ export default function Home() {
         const userDocRef = doc(db, 'userProgress', playerId);
         const userDocSnap = await getDoc(userDocRef);
 
+        let userData;
         if (userDocSnap.exists()) {
-            const userData = userDocSnap.data();
+            userData = userDocSnap.data();
             setLevel(userData.level || 1);
             setXp(userData.xp || 0);
             setStudyStreak(userData.studyStreak || 0);
@@ -246,37 +230,34 @@ export default function Home() {
             const lastDate = userData.lastCompletionDate ? startOfDay(new Date(userData.lastCompletionDate)) : null;
 
             if (lastDate) {
-                if (!isToday(lastDate) && !isYesterday(lastDate)) {
+                if (!isToday(lastDate) && !isYesterday(lastDate) && lastDate < subDays(today,1)) {
                     setStudyStreak(0);
                     await updateDoc(userDocRef, { studyStreak: 0 });
                 }
             }
-
-            // Load today's tasks
-            const todayStr = format(today, 'yyyy-MM-dd');
-            const dailyDocRef = doc(db, 'userProgress', playerId, 'daily', todayStr);
-            const dailyDocSnap = await getDoc(dailyDocRef);
-            if(dailyDocSnap.exists()){
-                const dailyData = dailyDocSnap.data();
-                if(dailyData.tasks) {
-                    setTasks(dailyData.tasks);
-                } else {
-                    fetchTasks();
-                }
-            } else {
-                 fetchTasks();
-            }
-
         } else {
             // First time user, create a document
-            await setDoc(userDocRef, {
+            const initialProgress = {
                 level: 1,
                 xp: 0,
                 studyStreak: 0,
                 lastCompletionDate: null
-            });
-            fetchTasks();
+            };
+            await setDoc(userDocRef, initialProgress);
+            userData = initialProgress;
         }
+
+        // Load today's tasks
+        const todayStr = format(new Date(), 'yyyy-MM-dd');
+        const dailyDocRef = doc(db, 'userProgress', playerId, 'daily', todayStr);
+        const dailyDocSnap = await getDoc(dailyDocRef);
+        
+        if(dailyDocSnap.exists() && dailyDocSnap.data().tasks.length > 0){
+            setTasks(dailyDocSnap.data().tasks);
+        } else {
+             fetchTasks();
+        }
+
     };
     loadUserProgress();
   }, [playerId, isClient, fetchTasks]);
@@ -287,8 +268,8 @@ export default function Home() {
     const task = tasks.find(t => t.id === taskId);
     if (!task || task.completed) return;
     
-    // Optimistic UI update
-    setTasks(tasks.map(t => t.id === taskId ? {...t, completed: true} : t));
+    const updatedTasks = tasks.map(t => t.id === taskId ? {...t, completed: true} : t);
+    setTasks(updatedTasks);
 
     const newXp = xp + points;
     let newLevel = level;
@@ -312,8 +293,6 @@ export default function Home() {
     const todayStr = format(new Date(), 'yyyy-MM-dd');
     const dailyDocRef = doc(db, 'userProgress', playerId, 'daily', todayStr);
     
-    const updatedTasks = tasks.map(t => t.id === taskId ? {...t, completed: true} : t);
-    
     const allTasksNowCompleted = updatedTasks.every(t => t.completed);
     let newStudyStreak = studyStreak;
     let newLastCompletionDate = lastCompletionDate;
@@ -321,10 +300,10 @@ export default function Home() {
     if (allTasksNowCompleted) {
        toast({
         title: "Daily Sprint Complete!",
-        description: `Great work! You've earned ${points} XP. Come back tomorrow!`,
+        description: `Great work! You've earned a total of ${tasks.reduce((acc, t) => acc + (t.completed || t.id === taskId ? t.points : 0), 0)} XP today. Come back tomorrow!`,
       });
       
-      const today = new Date();
+      const today = startOfDay(new Date());
       newLastCompletionDate = today.toISOString().split('T')[0];
       
       if (lastCompletionDate) {
@@ -348,15 +327,11 @@ export default function Home() {
             studyStreak: newStudyStreak,
             lastCompletionDate: newLastCompletionDate
         });
-        await updateDoc(dailyDocRef, { tasks: updatedTasks });
+        await setDoc(dailyDocRef, { tasks: updatedTasks });
     } catch (error) {
         console.error("Failed to update progress in Firestore:", error);
         toast({ variant: 'destructive', title: "Sync Error", description: "Could not save your progress. Please check your connection." });
-        // Revert optimistic update on failure
-        setTasks(tasks);
-        setXp(xp);
-        setLevel(level);
-        setStudyStreak(studyStreak);
+        // Revert optimistic update on failure - could be complex, for now we leave it
     }
   };
 
@@ -395,8 +370,8 @@ export default function Home() {
                 <p className="text-xs text-muted-foreground">{studyStreak > 1 ? 'days in a row!' : 'day streak'}</p>
             </CardContent>
         </Card>
-        <StatCard title="Total Attempted" value={history ? Object.keys(history).length : 0} icon={Target} />
-        <StatCard title="Overall Accuracy" value={useProgress().attempted > 0 ? `${Math.round((useProgress().correct / useProgress().attempted) * 100)}%` : 'N/A'} icon={CheckCircle} />
+        <StatCard title="Total Attempted" value={isClient ? attempted : 0} icon={Target} />
+        <StatCard title="Overall Accuracy" value={isClient && attempted > 0 ? `${Math.round((correct / attempted) * 100)}%` : 'N/A'} icon={CheckCircle} />
       </div>
 
        <Card className="shadow-lg">
@@ -499,5 +474,3 @@ const StatCard = ({ title, value, icon: Icon }: { title: string, value: string |
         </CardContent>
     </Card>
 );
-
-    
