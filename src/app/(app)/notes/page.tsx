@@ -14,10 +14,13 @@ import {
 } from "@/components/ui/select";
 import { notes as initialNotes } from "@/lib/data";
 import type { Note } from "@/lib/types";
-import { Link as LinkIcon, Pencil, Save } from "lucide-react";
+import { Link as LinkIcon, Pencil, Save, Loader2 } from "lucide-react";
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { db } from '@/lib/firebase-config';
+import { useToast } from '@/hooks/use-toast';
 
 const groupedNotes = initialNotes.reduce((acc, note) => {
   const category = note.category;
@@ -28,64 +31,63 @@ const groupedNotes = initialNotes.reduce((acc, note) => {
   return acc;
 }, {} as Record<string, Note[]>);
 
-const getNotesFromStorage = (): Note[] => {
-    if (typeof window === 'undefined') return initialNotes;
-    try {
-        const savedNotes = localStorage.getItem('userNotes');
-        if (savedNotes) {
-            const userNotesMap: Record<string, string> = JSON.parse(savedNotes);
-            return initialNotes.map(note => ({
-                ...note,
-                userNotes: userNotesMap[note.topic] || ''
-            }));
-        }
-    } catch (error) {
-        console.error("Failed to load user notes from localStorage", error);
-    }
-    return initialNotes.map(note => ({ ...note, userNotes: '' }));
-};
-
-const saveNoteToStorage = (topic: string, content: string) => {
-    try {
-        const savedNotes = localStorage.getItem('userNotes');
-        const userNotesMap = savedNotes ? JSON.parse(savedNotes) : {};
-        userNotesMap[topic] = content;
-        localStorage.setItem('userNotes', JSON.stringify(userNotesMap));
-    } catch (error) {
-        console.error("Failed to save user notes to localStorage", error);
-    }
-};
 
 export default function NotesPage() {
-  const [notes, setNotes] = useState<Note[]>(initialNotes);
   const [selectedTopic, setSelectedTopic] = useState<string>(initialNotes[0].topic);
   const [isEditing, setIsEditing] = useState(false);
   const [currentUserNote, setCurrentUserNote] = useState('');
-  const [isClient, setIsClient] = useState(false);
+  const [isLoadingNote, setIsLoadingNote] = useState(true);
+  const [isSaving, setIsSaving] = useState(false);
+  const [playerId, setPlayerId] = useState<string | null>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
-    setIsClient(true);
-    setNotes(getNotesFromStorage());
+    const pId = sessionStorage.getItem('playerId');
+    if (pId) {
+      setPlayerId(pId);
+    }
   }, []);
 
-  const selectedNote = notes.find(note => note.topic === selectedTopic);
+  const selectedNote = initialNotes.find(note => note.topic === selectedTopic);
 
   useEffect(() => {
-    if (selectedNote) {
-        setCurrentUserNote(selectedNote.userNotes || '');
+    const fetchNote = async () => {
+      if (!playerId || !selectedNote) return;
+      setIsLoadingNote(true);
+      try {
+        const noteDocRef = doc(db, 'userProgress', playerId, 'notes', selectedNote.topic);
+        const noteDocSnap = await getDoc(noteDocRef);
+        if (noteDocSnap.exists()) {
+          setCurrentUserNote(noteDocSnap.data().content || '');
+        } else {
+          setCurrentUserNote('');
+        }
+      } catch (error) {
+        console.error("Failed to fetch note:", error);
+        toast({ variant: 'destructive', title: "Error", description: "Could not load your saved note." });
+      } finally {
+        setIsLoadingNote(false);
         setIsEditing(false);
-    }
-  }, [selectedTopic, selectedNote]);
+      }
+    };
 
-  const handleTopicChange = (topic: string) => {
-    setSelectedTopic(topic);
-  };
+    fetchNote();
+  }, [selectedTopic, playerId, toast, selectedNote]);
   
-  const handleSaveNote = () => {
-    if (!selectedNote) return;
-    saveNoteToStorage(selectedNote.topic, currentUserNote);
-    setNotes(notes.map(n => n.topic === selectedNote.topic ? { ...n, userNotes: currentUserNote } : n));
-    setIsEditing(false);
+  const handleSaveNote = async () => {
+    if (!playerId || !selectedNote) return;
+    setIsSaving(true);
+    try {
+      const noteDocRef = doc(db, 'userProgress', playerId, 'notes', selectedNote.topic);
+      await setDoc(noteDocRef, { content: currentUserNote });
+      toast({ title: "Note Saved!", description: `Your notes for ${selectedNote.topic} have been saved.`});
+      setIsEditing(false);
+    } catch (error) {
+       console.error("Failed to save note:", error);
+       toast({ variant: 'destructive', title: "Save Error", description: "Could not save your note. Please try again." });
+    } finally {
+        setIsSaving(false);
+    }
   };
 
   return (
@@ -98,7 +100,7 @@ export default function NotesPage() {
       <div className="grid gap-6 md:grid-cols-[280px_1fr]">
         <div className="flex flex-col gap-4">
            <h3 className="text-lg font-semibold">Select Topic</h3>
-           <Select onValueChange={handleTopicChange} defaultValue={selectedTopic}>
+           <Select onValueChange={setSelectedTopic} defaultValue={selectedTopic}>
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Select a topic..." />
             </SelectTrigger>
@@ -141,21 +143,29 @@ export default function NotesPage() {
                 <div className="border-t pt-4 mt-4">
                     <div className="flex justify-between items-center mb-2">
                         <h3 className="text-lg font-semibold">My Notes</h3>
-                        {isClient && (
+                        {playerId && !isLoadingNote && (
                           isEditing ? (
-                              <Button size="sm" onClick={handleSaveNote}><Save className="mr-2 h-4 w-4"/> Save</Button>
+                              <Button size="sm" onClick={handleSaveNote} disabled={isSaving}>
+                                {isSaving ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <Save className="mr-2 h-4 w-4"/>} 
+                                Save
+                              </Button>
                           ) : (
                               <Button size="sm" variant="outline" onClick={() => setIsEditing(true)}><Pencil className="mr-2 h-4 w-4"/> Edit</Button>
                           )
                         )}
                     </div>
-                    {isClient && (
+                    {isLoadingNote ? (
+                        <div className="flex items-center justify-center h-full min-h-[150px]">
+                           <Loader2 className="h-6 w-6 animate-spin text-muted-foreground"/>
+                        </div>
+                    ) : (
                       isEditing ? (
                           <Textarea 
                             value={currentUserNote}
                             onChange={(e) => setCurrentUserNote(e.target.value)}
                             placeholder="Add your personal notes here..."
                             className="min-h-[150px]"
+                            disabled={isSaving}
                           />
                       ) : (
                           <div className="p-3 bg-muted/50 rounded-lg min-h-[150px] whitespace-pre-wrap text-sm">
