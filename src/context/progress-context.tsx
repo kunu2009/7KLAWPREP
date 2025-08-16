@@ -42,7 +42,7 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
 
   useEffect(() => {
     const loadProgress = async () => {
-      if (playerId) {
+      if (isClient && playerId) {
         try {
           const progressDocRef = doc(db, 'userProgress', playerId, 'mcq', 'history');
           const progressDocSnap = await getDoc(progressDocRef);
@@ -60,7 +60,7 @@ export const ProgressProvider = ({ children }: { children: ReactNode }) => {
       }
     };
     loadProgress();
-  }, [playerId]);
+  }, [playerId, isClient]);
 
 
   const recordAnswer = useCallback(async (mcqId: string, isCorrect: boolean) => {
