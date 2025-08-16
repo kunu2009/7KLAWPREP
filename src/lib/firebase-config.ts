@@ -1,4 +1,3 @@
-
 // @ts-nocheck
 import { initializeApp, getApps } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
@@ -10,9 +9,10 @@ const firebaseConfig = {
   "storageBucket": "lawprep-sprint.firebasestorage.app",
   "apiKey": "AIzaSyAomgxhOBMMW17eAgoNkl05hQyOEYevYDs",
   "authDomain": "lawprep-sprint.firebaseapp.com",
-  "measurementId": "",
+  "measurementId": "G-4J7C6J7C6J",
   "messagingSenderId": "633482539204"
 };
+
 
 // Initialize Firebase
 const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
