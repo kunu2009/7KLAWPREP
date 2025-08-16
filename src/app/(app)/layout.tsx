@@ -6,6 +6,7 @@ import { SidebarProvider, Sidebar, useSidebar } from "@/components/ui/sidebar";
 import { ReactNode } from "react";
 import { Button } from "@/components/ui/button";
 import { PanelLeft } from "lucide-react";
+import { withAuth } from "@/components/with-auth";
 
 function AppLayoutContent({ children }: { children: ReactNode }) {
   const { isCollapsed, toggleSidebar } = useSidebar();
@@ -33,10 +34,12 @@ function AppLayoutContent({ children }: { children: ReactNode }) {
 }
 
 
-export default function AppLayout({ children }: { children: ReactNode }) {
+function AppLayout({ children }: { children: ReactNode }) {
   return (
     <SidebarProvider>
         <AppLayoutContent>{children}</AppLayoutContent>
     </SidebarProvider>
   );
 }
+
+export default withAuth(AppLayout);

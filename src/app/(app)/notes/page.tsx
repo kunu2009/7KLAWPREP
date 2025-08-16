@@ -21,6 +21,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase-config';
 import { useToast } from '@/hooks/use-toast';
+import { useAuth } from '@/hooks/use-auth';
 
 const groupedNotes = initialNotes.reduce((acc, note) => {
   const category = note.category;
@@ -33,29 +34,22 @@ const groupedNotes = initialNotes.reduce((acc, note) => {
 
 
 export default function NotesPage() {
+  const { user } = useAuth();
   const [selectedTopic, setSelectedTopic] = useState<string>(initialNotes[0].topic);
   const [isEditing, setIsEditing] = useState(false);
   const [currentUserNote, setCurrentUserNote] = useState('');
   const [isLoadingNote, setIsLoadingNote] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
-  const [playerId, setPlayerId] = useState<string | null>(null);
   const { toast } = useToast();
-
-  useEffect(() => {
-    const pId = sessionStorage.getItem('playerId');
-    if (pId) {
-      setPlayerId(pId);
-    }
-  }, []);
 
   const selectedNote = initialNotes.find(note => note.topic === selectedTopic);
 
   useEffect(() => {
     const fetchNote = async () => {
-      if (!playerId || !selectedNote) return;
+      if (!user || !selectedNote) return;
       setIsLoadingNote(true);
       try {
-        const noteDocRef = doc(db, 'userProgress', playerId, 'notes', selectedNote.topic);
+        const noteDocRef = doc(db, 'userProgress', user.uid, 'notes', selectedNote.topic);
         const noteDocSnap = await getDoc(noteDocRef);
         if (noteDocSnap.exists()) {
           setCurrentUserNote(noteDocSnap.data().content || '');
@@ -72,13 +66,13 @@ export default function NotesPage() {
     };
 
     fetchNote();
-  }, [selectedTopic, playerId, toast, selectedNote]);
+  }, [selectedTopic, user, toast, selectedNote]);
   
   const handleSaveNote = async () => {
-    if (!playerId || !selectedNote) return;
+    if (!user || !selectedNote) return;
     setIsSaving(true);
     try {
-      const noteDocRef = doc(db, 'userProgress', playerId, 'notes', selectedNote.topic);
+      const noteDocRef = doc(db, 'userProgress', user.uid, 'notes', selectedNote.topic);
       await setDoc(noteDocRef, { content: currentUserNote });
       toast({ title: "Note Saved!", description: `Your notes for ${selectedNote.topic} have been saved.`});
       setIsEditing(false);
@@ -143,7 +137,7 @@ export default function NotesPage() {
                 <div className="border-t pt-4 mt-4">
                     <div className="flex justify-between items-center mb-2">
                         <h3 className="text-lg font-semibold">My Notes</h3>
-                        {playerId && !isLoadingNote && (
+                        {user && !isLoadingNote && (
                           isEditing ? (
                               <Button size="sm" onClick={handleSaveNote} disabled={isSaving}>
                                 {isSaving ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <Save className="mr-2 h-4 w-4"/>} 

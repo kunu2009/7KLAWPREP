@@ -15,9 +15,10 @@ import { useToast } from '@/hooks/use-toast';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
-import { format, isToday, isYesterday, subDays, startOfDay } from 'date-fns';
-import { doc, getDoc, setDoc, updateDoc, collection, writeBatch, getDocs } from 'firebase/firestore';
+import { format, isToday, startOfDay, subDays } from 'date-fns';
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { db } from '@/lib/firebase-config';
+import { useAuth } from '@/hooks/use-auth';
 
 interface Task {
     id: string;
@@ -150,6 +151,7 @@ const LoadingTasksIllustration = () => (
 );
 
 export default function Home() {
+  const { user } = useAuth();
   const [tasks, setTasks] = useState<Task[]>([]);
   const [isPending, startTransition] = useTransition();
   const [level, setLevel] = useState(1);
@@ -158,7 +160,7 @@ export default function Home() {
   const [lastCompletionDate, setLastCompletionDate] = useState<string | null>(null);
 
   const { toast } = useToast();
-  const { history, isClient, playerId, correct, attempted } = useProgress();
+  const { history, isClient, attempted, correct } = useProgress();
 
   const xpForNextLevel = level * 100;
   const levelProgress = (xp / xpForNextLevel) * 100;
@@ -182,7 +184,7 @@ export default function Home() {
   }, [history]);
   
   const fetchTasks = useCallback(async () => {
-    if (!playerId) return;
+    if (!user) return;
     startTransition(async () => {
       try {
         const personalization = getPersonalizationData();
@@ -194,7 +196,7 @@ export default function Home() {
           const newTasks = response.tasks.map(task => ({ ...task, id: uuidv4(), completed: false }));
           setTasks(newTasks);
           const todayStr = format(new Date(), 'yyyy-MM-dd');
-          const dailyDocRef = doc(db, 'userProgress', playerId, 'daily', todayStr);
+          const dailyDocRef = doc(db, 'userProgress', user.uid, 'daily', todayStr);
           await setDoc(dailyDocRef, { tasks: newTasks });
         } else {
           throw new Error("Invalid response from AI.");
@@ -208,13 +210,13 @@ export default function Home() {
         });
       }
     });
-  }, [getPersonalizationData, toast, tasks, playerId]);
+  }, [getPersonalizationData, toast, tasks, user]);
 
   useEffect(() => {
     const loadUserProgress = async () => {
-        if (!playerId || !isClient) return;
+        if (!user || !isClient) return;
 
-        const userDocRef = doc(db, 'userProgress', playerId);
+        const userDocRef = doc(db, 'userProgress', user.uid);
         const userDocSnap = await getDoc(userDocRef);
 
         let userData;
@@ -241,7 +243,9 @@ export default function Home() {
                 level: 1,
                 xp: 0,
                 studyStreak: 0,
-                lastCompletionDate: null
+                lastCompletionDate: null,
+                createdAt: new Date().toISOString(),
+                email: user.email
             };
             await setDoc(userDocRef, initialProgress);
             userData = initialProgress;
@@ -249,7 +253,7 @@ export default function Home() {
 
         // Load today's tasks
         const todayStr = format(new Date(), 'yyyy-MM-dd');
-        const dailyDocRef = doc(db, 'userProgress', playerId, 'daily', todayStr);
+        const dailyDocRef = doc(db, 'userProgress', user.uid, 'daily', todayStr);
         const dailyDocSnap = await getDoc(dailyDocRef);
         
         if(dailyDocSnap.exists() && dailyDocSnap.data().tasks.length > 0){
@@ -260,11 +264,11 @@ export default function Home() {
 
     };
     loadUserProgress();
-  }, [playerId, isClient, fetchTasks]);
+  }, [user, isClient, fetchTasks]);
 
 
   const handleTaskComplete = async (taskId: string, points: number) => {
-    if (!playerId) return;
+    if (!user) return;
     const task = tasks.find(t => t.id === taskId);
     if (!task || task.completed) return;
     
@@ -289,9 +293,9 @@ export default function Home() {
         toast({ title: "Leveled Up!", description: `Congratulations! You've reached Level ${newLevel}.`});
     }
 
-    const userDocRef = doc(db, 'userProgress', playerId);
+    const userDocRef = doc(db, 'userProgress', user.uid);
     const todayStr = format(new Date(), 'yyyy-MM-dd');
-    const dailyDocRef = doc(db, 'userProgress', playerId, 'daily', todayStr);
+    const dailyDocRef = doc(db, 'userProgress', user.uid, 'daily', todayStr);
     
     const allTasksNowCompleted = updatedTasks.every(t => t.completed);
     let newStudyStreak = studyStreak;
@@ -331,7 +335,6 @@ export default function Home() {
     } catch (error) {
         console.error("Failed to update progress in Firestore:", error);
         toast({ variant: 'destructive', title: "Sync Error", description: "Could not save your progress. Please check your connection." });
-        // Revert optimistic update on failure - could be complex, for now we leave it
     }
   };
 

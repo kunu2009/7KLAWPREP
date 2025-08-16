@@ -105,6 +105,7 @@ export interface VisualLawItem {
 
 export interface Player {
   id: string;
+  name: string;
   score: number;
   answers: { [questionId: string]: number };
   time: number;

@@ -10,11 +10,12 @@ import { Input } from '@/components/ui/input';
 import { mcqs, revisionTopics } from '@/lib/data';
 import type { MCQ, Duel, Player } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, Swords, Copy, Check, Hourglass, Play } from 'lucide-react';
+import { Loader2, Swords, Copy, Check, Hourglass } from 'lucide-react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { useAuth } from '@/hooks/use-auth';
 
 
 const shuffleMcqs = (array: MCQ[]): MCQ[] => {
@@ -26,11 +27,10 @@ const shuffleMcqs = (array: MCQ[]): MCQ[] => {
   return newArray;
 };
 
-// The page now accepts searchParams as a prop, as is standard in Next.js App Router
 export default function DuelPage({ searchParams }: { searchParams: { join?: string } }) {
+  const { user } = useAuth();
   const [duelId, setDuelId] = useState<string | null>(null);
   const [duel, setDuel] = useState<Duel | null>(null);
-  const [playerId, setPlayerId] = useState<string | null>(null);
   const [isCopied, setIsCopied] = useState(false);
   const [topic, setTopic] = useState('');
   const [numQuestions, setNumQuestions] = useState(5);
@@ -39,17 +39,8 @@ export default function DuelPage({ searchParams }: { searchParams: { join?: stri
 
   const joinDuelId = searchParams.join;
 
-  useEffect(() => {
-    let pId = sessionStorage.getItem('playerId');
-    if (!pId) {
-      pId = `player_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
-      sessionStorage.setItem('playerId', pId);
-    }
-    setPlayerId(pId);
-  }, []);
-
   const joinDuel = useCallback(async (idToJoin: string) => {
-    if (!playerId) return;
+    if (!user) return;
     setIsLoading(true);
     const duelRef = doc(db, 'duels', idToJoin);
     try {
@@ -57,10 +48,10 @@ export default function DuelPage({ searchParams }: { searchParams: { join?: stri
 
         if (duelSnap.exists()) {
             const existingDuel = duelSnap.data() as Duel;
-            if (Object.keys(existingDuel.players).length < 2 && !existingDuel.players[playerId]) {
-                const player2: Player = { id: playerId, score: 0, answers: {}, time: 0 };
+            if (Object.keys(existingDuel.players).length < 2 && !existingDuel.players[user.uid]) {
+                const player2: Player = { id: user.uid, score: 0, answers: {}, time: 0, name: user.displayName || 'Player 2' };
                 await updateDoc(duelRef, {
-                [`players.${playerId}`]: player2,
+                [`players.${user.uid}`]: player2,
                 status: 'active'
                 });
             }
@@ -73,13 +64,13 @@ export default function DuelPage({ searchParams }: { searchParams: { join?: stri
         console.error("Error joining duel:", error);
     }
     setIsLoading(false);
-  }, [playerId, toast]);
+  }, [user, toast]);
 
   useEffect(() => {
-    if (joinDuelId && playerId) {
+    if (joinDuelId && user) {
       joinDuel(joinDuelId);
     }
-  }, [playerId, joinDuelId, joinDuel]);
+  }, [user, joinDuelId, joinDuel]);
 
   useEffect(() => {
     if (!duelId) return;
@@ -97,7 +88,7 @@ export default function DuelPage({ searchParams }: { searchParams: { join?: stri
   }, [duelId, toast]);
 
   const createDuel = async () => {
-    if (!playerId || !topic) {
+    if (!user || !topic) {
         toast({ variant: 'destructive', title: 'Please select a topic first.' });
         return;
     }
@@ -111,10 +102,10 @@ export default function DuelPage({ searchParams }: { searchParams: { join?: stri
     }
     const questions = shuffleMcqs(filteredMcqs).slice(0, numQuestions).map(({ id, question, options, correctAnswerIndex }) => ({ id, question, options, correctAnswerIndex }));
 
-    const player1: Player = { id: playerId, score: 0, answers: {}, time: 0 };
+    const player1: Player = { id: user.uid, score: 0, answers: {}, time: 0, name: user.displayName || 'Player 1' };
     const newDuel: Duel = {
       questions,
-      players: { [playerId]: player1 },
+      players: { [user.uid]: player1 },
       status: 'waiting',
       createdAt: Date.now(),
       topic: topic,
@@ -197,7 +188,7 @@ export default function DuelPage({ searchParams }: { searchParams: { join?: stri
         <p className="text-muted-foreground">Share this link with a friend to start the duel.</p>
         <Card className="max-w-md mx-auto">
             <CardContent className="p-4 flex items-center space-x-2">
-                <Input value={`${window.location.origin}${window.location.pathname}?join=${duelId}`} readOnly />
+                <Input value={`${window.location.origin}/duel?join=${duelId}`} readOnly />
                 <Button onClick={copyLink} size="icon" variant="outline">
                     {isCopied ? <Check className="text-green-500" /> : <Copy />}
                 </Button>
@@ -209,24 +200,27 @@ export default function DuelPage({ searchParams }: { searchParams: { join?: stri
   }
 
   if (duel.status === 'active') {
-    return <QuizArea duel={duel} duelId={duelId} playerId={playerId!} />;
+    return <QuizArea duel={duel} duelId={duelId} />;
   }
 
   if (duel.status === 'finished') {
-    return <DuelResults duel={duel} playerId={playerId!} />;
+    return <DuelResults duel={duel} />;
   }
   
   return null;
 }
 
-const QuizArea = ({ duel, duelId, playerId }: { duel: Duel, duelId: string, playerId: string }) => {
+const QuizArea = ({ duel, duelId }: { duel: Duel, duelId: string }) => {
+  const { user } = useAuth();
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [startTime, setStartTime] = useState(Date.now());
   const { toast } = useToast();
 
+  if(!user) return null;
+
   const currentQIndex = duel.currentQuestion;
   const question = duel.questions[currentQIndex];
-  const playerState = duel.players[playerId];
+  const playerState = duel.players[user.uid];
 
   const handleAnswer = async () => {
     if (selectedOption === null) return;
@@ -240,14 +234,11 @@ const QuizArea = ({ duel, duelId, playerId }: { duel: Duel, duelId: string, play
 
     try {
       await updateDoc(doc(db, 'duels', duelId), {
-        [`players.${playerId}.score`]: newScore,
-        [`players.${playerId}.time`]: newTime,
-        [`players.${playerId}.answers`]: newAnswers,
+        [`players.${user.uid}.score`]: newScore,
+        [`players.${user.uid}.time`]: newTime,
+        [`players.${user.uid}.answers`]: newAnswers,
       });
 
-      // Logic to advance question must be handled carefully to avoid race conditions.
-      // A simple approach is letting one player (e.g., the creator) advance the question.
-      // Here, we check if both players have answered.
       const duelDoc = await getDoc(doc(db, 'duels', duelId));
       if(duelDoc.exists()){
           const updatedDuel = duelDoc.data() as Duel;
@@ -316,7 +307,10 @@ const QuizArea = ({ duel, duelId, playerId }: { duel: Duel, duelId: string, play
 };
 
 
-const DuelResults = ({ duel, playerId }: { duel: Duel, playerId: string }) => {
+const DuelResults = ({ duel }: { duel: Duel }) => {
+    const { user } = useAuth();
+    if(!user) return null;
+
     const players = Object.values(duel.players);
     const winner = players.reduce((prev, current) => {
         if (current.score > prev.score) return current;
@@ -324,7 +318,7 @@ const DuelResults = ({ duel, playerId }: { duel: Duel, playerId: string }) => {
         return prev;
     });
 
-    const isWinner = winner.id === playerId;
+    const isWinner = winner.id === user.uid;
 
     return (
         <Card className="text-center">
@@ -335,7 +329,7 @@ const DuelResults = ({ duel, playerId }: { duel: Duel, playerId: string }) => {
             <CardContent className="space-y-4">
                 {players.map(p => (
                     <div key={p.id} className={cn("p-4 rounded-lg border", p.id === winner.id ? "bg-green-100 dark:bg-green-900/30 border-green-500" : "bg-muted")}>
-                        <h3 className="font-bold">{p.id === playerId ? "You" : "Opponent"}</h3>
+                        <h3 className="font-bold">{p.name}</h3>
                         <p>Score: {p.score}</p>
                         <p>Total Time: {(p.time / 1000).toFixed(2)}s</p>
                     </div>
@@ -345,6 +339,3 @@ const DuelResults = ({ duel, playerId }: { duel: Duel, playerId: string }) => {
         </Card>
     );
 }
-
-    
-
