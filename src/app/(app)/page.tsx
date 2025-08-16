@@ -16,6 +16,8 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
 import { format, isToday, isYesterday, subDays, startOfDay } from 'date-fns';
+import { doc, getDoc, setDoc, updateDoc, collection, writeBatch } from 'firebase/firestore';
+import { db } from '@/lib/firebase-config';
 
 interface Task {
     id: string;
@@ -123,7 +125,7 @@ const LoadingTasksIllustration = () => (
             </g>
             <path d="M720.55788,278.12233c-1.23688,9.418-65.35004-12.88-73-17-14.31-7.69,.66218,.19717,.66218,.19717l-1.66218-47.19717-1.73432-28.12233s-.96997-7.47003-3-17c-.46002-2.14001-.95001-4.62-1.26001-7.25-.88-7.59003-.20996-16.41003,7.26001-21.75l26.04999-38.84003,12.83002-.75,11.16998,16.95001,12.5401,19.03003c3.12988,7.59998,5.19995,15.54999,6.19995,23.60999,.46997,3.76996,.70996,7.57001,.70996,11.38,0,6.70996-.72998,13.44-2.20996,20.06l-7.8501,22.01001s-.98797,3.72472,2.46009,5.81001c6.99573,4.2308-7.16571,15.8623,1.5,30.26996,0,0-.80994,6.61998,3.04992,7.2,3.86011,.59003,6.80524,17.42641,6.28437,21.39235Z" fill="hsl(var(--primary))"/>
             <g>
-                <path d="M596.00401,300.74969l19.02355-26.04593,16.39515,8.79141-21.09268,26.82174c.05967,1.04043-.02861,2.10674-.28759,3.17197-1.40851,5.7936-7.24702,9.34844-13.04061,7.93993-5.7936-1.40851-9.34844-7.24702-7.93993-13.04061,.89827-3.69484,3.60109-6.47146,6.94211-7.63851Z" fill="hsl(var(--primary-foreground))"/>
+                <path d="M596.00401,300.74969l19.02355-26.04593,16.39515,8.79141-21.092268,26.82174c.05967,1.04043-.02861,2.10674-.28759,3.17197-1.40851,5.7936-7.24702,9.34844-13.04061,7.93993-5.7936-1.40851-9.34844-7.24702-7.93993-13.04061,.89827-3.69484,3.60109-6.47146,6.94211-7.63851Z" fill="hsl(var(--primary-foreground))"/>
                 <path d="M676.34787,136.44544c-4.34035-3.12209-9.42376-5.33038-15.01626-6.31032-7.63304-1.33157-11.91422,9.65173-13.5967,20.36388-.77353,4.96486-1.00211,9.87419-.7359,13.45777l-.44949,3.1346-.26317,16.22693-.62066,37.51486-19.10779,28.28916-8,19-16.34824,20.89685c.31917,.30716,.80674,.75474,1.40771,1.31706,3.13566,2.90002,9.53601,8.68411,13.57087,11.26415,1.40239,.88986,2.50706,1.39554,3.1025,1.27104,.18791-.04094,11.69948-11.12891,12.26716-11.7491,3.8183-4.15637,4.57003-9.7346,16.11486-25.94736,10.51524-14.7559,20.76859-29.42922,24.47277-34.7387l.06808-.09518,16.64483-54.89617,1.51386-4.97616c1.61405-13.62793-4.52548-26.48237-15.02442-34.02332Z" fill="hsl(var(--primary))"/>
             </g>
             <path d="M666.91017,137.2677c-.03101-.01196-.0589-.02625-.08972-.03833-.2572,.02136-.51184,.03674-.76068,.03833h.8504Z" fill="hsl(var(--foreground))"/>
@@ -150,17 +152,28 @@ const LoadingTasksIllustration = () => (
 export default function Home() {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [isPending, startTransition] = useTransition();
-  const [completedTasks, setCompletedTasks] = useState<string[]>([]);
   const [totalPoints, setTotalPoints] = useState(0);
-  const [lastCompletionDate, setLastCompletionDate] = useState<string | null>(null);
   const [studyStreak, setStudyStreak] = useState(0);
   const [level, setLevel] = useState(1);
   const [xp, setXp] = useState(0);
+  const [playerId, setPlayerId] = useState<string | null>(null);
+  const [lastCompletionDate, setLastCompletionDate] = useState<string | null>(null);
+
   const { toast } = useToast();
   const { history, isClient } = useProgress();
 
   const xpForNextLevel = level * 100;
   const levelProgress = (xp / xpForNextLevel) * 100;
+
+  useEffect(() => {
+    if (!isClient) return;
+    let pId = sessionStorage.getItem('playerId');
+    if (!pId) {
+      pId = `player_${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+      sessionStorage.setItem('playerId', pId);
+    }
+    setPlayerId(pId);
+  }, [isClient]);
 
   const getPersonalizationData = useCallback(() => {
     const incorrectTopics: Record<string, number> = {};
@@ -180,21 +193,31 @@ export default function Home() {
     return "User has no specific weak areas recorded yet.";
   }, [history]);
   
-  const fetchTasks = useCallback(() => {
+  const fetchTasks = useCallback(async () => {
+    if (!playerId) return;
     startTransition(async () => {
       try {
         const personalization = getPersonalizationData();
         const response = await generateDailyTasks({ 
-          completedTasks: tasks.map(t => t.title),
+          completedTasks: tasks.filter(t => t.completed).map(t => t.title),
           userProgress: personalization,
         });
         if (response && response.tasks) {
-          setTasks(response.tasks.map(task => ({ ...task, completed: false })));
-          setCompletedTasks([]);
+          const newTasks = response.tasks.map(task => ({ ...task, completed: false }));
+          setTasks(newTasks);
+          const userDocRef = doc(db, 'userProgress', playerId, 'daily', format(new Date(), 'yyyy-MM-dd'));
+          const batch = writeBatch(db);
+          newTasks.forEach(task => {
+              const taskDocRef = doc(collection(userDocRef, 'tasks'));
+              batch.set(taskDocRef, { ...task, id: taskDocRef.id }); // Use Firestore-generated ID
+          });
+          await batch.commit();
+
         } else {
           throw new Error("Invalid response from AI.");
         }
       } catch (error) {
+        console.error("Error fetching tasks:", error);
         toast({
           variant: 'destructive',
           title: 'Failed to generate tasks',
@@ -202,99 +225,142 @@ export default function Home() {
         });
       }
     });
-  }, [getPersonalizationData, toast, tasks]);
-  
-  // Load state from localStorage on mount
+  }, [getPersonalizationData, toast, tasks, playerId]);
+
   useEffect(() => {
-    if (!isClient) return;
+    const loadUserProgress = async () => {
+        if (!playerId || !isClient) return;
 
-    const savedPoints = localStorage.getItem('lawPrepTotalPoints');
-    const savedDate = localStorage.getItem('lawPrepLastCompletionDate');
-    const savedStreak = localStorage.getItem('lawPrepStudyStreak');
-    const savedLevel = localStorage.getItem('lawPrepLevel');
-    const savedXp = localStorage.getItem('lawPrepXp');
+        const userDocRef = doc(db, 'userProgress', playerId);
+        const userDocSnap = await getDoc(userDocRef);
 
-    if (savedPoints) setTotalPoints(JSON.parse(savedPoints));
-    if (savedDate) setLastCompletionDate(savedDate);
-    if (savedStreak) setStudyStreak(JSON.parse(savedStreak));
-    if(savedLevel) setLevel(JSON.parse(savedLevel));
-    if(savedXp) setXp(JSON.parse(savedXp));
+        if (userDocSnap.exists()) {
+            const userData = userDocSnap.data();
+            setLevel(userData.level || 1);
+            setXp(userData.xp || 0);
+            setStudyStreak(userData.studyStreak || 0);
+            setLastCompletionDate(userData.lastCompletionDate || null);
 
-    // Check streak
-    const today = startOfDay(new Date());
-    const lastDate = savedDate ? startOfDay(new Date(savedDate)) : null;
+            // Check streak
+            const today = startOfDay(new Date());
+            const lastDate = userData.lastCompletionDate ? startOfDay(new Date(userData.lastCompletionDate)) : null;
 
-    if(lastDate) {
-        if(!isToday(lastDate) && !isYesterday(lastDate)) {
-           setStudyStreak(0); // Reset streak if user missed more than a day
+            if (lastDate) {
+                if (!isToday(lastDate) && !isYesterday(lastDate)) {
+                    setStudyStreak(0);
+                    await updateDoc(userDocRef, { studyStreak: 0 });
+                }
+            }
+
+            // Load today's tasks
+            const todayStr = format(today, 'yyyy-MM-dd');
+            const dailyDocRef = doc(db, 'userProgress', playerId, 'daily', todayStr);
+            const dailyDocSnap = await getDoc(dailyDocRef);
+            if(dailyDocSnap.exists()){
+                const dailyData = dailyDocSnap.data();
+                if(dailyData.tasks) {
+                    setTasks(dailyData.tasks);
+                } else {
+                    fetchTasks();
+                }
+            } else {
+                 fetchTasks();
+            }
+
+        } else {
+            // First time user, create a document
+            await setDoc(userDocRef, {
+                level: 1,
+                xp: 0,
+                studyStreak: 0,
+                lastCompletionDate: null
+            });
+            fetchTasks();
         }
-    }
-
-    const savedTasks = localStorage.getItem('lawPrepTasks');
-    if (savedTasks) {
-      const parsedTasks: Task[] = JSON.parse(savedTasks);
-      setTasks(parsedTasks);
-      setCompletedTasks(parsedTasks.filter(t => t.completed).map(t => t.id));
-    } else {
-      fetchTasks();
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isClient]);
-
-  // Save state to localStorage whenever it changes
-  useEffect(() => {
-    if (!isClient) return;
-    localStorage.setItem('lawPrepTotalPoints', JSON.stringify(totalPoints));
-    if (lastCompletionDate) localStorage.setItem('lawPrepLastCompletionDate', lastCompletionDate);
-    localStorage.setItem('lawPrepStudyStreak', JSON.stringify(studyStreak));
-    localStorage.setItem('lawPrepLevel', JSON.stringify(level));
-    localStorage.setItem('lawPrepXp', JSON.stringify(xp));
-    localStorage.setItem('lawPrepTasks', JSON.stringify(tasks));
-  }, [totalPoints, lastCompletionDate, studyStreak, level, xp, tasks, isClient]);
+    };
+    loadUserProgress();
+  }, [playerId, isClient, fetchTasks]);
 
 
-  const handleTaskComplete = (taskId: string, points: number) => {
-    if (completedTasks.includes(taskId)) return;
-
-    const newCompletedTasks = [...completedTasks, taskId];
-    setCompletedTasks(newCompletedTasks);
+  const handleTaskComplete = async (taskId: string, points: number) => {
+    if (!playerId) return;
+    const task = tasks.find(t => t.id === taskId);
+    if (!task || task.completed) return;
     
+    // Optimistic UI update
     setTasks(tasks.map(t => t.id === taskId ? {...t, completed: true} : t));
 
     const newXp = xp + points;
+    let newLevel = level;
+    let finalXp = newXp;
+    let leveledUp = false;
+
     if(newXp >= xpForNextLevel) {
-        setLevel(level + 1);
-        setXp(newXp - xpForNextLevel);
-        toast({ title: "Leveled Up!", description: `Congratulations! You've reached Level ${level + 1}.`});
-    } else {
-        setXp(newXp);
+        newLevel = level + 1;
+        finalXp = newXp - xpForNextLevel;
+        leveledUp = true;
+    }
+    
+    setXp(finalXp);
+    setLevel(newLevel);
+    
+    if(leveledUp) {
+        toast({ title: "Leveled Up!", description: `Congratulations! You've reached Level ${newLevel}.`});
     }
 
+    const userDocRef = doc(db, 'userProgress', playerId);
+    const todayStr = format(new Date(), 'yyyy-MM-dd');
+    const dailyDocRef = doc(db, 'userProgress', playerId, 'daily', todayStr);
+    
+    const updatedTasks = tasks.map(t => t.id === taskId ? {...t, completed: true} : t);
+    
+    const allTasksNowCompleted = updatedTasks.every(t => t.completed);
+    let newStudyStreak = studyStreak;
+    let newLastCompletionDate = lastCompletionDate;
 
-    if (newCompletedTasks.length === tasks.length && tasks.length > 0) {
-      toast({
+    if (allTasksNowCompleted) {
+       toast({
         title: "Daily Sprint Complete!",
         description: `Great work! You've earned ${points} XP. Come back tomorrow!`,
       });
       
       const today = new Date();
-      const todayStr = today.toISOString().split('T')[0];
+      newLastCompletionDate = today.toISOString().split('T')[0];
       
       if (lastCompletionDate) {
         const yesterday = subDays(today, 1).toISOString().split('T')[0];
         if (lastCompletionDate === yesterday) {
-          setStudyStreak(studyStreak + 1);
-        } else if (lastCompletionDate !== todayStr) {
-          setStudyStreak(1);
+          newStudyStreak = studyStreak + 1;
+        } else if (lastCompletionDate !== newLastCompletionDate) {
+          newStudyStreak = 1;
         }
       } else {
-        setStudyStreak(1);
+        newStudyStreak = 1;
       }
-      setLastCompletionDate(todayStr);
+      setStudyStreak(newStudyStreak);
+      setLastCompletionDate(newLastCompletionDate);
+    }
+    
+    try {
+        await updateDoc(userDocRef, {
+            xp: finalXp,
+            level: newLevel,
+            studyStreak: newStudyStreak,
+            lastCompletionDate: newLastCompletionDate
+        });
+        await updateDoc(dailyDocRef, { tasks: updatedTasks });
+    } catch (error) {
+        console.error("Failed to update progress in Firestore:", error);
+        toast({ variant: 'destructive', title: "Sync Error", description: "Could not save your progress. Please check your connection." });
+        // Revert optimistic update on failure
+        setTasks(tasks);
+        setXp(xp);
+        setLevel(level);
+        setStudyStreak(studyStreak);
     }
   };
 
-  const allTasksCompleted = tasks.length > 0 && completedTasks.length === tasks.length;
+  const allTasksCompleted = tasks.length > 0 && tasks.every(t => t.completed);
 
   const getEncouragement = () => {
     if (studyStreak > 10) return "You're a legal legend in the making!";
