@@ -1,15 +1,17 @@
 
 "use client";
 
-import { useMemo } from 'react';
+import { useMemo, useState, useTransition } from 'react';
 import { useProgress } from '@/hooks/use-progress';
 import { mcqs } from '@/lib/data';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LabelList } from 'recharts';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { Target, Check, Percent, BookOpenCheck, BarChart3, TrendingUp } from 'lucide-react';
+import { Target, Check, Percent, BookOpenCheck, BarChart3, TrendingUp, Sparkles, Wand2, Loader2 } from 'lucide-react';
 import Link from 'next/link';
+import { suggestRemedialPlan } from '@/ai/flows/suggest-remedial-plan';
+import { useToast } from '@/hooks/use-toast';
 
 const StatCard = ({ title, value, icon: Icon, unit, description }: { title: string, value: string | number, icon: React.ElementType, unit?: string, description?: string }) => (
   <Card className="shadow-sm">
@@ -25,6 +27,71 @@ const StatCard = ({ title, value, icon: Icon, unit, description }: { title: stri
       </CardContent>
   </Card>
 );
+
+function AiAdvisorCard({ topicData, accuracy }: { topicData: { name: string, accuracy: number }[], accuracy: number }) {
+    const [isPending, startTransition] = useTransition();
+    const [advice, setAdvice] = useState('');
+    const { toast } = useToast();
+
+    const weakestTopics = useMemo(() => {
+        return topicData.filter(t => t.accuracy < 75).sort((a,b) => a.accuracy - b.accuracy).slice(0, 3).map(t => t.name);
+    }, [topicData]);
+
+    const handleGetAdvice = () => {
+        if(weakestTopics.length === 0) {
+            setAdvice("You're doing great in all topics! Keep up the balanced effort across all subjects.");
+            return;
+        }
+
+        startTransition(async () => {
+            try {
+                const response = await suggestRemedialPlan({ weakTopics, accuracy });
+                if(response.plan) {
+                    setAdvice(response.plan);
+                } else {
+                    throw new Error("Failed to get a plan.");
+                }
+            } catch (error) {
+                toast({
+                    variant: "destructive",
+                    title: "Could not get AI advice",
+                    description: "The AI Mentor seems to be busy. Please try again in a moment."
+                });
+            }
+        });
+    };
+
+    return (
+         <Card className="shadow-md">
+            <CardHeader>
+                <CardTitle className="flex items-center gap-2"><Sparkles className="text-primary"/> AI Study Advisor</CardTitle>
+                <CardDescription>
+                    Get a personalized study plan based on your performance.
+                </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                {advice ? (
+                     <div className="text-sm leading-relaxed whitespace-pre-wrap flex-1 prose prose-sm dark:prose-invert max-w-none">
+                        <div dangerouslySetInnerHTML={{ __html: advice.replace(/\n/g, '<br />') }} />
+                     </div>
+                ) : (
+                    <Alert>
+                        <AlertTitle>Identify Your Weak Spots</AlertTitle>
+                        <AlertDescription>
+                           Click the button below and our AI mentor will analyze your weakest topics to suggest a focused plan for improvement.
+                        </AlertDescription>
+                    </Alert>
+                )}
+            </CardContent>
+            <CardFooter>
+                 <Button onClick={handleGetAdvice} disabled={isPending}>
+                    {isPending ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <Wand2 className="mr-2 h-4 w-4"/>}
+                    {advice ? "Regenerate Advice" : "Get AI Advice"}
+                </Button>
+            </CardFooter>
+        </Card>
+    )
+}
 
 export function ProgressTracker() {
   const { attempted, correct, history, resetProgress, isClient } = useProgress();
@@ -84,45 +151,7 @@ export function ProgressTracker() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
-        <Card className="shadow-md">
-            <CardHeader>
-            <CardTitle className="flex items-center gap-2"><BarChart3/> Performance Overview</CardTitle>
-            <CardDescription>
-                Your overall correct vs. incorrect answers.
-            </CardDescription>
-            </CardHeader>
-            <CardContent>
-                {attempted > 0 ? (
-                    <ResponsiveContainer width="100%" height={300}>
-                        <BarChart data={overallData} layout="vertical" margin={{ left: 10 }}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis type="number" hide />
-                        <YAxis type="category" dataKey="name" hide />
-                        <Tooltip
-                            cursor={{ fill: 'hsl(var(--muted))' }}
-                            contentStyle={{
-                                background: 'hsl(var(--background))',
-                                border: '1px solid hsl(var(--border))',
-                                borderRadius: 'var(--radius)',
-                            }}
-                        />
-                        <Bar dataKey="correct" stackId="a" fill="hsl(var(--primary))" name="Correct" radius={[4, 0, 0, 4]} />
-                        <Bar dataKey="incorrect" stackId="a" fill="hsl(var(--destructive) / 0.5)" name="Incorrect" radius={[0, 4, 4, 0]} />
-                        </BarChart>
-                    </ResponsiveContainer>
-                ) : (
-                    <Alert>
-                        <AlertTitle>No Data Yet!</AlertTitle>
-                        <AlertDescription>
-                            Attempt some MCQs from the <Link href="/mcqs" className="font-semibold text-primary hover:underline">Daily MCQs</Link> section to see your progress here.
-                        </AlertDescription>
-                    </Alert>
-                )}
-            </CardContent>
-            <CardFooter>
-                <Button variant="destructive" onClick={resetProgress}>Reset All Progress</Button>
-            </CardFooter>
-        </Card>
+        <AiAdvisorCard topicData={topicMasteryData} accuracy={accuracy} />
 
         <Card className="shadow-md">
             <CardHeader>
@@ -161,6 +190,9 @@ export function ProgressTracker() {
                     </Alert>
                 )}
             </CardContent>
+             <CardFooter>
+                <Button variant="destructive" onClick={resetProgress}>Reset All Progress</Button>
+            </CardFooter>
         </Card>
       </div>
 
