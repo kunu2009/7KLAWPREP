@@ -1477,10 +1477,966 @@ export const monthlyAffairs: MonthlyCurrentAffairs[] = [
         importance: "Impacts U.S. economic and social policies globally.",
         probableQuestion: {
           question: "What was a controversial feature of the U.S. budget bill passed in June 2025?",
-          options: ["Increased welfare", "Taxes on renewable energy", "Higher education funding", "Defense spending cuts"],
+          options: ["Increased welfare", "Taxes on renewable energy", "Education funding", "Defense spending cuts"],
           answer: "Taxes on renewable energy"
+        }
+      },
+      {
+        id: 'ca-jun-2',
+        title: "India’s National Highway Expansion",
+        date: "June 5, 2025",
+        category: 'National Affairs',
+        whatHappened: "The Indian government announced a ₹25,000 crore plan to expand national highways.",
+        summary: "The plan aims to improve connectivity and boost economic activity in rural areas.",
+        previousContext: "India’s highway network has grown significantly under the Bharatmala project since 2017.",
+        latestNews: "New expressways are planned for completion by 2027.",
+        importance: "Enhances logistics, trade, and regional development.",
+        probableQuestion: {
+          question: "What is the purpose of India’s ₹25,000 crore highway expansion plan in June 2025?",
+          options: ["Urban development", "Improve connectivity", "Healthcare reform", "Education expansion"],
+          answer: "Improve connectivity"
+        }
+      },
+      {
+        id: 'ca-jun-3',
+        title: "West Bengal’s Industrial Policy Launched",
+        date: "June 8, 2025",
+        category: 'National Affairs',
+        whatHappened: "West Bengal introduced a new industrial policy to attract investments.",
+        summary: "The policy offers incentives for manufacturing and IT sectors to create jobs.",
+        previousContext: "West Bengal has been revitalizing its industrial base since 2010.",
+        latestNews: "The state expects ₹10,000 crore in investments by 2026.",
+        importance: "Drives economic growth and employment in eastern India.",
+        probableQuestion: {
+          question: "What is the goal of West Bengal’s industrial policy in June 2025?",
+          options: ["Tourism promotion", "Attract investments", "Education reform", "Healthcare access"],
+          answer: "Attract investments"
+        }
+      },
+      {
+        id: 'ca-jun-4',
+        title: "Kerala’s Coastal Protection Plan",
+        date: "June 12, 2025",
+        category: 'National Affairs',
+        whatHappened: "Kerala launched a ₹5,000 crore coastal protection plan to combat erosion.",
+        summary: "The plan includes building sea walls and restoring mangroves to protect coastal communities.",
+        previousContext: "Cyclones and erosion have threatened Kerala’s coastlines in recent years.",
+        latestNews: "Implementation is set to begin in late 2025.",
+        importance: "Enhances climate resilience and protects livelihoods.",
+        probableQuestion: {
+          question: "What is the focus of Kerala’s coastal protection plan in June 2025?",
+          options: ["Industrial growth", "Combat erosion", "Tourism boost", "Education reform"],
+          answer: "Combat erosion"
+        }
+      },
+      {
+        id: 'ca-jun-5',
+        title: "Haryana Assembly Elections Announced",
+        date: "June 15, 2025",
+        category: 'National Affairs',
+        whatHappened: "The Election Commission announced assembly elections in Haryana.",
+        summary: "The elections will determine the state’s government and policy direction.",
+        previousContext: "Haryana’s 2024 elections saw intense political competition.",
+        latestNews: "Results are expected by July 2025, shaping regional policies.",
+        importance: "Impacts governance and development in a key northern state.",
+        probableQuestion: {
+          question: "What was announced in Haryana in June 2025?",
+          options: ["Industrial policy", "Assembly elections", "Education reform", "Healthcare plan"],
+          answer: "Assembly elections"
+        }
+      },
+      {
+        id: 'ca-jun-6',
+        title: "Odisha’s Renewable Energy Hub Launched",
+        date: "June 18, 2025",
+        category: 'National Affairs',
+        whatHappened: "Odisha launched a renewable energy hub to attract green investments.",
+        summary: "The hub focuses on solar and wind projects to support India’s 2030 renewable goals.",
+        previousContext: "Odisha has been diversifying from mining to renewables since 2020.",
+        latestNews: "The hub is expected to create 20,000 jobs by 2027.",
+        importance: "Advances India’s green energy transition and regional economy.",
+        probableQuestion: {
+          question: "What is the focus of Odisha’s renewable energy hub in June 2025?",
+          options: ["Mining expansion", "Solar and wind projects", "Tourism promotion", "Healthcare reform"],
+          answer: "Solar and wind projects"
+        }
+      },
+      {
+        id: 'ca-jun-7',
+        title: "Manipur Peace Talks Progress",
+        date: "June 20, 2025",
+        category: 'National Affairs',
+        whatHappened: "Peace talks between the Centre and Manipur’s ethnic groups advanced.",
+        summary: "The talks aim to resolve conflicts and ensure stability in the state.",
+        previousContext: "Ethnic violence in Manipur escalated in 2023, prompting dialogue.",
+        latestNews: "A peace agreement is expected by late 2025.",
+        importance: "Restores stability and supports regional development.",
+        probableQuestion: {
+          question: "What was the goal of Manipur’s peace talks in June 2025?",
+          options: ["Economic growth", "Resolve ethnic conflicts", "Education reform", "Tourism boost"],
+          answer: "Resolve ethnic conflicts"
+        }
+      },
+      {
+        id: 'ca-jun-8',
+        title: "Tamil Nadu’s AI Policy Unveiled",
+        date: "June 22, 2025",
+        category: 'National Affairs',
+        whatHappened: "Tamil Nadu launched an AI policy to foster innovation and job creation.",
+        summary: "The policy promotes AI startups and research to position the state as a tech hub.",
+        previousContext: "Tamil Nadu has been a leader in IT and manufacturing since the 2000s.",
+        latestNews: "AI training programs are planned for 2026.",
+        importance: "Enhances India’s tech competitiveness and employment.",
+        probableQuestion: {
+          question: "What is the purpose of Tamil Nadu’s AI policy in June 2025?",
+          options: ["Agricultural growth", "Foster AI innovation", "Tourism promotion", "Healthcare reform"],
+          answer: "Foster AI innovation"
+        }
+      },
+      {
+        id: 'ca-jun-9',
+        title: "Goa’s Tourism Recovery Plan",
+        date: "June 25, 2025",
+        category: 'National Affairs',
+        whatHappened: "Goa launched a tourism recovery plan to boost visitor numbers.",
+        summary: "The plan promotes eco-tourism and international campaigns to revive the sector.",
+        previousContext: "Tourism in Goa faced challenges post-COVID and due to global travel restrictions.",
+        latestNews: "International arrivals are expected to rise by 15% in 2026.",
+        importance: "Drives economic growth in a tourism-dependent state.",
+        probableQuestion: {
+          question: "What is the focus of Goa’s tourism recovery plan in June 2025?",
+          options: ["Industrial growth", "Boost tourism", "Education reform", "Healthcare access"],
+          answer: "Boost tourism"
+        }
+      },
+      {
+        id: 'ca-jun-10',
+        title: "Chhattisgarh’s Mining Reforms Announced",
+        date: "June 30, 2025",
+        category: 'National Affairs',
+        whatHappened: "Chhattisgarh introduced reforms to regulate mining sustainably.",
+        summary: "The reforms aim to balance economic growth with environmental protection.",
+        previousContext: "Mining has been a key economic driver but raised environmental concerns.",
+        latestNews: "Implementation is set to begin in early 2026.",
+        importance: "Supports sustainable development and tribal welfare.",
+        probableQuestion: {
+          question: "What is the goal of Chhattisgarh’s mining reforms in June 2025?",
+          options: ["Increase mining output", "Sustainable mining", "Tourism promotion", "Education reform"],
+          answer: "Sustainable mining"
+        }
+      },
+      {
+        id: 'ca-jun-sci-1',
+        title: "Renewable Energy Storage Breakthrough",
+        date: "June 5, 2025",
+        category: 'Science & Tech',
+        whatHappened: "Scientists announced a breakthrough in solid-state battery technology for renewable energy storage.",
+        summary: "The innovation enhances solar and wind energy reliability by improving storage efficiency.",
+        previousContext: "Energy storage has been a bottleneck for renewable adoption since 2015.",
+        latestNews: "Commercial production is expected by 2027.",
+        importance: "Supports global renewable energy goals and India’s net-zero target.",
+        probableQuestion: {
+          question: "What is the significance of the solid-state battery breakthrough in June 2025?",
+          options: ["Fossil fuel efficiency", "Renewable energy storage", "Space exploration", "Medical advancements"],
+          answer: "Renewable energy storage"
+        }
+      },
+      {
+        id: 'ca-jun-sci-2',
+        title: "India’s Chandrayaan-4 Mission Approved",
+        date: "June 8, 2025",
+        category: 'Science & Tech',
+        whatHappened: "ISRO approved the Chandrayaan-4 mission for a 2028 lunar landing.",
+        summary: "The mission aims to collect lunar samples and advance India’s space exploration.",
+        previousContext: "Chandrayaan-3’s 2023 success boosted India’s space ambitions.",
+        latestNews: "International partnerships are being explored for 2026.",
+        importance: "Enhances India’s global standing in space technology.",
+        probableQuestion: {
+          question: "What is the goal of India’s Chandrayaan-4 mission approved in June 2025?",
+          options: ["Mars exploration", "Lunar sample collection", "Satellite deployment", "Space station development"],
+          answer: "Lunar sample collection"
+        }
+      },
+      {
+        id: 'ca-jun-sci-3',
+        title: "AI-Powered Healthcare Platform Launched",
+        date: "June 12, 2025",
+        category: 'Science & Tech',
+        whatHappened: "India launched an AI-powered healthcare platform for rural diagnostics.",
+        summary: "The platform uses AI to improve access to medical diagnostics in remote areas.",
+        previousContext: "AI in healthcare has been growing since 2020.",
+        latestNews: "The platform is expected to cover 10 states by 2026.",
+        importance: "Enhances healthcare access and reduces disparities.",
+        probableQuestion: {
+          question: "What is the purpose of India’s AI healthcare platform in June 2025?",
+          options: ["Urban diagnostics", "Rural diagnostics", "Space research", "Industrial automation"],
+          answer: "Rural diagnostics"
+        }
+      },
+      {
+        id: 'ca-jun-sci-4',
+        title: "Global Quantum Internet Prototype Tested",
+        date: "June 15, 2025",
+        category: 'Science & Tech',
+        whatHappened: "A global consortium tested a quantum internet prototype for secure communication.",
+        summary: "The prototype uses quantum entanglement to ensure unhackable data transfer.",
+        previousContext: "Quantum communication research accelerated since 2020.",
+        latestNews: "Full deployment is expected by 2030.",
+        importance: "Revolutionizes cybersecurity and global data transfer.",
+        probableQuestion: {
+          question: "What is the purpose of the quantum internet prototype tested in June 2025?",
+          options: ["Faster internet speed", "Secure communication", "Space exploration", "Medical diagnostics"],
+          answer: "Secure communication"
+        }
+      },
+      {
+        id: 'ca-jun-sci-5',
+        title: "India’s 6G Research Initiative Launched",
+        date: "June 18, 2025",
+        category: 'Science & Tech',
+        whatHappened: "India launched a 6G research initiative to lead next-gen telecom.",
+        summary: "The initiative aims to develop 6G technology for ultra-fast connectivity.",
+        previousContext: "India’s 5G rollout began in 2022, with rapid expansion.",
+        latestNews: "6G trials are planned for 2028.",
+        importance: "Positions India as a leader in global telecom innovation.",
+        probableQuestion: {
+          question: "What is the goal of India’s 6G research initiative in June 2025?",
+          options: ["5G expansion", "Ultra-fast connectivity", "Space exploration", "Healthcare reform"],
+          answer: "Ultra-fast connectivity"
+        }
+      },
+      {
+        id: 'ca-jun-sci-6',
+        title: "Green Hydrogen Pilot Project Launched",
+        date: "June 20, 2025",
+        category: 'Science & Tech',
+        whatHappened: "India launched a green hydrogen pilot project for industrial use.",
+        summary: "The project aims to replace fossil fuels in heavy industries like steel.",
+        previousContext: "India’s National Hydrogen Mission was launched in 2021.",
+        latestNews: "Commercial production is expected by 2027.",
+        importance: "Supports India’s net-zero goal and reduces emissions.",
+        probableQuestion: {
+          question: "What is the focus of India’s green hydrogen pilot project in June 2025?",
+          options: ["Space research", "Industrial decarbonization", "Healthcare reform", "Tourism promotion"],
+          answer: "Industrial decarbonization"
+        }
+      },
+      {
+        id: 'ca-jun-sci-7',
+        title: "ISRO’s Reusable Rocket Test Successful",
+        date: "June 22, 2025",
+        category: 'Science & Tech',
+        whatHappened: "ISRO successfully tested a reusable launch vehicle prototype.",
+        summary: "The test reduces launch costs and enhances India’s space competitiveness.",
+        previousContext: "ISRO has been developing reusable rockets since 2016.",
+        latestNews: "Full deployment is expected by 2028.",
+        importance: "Lowers space mission costs and boosts India’s space industry.",
+        probableQuestion: {
+          question: "What is the significance of ISRO’s reusable rocket test in June 2025?",
+          options: ["Increase launch costs", "Reduce launch costs", "Medical advancements", "Industrial growth"],
+          answer: "Reduce launch costs"
+        }
+      },
+      {
+        id: 'ca-jun-sci-8',
+        title: "Global AI Ethics Framework Proposed",
+        date: "June 25, 2025",
+        category: 'Science & Tech',
+        whatHappened: "UNESCO proposed a global AI ethics framework for responsible development.",
+        summary: "The framework sets guidelines for transparency and fairness in AI systems.",
+        previousContext: "AI ethics debates grew after 2023 safety concerns.",
+        latestNews: "Adoption is expected by 2026.",
+        importance: "Shapes India’s AI policies and global tech standards.",
+        probableQuestion: {
+          question: "What is the purpose of UNESCO’s AI ethics framework in June 2025?",
+          options: ["Ban AI use", "Ensure responsible AI", "Promote AI exports", "Reduce AI funding"],
+          answer: "Ensure responsible AI"
+        }
+      },
+      {
+        id: 'ca-jun-sci-9',
+        title: "India’s Biotech Startup Boom",
+        date: "June 28, 2025",
+        category: 'Science & Tech',
+        whatHappened: "India’s biotech sector saw a 20% rise in startups in 2025.",
+        summary: "Government funding and innovation drove growth in healthcare and agri-tech.",
+        previousContext: "Biotech has been a focus since the 2020 BioE3 policy.",
+        latestNews: "Exports are expected to grow by 15% in 2026.",
+        importance: "Enhances India’s innovation and economic growth.",
+        probableQuestion: {
+          question: "What drove India’s biotech startup boom in June 2025?",
+          options: ["Reduced funding", "Government support", "Lower exports", "Tax hikes"],
+          answer: "Government support"
+        }
+      },
+      {
+        id: 'ca-jun-sci-10',
+        title: "Global Fusion Energy Milestone",
+        date: "June 30, 2025",
+        category: 'Science & Tech',
+        whatHappened: "A global consortium achieved a fusion energy breakthrough with sustained output.",
+        summary: "The milestone brings clean, limitless energy closer to reality.",
+        previousContext: "Fusion research has been ongoing since the 1950s.",
+        latestNews: "Commercial fusion is projected for the 2030s.",
+        importance: "Could revolutionize global energy and support net-zero goals.",
+        probableQuestion: {
+          question: "What is the significance of the fusion energy milestone in June 2025?",
+          options: ["Fossil fuel expansion", "Clean energy potential", "Space exploration", "Medical advancements"],
+          answer: "Clean energy potential"
+        }
+      }
+    ]
+  },
+  {
+    month: "July 2025",
+    items: [
+       {
+        id: 'ca-jul-gov-1',
+        title: "Meghalaya’s Scientific Coal Mining Policy",
+        date: "July 10, 2025",
+        category: 'Government Schemes & Policies',
+        whatHappened: "The Centre signed agreements for scientific coal mining in Meghalaya.",
+        summary: "The policy balances economic growth with environmental sustainability in coal-rich areas.",
+        previousContext: "Illegal mining in Meghalaya prompted bans and reforms since 2014.",
+        latestNews: "Mining operations are set to begin in early 2026.",
+        importance: "Supports energy security and regional development.",
+        probableQuestion: {
+          question: "What is the goal of Meghalaya’s scientific coal mining policy in July 2025?",
+          options: ["Ban mining", "Sustainable mining", "Tourism promotion", "Healthcare reform"],
+          answer: "Sustainable mining"
+        }
+      },
+      {
+        id: 'ca-jul-gov-2',
+        title: "PM Suryaghar Free Electricity Scheme Expanded",
+        date: "July 5, 2025",
+        category: 'Government Schemes & Policies',
+        whatHappened: "The Centre expanded the PM Suryaghar scheme to cover 2 crore households.",
+        summary: "The scheme provides free solar-powered electricity to reduce energy costs.",
+        previousContext: "Launched in 2024, the scheme initially targeted 1 crore households.",
+        latestNews: "Full implementation is expected by 2027.",
+        importance: "Promotes renewable energy and reduces household expenses.",
+        probableQuestion: {
+          question: "What is the purpose of the PM Suryaghar scheme expansion in July 2025?",
+          options: ["Fossil fuel promotion", "Free solar electricity", "Industrial growth", "Education reform"],
+          answer: "Free solar electricity"
+        }
+      },
+      {
+        id: 'ca-jul-gov-3',
+        title: "National Skill Development Mission Revamped",
+        date: "July 8, 2025",
+        category: 'Government Schemes & Policies',
+        whatHappened: "The government revamped the National Skill Development Mission for youth.",
+        summary: "The mission focuses on AI, robotics, and green energy skills training.",
+        previousContext: "The mission has been critical for employability since 2015.",
+        latestNews: "50 lakh youth are targeted for training by 2027.",
+        importance: "Enhances workforce skills and India’s global competitiveness.",
+        probableQuestion: {
+          question: "What is the focus of the National Skill Development Mission revamp in July 2025?",
+          options: ["Agricultural skills", "AI and green energy skills", "Tourism promotion", "Healthcare reform"],
+          answer: "AI and green energy skills"
+        }
+      },
+      {
+        id: 'ca-jul-gov-4',
+        title: "Ayushman Bharat Scheme Extended",
+        date: "July 12, 2025",
+        category: 'Government Schemes & Policies',
+        whatHappened: "The Ayushman Bharat scheme was extended to cover senior citizens above 70.",
+        summary: "The extension provides free healthcare to millions of elderly citizens.",
+        previousContext: "Launched in 2018, the scheme covers 50 crore people.",
+        latestNews: "Digital health cards are planned for 2026.",
+        importance: "Improves healthcare access and reduces out-of-pocket expenses.",
+        probableQuestion: {
+          question: "What is the purpose of the Ayushman Bharat extension in July 2025?",
+          options: ["Education funding", "Healthcare for seniors", "Industrial growth", "Tourism promotion"],
+          answer: "Healthcare for seniors"
+        }
+      },
+      {
+        id: 'ca-jul-gov-5',
+        title: "PM-KISAN Benefits Increased",
+        date: "July 15, 2025",
+        category: 'Government Schemes & Policies',
+        whatHappened: "The government increased PM-KISAN benefits to ₹8,000 per farmer annually.",
+        summary: "The hike supports small farmers amid rising input costs.",
+        previousContext: "PM-KISAN provides ₹6,000 annually since 2019.",
+        latestNews: "Direct benefit transfers are set to rise in 2026.",
+        importance: "Boosts rural income and agricultural productivity.",
+        probableQuestion: {
+          question: "What was the increase in PM-KISAN benefits in July 2025?",
+          options: ["₹6,000 to ₹8,000", "₹4,000 to ₹6,000", "₹8,000 to ₹10,000", "₹6,000 to ₹7,000"],
+          answer: "₹6,000 to ₹8,000"
+        }
+      },
+      {
+        id: 'ca-jul-gov-6',
+        title: "National Digital Literacy Mission Launched",
+        date: "July 18, 2025",
+        category: 'Government Schemes & Policies',
+        whatHappened: "India launched a National Digital Literacy Mission for rural areas.",
+        summary: "The mission aims to train 5 crore citizens in digital skills by 2027.",
+        previousContext: "Digital India has driven internet access since 2015.",
+        latestNews: "Mobile training units are planned for 2026.",
+        importance: "Bridges the digital divide and enhances economic inclusion.",
+        probableQuestion: {
+          question: "What is the goal of the National Digital Literacy Mission in July 2025?",
+          options: ["Industrial growth", "Digital skills training", "Tourism promotion", "Healthcare reform"],
+          answer: "Digital skills training"
+        }
+      },
+      {
+        id: 'ca-jul-gov-7',
+        title: "MGNREGA Wage Hike Announced",
+        date: "July 20, 2025",
+        category: 'Government Schemes & Policies',
+        whatHappened: "The government increased MGNREGA wages by 10% to support rural workers.",
+        summary: "The hike aims to improve livelihoods amid rising living costs.",
+        previousContext: "MGNREGA has been a key rural employment scheme since 2005.",
+        latestNews: "Additional workdays are planned for 2026.",
+        importance: "Enhances rural income and economic stability.",
+        probableQuestion: {
+          question: "What was the purpose of the MGNREGA wage hike in July 2025?",
+          options: ["Reduce employment", "Improve rural livelihoods", "Promote urban jobs", "Increase taxes"],
+          answer: "Improve rural livelihoods"
+        }
+      },
+      {
+        id: 'ca-jul-gov-8',
+        title: "National Green Mobility Scheme Launched",
+        date: "July 22, 2025",
+        category: 'Government Schemes & Policies',
+        whatHappened: "India launched a National Green Mobility Scheme to promote electric vehicles.",
+        summary: "The scheme offers subsidies for EV adoption and charging infrastructure.",
+        previousContext: "India’s EV push began with FAME schemes in 2015.",
+        latestNews: "10,000 new charging stations are planned by 2027.",
+        importance: "Reduces emissions and supports sustainable transport.",
+        probableQuestion: {
+          question: "What is the focus of the National Green Mobility Scheme in July 2025?",
+          options: ["Fossil fuel vehicles", "Electric vehicle adoption", "Space exploration", "Healthcare reform"],
+          answer: "Electric vehicle adoption"
+        }
+      },
+      {
+        id: 'ca-jul-gov-9',
+        title: "PM Awas Yojana Urban Expansion",
+        date: "July 25, 2025",
+        category: 'Government Schemes & Policies',
+        whatHappened: "The PM Awas Yojana Urban scheme was expanded to cover 1 crore more homes.",
+        summary: "The expansion aims to provide affordable housing in cities.",
+        previousContext: "The scheme has been critical for urban housing since 2015.",
+        latestNews: "New projects are set to begin in 2026.",
+        importance: "Addresses urban housing shortages and improves living standards.",
+        probableQuestion: {
+          question: "What is the goal of the PM Awas Yojana Urban expansion in July 2025?",
+          options: ["Rural housing", "Affordable urban housing", "Industrial growth", "Education reform"],
+          answer: "Affordable urban housing"
+        }
+      },
+      {
+        id: 'ca-jul-gov-10',
+        title: "National Water Conservation Policy",
+        date: "July 30, 2025",
+        category: 'Government Schemes & Policies',
+        whatHappened: "India launched a National Water Conservation Policy to combat shortages.",
+        summary: "The policy promotes rainwater harvesting and efficient irrigation.",
+        previousContext: "Water scarcity has been a growing issue since 2010.",
+        latestNews: "Implementation is expected across states by 2026.",
+        importance: "Ensures water security and supports agriculture.",
+        probableQuestion: {
+          question: "What is the focus of India’s National Water Conservation Policy in July 2025?",
+          options: ["Industrial growth", "Water conservation", "Tourism promotion", "Healthcare reform"],
+          answer: "Water conservation"
+        }
+      },
+      {
+        id: 'ca-jul-sci-1',
+        title: "Quantum Cryptography Breakthrough",
+        date: "July 5, 2025",
+        category: 'Science & Tech',
+        whatHappened: "Researchers achieved a breakthrough in quantum cryptography for secure data transfer.",
+        summary: "The technology ensures unhackable communication for critical systems.",
+        previousContext: "Quantum cryptography has been researched since the 2000s.",
+        latestNews: "Commercial applications are expected by 2028.",
+        importance: "Enhances cybersecurity for finance, defense, and healthcare.",
+        probableQuestion: {
+          question: "What is the significance of the quantum cryptography breakthrough in July 2025?",
+          options: ["Faster internet", "Secure data transfer", "Space exploration", "Medical diagnostics"],
+          answer: "Secure data transfer"
+        }
+      },
+      {
+        id: 'ca-jul-sci-2',
+        title: "India’s First Quantum Computer Prototype",
+        date: "July 8, 2025",
+        category: 'Science & Tech',
+        whatHappened: "India unveiled its first quantum computer prototype for research.",
+        summary: "The prototype aims to advance computing in pharmaceuticals and logistics.",
+        previousContext: "India’s quantum mission was launched in 2023.",
+        latestNews: "Full-scale quantum computers are planned by 2030.",
+        importance: "Positions India as a leader in next-gen computing.",
+        probableQuestion: {
+          question: "What is the goal of India’s quantum computer prototype in July 2025?",
+          options: ["Space exploration", "Advance computing", "Healthcare reform", "Tourism promotion"],
+          answer: "Advance computing"
+        }
+      },
+      {
+        id: 'ca-jul-sci-3',
+        title: "Global 5G-A Standard Adopted",
+        date: "July 12, 2025",
+        category: 'Science & Tech',
+        whatHappened: "The global telecom industry adopted the 5G-Advanced standard.",
+        summary: "5G-A enhances speed and supports IoT and autonomous vehicles.",
+        previousContext: "5G adoption accelerated globally since 2020.",
+        latestNews: "India plans 5G-A trials in 2026.",
+        importance: "Drives innovation in smart cities and industries.",
+        probableQuestion: {
+          question: "What is the purpose of the 5G-Advanced standard adopted in July 2025?",
+          options: ["Reduce connectivity", "Enhance speed and IoT", "Ban 5G use", "Lower costs"],
+          answer: "Enhance speed and IoT"
+        }
+      },
+      {
+        id: 'ca-jul-sci-4',
+        title: "ISRO’s Mars Orbiter Mission 2 Approved",
+        date: "July 15, 2025",
+        category: 'Science & Tech',
+        whatHappened: "ISRO approved the Mars Orbiter Mission 2 for a 2029 launch.",
+        summary: "The mission aims to study Mars’ surface and atmosphere in detail.",
+        previousContext: "Mangalyaan-1 in 2014 made India a space leader.",
+        latestNews: "International collaboration is planned for 2026.",
+        importance: "Enhances India’s space exploration capabilities.",
+        probableQuestion: {
+          question: "What is the goal of ISRO’s Mars Orbiter Mission 2 in July 2025?",
+          options: ["Lunar landing", "Mars surface study", "Satellite deployment", "Space station development"],
+          answer: "Mars surface study"
+        }
+      },
+      {
+        id: 'ca-jul-sci-5',
+        title: "AI-Powered Traffic Management System",
+        date: "July 18, 2025",
+        category: 'Science & Tech',
+        whatHappened: "India launched an AI-powered traffic management system in major cities.",
+        summary: "The system optimizes traffic flow and reduces congestion using real-time data.",
+        previousContext: "Urban traffic congestion has worsened since 2010.",
+        latestNews: "Expansion to tier-2 cities is planned for 2026.",
+        importance: "Improves urban mobility and reduces emissions.",
+        probableQuestion: {
+          question: "What is the purpose of India’s AI traffic management system in July 2025?",
+          options: ["Healthcare reform", "Reduce congestion", "Space exploration", "Industrial growth"],
+          answer: "Reduce congestion"
+        }
+      },
+      {
+        id: 'ca-jul-sci-6',
+        title: "Global Gene Editing Breakthrough",
+        date: "July 20, 2025",
+        category: 'Science & Tech',
+        whatHappened: "Scientists achieved a breakthrough in CRISPR gene editing for rare diseases.",
+        summary: "The advance improves precision in treating genetic disorders.",
+        previousContext: "CRISPR has been a focus of medical research since 2015.",
+        latestNews: "Clinical trials are planned for 2026.",
+        importance: "Revolutionizes healthcare and disease treatment.",
+        probableQuestion: {
+          question: "What is the significance of the CRISPR breakthrough in July 2025?",
+          options: ["Space exploration", "Treat genetic disorders", "Industrial automation", "Cybersecurity"],
+          answer: "Treat genetic disorders"
+        }
+      },
+      {
+        id: 'ca-jul-sci-7',
+        title: "India’s Drone Policy Updated",
+        date: "July 22, 2025",
+        category: 'Science & Tech',
+        whatHappened: "India updated its drone policy to promote commercial use.",
+        summary: "The policy eases regulations for agriculture, delivery, and surveillance drones.",
+        previousContext: "Drone rules were liberalized in 2021 to boost innovation.",
+        latestNews: "Drone startups are expected to grow by 20% in 2026.",
+        importance: "Drives innovation and economic growth in new sectors.",
+        probableQuestion: {
+          question: "What is the purpose of India’s updated drone policy in July 2025?",
+          options: ["Ban drone use", "Promote commercial drones", "Reduce connectivity", "Healthcare reform"],
+          answer: "Promote commercial drones"
+        }
+      },
+      {
+        id: 'ca-jul-sci-8',
+        title: "Global Autonomous Vehicle Standards Set",
+        date: "July 25, 2025",
+        category: 'Science & Tech',
+        whatHappened: "Global regulators set standards for autonomous vehicle safety.",
+        summary: "The standards ensure safe deployment of self-driving cars worldwide.",
+        previousContext: "Autonomous vehicles have been tested since 2018.",
+        latestNews: "India plans autonomous vehicle trials in 2026.",
+        importance: "Shapes future transport and urban planning.",
+        probableQuestion: {
+          question: "What is the goal of global autonomous vehicle standards in July 2025?",
+          options: ["Ban self-driving cars", "Ensure safety", "Reduce production", "Increase costs"],
+          answer: "Ensure safety"
+        }
+      },
+      {
+        id: 'ca-jul-sci-9',
+        title: "India’s AI Supercomputer Launched",
+        date: "July 28, 2025",
+        category: 'Science & Tech',
+        whatHappened: "India launched its first AI supercomputer for research and innovation.",
+        summary: "The supercomputer supports AI applications in healthcare and agriculture.",
+        previousContext: "India’s supercomputing mission began in 2015.",
+        latestNews: "Expanded access is planned for startups in 2026.",
+        importance: "Boosts India’s AI innovation and global tech standing.",
+        probableQuestion: {
+          question: "What is the purpose of India’s AI supercomputer launched in July 2025?",
+          options: ["Space exploration", "AI research", "Tourism promotion", "Healthcare reform"],
+          answer: "AI research"
+        }
+      },
+      {
+        id: 'ca-jul-sci-10',
+        title: "Global Space Debris Removal Initiative",
+        date: "July 30, 2025",
+        category: 'Science & Tech',
+        whatHappened: "A global initiative was launched to address space debris.",
+        summary: "The initiative uses advanced tech to clear defunct satellites and debris.",
+        previousContext: "Space debris has threatened satellites since the 2000s.",
+        latestNews: "India plans to join the initiative in 2026.",
+        importance: "Protects satellites and ensures safe space exploration.",
+        probableQuestion: {
+          question: "What is the goal of the global space debris initiative in July 2025?",
+          options: ["Increase debris", "Clear space debris", "Medical advancements", "Industrial growth"],
+          answer: "Clear space debris"
+        }
+      }
+    ]
+  },
+  {
+    month: "August 2025",
+    items: [
+       {
+        id: 'ca-aug-bill-1',
+        title: "Trump Budget Bill Faces Opposition",
+        date: "August 10, 2025",
+        category: 'Bills, Acts & Amendments',
+        whatHappened: "Trump’s budget bill, including “Trump Accounts” for newborns, faced opposition.",
+        summary: "Critics, including Elon Musk, called the bill fiscally unsustainable due to proposed cuts.",
+        previousContext: "The bill passed the Senate in June 2025 amid debates.",
+        latestNews: "Revised proposals are expected by late 2025.",
+        importance: "Impacts U.S. fiscal policy and global economic confidence.",
+        probableQuestion: {
+          question: "Why did Trump’s budget bill face opposition in August 2025?",
+          options: ["Increased taxes", "Fiscal unsustainability", "Education funding", "Healthcare reform"],
+          answer: "Fiscal unsustainability"
+        }
+      },
+      {
+        id: 'ca-aug-bill-2',
+        title: "India’s National Education Policy Update",
+        date: "August 5, 2025",
+        category: 'Bills, Acts & Amendments',
+        whatHappened: "India updated the National Education Policy to focus on digital learning.",
+        summary: "The update promotes online education and AI-based teaching tools.",
+        previousContext: "NEP 2020 aimed to transform India’s education system.",
+        latestNews: "Pilot programs are set for 2026 in 10 states.",
+        importance: "Prepares students for a digital economy and enhances access.",
+        probableQuestion: {
+          question: "What is the focus of India’s NEP update in August 2025?",
+          options: ["Industrial growth", "Digital learning", "Tourism promotion", "Healthcare reform"],
+          answer: "Digital learning"
+        }
+      },
+      {
+        id: 'ca-aug-bill-3',
+        title: "U.S. Healthcare Reform Bill Introduced",
+        date: "August 8, 2025",
+        category: 'Bills, Acts & Amendments',
+        whatHappened: "The U.S. introduced a healthcare reform bill to reduce costs.",
+        summary: "The bill aims to lower drug prices and expand private insurance.",
+        previousContext: "Healthcare debates intensified after 2020 reforms.",
+        latestNews: "Congress plans debates for late 2025.",
+        importance: "Impacts U.S. healthcare access and global drug markets.",
+        probableQuestion: {
+          question: "What is the goal of the U.S. healthcare reform bill in August 2025?",
+          options: ["Increase drug prices", "Lower drug prices", "Ban insurance", "Reduce hospitals"],
+          answer: "Lower drug prices"
+        }
+      },
+      {
+        id: 'ca-aug-bill-4',
+        title: "India’s Green Hydrogen Policy Act",
+        date: "August 12, 2025",
+        category: 'Bills, Acts & Amendments',
+        whatHappened: "India passed a Green Hydrogen Policy Act to boost production.",
+        summary: "The act offers subsidies for green hydrogen in industries and transport.",
+        previousContext: "The National Hydrogen Mission was launched in 2021.",
+        latestNews: "Production targets are set for 2030.",
+        importance: "Supports India’s net-zero goal and reduces emissions.",
+        probableQuestion: {
+          question: "What is the purpose of India’s Green Hydrogen Policy Act in August 2025?",
+          options: ["Fossil fuel promotion", "Boost green hydrogen", "Tourism promotion", "Healthcare reform"],
+          answer: "Boost green hydrogen"
+        }
+      },
+      {
+        id: 'ca-aug-bill-5',
+        title: "EU’s Digital Services Act Strengthened",
+        date: "August 15, 2025",
+        category: 'Bills, Acts & Amendments',
+        whatHappened: "The EU strengthened its Digital Services Act to regulate online platforms.",
+        summary: "The act imposes stricter rules on content moderation and user privacy.",
+        previousContext: "The DSA was introduced in 2022 to curb misinformation.",
+        latestNews: "Global tech firms are aligning with EU rules in 2026.",
+        importance: "Shapes India’s digital policies and global tech standards.",
+        probableQuestion: {
+          question: "What is the focus of the EU’s Digital Services Act update in August 2025?",
+          options: ["Promote misinformation", "Regulate online platforms", "Reduce internet access", "Ban tech firms"],
+          answer: "Regulate online platforms"
+        }
+      },
+      {
+        id: 'ca-aug-bill-6',
+        title: "India’s Agri-Tech Promotion Bill",
+        date: "August 18, 2025",
+        category: 'Bills, Acts & Amendments',
+        whatHappened: "India introduced an Agri-Tech Promotion Bill to modernize farming.",
+        summary: "The bill supports AI and drone use in agriculture for higher yields.",
+        previousContext: "Agri-tech has been a focus since 2020 for food security.",
+        latestNews: "Pilot projects are planned for 2026 in five states.",
+        importance: "Enhances agricultural productivity and farmer incomes.",
+        probableQuestion: {
+          question: "What is the goal of India’s Agri-Tech Promotion Bill in August 2025?",
+          options: ["Industrial growth", "Modernize farming", "Tourism promotion", "Healthcare reform"],
+          answer: "Modernize farming"
+        }
+      },
+      {
+        id: 'ca-aug-bill-7',
+        title: "U.S. Border Security Act Passed",
+        date: "August 20, 2025",
+        category: 'Bills, Acts & Amendments',
+        whatHappened: "The U.S. passed a Border Security Act to strengthen immigration controls.",
+        summary: "The act funds border walls and increases ICE operations.",
+        previousContext: "Immigration was a key issue in Trump’s 2024 campaign.",
+        latestNews: "Implementation is set for early 2026.",
+        importance: "Impacts global migration policies and U.S.-Mexico relations.",
+        probableQuestion: {
+          question: "What is the purpose of the U.S. Border Security Act in August 2025?",
+          options: ["Promote immigration", "Strengthen border controls", "Reduce taxes", "Fund education"],
+          answer: "Strengthen border controls"
+        }
+      },
+      {
+        id: 'ca-aug-bill-8',
+        title: "India’s Space Policy Act",
+        date: "August 22, 2025",
+        category: 'Bills, Acts & Amendments',
+        whatHappened: "India passed a Space Policy Act to promote private space ventures.",
+        summary: "The act encourages startups and private investment in space tech.",
+        previousContext: "India’s space sector was liberalized in 2020.",
+        latestNews: "Private satellite launches are expected by 2026.",
+        importance: "Boosts India’s space industry and global competitiveness.",
+        probableQuestion: {
+          question: "What is the goal of India’s Space Policy Act in August 2025?",
+          options: ["Ban private space ventures", "Promote private space ventures", "Reduce space missions", "Healthcare reform"],
+          answer: "Promote private space ventures"
+        }
+      },
+      {
+        id: 'ca-aug-bill-9',
+        title: "UK’s Green Energy Transition Bill",
+        date: "August 25, 2025",
+        category: 'Bills, Acts & Amendments',
+        whatHappened: "The UK passed a bill to accelerate its green energy transition.",
+        summary: "The bill funds offshore wind and green hydrogen projects.",
+        previousContext: "The UK aims for net-zero emissions by 2050.",
+        latestNews: "Projects are set to start in 2026.",
+        importance: "Influences global renewable energy markets and climate goals.",
+        probableQuestion: {
+          question: "What is the focus of the UK’s green energy bill in August 2025?",
+          options: ["Fossil fuel expansion", "Offshore wind and hydrogen", "Reduce taxes", "Ban renewables"],
+          answer: "Offshore wind and hydrogen"
+        }
+      },
+      {
+        id: 'ca-aug-bill-10',
+        title: "India’s Urban Mobility Act",
+        date: "August 30, 2025",
+        category: 'Bills, Acts & Amendments',
+        whatHappened: "India passed an Urban Mobility Act to improve city transport.",
+        summary: "The act funds metro expansions and electric buses for sustainable transport.",
+        previousContext: "Urban congestion has been a challenge since 2010.",
+        latestNews: "Projects are set to begin in 2026.",
+        importance: "Reduces urban pollution and improves quality of life.",
+        probableQuestion: {
+          question: "What is the purpose of India’s Urban Mobility Act in August 2025?",
+          options: ["Rural development", "Improve city transport", "Tourism promotion", "Healthcare reform"],
+          answer: "Improve city transport"
+        }
+      },
+      {
+        id: 'ca-aug-int-1',
+        title: "Sudan’s El Fasher Under Attack",
+        date: "August 12, 2025",
+        category: 'International Affairs',
+        whatHappened: "The Rapid Support Forces (RSF) launched a large-scale assault on El Fasher, Sudan.",
+        summary: "The attack worsened the humanitarian crisis, displacing thousands in North Darfur.",
+        previousContext: "El Fasher has been under siege since April 2024.",
+        latestNews: "The UN plans emergency aid and peace talks in late 2025.",
+        importance: "Impacts global humanitarian efforts and regional stability.",
+        probableQuestion: {
+          question: "What caused the humanitarian crisis in El Fasher in August 2025?",
+          options: ["Natural disaster", "RSF assault", "Economic collapse", "Political reforms"],
+          answer: "RSF assault"
+        }
+      },
+      {
+        id: 'ca-aug-int-2',
+        title: "India-US Defense Pact Signed",
+        date: "August 5, 2025",
+        category: 'International Affairs',
+        whatHappened: "India and the U.S. signed a defense pact to enhance military cooperation.",
+        summary: "The pact includes joint exercises and technology transfers.",
+        previousContext: "India-US defense ties strengthened since the 2016 LEMOA agreement.",
+        latestNews: "Joint naval exercises are planned for 2026.",
+        importance: "Bolsters India’s defense and Indo-Pacific security.",
+        probableQuestion: {
+          question: "What is the goal of the India-US defense pact in August 2025?",
+          options: ["Economic trade", "Military cooperation", "Climate goals", "Immigration reform"],
+          answer: "Military cooperation"
+        }
+      },
+      {
+        id: 'ca-aug-int-3',
+        title: "China’s AI Export Restrictions",
+        date: "August 8, 2025",
+        category: 'International Affairs',
+        whatHappened: "China imposed restrictions on AI technology exports.",
+        summary: "The move aims to protect national security and maintain tech dominance.",
+        previousContext: "U.S.-China tech rivalry intensified since 2020.",
+        latestNews: "Global tech firms are seeking alternative suppliers in 2026.",
+        importance: "Impacts global AI development and India’s tech imports.",
+        probableQuestion: {
+          question: "Why did China restrict AI exports in August 2025?",
+          options: ["Promote global trade", "Protect national security", "Reduce AI use", "Increase exports"],
+          answer: "Protect national security"
+        }
+      },
+      {
+        id: 'ca-aug-int-4',
+        title: "Russia-NATO Tensions Rise",
+        date: "August 12, 2025",
+        category: 'International Affairs',
+        whatHappened: "Russia conducted military drills near NATO borders, escalating tensions.",
+        summary: "The drills raised concerns about potential conflict in Eastern Europe.",
+        previousContext: "Russia-NATO tensions have persisted since the Ukraine conflict began in 2022.",
+        latestNews: "NATO plans a response strategy in 2026.",
+        importance: "Impacts global security and India’s energy imports.",
+        probableQuestion: {
+          question: "What caused Russia-NATO tensions in August 2025?",
+          options: ["Economic sanctions", "Military drills", "Climate agreements", "Trade deals"],
+          answer: "Military drills"
+        }
+      },
+      {
+        id: 'ca-aug-int-5',
+        title: "India-Japan Tech Partnership Expanded",
+        date: "August 15, 2025",
+        category: 'International Affairs',
+        whatHappened: "India and Japan expanded their tech partnership for AI and semiconductors.",
+        summary: "The partnership aims to boost innovation and reduce reliance on China.",
+        previousContext: "India-Japan ties strengthened since the 2014 Make in India initiative.",
+        latestNews: "Joint projects are set for 2026.",
+        importance: "Enhances India’s tech self-reliance and Indo-Pacific cooperation.",
+        probableQuestion: {
+          question: "What is the focus of the India-Japan tech partnership in August 2025?",
+          options: ["Defense cooperation", "AI and semiconductors", "Tourism promotion", "Healthcare reform"],
+          answer: "AI and semiconductors"
+        }
+      },
+      {
+        id: 'ca-aug-int-6',
+        title: "UN Climate Finance Talks Progress",
+        date: "August 18, 2025",
+        category: 'International Affairs',
+        whatHappened: "The UN advanced talks on climate finance for developing nations.",
+        summary: "The talks aim to secure $500 billion annually by 2030 for climate adaptation.",
+        previousContext: "COP29 in 2024 set initial climate finance goals.",
+        latestNews: "A final agreement is expected in 2026.",
+        importance: "Supports India’s climate resilience and green energy goals.",
+        probableQuestion: {
+          question: "What is the goal of UN climate finance talks in August 2025?",
+          options: ["Fossil fuel expansion", "Climate adaptation funding", "Reduce emissions", "Ban renewables"],
+          answer: "Climate adaptation funding"
+        }
+      },
+      {
+        id: 'ca-aug-int-7',
+        title: "ASEAN-India Summit Held",
+        date: "August 20, 2025",
+        category: 'International Affairs',
+        whatHappened: "India hosted the ASEAN-India Summit to boost trade and security ties.",
+        summary: "The summit focused on maritime security and economic cooperation.",
+        previousContext: "India-ASEAN ties grew since the 2012 strategic partnership.",
+        latestNews: "A new trade deal is planned for 2026.",
+        importance: "Strengthens India’s role in the Indo-Pacific region.",
+        probableQuestion: {
+          question: "What was the focus of the ASEAN-India Summit in August 2025?",
+          options: ["Space exploration", "Maritime security", "Healthcare reform", "Industrial growth"],
+          answer: "Maritime security"
+        }
+      },
+      {
+        id: 'ca-aug-int-8',
+        title: "Brazil’s Amazon Conservation Pact",
+        date: "August 22, 2025",
+        category: 'International Affairs',
+        whatHappened: "Brazil signed a global pact to protect the Amazon rainforest.",
+        summary: "The pact funds conservation and indigenous community support.",
+        previousContext: "Amazon deforestation has been a global concern since the 2000s.",
+        latestNews: "Implementation is set for 2026.",
+        importance: "Impacts global climate goals and biodiversity.",
+        probableQuestion: {
+          question: "What is the purpose of Brazil’s Amazon conservation pact in August 2025?",
+          options: ["Increase deforestation", "Protect the Amazon", "Promote mining", "Reduce trade"],
+          answer: "Protect the Amazon"
+        }
+      },
+      {
+        id: 'ca-aug-int-9',
+        title: "South Korea’s Tech Export Boom",
+        date: "August 25, 2025",
+        category: 'International Affairs',
+        whatHappened: "South Korea reported a 15% rise in tech exports, led by semiconductors.",
+        summary: "The boom strengthens South Korea’s global tech leadership.",
+        previousContext: "South Korea has been a tech export leader since the 2010s.",
+        latestNews: "New trade deals are planned for 2026.",
+        importance: "Impacts global tech supply chains and India’s imports.",
+        probableQuestion: {
+          question: "What drove South Korea’s tech export boom in August 2025?",
+          options: ["Reduced production", "Semiconductor growth", "Lower demand", "Increased tariffs"],
+          answer: "Semiconductor growth"
+        }
+      },
+      {
+        id: 'ca-aug-int-10',
+        title: "G7 Summit Addresses Global Debt",
+        date: "August 30, 2025",
+        category: 'International Affairs',
+        whatHappened: "The G7 summit focused on addressing global debt crises in developing nations.",
+        summary: "The summit proposed debt relief and sustainable financing solutions.",
+        previousContext: "Global debt rose post-COVID, affecting low-income countries.",
+        latestNews: "A debt relief framework is expected in 2026.",
+        importance: "Impacts India’s economic partnerships and global stability.",
+        probableQuestion: {
+          question: "What was the focus of the G7 summit in August 2025?",
+          options: ["Climate goals", "Global debt crises", "Space exploration", "Healthcare reform"],
+          answer: "Global debt crises"
         }
       }
     ]
   }
 ];
+
+    
