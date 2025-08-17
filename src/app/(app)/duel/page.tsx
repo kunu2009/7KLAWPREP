@@ -32,27 +32,21 @@ interface Duel {
 
 // A mock "database" using local storage for demonstration
 const getDuel = (id: string): Duel | null => {
+  if (typeof window === 'undefined') return null;
   const duel = localStorage.getItem(`duel_${id}`);
   return duel ? JSON.parse(duel) : null;
 };
 
 const saveDuel = (duel: Duel) => {
+  if (typeof window === 'undefined') return;
   localStorage.setItem(`duel_${duel.id}`, JSON.stringify(duel));
 };
 
-const shuffleMcqs = (array: MCQ[]): MCQ[] => {
-  const newArray = [...array];
-  for (let i = newArray.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-  }
-  return newArray;
-};
-
-const getLocalPlayer = (): Player => {
-  let player = localStorage.getItem('localPlayer');
-  if (player) {
-    return JSON.parse(player);
+const getLocalPlayer = (): Player | null => {
+  if (typeof window === 'undefined') return null;
+  let playerJson = localStorage.getItem('localPlayer');
+  if (playerJson) {
+    return JSON.parse(playerJson);
   }
   const newPlayer: Player = { id: uuidv4(), name: `Player_${uuidv4().substring(0, 4)}`, score: 0, answers: {} };
   localStorage.setItem('localPlayer', JSON.stringify(newPlayer));
@@ -61,17 +55,23 @@ const getLocalPlayer = (): Player => {
 
 
 export default function DuelPage({ searchParams }: { searchParams: { join?: string } }) {
-  const [localPlayer] = useState<Player>(getLocalPlayer());
+  const [localPlayer, setLocalPlayer] = useState<Player | null>(null);
   const [duel, setDuel] = useState<Duel | null>(null);
   const [isCopied, setIsCopied] = useState(false);
   const [topic, setTopic] = useState('');
   const [numQuestions, setNumQuestions] = useState(5);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
 
   const joinDuelId = searchParams.join;
+  
+  useEffect(() => {
+    setLocalPlayer(getLocalPlayer());
+    setIsLoading(false);
+  }, []);
 
   const joinDuel = useCallback((idToJoin: string) => {
+    if (!localPlayer) return;
     setIsLoading(true);
     const existingDuel = getDuel(idToJoin);
     if (existingDuel) {
@@ -88,10 +88,10 @@ export default function DuelPage({ searchParams }: { searchParams: { join?: stri
   }, [localPlayer, toast]);
 
   useEffect(() => {
-    if (joinDuelId) {
+    if (joinDuelId && localPlayer) {
       joinDuel(joinDuelId);
     }
-  }, [joinDuelId, joinDuel]);
+  }, [joinDuelId, joinDuel, localPlayer]);
 
   useEffect(() => {
     if (!duel || duel.status !== 'active') return;
@@ -108,6 +108,7 @@ export default function DuelPage({ searchParams }: { searchParams: { join?: stri
 
 
   const createDuel = async () => {
+    if (!localPlayer) return;
     if (!topic) {
         toast({ variant: 'destructive', title: 'Please select a topic first.' });
         return;
@@ -135,11 +136,20 @@ export default function DuelPage({ searchParams }: { searchParams: { join?: stri
   };
   
   const copyLink = () => {
-    const link = `${window.location.origin}${window.location.pathname}?join=${duel?.id}`;
+    if(!duel) return;
+    const link = `${window.location.origin}${window.location.pathname}?join=${duel.id}`;
     navigator.clipboard.writeText(link);
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2000);
   };
+
+  if (isLoading || !localPlayer) {
+    return (
+        <div className="flex items-center justify-center h-full">
+            <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+    );
+  }
 
   if (!duel) {
     return (
@@ -337,3 +347,5 @@ const DuelResults = ({ duel, localPlayer }: { duel: Duel, localPlayer: Player })
         </Card>
     );
 }
+
+    
