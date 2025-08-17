@@ -6,11 +6,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ChatInterface } from '@/components/chat-interface';
 import { summarizeLegalText } from '@/ai/flows/summarize-legal-text';
 import { briefCase } from '@/ai/flows/brief-case-flow';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, Wand2, BookText, FileSignature, MessageCircle } from 'lucide-react';
+import { Loader2, Wand2, BookText, FileSignature } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 
 function SummarizerTool() {
@@ -171,16 +170,11 @@ export default function AIToolsPage() {
         <p className="text-muted-foreground">Your personal AI-powered legal toolkit.</p>
       </div>
 
-      <Tabs defaultValue="assistant" className="space-y-4">
-        <TabsList className="grid w-full grid-cols-3">
-          <TabsTrigger value="assistant"><MessageCircle className="mr-2 h-4 w-4"/>Doubt Assistant</TabsTrigger>
+      <Tabs defaultValue="summarizer" className="space-y-4">
+        <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="summarizer"><BookText className="mr-2 h-4 w-4"/>Summarizer</TabsTrigger>
           <TabsTrigger value="case-briefer"><FileSignature className="mr-2 h-4 w-4"/>Case Briefer</TabsTrigger>
         </TabsList>
-        <TabsContent value="assistant" className="h-full flex flex-col">
-            <p className="text-sm text-muted-foreground mb-4">Ask any law-related question and get instant help from our AI assistant.</p>
-            <ChatInterface />
-        </TabsContent>
         <TabsContent value="summarizer">
           <SummarizerTool />
         </TabsContent>
@@ -192,3 +186,4 @@ export default function AIToolsPage() {
   );
 }
 
+    

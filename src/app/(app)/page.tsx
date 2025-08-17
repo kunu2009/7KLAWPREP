@@ -15,7 +15,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Label } from '@/components/ui/label';
 import { Progress } from '@/components/ui/progress';
-import { format, isToday } from 'date-fns';
+import { format, isToday, isYesterday } from 'date-fns';
 
 interface Task {
     id: string;
@@ -161,6 +161,7 @@ export default function Home() {
   const levelProgress = (xp / xpForNextLevel) * 100;
 
   const getPersonalizationData = useCallback(() => {
+    if (!isClient) return "User has no specific weak areas recorded yet.";
     const incorrectTopics: Record<string, number> = {};
     Object.keys(history).forEach(mcqId => {
       if (history[mcqId] === 'incorrect') {
@@ -176,14 +177,16 @@ export default function Home() {
       return `User is struggling with these topics: ${sortedTopics.map(t => t[0]).join(', ')}.`;
     }
     return "User has no specific weak areas recorded yet.";
-  }, [history]);
+  }, [history, isClient]);
   
   const fetchTasks = useCallback(async () => {
     startTransition(async () => {
       try {
         const personalization = getPersonalizationData();
+        const currentCompletedTasks = tasks.filter(t => t.completed).map(t => t.title);
+        
         const response = await generateDailyTasks({ 
-          completedTasks: tasks.filter(t => t.completed).map(t => t.title),
+          completedTasks: currentCompletedTasks,
           userProgress: personalization,
         });
         if (response && response.tasks) {
@@ -205,7 +208,7 @@ export default function Home() {
         });
       }
     });
-  }, [getPersonalizationData, toast, tasks, isClient]);
+  }, [getPersonalizationData, toast, isClient, tasks]);
 
   useEffect(() => {
     if (isClient) {
@@ -224,36 +227,49 @@ export default function Home() {
             setLevel(level);
             setXp(xp);
             
-            const today = new Date();
-            const lastDate = lastCompletionDate ? new Date(lastCompletionDate) : null;
-            if (lastDate && isToday(lastDate)) {
-                 setStudyStreak(studyStreak);
-            } else if (lastDate && isToday(new Date(today.setDate(today.getDate() - 1)))) {
-                 setStudyStreak(studyStreak);
+            if (lastCompletionDate) {
+                const lastDate = new Date(lastCompletionDate);
+                const today = new Date();
+                if (isToday(lastDate)) {
+                    // Same day, streak is already counted
+                    setStudyStreak(studyStreak);
+                } else if (isYesterday(lastDate)) {
+                    // Previous day, streak continues
+                    setStudyStreak(studyStreak);
+                } else {
+                    // Missed a day, streak resets
+                    setStudyStreak(0);
+                }
             } else {
-                 setStudyStreak(0);
+                 setStudyStreak(studyStreak || 0);
             }
         }
     }
-  }, [isClient, fetchTasks]);
+  }, [isClient]);
 
 
   const handleTaskComplete = (taskId: string, points: number) => {
-    const updatedTasks = tasks.map(t => t.id === taskId ? {...t, completed: true} : t);
-    setTasks(updatedTasks);
-
-    const newXp = xp + points;
+    let newXp = xp;
     let newLevel = level;
-    let finalXp = newXp;
     let leveledUp = false;
+
+    const updatedTasks = tasks.map(t => {
+      if (t.id === taskId && !t.completed) {
+        newXp += points;
+        return { ...t, completed: true };
+      }
+      return t;
+    });
+    
+    setTasks(updatedTasks);
 
     if(newXp >= xpForNextLevel) {
         newLevel = level + 1;
-        finalXp = newXp - xpForNextLevel;
+        newXp = newXp - xpForNextLevel;
         leveledUp = true;
     }
     
-    setXp(finalXp);
+    setXp(newXp);
     setLevel(newLevel);
     
     if(leveledUp) {
@@ -265,21 +281,29 @@ export default function Home() {
     
     const allTasksNowCompleted = updatedTasks.every(t => t.completed);
     let newStudyStreak = studyStreak;
+    let streakUpdated = false;
     
     if (allTasksNowCompleted) {
-      newStudyStreak++;
-      setStudyStreak(newStudyStreak);
-      toast({
-        title: "Daily Sprint Complete!",
-        description: `Great work! You've earned a total of ${tasks.reduce((acc, t) => acc + (t.completed || t.id === taskId ? t.points : 0), 0)} XP today. Come back tomorrow!`,
-      });
+        const storedProgress = JSON.parse(localStorage.getItem('userLevelProgress') || '{}');
+        const lastCompletionDate = storedProgress.lastCompletionDate ? new Date(storedProgress.lastCompletionDate) : null;
+        
+        if(!lastCompletionDate || !isToday(lastCompletionDate)) {
+             newStudyStreak++;
+             streakUpdated = true;
+        }
+
+        setStudyStreak(newStudyStreak);
+        toast({
+            title: "Daily Sprint Complete!",
+            description: `Great work! You've earned a total of ${tasks.reduce((acc, t) => acc + (t.completed ? t.points : 0), 0)} XP today. Come back tomorrow!`,
+        });
     }
 
     localStorage.setItem('userLevelProgress', JSON.stringify({ 
       level: newLevel, 
-      xp: finalXp, 
+      xp: newXp, 
       studyStreak: newStudyStreak,
-      lastCompletionDate: allTasksNowCompleted ? todayStr : localStorage.getItem('userLevelProgress') ? JSON.parse(localStorage.getItem('userLevelProgress')!).lastCompletionDate : null
+      lastCompletionDate: allTasksNowCompleted ? todayStr : (JSON.parse(localStorage.getItem('userLevelProgress') || '{}').lastCompletionDate || null)
     }));
   };
 
@@ -366,7 +390,7 @@ export default function Home() {
             <CardFooter>
                 <Button onClick={fetchTasks} disabled={isPending}>
                     <RefreshCw className="mr-2 h-4 w-4"/>
-                    Generate New Tasks for Tomorrow
+                    Generate New Tasks
                 </Button>
             </CardFooter>
         )}
@@ -422,3 +446,5 @@ const StatCard = ({ title, value, icon: Icon }: { title: string, value: string |
         </CardContent>
     </Card>
 );
+
+    
