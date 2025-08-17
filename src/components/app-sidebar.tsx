@@ -36,9 +36,7 @@ import {
   User,
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
-import { Button } from "./ui/button";
 import { Logo } from "./logo";
-import { useAuth } from "@/hooks/use-auth";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const menuItems = [
@@ -73,7 +71,6 @@ const competition = [
 export function AppSidebar() {
   const pathname = usePathname();
   const { toggleSidebar } = useSidebar();
-  const { user, logout } = useAuth();
 
   const renderMenuItems = (items: typeof menuItems) => items.map((item) => (
     <SidebarMenuItem key={item.href}>
@@ -116,29 +113,9 @@ export function AppSidebar() {
 
       </SidebarContent>
       <SidebarFooter className="mt-auto flex flex-col gap-2 p-2">
-         {user && (
-            <div className="w-full p-2 rounded-md bg-sidebar-accent/50 group-data-[collapsible=icon]:p-0">
-                <div className="flex items-center gap-2 group-data-[collapsible=icon]:justify-center">
-                    <Avatar className="size-8">
-                        <AvatarImage src={user.photoURL || ''} alt={user.displayName || ''} />
-                        <AvatarFallback><User size={16}/></AvatarFallback>
-                    </Avatar>
-                    <div className="flex flex-col text-xs group-data-[collapsible=icon]:hidden">
-                        <span className="font-semibold text-sidebar-accent-foreground">{user.displayName}</span>
-                        <span className="text-muted-foreground truncate">{user.email}</span>
-                    </div>
-                </div>
-            </div>
-        )}
         <ThemeToggle />
          <div className="w-full">
             <SidebarMenu>
-                <SidebarMenuItem>
-                    <SidebarMenuButton onClick={logout} className="w-full" tooltip={{ children: 'Sign Out', side: 'left' }}>
-                        <LogOut />
-                        <span className="group-data-[collapsible=icon]:hidden">Sign Out</span>
-                    </SidebarMenuButton>
-                </SidebarMenuItem>
                  <SidebarMenuItem>
                     <SidebarMenuButton onClick={toggleSidebar} className="w-full" tooltip={{ children: 'Collapse Sidebar', side: 'left' }}>
                         <PanelRight />

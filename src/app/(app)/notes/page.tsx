@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import {
   Select,
@@ -18,10 +18,7 @@ import { Link as LinkIcon, Pencil, Save, Loader2 } from "lucide-react";
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from '@/lib/firebase-config';
 import { useToast } from '@/hooks/use-toast';
-import { useAuth } from '@/hooks/use-auth';
 
 const groupedNotes = initialNotes.reduce((acc, note) => {
   const category = note.category;
@@ -34,7 +31,6 @@ const groupedNotes = initialNotes.reduce((acc, note) => {
 
 
 export default function NotesPage() {
-  const { user } = useAuth();
   const [selectedTopic, setSelectedTopic] = useState<string>(initialNotes[0].topic);
   const [isEditing, setIsEditing] = useState(false);
   const [currentUserNote, setCurrentUserNote] = useState('');
@@ -44,36 +40,30 @@ export default function NotesPage() {
 
   const selectedNote = initialNotes.find(note => note.topic === selectedTopic);
 
-  useEffect(() => {
-    const fetchNote = async () => {
-      if (!user || !selectedNote) return;
-      setIsLoadingNote(true);
-      try {
-        const noteDocRef = doc(db, 'userProgress', user.uid, 'notes', selectedNote.topic);
-        const noteDocSnap = await getDoc(noteDocRef);
-        if (noteDocSnap.exists()) {
-          setCurrentUserNote(noteDocSnap.data().content || '');
-        } else {
-          setCurrentUserNote('');
-        }
-      } catch (error) {
-        console.error("Failed to fetch note:", error);
-        toast({ variant: 'destructive', title: "Error", description: "Could not load your saved note." });
-      } finally {
-        setIsLoadingNote(false);
-        setIsEditing(false);
+  useState(() => {
+    if (!selectedNote) return;
+    setIsLoadingNote(true);
+    try {
+      const savedNote = localStorage.getItem(`note_${selectedNote.topic}`);
+      if (savedNote) {
+        setCurrentUserNote(savedNote);
+      } else {
+        setCurrentUserNote('');
       }
-    };
-
-    fetchNote();
-  }, [selectedTopic, user, toast, selectedNote]);
+    } catch (error) {
+      console.error("Failed to fetch note:", error);
+      toast({ variant: 'destructive', title: "Error", description: "Could not load your saved note." });
+    } finally {
+      setIsLoadingNote(false);
+      setIsEditing(false);
+    }
+  });
   
   const handleSaveNote = async () => {
-    if (!user || !selectedNote) return;
+    if (!selectedNote) return;
     setIsSaving(true);
     try {
-      const noteDocRef = doc(db, 'userProgress', user.uid, 'notes', selectedNote.topic);
-      await setDoc(noteDocRef, { content: currentUserNote });
+      localStorage.setItem(`note_${selectedNote.topic}`, currentUserNote);
       toast({ title: "Note Saved!", description: `Your notes for ${selectedNote.topic} have been saved.`});
       setIsEditing(false);
     } catch (error) {
@@ -137,7 +127,7 @@ export default function NotesPage() {
                 <div className="border-t pt-4 mt-4">
                     <div className="flex justify-between items-center mb-2">
                         <h3 className="text-lg font-semibold">My Notes</h3>
-                        {user && !isLoadingNote && (
+                        {!isLoadingNote && (
                           isEditing ? (
                               <Button size="sm" onClick={handleSaveNote} disabled={isSaving}>
                                 {isSaving ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> : <Save className="mr-2 h-4 w-4"/>} 

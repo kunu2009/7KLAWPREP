@@ -2,21 +2,43 @@
 "use client";
 
 import { useState, useEffect, useCallback } from 'react';
-import { doc, getDoc, onSnapshot, setDoc, updateDoc, collection, addDoc } from 'firebase/firestore';
-import { db } from '@/lib/firebase-config';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { mcqs, revisionTopics } from '@/lib/data';
-import type { MCQ, Duel, Player } from '@/lib/types';
+import type { MCQ } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
-import { Loader2, Swords, Copy, Check, Hourglass } from 'lucide-react';
+import { Loader2, Swords, Copy, Check, Hourglass, User } from 'lucide-react';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { useAuth } from '@/hooks/use-auth';
+import { v4 as uuidv4 } from 'uuid';
 
+interface Player {
+  id: string;
+  name: string;
+  score: number;
+  answers: { [questionId: string]: number };
+}
+
+interface Duel {
+  id: string;
+  questions: Omit<MCQ, 'explanation' | 'topic'>[];
+  players: Player[];
+  status: 'waiting' | 'active' | 'finished';
+  topic: string;
+}
+
+// A mock "database" using local storage for demonstration
+const getDuel = (id: string): Duel | null => {
+  const duel = localStorage.getItem(`duel_${id}`);
+  return duel ? JSON.parse(duel) : null;
+};
+
+const saveDuel = (duel: Duel) => {
+  localStorage.setItem(`duel_${duel.id}`, JSON.stringify(duel));
+};
 
 const shuffleMcqs = (array: MCQ[]): MCQ[] => {
   const newArray = [...array];
@@ -27,9 +49,19 @@ const shuffleMcqs = (array: MCQ[]): MCQ[] => {
   return newArray;
 };
 
+const getLocalPlayer = (): Player => {
+  let player = localStorage.getItem('localPlayer');
+  if (player) {
+    return JSON.parse(player);
+  }
+  const newPlayer: Player = { id: uuidv4(), name: `Player_${uuidv4().substring(0, 4)}`, score: 0, answers: {} };
+  localStorage.setItem('localPlayer', JSON.stringify(newPlayer));
+  return newPlayer;
+};
+
+
 export default function DuelPage({ searchParams }: { searchParams: { join?: string } }) {
-  const { user } = useAuth();
-  const [duelId, setDuelId] = useState<string | null>(null);
+  const [localPlayer] = useState<Player>(getLocalPlayer());
   const [duel, setDuel] = useState<Duel | null>(null);
   const [isCopied, setIsCopied] = useState(false);
   const [topic, setTopic] = useState('');
@@ -39,56 +71,44 @@ export default function DuelPage({ searchParams }: { searchParams: { join?: stri
 
   const joinDuelId = searchParams.join;
 
-  const joinDuel = useCallback(async (idToJoin: string) => {
-    if (!user) return;
+  const joinDuel = useCallback((idToJoin: string) => {
     setIsLoading(true);
-    const duelRef = doc(db, 'duels', idToJoin);
-    try {
-        const duelSnap = await getDoc(duelRef);
-
-        if (duelSnap.exists()) {
-            const existingDuel = duelSnap.data() as Duel;
-            if (Object.keys(existingDuel.players).length < 2 && !existingDuel.players[user.uid]) {
-                const player2: Player = { id: user.uid, score: 0, answers: {}, time: 0, name: user.displayName || 'Player 2' };
-                await updateDoc(duelRef, {
-                [`players.${user.uid}`]: player2,
-                status: 'active'
-                });
-            }
-            setDuelId(idToJoin);
-        } else {
-            toast({ variant: 'destructive', title: 'Duel not found or is already full.' });
-        }
-    } catch (error) {
-        toast({ variant: 'destructive', title: 'Could not join duel.', description: 'Please check the link or try again later.' });
-        console.error("Error joining duel:", error);
+    const existingDuel = getDuel(idToJoin);
+    if (existingDuel) {
+      if (existingDuel.players.length < 2 && !existingDuel.players.find(p => p.id === localPlayer.id)) {
+        existingDuel.players.push({ ...localPlayer, score: 0, answers: {} });
+        existingDuel.status = 'active';
+        saveDuel(existingDuel);
+      }
+      setDuel(existingDuel);
+    } else {
+      toast({ variant: 'destructive', title: 'Duel not found or is already full.' });
     }
     setIsLoading(false);
-  }, [user, toast]);
+  }, [localPlayer, toast]);
 
   useEffect(() => {
-    if (joinDuelId && user) {
+    if (joinDuelId) {
       joinDuel(joinDuelId);
     }
-  }, [user, joinDuelId, joinDuel]);
+  }, [joinDuelId, joinDuel]);
 
   useEffect(() => {
-    if (!duelId) return;
+    if (!duel || duel.status !== 'active') return;
 
-    const unsub = onSnapshot(doc(db, 'duels', duelId), (doc) => {
-      if (doc.exists()) {
-        setDuel(doc.data() as Duel);
-      } else {
-        toast({ variant: 'destructive', title: 'Duel not found.' });
-        setDuelId(null);
+    const interval = setInterval(() => {
+      const updatedDuel = getDuel(duel.id);
+      if (updatedDuel) {
+        setDuel(updatedDuel);
       }
-    });
+    }, 2000); // Poll for updates every 2 seconds
 
-    return () => unsub();
-  }, [duelId, toast]);
+    return () => clearInterval(interval);
+  }, [duel]);
+
 
   const createDuel = async () => {
-    if (!user || !topic) {
+    if (!topic) {
         toast({ variant: 'destructive', title: 'Please select a topic first.' });
         return;
     }
@@ -96,40 +116,32 @@ export default function DuelPage({ searchParams }: { searchParams: { join?: stri
 
     const filteredMcqs = mcqs.filter(q => q.topic === topic);
     if(filteredMcqs.length < numQuestions) {
-        toast({ variant: 'destructive', title: 'Not enough questions for this topic. Please choose fewer questions or another topic.' });
+        toast({ variant: 'destructive', title: 'Not enough questions for this topic.' });
         setIsLoading(false);
         return;
     }
     const questions = shuffleMcqs(filteredMcqs).slice(0, numQuestions).map(({ id, question, options, correctAnswerIndex }) => ({ id, question, options, correctAnswerIndex }));
 
-    const player1: Player = { id: user.uid, score: 0, answers: {}, time: 0, name: user.displayName || 'Player 1' };
     const newDuel: Duel = {
+      id: uuidv4(),
       questions,
-      players: { [user.uid]: player1 },
+      players: [{ ...localPlayer, score: 0, answers: {} }],
       status: 'waiting',
-      createdAt: Date.now(),
       topic: topic,
-      questionCount: numQuestions,
-      currentQuestion: 0,
     };
-    try {
-      const docRef = await addDoc(collection(db, 'duels'), newDuel);
-      setDuelId(docRef.id);
-    } catch (e) {
-      console.error("Error creating duel: ", e);
-      toast({ variant: 'destructive', title: 'Failed to create duel.' });
-    }
+    saveDuel(newDuel);
+    setDuel(newDuel);
     setIsLoading(false);
   };
   
   const copyLink = () => {
-    const link = `${window.location.origin}${window.location.pathname}?join=${duelId}`;
+    const link = `${window.location.origin}${window.location.pathname}?join=${duel?.id}`;
     navigator.clipboard.writeText(link);
     setIsCopied(true);
     setTimeout(() => setIsCopied(false), 2000);
   };
 
-  if (!duelId || !duel) {
+  if (!duel) {
     return (
       <div className="space-y-6">
         <div>
@@ -141,6 +153,9 @@ export default function DuelPage({ searchParams }: { searchParams: { join?: stri
             <CardTitle>Create a New Duel</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
+             <div className="space-y-2">
+                <Label>Your Player Name: {localPlayer.name}</Label>
+             </div>
              <div className="space-y-2">
                 <Label htmlFor="topic-select">Select a Topic</Label>
                 <Select onValueChange={setTopic} value={topic}>
@@ -188,7 +203,7 @@ export default function DuelPage({ searchParams }: { searchParams: { join?: stri
         <p className="text-muted-foreground">Share this link with a friend to start the duel.</p>
         <Card className="max-w-md mx-auto">
             <CardContent className="p-4 flex items-center space-x-2">
-                <Input value={`${window.location.origin}/duel?join=${duelId}`} readOnly />
+                <Input value={`${window.location.origin}/duel?join=${duel.id}`} readOnly />
                 <Button onClick={copyLink} size="icon" variant="outline">
                     {isCopied ? <Check className="text-green-500" /> : <Copy />}
                 </Button>
@@ -200,125 +215,109 @@ export default function DuelPage({ searchParams }: { searchParams: { join?: stri
   }
 
   if (duel.status === 'active') {
-    return <QuizArea duel={duel} duelId={duelId} />;
+    return <QuizArea duel={duel} localPlayer={localPlayer} />;
   }
 
   if (duel.status === 'finished') {
-    return <DuelResults duel={duel} />;
+    return <DuelResults duel={duel} localPlayer={localPlayer} />;
   }
   
   return null;
 }
 
-const QuizArea = ({ duel, duelId }: { duel: Duel, duelId: string }) => {
-  const { user } = useAuth();
-  const [selectedOption, setSelectedOption] = useState<number | null>(null);
-  const [startTime, setStartTime] = useState(Date.now());
-  const { toast } = useToast();
+const QuizArea = ({ duel, localPlayer }: { duel: Duel, localPlayer: Player }) => {
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+    const [selectedOption, setSelectedOption] = useState<number | null>(null);
+    const [myPlayerState, setMyPlayerState] = useState(duel.players.find(p => p.id === localPlayer.id)!)
+  
+    const question = duel.questions[currentQuestionIndex];
+  
+    const handleAnswer = () => {
+      if (selectedOption === null) return;
+  
+      const isCorrect = selectedOption === question.correctAnswerIndex;
+      const updatedPlayerState = {
+          ...myPlayerState,
+          score: myPlayerState.score + (isCorrect ? 10 : 0),
+          answers: {
+              ...myPlayerState.answers,
+              [question.id]: selectedOption
+          }
+      };
+      
+      setMyPlayerState(updatedPlayerState);
 
-  if(!user) return null;
-
-  const currentQIndex = duel.currentQuestion;
-  const question = duel.questions[currentQIndex];
-  const playerState = duel.players[user.uid];
-
-  const handleAnswer = async () => {
-    if (selectedOption === null) return;
-
-    const timeTaken = Date.now() - startTime;
-    const isCorrect = selectedOption === question.correctAnswerIndex;
-
-    const newScore = playerState.score + (isCorrect ? 10 : 0);
-    const newTime = playerState.time + timeTaken;
-    const newAnswers = { ...playerState.answers, [question.id]: selectedOption };
-
-    try {
-      await updateDoc(doc(db, 'duels', duelId), {
-        [`players.${user.uid}.score`]: newScore,
-        [`players.${user.uid}.time`]: newTime,
-        [`players.${user.uid}.answers`]: newAnswers,
-      });
-
-      const duelDoc = await getDoc(doc(db, 'duels', duelId));
-      if(duelDoc.exists()){
-          const updatedDuel = duelDoc.data() as Duel;
-          const allPlayersAnswered = Object.values(updatedDuel.players).every(p => p.answers[question.id] !== undefined);
-
-          if (allPlayersAnswered) {
-              if (updatedDuel.currentQuestion < updatedDuel.questions.length - 1) {
-                  await updateDoc(doc(db, 'duels', duelId), {
-                      currentQuestion: updatedDuel.currentQuestion + 1
-                  });
-              } else {
-                  await updateDoc(doc(db, 'duels', duelId), {
-                      status: 'finished'
-                  });
-              }
+      const updatedDuel = getDuel(duel.id);
+      if(updatedDuel) {
+          const playerIndex = updatedDuel.players.findIndex(p => p.id === localPlayer.id);
+          updatedDuel.players[playerIndex] = updatedPlayerState;
+          saveDuel(updatedDuel);
+      }
+      
+      if (currentQuestionIndex < duel.questions.length - 1) {
+          setCurrentQuestionIndex(currentQuestionIndex + 1);
+          setSelectedOption(null);
+      } else {
+          // Quiz finished for this player
+          const finalDuel = getDuel(duel.id)!;
+          if(finalDuel.players.every(p => Object.keys(p.answers).length === duel.questions.length)){
+              finalDuel.status = 'finished';
+              saveDuel(finalDuel);
           }
       }
+    };
+    
+    const hasAnsweredAll = Object.keys(myPlayerState.answers).length === duel.questions.length;
+    const opponent = duel.players.find(p => p.id !== localPlayer.id);
 
-    } catch (e) {
-      console.error("Error submitting answer: ", e);
-      toast({ variant: 'destructive', title: 'Failed to submit answer.' });
-    } finally {
-        setSelectedOption(null);
-        setStartTime(Date.now());
-    }
-  };
-  
-  const hasAnswered = playerState?.answers[question.id] !== undefined;
-
-  return (
-    <div className="space-y-4">
-        <Card>
-            <CardHeader>
-                <CardDescription>Question {currentQIndex + 1} of {duel.questions.length}</CardDescription>
-                <CardTitle>{question.question}</CardTitle>
-            </CardHeader>
-            <CardContent>
-                <RadioGroup
-                    value={selectedOption?.toString()}
-                    onValueChange={(value) => setSelectedOption(parseInt(value))}
-                    disabled={hasAnswered}
-                    className="space-y-2"
-                >
-                    {question.options.map((option, index) => (
-                        <div key={index} className="flex items-center space-x-2">
-                        <RadioGroupItem value={index.toString()} id={`q-${index}`} />
-                        <Label htmlFor={`q-${index}`} className="cursor-pointer">
-                            {option}
-                        </Label>
-                        </div>
-                    ))}
-                </RadioGroup>
-            </CardContent>
-        </Card>
-        {hasAnswered ? (
+    if (hasAnsweredAll) {
+         return (
             <div className="text-center p-4 rounded-md bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300 flex items-center justify-center gap-2">
-                <Hourglass/> Waiting for opponent...
+                <Hourglass/> Quiz finished! Waiting for {opponent?.name || 'opponent'} to finish...
             </div>
-        ) : (
-            <Button onClick={handleAnswer} disabled={selectedOption === null} className="w-full">
-                Submit Answer
-            </Button>
-        )}
-    </div>
-  );
-};
+         )
+    }
+  
+    return (
+      <div className="space-y-4">
+          <div className="flex justify-around text-center">
+              <div><p className="font-bold">{myPlayerState.name} (You)</p><p>Score: {myPlayerState.score}</p></div>
+              {opponent && <div><p className="font-bold">{opponent.name}</p><p>Score: {opponent.score}</p></div>}
+          </div>
+          <Card>
+              <CardHeader>
+                  <CardDescription>Question {currentQuestionIndex + 1} of {duel.questions.length}</CardDescription>
+                  <CardTitle>{question.question}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                  <RadioGroup
+                      value={selectedOption?.toString()}
+                      onValueChange={(value) => setSelectedOption(parseInt(value))}
+                      className="space-y-2"
+                  >
+                      {question.options.map((option, index) => (
+                          <div key={index} className="flex items-center space-x-2">
+                          <RadioGroupItem value={index.toString()} id={`q-${index}`} />
+                          <Label htmlFor={`q-${index}`} className="cursor-pointer">
+                              {option}
+                          </Label>
+                          </div>
+                      ))}
+                  </RadioGroup>
+              </CardContent>
+          </Card>
+          <Button onClick={handleAnswer} disabled={selectedOption === null} className="w-full">
+              Submit Answer
+          </Button>
+      </div>
+    );
+  };
 
 
-const DuelResults = ({ duel }: { duel: Duel }) => {
-    const { user } = useAuth();
-    if(!user) return null;
-
-    const players = Object.values(duel.players);
-    const winner = players.reduce((prev, current) => {
-        if (current.score > prev.score) return current;
-        if (current.score === prev.score && current.time < prev.time) return current;
-        return prev;
-    });
-
-    const isWinner = winner.id === user.uid;
+const DuelResults = ({ duel, localPlayer }: { duel: Duel, localPlayer: Player }) => {
+    const players = duel.players;
+    const winner = players.reduce((prev, current) => (current.score > prev.score) ? current : prev);
+    const isWinner = winner.id === localPlayer.id;
 
     return (
         <Card className="text-center">
@@ -329,9 +328,8 @@ const DuelResults = ({ duel }: { duel: Duel }) => {
             <CardContent className="space-y-4">
                 {players.map(p => (
                     <div key={p.id} className={cn("p-4 rounded-lg border", p.id === winner.id ? "bg-green-100 dark:bg-green-900/30 border-green-500" : "bg-muted")}>
-                        <h3 className="font-bold">{p.name}</h3>
+                        <h3 className="font-bold">{p.name} {p.id === localPlayer.id && '(You)'}</h3>
                         <p>Score: {p.score}</p>
-                        <p>Total Time: {(p.time / 1000).toFixed(2)}s</p>
                     </div>
                 ))}
                  <Button onClick={() => window.location.href = '/duel'}>Play Again</Button>

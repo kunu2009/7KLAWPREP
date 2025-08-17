@@ -3,7 +3,6 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { ProgressProvider } from '@/context/progress-context';
 import { ThemeProvider } from '@/components/theme-provider';
-import { AuthProvider } from '@/context/auth-context';
 
 export const metadata: Metadata = {
   title: 'LawPrep Sprint',
@@ -32,12 +31,10 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <AuthProvider>
             <ProgressProvider>
               {children}
               <Toaster />
             </ProgressProvider>
-          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

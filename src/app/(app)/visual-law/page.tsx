@@ -10,8 +10,6 @@ import { generateVisualLaw } from '@/ai/flows/generate-visual-law';
 import { useToast } from '@/hooks/use-toast';
 import { revisionTopics } from '@/lib/data';
 import { Loader2, Projector, Wand2 } from 'lucide-react';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '@/lib/firebase-config';
 
 interface GeneratedVisual {
   description: string;
@@ -36,16 +34,6 @@ export default function VisualLawPage() {
     setGeneratedVisual(null);
     startTransition(async () => {
       try {
-        // First, check if a visual already exists in Firestore
-        const visualLawDocRef = doc(db, 'visualLaw', selectedTopic);
-        const docSnap = await getDoc(visualLawDocRef);
-
-        if (docSnap.exists() && docSnap.data().imageUrl) {
-           setGeneratedVisual(docSnap.data() as GeneratedVisual);
-           return;
-        }
-
-        // If not, generate a new one
         const response = await generateVisualLaw({ topic: selectedTopic });
         if (response && response.imageUrl && response.description) {
           setGeneratedVisual(response);
@@ -57,7 +45,7 @@ export default function VisualLawPage() {
         toast({
           variant: 'destructive',
           title: 'An error occurred',
-          description: 'Failed to generate or fetch visual guide. Please try again.',
+          description: 'Failed to generate visual guide. Please try again.',
         });
       }
     });
@@ -138,4 +126,3 @@ export default function VisualLawPage() {
     </div>
   );
 }
-
