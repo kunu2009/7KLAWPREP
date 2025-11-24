@@ -1,10 +1,12 @@
 
 "use client";
 
-import { useState, useEffect } from 'react';
+import Link from "next/link";
+import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { mcqs, flashcards, notes } from '@/lib/data';
-import { Database, FileText, Layers3, Server } from 'lucide-react';
+import { mcqs, flashcards, notes, reels } from '@/lib/data';
+import { Database, FileText, Layers3, PlaySquare, Server } from 'lucide-react';
+import { useFeatureToggles, SectionToggleKey } from '@/context/feature-toggles';
 
 const StatCard = ({ title, value, icon: Icon, unit, description }: { title: string, value: string | number, icon: React.ElementType, unit?: string, description?: string }) => (
     <Card>
@@ -23,6 +25,7 @@ const StatCard = ({ title, value, icon: Icon, unit, description }: { title: stri
 
 export default function DashboardPage() {
     const [dataSize, setDataSize] = useState(0);
+    const { sections, sectionOrder, zenMode } = useFeatureToggles();
 
     useEffect(() => {
         // This calculation runs only on the client-side to avoid server/client mismatch
@@ -33,19 +36,53 @@ export default function DashboardPage() {
 
     const formattedSize = (dataSize / 1024).toFixed(2); // Convert to KB
 
+    const statConfigs: Array<{ key: SectionToggleKey; title: string; value: number; unit: string; description: string; icon: React.ElementType; }> = useMemo(() => ([
+        { key: 'mcqs', title: 'Total MCQs', value: mcqs.length, unit: 'questions', description: 'Across all topics', icon: Database },
+        { key: 'flashcards', title: 'Total Flashcards', value: flashcards.length, unit: 'cards', description: 'For quick revision', icon: Layers3 },
+        { key: 'notes', title: 'Note Topics', value: notes.length, unit: 'subjects', description: 'Covering key areas', icon: FileText },
+        { key: 'reels', title: 'Legal Reels', value: reels.length, unit: 'shorts', description: 'Bite-sized explainers', icon: PlaySquare },
+    ]), []);
+
+    const visibleStats = useMemo(() => {
+        return sectionOrder
+            .map(key => statConfigs.find(stat => stat.key === key))
+            .filter((stat): stat is NonNullable<typeof stat> => !!stat && sections[stat.key]);
+    }, [sectionOrder, sections, statConfigs]);
+
     return (
         <div className="space-y-6">
             <div>
                 <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
                 <p className="text-muted-foreground">An overview of your study materials.</p>
             </div>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <StatCard title="Total MCQs" value={mcqs.length} icon={Database} unit="questions" description="Across all topics" />
-                <StatCard title="Total Flashcards" value={flashcards.length} icon={Layers3} unit="cards" description="For quick revision" />
-                <StatCard title="Note Topics" value={notes.length} icon={FileText} unit="subjects" description="Covering key areas" />
-                <StatCard title="Approx. Data Size" value={formattedSize} icon={Server} unit="KB" description="Loaded on client" />
-            </div>
-             <Card>
+            {visibleStats.length ? (
+                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                    {visibleStats.map((stat) => (
+                        <StatCard
+                            key={stat.key}
+                            title={stat.title}
+                            value={zenMode ? "---" : stat.value}
+                            icon={stat.icon}
+                            unit={stat.unit}
+                            description={stat.description}
+                        />
+                    ))}
+                    <StatCard title="Approx. Data Size" value={formattedSize} icon={Server} unit="KB" description="Loaded on client" />
+                </div>
+            ) : (
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Nothing to display</CardTitle>
+                        <CardDescription>All dashboard sections are hidden. Re-enable the ones you need from Settings.</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        <Link href="/settings" className="text-sm font-semibold text-primary underline-offset-4 hover:underline">
+                            Open Settings
+                        </Link>
+                    </CardContent>
+                </Card>
+            )}
+            <Card>
                 <CardHeader>
                     <CardTitle>Content Breakdown</CardTitle>
                     <CardDescription>
@@ -60,6 +97,9 @@ export default function DashboardPage() {
                     </ul>
                     <p className="text-sm text-muted-foreground mt-4">
                         The total size of this data loaded in your browser is approximately <span className="font-semibold text-foreground">{formattedSize} KB</span>.
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-2">
+                        Customize this dashboard from the <Link href="/settings" className="font-medium text-foreground underline-offset-2 hover:underline">Settings</Link> page if you prefer a lighter view.
                     </p>
                 </CardContent>
             </Card>
