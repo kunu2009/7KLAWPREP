@@ -14,8 +14,8 @@ const PROFILE_KEY = "lawprep-profile";
 const defaultSections: SectionMap = {
   mcqs: true,
   flashcards: false,
-  notes: true,
-  reels: true,
+  notes: false, // User requested minimal defaults
+  reels: false, // User requested minimal defaults
 };
 
 const defaultOrder: SectionToggleKey[] = ["mcqs", "notes", "reels", "flashcards"];
