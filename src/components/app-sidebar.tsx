@@ -31,7 +31,8 @@ import {
   Smile,
   Gavel,
   TrendingUp,
-  SmilePlus
+  SmilePlus,
+  Settings
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -59,7 +60,6 @@ const aiTools = [
   { href: "/courtroom-sim", label: "Courtroom Sim", icon: Gavel },
 ];
 
-
 export function AppSidebar() {
   const pathname = usePathname();
   const { toggleSidebar } = useSidebar();
@@ -79,36 +79,46 @@ export function AppSidebar() {
     <>
       <SidebarHeader>
         <div className="flex items-center gap-2 p-2">
-            <Scale className="size-6 text-primary" />
-            <h1 className="text-lg font-semibold group-data-[collapsible=icon]:hidden">LawPrep Sprint</h1>
+          <Scale className="size-6 text-primary" />
+          <h1 className="text-lg font-semibold group-data-[collapsible=icon]:hidden">LawPrep Sprint</h1>
         </div>
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
           {renderMenuItems(menuItems)}
         </SidebarMenu>
-        
+
         <SidebarMenu>
-            <h3 className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">New Features</h3>
-            {renderMenuItems(newFeatures)}
+          <h3 className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">New Features</h3>
+          {renderMenuItems(newFeatures)}
         </SidebarMenu>
 
         <SidebarMenu>
-            <h3 className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">AI Tools</h3>
-            {renderMenuItems(aiTools)}
+          <h3 className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">AI Tools</h3>
+          {renderMenuItems(aiTools)}
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter className="mt-auto flex flex-col items-center gap-2 p-2">
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <SidebarMenuButton asChild isActive={pathname === "/settings"} tooltip={{ children: "Settings", side: "right" }}>
+              <Link href="/settings">
+                <Settings />
+                <span className="group-data-[collapsible=icon]:hidden">Settings</span>
+              </Link>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
         <ThemeToggle />
-         <div className="w-full group-data-[collapsible=icon]:hidden">
-            <SidebarMenu>
-                <SidebarMenuItem>
-                    <SidebarMenuButton onClick={toggleSidebar} className="w-full">
-                        <PanelLeft />
-                        <span>Collapse</span>
-                    </SidebarMenuButton>
-                </SidebarMenuItem>
-            </SidebarMenu>
+        <div className="w-full group-data-[collapsible=icon]:hidden">
+          <SidebarMenu>
+            <SidebarMenuItem>
+              <SidebarMenuButton onClick={toggleSidebar} className="w-full">
+                <PanelLeft />
+                <span>Collapse</span>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          </SidebarMenu>
         </div>
       </SidebarFooter>
     </>
