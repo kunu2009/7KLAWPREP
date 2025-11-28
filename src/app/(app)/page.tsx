@@ -9,6 +9,8 @@ import { mcqs, flashcards, notes, reels } from '@/lib/data';
 import { Database, FileText, Layers3, PlaySquare, Server, Flame, Trophy, ArrowRight, Sparkles, Target, Zap, BookOpen } from 'lucide-react';
 import { useFeatureToggles, SectionToggleKey } from '@/context/feature-toggles';
 import { useProgress } from '@/hooks/use-progress';
+import { useRevisionMode } from '@/context/revision-mode-context';
+import RevisionDashboard from '@/components/revision-dashboard';
 
 const motivationalQuotes = [
   { quote: "The law is reason, free from passion.", author: "Aristotle" },
@@ -40,6 +42,7 @@ export default function DashboardPage() {
     const [quote, setQuote] = useState(motivationalQuotes[0]);
     const { sections, sectionOrder, zenMode } = useFeatureToggles();
     const { currentStreak, longestStreak, attempted, correct, isClient } = useProgress();
+    const { isRevisionMode } = useRevisionMode();
 
     useEffect(() => {
         // This calculation runs only on the client-side to avoid server/client mismatch
@@ -50,6 +53,11 @@ export default function DashboardPage() {
         // Random quote on load
         setQuote(motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)]);
     }, []);
+
+    // Show Revision Dashboard when revision mode is active
+    if (isRevisionMode) {
+        return <RevisionDashboard />;
+    }
 
     const formattedSize = (dataSize / 1024).toFixed(2); // Convert to KB
     const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
