@@ -40,9 +40,14 @@ const StatCard = ({ title, value, icon: Icon, unit, description }: { title: stri
 export default function DashboardPage() {
     const [dataSize, setDataSize] = useState(0);
     const [quote, setQuote] = useState(motivationalQuotes[0]);
+    const [mounted, setMounted] = useState(false);
     const { sections, sectionOrder, zenMode } = useFeatureToggles();
     const { currentStreak, longestStreak, attempted, correct, isClient } = useProgress();
     const { isRevisionMode } = useRevisionMode();
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
 
     useEffect(() => {
         // This calculation runs only on the client-side to avoid server/client mismatch
@@ -54,8 +59,8 @@ export default function DashboardPage() {
         setQuote(motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)]);
     }, []);
 
-    // Show Revision Dashboard when revision mode is active
-    if (isRevisionMode) {
+    // Show Revision Dashboard when revision mode is active (only after mounted)
+    if (mounted && isRevisionMode) {
         return <RevisionDashboard />;
     }
 

@@ -3,8 +3,8 @@
 import React, { createContext, useContext, useState, useEffect, useMemo, ReactNode } from 'react';
 import { differenceInDays, differenceInHours, differenceInMinutes, differenceInSeconds } from 'date-fns';
 
-// CLAT 2025 Exam Date - December 1, 2025 at 2:00 PM IST
-const CLAT_EXAM_DATE = new Date('2025-12-01T14:00:00+05:30');
+// CLAT 2026 Exam Date - December 7, 2025 at 2:00 PM IST
+const CLAT_EXAM_DATE = new Date('2025-12-07T14:00:00+05:30');
 
 interface TimeRemaining {
   days: number;
