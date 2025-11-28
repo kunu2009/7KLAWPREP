@@ -27,7 +27,7 @@ export function McqCard({ mcq, questionNumber }: McqCardProps) {
     if (selectedOption === null) return;
     const isCorrect = selectedOption === mcq.correctAnswerIndex;
     if (!hasBeenAnswered) {
-      recordAnswer(mcq.id, isCorrect);
+      recordAnswer(mcq.id, isCorrect, mcq.topic);
     }
     setIsRevealed(true);
   };

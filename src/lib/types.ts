@@ -21,10 +21,21 @@ export interface StudyEvent {
   description: string;
 }
 
+export interface TopicProgress {
+  attempted: number;
+  correct: number;
+}
+
 export interface ProgressState {
   attempted: number;
   correct: number;
   history: { [mcqId: string]: 'correct' | 'incorrect' };
+  // Streak tracking
+  currentStreak: number;
+  longestStreak: number;
+  lastStudyDate: string | null;
+  // Topic-wise breakdown (Error DNA / Weakness Heatmap)
+  topicProgress: { [topic: string]: TopicProgress };
 }
 
 export interface Flashcard {
