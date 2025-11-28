@@ -32,12 +32,12 @@ const typeColors = {
 };
 
 const quickActions = [
+  { href: '/mock-test', icon: FileText, label: '🔥 Mock Test', color: 'text-red-500', highlight: true },
   { href: '/mcqs', icon: Target, label: 'Quick MCQs', color: 'text-blue-500' },
   { href: '/flashcards', icon: Layers3, label: 'Flashcards', color: 'text-green-500' },
   { href: '/notes', icon: BookOpen, label: 'Notes', color: 'text-purple-500' },
   { href: '/reels', icon: PlaySquare, label: 'Legal Reels', color: 'text-orange-500' },
   { href: '/assistant', icon: Brain, label: 'AI Doubt Solver', color: 'text-pink-500' },
-  { href: '/summarizer', icon: FileText, label: 'Summarizer', color: 'text-cyan-500' },
 ];
 
 export default function RevisionDashboard() {
@@ -198,13 +198,13 @@ export default function RevisionDashboard() {
                 {quickActions.map((action) => (
                   <Button
                     key={action.href}
-                    variant="outline"
+                    variant={action.highlight ? "default" : "outline"}
                     size="sm"
                     asChild
-                    className="h-auto py-3 flex-col gap-1"
+                    className={`h-auto py-3 flex-col gap-1 ${action.highlight ? 'bg-red-500 hover:bg-red-600 text-white col-span-2' : ''}`}
                   >
                     <Link href={action.href}>
-                      <action.icon className={`h-4 w-4 ${action.color}`} />
+                      <action.icon className={`h-4 w-4 ${action.highlight ? 'text-white' : action.color}`} />
                       <span className="text-xs">{action.label}</span>
                     </Link>
                   </Button>
