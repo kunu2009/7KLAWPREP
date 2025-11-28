@@ -59,11 +59,6 @@ export default function DashboardPage() {
         setQuote(motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)]);
     }, []);
 
-    // Show Revision Dashboard when revision mode is active (only after mounted)
-    if (mounted && isRevisionMode) {
-        return <RevisionDashboard />;
-    }
-
     const formattedSize = (dataSize / 1024).toFixed(2); // Convert to KB
     const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
 
@@ -79,6 +74,11 @@ export default function DashboardPage() {
             .map(key => statConfigs.find(stat => stat.key === key))
             .filter((stat): stat is NonNullable<typeof stat> => !!stat && sections[stat.key]);
     }, [sectionOrder, sections, statConfigs]);
+
+    // Show Revision Dashboard when revision mode is active (AFTER all hooks are called)
+    if (mounted && isRevisionMode) {
+        return <RevisionDashboard />;
+    }
 
     return (
         <div className="space-y-6">
