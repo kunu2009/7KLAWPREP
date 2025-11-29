@@ -309,5 +309,459 @@ This document is important for CLAT-level analysis of constitutional amendment p
       'Law Commission opinion (Oct 2025)',
       'Parliamentary debates and commentary'
     ]
+  },
+
+  // ⚖️ Important Supreme Court Judgments 2024-25
+  {
+    id: 'sc-electoral-bonds',
+    title: 'Electoral Bonds Scheme Struck Down as Unconstitutional',
+    date: '2024-02-15',
+    summary: 'The Supreme Court declared the Electoral Bonds scheme unconstitutional, holding that it violated the right to information and undermined transparency in political funding.',
+    article: `In a landmark judgment delivered in February 2024, a five-judge Constitution Bench of the Supreme Court struck down the Electoral Bonds scheme introduced in 2018. The Court held that the scheme violated Article 19(1)(a) - the right to information - by allowing anonymous donations to political parties.
+
+The majority opinion emphasized that transparency in electoral funding is essential for a functioning democracy. The Court rejected the government argument that donor anonymity was necessary to protect contributors from political victimization.
+
+The judgment directed the State Bank of India to stop issuing bonds and furnish complete details of all bonds purchased and redeemed to the Election Commission of India.
+
+Key legal principles established include: Right to information about political funding is a fundamental right under Article 19(1)(a); Anonymity in political donations is antithetical to democratic transparency; The 2017 amendments to the Companies Act removing the cap on corporate donations were also struck down.`,
+    relevance: [
+      'Fundamental Rights - Article 19(1)(a) interpretation',
+      'Electoral law and political party funding',
+      'Proportionality doctrine in constitutional adjudication',
+      'Role of transparency in democracy',
+    ],
+    sources: [
+      'Association for Democratic Reforms v. Union of India (2024)',
+      'Supreme Court of India judgment'
+    ]
+  },
+  {
+    id: 'sc-article-370',
+    title: 'Article 370 Abrogation Upheld by Supreme Court',
+    date: '2023-12-11',
+    summary: 'The Supreme Court upheld the constitutional validity of the 2019 abrogation of Article 370, which granted special status to Jammu and Kashmir, while directing restoration of statehood.',
+    article: `In December 2023, a five-judge Constitution Bench unanimously upheld the abrogation of Article 370, which had granted special autonomous status to Jammu and Kashmir since 1950. The Court held that Article 370 was always intended to be a temporary provision and that the President had the power to declare it inoperative.
+
+The Court upheld the President power under Article 370(3) to declare the article inoperative, even when the Constituent Assembly of J&K no longer existed. The bifurcation of the state into two Union Territories was upheld, though the Court directed that statehood be restored to Jammu and Kashmir at the earliest.
+
+The Court also directed that elections to the J&K Legislative Assembly be held by September 30, 2024. The judgment has significant implications for federalism, the scope of Article 370, and the powers of Parliament to reorganize states.`,
+    relevance: [
+      'Constitutional law - federal structure',
+      'Presidential powers and Article 370',
+      'State reorganization under Article 3',
+      'Historical context of J&K accession',
+    ],
+    sources: [
+      'In Re: Article 370 of the Constitution (2023)',
+      'Supreme Court Constitution Bench'
+    ]
+  },
+  {
+    id: 'sc-sc-st-subclassification',
+    title: 'Sub-classification Within SC/ST Reservations Permitted',
+    date: '2024-08-01',
+    summary: 'A seven-judge Constitution Bench ruled that states can sub-classify Scheduled Castes and Scheduled Tribes for more equitable distribution of reservation benefits.',
+    article: `In August 2024, a seven-judge Constitution Bench of the Supreme Court, by a 6:1 majority, held that states have the power to sub-classify Scheduled Castes and Scheduled Tribes to ensure that the benefits of reservation reach the most marginalized within these categories.
+
+The judgment overruled the 2004 decision in E.V. Chinnaiah v. State of Andhra Pradesh, which had held that the SC/ST lists prepared under Articles 341 and 342 constitute homogeneous classes that cannot be sub-divided by states.
+
+Key holdings include: Sub-classification is permissible - States can identify the more backward among SCs/STs and provide them preferential treatment within the reservation quota. Any sub-classification must be based on quantifiable data demonstrating that certain sub-groups are more backward. Sub-classification does not amount to disturbing the Presidential lists of SCs/STs.`,
+    relevance: [
+      'Reservation policy and Articles 15, 16',
+      'Articles 341 and 342 - SC/ST lists',
+      'Federalism and state powers',
+      'Substantive equality doctrine',
+    ],
+    sources: [
+      'State of Punjab v. Davinder Singh (2024)',
+      'Supreme Court seven-judge bench'
+    ]
+  },
+  {
+    id: 'sc-same-sex-marriage',
+    title: 'Same-Sex Marriage: Not a Fundamental Right, But Civil Unions Recognized',
+    date: '2023-10-17',
+    summary: 'The Supreme Court declined to legalize same-sex marriage but recognized the rights of queer couples to cohabit, access joint bank accounts, and be free from discrimination.',
+    article: `In October 2023, a five-judge Constitution Bench delivered a nuanced verdict on petitions seeking legal recognition for same-sex marriages. While the Court declined to read a right to marry into the Constitution for same-sex couples, it made significant observations protecting LGBTQ+ rights.
+
+The Court held 3:2 that there is no fundamental right to marry under the Constitution. Marriage is a statutory institution regulated by personal laws. However, all five judges agreed that queer couples have the right to cohabit and that the state cannot discriminate against them.
+
+The Court directed the government to establish a committee to examine extending certain benefits to queer couples - such as joint bank accounts, nomination rights, and medical decision-making authority. The judgment leaves the door open for legislative action while providing interim protections.`,
+    relevance: [
+      'Article 14 and 21 - equality and dignity',
+      'Personal laws vs. fundamental rights',
+      'Judicial restraint vs. activism debate',
+      'LGBTQ+ rights jurisprudence',
+    ],
+    sources: [
+      'Supriyo v. Union of India (2023)',
+      'Supreme Court Constitution Bench'
+    ]
+  },
+  {
+    id: 'sc-article-39b-property',
+    title: 'Private Property Can Be Material Resources Under Article 39(b)',
+    date: '2024-11-05',
+    summary: 'A nine-judge bench ruled that private property can be considered material resources of the community under Article 39(b), enabling state acquisition for public distribution.',
+    article: `In November 2024, a nine-judge Constitution Bench addressed whether material resources of the community in Article 39(b) includes privately owned property. By an 8:1 majority, the Court held that it does, but with important qualifications.
+
+Article 39(b), a Directive Principle, mandates that the ownership and control of the material resources of the community are so distributed as best to subserve the common good.
+
+Key holdings: Private property is included - The Court overruled the narrow interpretation and held that private resources can be material resources of the community if they are essential for community welfare. However, this is not automatic acquisition - The state must demonstrate that the resource is material to community welfare, redistribution serves the common good, and acquisition follows due process with fair compensation.`,
+    relevance: [
+      'Directive Principles and Fundamental Rights',
+      'Property rights post-44th Amendment',
+      'Land acquisition law',
+      'Socialist principles in the Constitution',
+    ],
+    sources: [
+      'Property Owners Association v. State of Maharashtra (2024)',
+      'Supreme Court nine-judge bench'
+    ]
+  },
+
+  // 🏆 Awards & Appointments
+  {
+    id: 'award-cji-khanna',
+    title: 'Justice Sanjiv Khanna Appointed 51st Chief Justice of India',
+    date: '2024-11-11',
+    summary: 'Justice Sanjiv Khanna was sworn in as the 51st Chief Justice of India, succeeding Justice D.Y. Chandrachud, with a tenure until May 2025.',
+    article: `Justice Sanjiv Khanna was sworn in as the 51st Chief Justice of India on November 11, 2024, following the retirement of Justice D.Y. Chandrachud. His tenure will last until May 13, 2025.
+
+Justice Khanna was born on May 14, 1960, and enrolled as an advocate in 1983. He practiced primarily in the Delhi High Court, handling civil, criminal, revenue, and constitutional matters. He was appointed as an Additional Judge of the Delhi High Court in 2005 and became a permanent judge in 2006. He was elevated to the Supreme Court on January 18, 2019.
+
+Notable Judgments include: Electoral Bonds case (2024) - part of the unanimous bench striking down the scheme; Article 370 case (2023) - upheld the abrogation; EVM-VVPAT verification case - authored the judgment declining 100% verification.`,
+    relevance: [
+      'Judicial appointments and collegium system',
+      'Supreme Court functioning',
+      'Constitutional courts - structure and leadership',
+    ],
+    sources: [
+      'Supreme Court of India official records',
+      'Government notification (Nov 2024)'
+    ]
+  },
+  {
+    id: 'award-nobel-peace-2024',
+    title: 'Nobel Peace Prize 2024: Nihon Hidankyo (Japanese Atomic Bomb Survivors)',
+    date: '2024-10-11',
+    summary: 'The 2024 Nobel Peace Prize was awarded to Nihon Hidankyo, the Japanese organization of atomic bomb survivors (Hibakusha), for their efforts toward nuclear disarmament.',
+    article: `The Norwegian Nobel Committee awarded the 2024 Nobel Peace Prize to Nihon Hidankyo, the Japan Confederation of A- and H-Bomb Sufferers Organizations, recognizing decades of advocacy by atomic bomb survivors (Hibakusha) for nuclear disarmament.
+
+Founded in 1956, Nihon Hidankyo unites survivors of the Hiroshima and Nagasaki atomic bombings of August 1945. The organization has worked tirelessly to share testimonies of nuclear devastation, advocate for support for survivors, and campaign for the abolition of nuclear weapons worldwide.
+
+The Committee highlighted that Hibakusha testimony has been instrumental in establishing a nuclear taboo - the norm against nuclear weapon use that has held since 1945. Their personal accounts of suffering have shaped global public opinion and influenced international treaties, including the Treaty on the Prohibition of Nuclear Weapons (TPNW, 2017).`,
+    relevance: [
+      'International humanitarian law',
+      'Nuclear non-proliferation treaties',
+      'Human rights advocacy and civil society',
+      'International organizations and norm-building',
+    ],
+    sources: [
+      'Nobel Prize official announcement (Oct 2024)',
+      'Nihon Hidankyo official records'
+    ]
+  },
+  {
+    id: 'award-nobel-literature-2024',
+    title: 'Nobel Prize in Literature 2024: Han Kang (South Korea)',
+    date: '2024-10-10',
+    summary: 'South Korean author Han Kang became the first Korean and first Asian woman to win the Nobel Prize in Literature, honored for her intense poetic prose.',
+    article: `The Swedish Academy awarded the 2024 Nobel Prize in Literature to Han Kang, the acclaimed South Korean author, for her intense poetic prose that confronts historical traumas and exposes the fragility of human life.
+
+Born in 1970 in Gwangju, South Korea, Han Kang is the daughter of novelist Han Seung-won. She studied Korean literature at Yonsei University and began her literary career in 1993. Her breakthrough international success came with The Vegetarian (2007), which won the Man Booker International Prize in 2016.
+
+Major Works include: The Vegetarian - explores a woman radical rejection of violence through vegetarianism; Human Acts - a searing account of the 1980 Gwangju Uprising massacre; The White Book - a meditation on grief and loss. Han Kang is the first Korean laureate and only the 18th woman to receive the Literature Nobel.`,
+    relevance: [
+      'Cultural affairs and literary recognition',
+      'Korean history - Gwangju Uprising context',
+      'General awareness for CLAT',
+    ],
+    sources: [
+      'Nobel Prize official announcement (Oct 2024)',
+      'Swedish Academy citation'
+    ]
+  },
+  {
+    id: 'award-bharat-ratna-2024',
+    title: 'Bharat Ratna 2024: Five Recipients Including LK Advani',
+    date: '2024-02-09',
+    summary: 'Five leaders received Bharat Ratna in 2024: LK Advani, Karpoori Thakur, PV Narasimha Rao, Chaudhary Charan Singh, and MS Swaminathan (four posthumously).',
+    article: `In February 2024, the Government of India announced Bharat Ratna, the nation highest civilian honor, for five distinguished leaders - the largest cohort in a single year since 1999.
+
+Recipients: Lal Krishna Advani (b. 1927) - veteran BJP leader and former Deputy Prime Minister; Karpoori Thakur (1924-1988, posthumous) - former CM of Bihar, known as Jan Nayak for championing OBC rights; PV Narasimha Rao (1921-2004, posthumous) - former PM who spearheaded the 1991 economic liberalization; Chaudhary Charan Singh (1902-1987, posthumous) - farmer leader and former PM who advocated agrarian reforms; MS Swaminathan (1925-2023, posthumous) - Father of India Green Revolution.
+
+Constitutional Basis: Bharat Ratna is governed by Article 18(1), which permits the state to confer awards for military or academic distinction.`,
+    relevance: [
+      'National honors and constitutional provisions',
+      'Modern Indian political history',
+      'Economic liberalization history',
+      'Agricultural policy and Green Revolution',
+    ],
+    sources: [
+      'Government of India Gazette notifications (Feb 2024)',
+      'Press Information Bureau'
+    ]
+  },
+
+  // 🌍 International Events
+  {
+    id: 'intl-paris-olympics-2024',
+    title: 'Paris Olympics 2024: India Wins 6 Medals',
+    date: '2024-08-11',
+    summary: 'India achieved its best-ever Olympic performance with 6 medals at Paris 2024, including historic achievements in shooting and wrestling.',
+    article: `The Paris 2024 Summer Olympics (July 26 - August 11) marked India most successful Olympic campaign, with athletes winning six medals across multiple disciplines.
+
+Medal Winners: Manu Bhaker - Bronze (Shooting, 10m Air Pistol Women) - historic first, ended India 12-year shooting medal drought; Manu Bhaker & Sarabjot Singh - Bronze (Shooting, 10m Air Pistol Mixed Team) - Bhaker became the first Indian to win two medals in a single Olympic edition since 1900; Swapnil Kusale - Bronze (Shooting, 50m Rifle 3 Positions Men); Neeraj Chopra - Silver (Athletics, Javelin Throw) - defending champion settled for silver with 89.45m; Aman Sehrawat - Bronze (Wrestling, 57kg Freestyle Men) - at 21, became the youngest Indian Olympic wrestling medalist; Indian Hockey Team - Bronze (Men Hockey) - back-to-back Olympic bronze after Tokyo 2020.`,
+    relevance: [
+      'Sports achievements and national developments',
+      'General knowledge for competitive exams',
+    ],
+    sources: [
+      'International Olympic Committee records',
+      'Indian Olympic Association'
+    ]
+  },
+  {
+    id: 'intl-g20-rio-2024',
+    title: 'G20 Summit 2024: Rio de Janeiro, Brazil',
+    date: '2024-11-18',
+    summary: 'Brazil hosted the G20 Summit in Rio de Janeiro with focus on fighting hunger, sustainable development, and global governance reform.',
+    article: `Brazil hosted the 19th G20 Leaders Summit in Rio de Janeiro on November 18-19, 2024, marking the first South American host since Argentina in 2018. President Lula da Silva prioritized fighting hunger, inequality, and climate action.
+
+Key Outcomes: Global Alliance Against Hunger and Poverty launched with initial commitments from 82 countries; Leaders endorsed discussions on international cooperation for taxing billionaires; Climate finance discussions focused on scaling climate finance for developing countries ahead of COP29; The declaration supported reform of the UN Security Council to include permanent representation for Africa and Latin America.
+
+India Role: Prime Minister Modi participated actively, highlighting India G20 presidency achievements (2023) and advocating for Global South representation. Brazil handed over the G20 presidency to South Africa for 2025 - the first African nation to host.`,
+    relevance: [
+      'International organizations and summits',
+      'Global governance and UN reform',
+      'India foreign policy engagements',
+    ],
+    sources: [
+      'G20 Brasil official communique',
+      'Ministry of External Affairs (India)'
+    ]
+  },
+  {
+    id: 'intl-cop29-baku',
+    title: 'COP29: UN Climate Summit in Baku, Azerbaijan',
+    date: '2024-11-22',
+    summary: 'COP29 in Baku focused on climate finance, with contentious negotiations over the New Collective Quantified Goal (NCQG) for funding from developed to developing nations.',
+    article: `The 29th Conference of the Parties (COP29) to the UN Framework Convention on Climate Change was held in Baku, Azerbaijan, from November 11-22, 2024. Dubbed the Finance COP, the summit centered on establishing a new climate finance goal.
+
+Key Outcomes: New Collective Quantified Goal (NCQG) - parties agreed on a new goal of 300 billion dollars annually by 2035 from developed to developing countries, up from the 100 billion dollar target set in 2009. Progress was made on operationalizing international carbon markets under Article 6. Building on COP28 breakthrough, discussions continued on operationalizing the Loss and Damage Fund.
+
+India Position: India emphasized common but differentiated responsibilities and called for developed nations to take the lead in emissions reductions while supporting developing country transitions.`,
+    relevance: [
+      'International environmental law',
+      'Paris Agreement and climate governance',
+      'India climate policy positions',
+    ],
+    sources: [
+      'UNFCCC official records',
+      'COP29 Azerbaijan presidency'
+    ]
+  },
+  {
+    id: 'intl-brics-expansion',
+    title: 'BRICS Expansion: Five New Members Join in 2024',
+    date: '2024-01-01',
+    summary: 'BRICS expanded to include Egypt, Ethiopia, Iran, Saudi Arabia, and UAE, significantly reshaping the bloc economic and geopolitical weight.',
+    article: `Effective January 1, 2024, BRICS expanded from five to ten members with the addition of Egypt, Ethiopia, Iran, Saudi Arabia, and the United Arab Emirates. The expansion was decided at the 15th BRICS Summit in Johannesburg (August 2023).
+
+New Members: Saudi Arabia - World largest oil exporter; UAE - Major trade and financial hub; Egypt - Largest Arab country by population, controls Suez Canal; Iran - Major oil reserves, geopolitically significant; Ethiopia - Fastest-growing African economy.
+
+Significance: Expanded BRICS represents approximately 46% of global population and 36% of global GDP (PPP). The bloc now includes world largest oil producers. Key initiatives include New Development Bank expansion and discussions on common currency/payment mechanisms to reduce dollar dependence.
+
+India Position: India has been cautiously supportive, seeking to balance BRICS engagement with its strategic partnerships with Western nations.`,
+    relevance: [
+      'International organizations and groupings',
+      'Global economic governance',
+      'India foreign policy - multi-alignment',
+    ],
+    sources: [
+      '15th BRICS Summit Declaration (2023)',
+      'Official announcements from member states'
+    ]
+  },
+
+  // 🚀 Science & Technology
+  {
+    id: 'scitech-chandrayaan3',
+    title: 'Chandrayaan-3: India Lands on Moon South Pole',
+    date: '2023-08-23',
+    summary: 'ISRO Chandrayaan-3 successfully soft-landed on the Moon south pole, making India the first nation to achieve this feat and only the fourth to land on the Moon.',
+    article: `On August 23, 2023, India achieved a historic milestone when Chandrayaan-3 Vikram lander successfully touched down on the Moon south polar region, making India the first country to land near the lunar south pole and the fourth nation (after the USA, USSR, and China) to successfully soft-land on the Moon.
+
+Mission Details: Launch - July 14, 2023, from Satish Dhawan Space Centre, Sriharikota; Launch Vehicle - LVM3-M4; Landing Site - 69.37 degrees S, 32.35 degrees E near Shiv Shakti Point. Components included Propulsion Module, Vikram Lander, and Pragyan Rover (26 kg, 6-wheeled rover that traveled approximately 100 meters on the lunar surface).
+
+Scientific Achievements: Confirmed presence of sulfur near south pole; Measured lunar surface temperature variations; Analyzed elemental composition of lunar soil; Detected seismic activity (moonquakes). Mission budget was approximately Rs 615 crore (around 75 million dollars).`,
+    relevance: [
+      'Science and technology achievements',
+      'Space policy and ISRO programs',
+      'National developments for current affairs',
+    ],
+    sources: [
+      'ISRO official mission updates',
+      'Government of India announcements'
+    ]
+  },
+  {
+    id: 'scitech-aditya-l1',
+    title: 'Aditya-L1: India First Solar Mission',
+    date: '2023-09-02',
+    summary: 'ISRO launched Aditya-L1, India first space-based solar observatory, to study the Sun from the Lagrange Point 1 (L1) - about 1.5 million km from Earth.',
+    article: `On September 2, 2023, ISRO launched Aditya-L1, India first dedicated solar observation mission, from Sriharikota. The spacecraft reached its destination - the Sun-Earth Lagrange Point 1 (L1) - on January 6, 2024, after a journey of about 127 days.
+
+Mission Objectives: Study solar corona, chromosphere, and photosphere; Understand coronal heating and solar wind acceleration; Observe Coronal Mass Ejections (CMEs) and solar flares; Study space weather and its effects on Earth.
+
+L1 is a point in space approximately 1.5 million km from Earth toward the Sun where gravitational forces balance, allowing a spacecraft to remain in a stable orbit with continuous solar observation without eclipses.
+
+Payloads include 7 instruments: VELC (Visible Emission Line Coronagraph), SUIT (Solar Ultraviolet Imaging Telescope), ASPEX, PAPA, SoLEXS, HEL1OS, and Magnetometer. Cost was approximately Rs 400 crore (48 million dollars).`,
+    relevance: [
+      'Space science and ISRO achievements',
+      'Science and technology current affairs',
+    ],
+    sources: [
+      'ISRO official mission page',
+      'Scientific publications'
+    ]
+  },
+  {
+    id: 'scitech-semiconductor-mission',
+    title: 'India Semiconductor Mission: Rs 76,000 Crore Investment',
+    date: '2024-02-29',
+    summary: 'India approved major semiconductor fabrication and assembly plants with Rs 76,000 crore in investments, aiming to establish domestic chip manufacturing capacity.',
+    article: `In February 2024, the Union Cabinet approved three major semiconductor projects with a total investment of approximately Rs 1.26 lakh crore, of which the government will contribute about Rs 76,000 crore through the India Semiconductor Mission (ISM).
+
+Approved Projects: Tata Electronics Fab in Dholera, Gujarat - India first semiconductor fabrication plant with Powerchip (Taiwan) partnership, investment Rs 91,000 crore, capacity 50,000 wafers per month; Tata Electronics ATMP in Morigaon, Assam - Assembly, Testing, Marking, and Packaging facility, investment Rs 27,000 crore; CG Power ATMP in Sanand, Gujarat - partnership with Renesas (Japan), investment Rs 7,600 crore.
+
+The India Semiconductor Mission, launched in 2021, offers 50% capital support for semiconductor fabs, up to 50% support for display fabs, and Design Linked Incentive (DLI) scheme for chip design. Semiconductors are critical for electronics, defense, and emerging technologies.`,
+    relevance: [
+      'Industrial policy and manufacturing',
+      'Strategic sectors and supply chains',
+      'Government schemes and incentives',
+    ],
+    sources: [
+      'Cabinet approval notification (Feb 2024)',
+      'India Semiconductor Mission website'
+    ]
+  },
+
+  // 📊 Important Reports & Indices
+  {
+    id: 'report-global-hunger-index',
+    title: 'Global Hunger Index 2024: India Ranking and Concerns',
+    date: '2024-10-10',
+    summary: 'India ranked 105th out of 127 countries in the Global Hunger Index 2024, with a serious hunger level, sparking debate over methodology and government response.',
+    article: `The Global Hunger Index (GHI) 2024, published by Concern Worldwide and Welthungerhilfe, ranked India 105th among 127 countries assessed, with a score indicating serious hunger levels.
+
+India Score Composition based on four indicators: Undernourishment - Proportion of population with insufficient caloric intake (13.7%); Child Stunting - Children under 5 with low height-for-age (31.7%); Child Wasting - Children under 5 with low weight-for-height (18.7%); Child Mortality - Under-5 mortality rate (2.9%).
+
+Key Findings: India child wasting rate (18.7%) is among the highest globally; Neighboring countries like Bangladesh (84th), Nepal (68th), and Sri Lanka (39th) ranked higher. The Indian government has consistently criticized the GHI methodology, arguing sample size is too small and government food security programs (PDS, PM-POSHAN) are not adequately considered.`,
+    relevance: [
+      'Social development indicators',
+      'Food security and nutrition policy',
+      'International rankings and reports',
+    ],
+    sources: [
+      'Global Hunger Index 2024 Report',
+      'Government of India response'
+    ]
+  },
+
+  // 🏛️ Constitutional Amendments & Laws
+  {
+    id: 'law-new-criminal-laws',
+    title: 'New Criminal Laws: BNS, BNSS, and BSA Replace Colonial Codes',
+    date: '2024-07-01',
+    summary: 'Three new criminal laws - Bharatiya Nyaya Sanhita, Bharatiya Nagarik Suraksha Sanhita, and Bharatiya Sakshya Adhiniyam - came into force, replacing the IPC, CrPC, and Evidence Act.',
+    article: `On July 1, 2024, India implemented three new criminal laws, replacing colonial-era statutes that had governed criminal justice for over 160 years:
+
+Bharatiya Nyaya Sanhita (BNS) - Replaces IPC (1860): Terrorism defined (Section 113) - First statutory definition in general criminal law; Organized Crime (Section 111) - New provisions targeting syndicates; Sedition replaced - Section 124A IPC removed, new Section 152 covers acts endangering sovereignty; Community Service introduced as punishment for minor offenses; Mob Lynching - New provision with enhanced punishment.
+
+Bharatiya Nagarik Suraksha Sanhita (BNSS) - Replaces CrPC (1973): Zero FIR mandated at any police station regardless of jurisdiction; Timelines prescribed - Maximum 90 days for investigation completion; Electronic evidence procedures for digital evidence collection; Trials in absentia permitted for proclaimed offenders; Videography mandatory for search and seizure operations.
+
+Bharatiya Sakshya Adhiniyam (BSA) - Replaces Evidence Act (1872): Electronic records treated at par with physical documents; Primary evidence - Electronic records admissible without certification in certain cases.`,
+    relevance: [
+      'Criminal law and procedure - central to CLAT',
+      'Recent legislative changes',
+      'Fundamental rights implications',
+    ],
+    sources: [
+      'Gazette of India notifications',
+      'Ministry of Home Affairs advisories'
+    ]
+  },
+  {
+    id: 'law-women-reservation',
+    title: '106th Constitutional Amendment: Women Reservation in Legislatures',
+    date: '2023-09-28',
+    summary: 'The Constitution (106th Amendment) Act reserves 33% of seats in Lok Sabha and state assemblies for women, to be implemented after delimitation post-2026 Census.',
+    article: `The Constitution (106th Amendment) Act, 2023 - also called the Nari Shakti Vandan Adhiniyam - reserves one-third of seats in the Lok Sabha and state legislative assemblies for women. The Bill was passed with near-unanimous support in both Houses in September 2023.
+
+Key Provisions: Article 330A (New) - Reserves 1/3rd seats in Lok Sabha for women; Article 332A (New) - Reserves 1/3rd seats in State Assemblies for women; Rotation - Reserved seats will rotate after each delimitation; SC/ST Quota - 1/3rd of SC/ST reserved seats will be for women from those communities; Duration - 15 years from commencement, extendable by Parliament.
+
+Implementation Timeline: The reservation will take effect only after a Census is conducted (first after 2021 - likely 2026 or later), delimitation exercise is completed, and reserved constituencies are identified. This means implementation may not occur until elections in the early 2030s.
+
+Not Covered: The amendment does not extend reservation to the Rajya Sabha or Legislative Councils.`,
+    relevance: [
+      'Constitutional amendments - procedure and substance',
+      'Reservation policy and Article 15/16',
+      'Women rights and representation',
+      'Delimitation and Census process',
+    ],
+    sources: [
+      'Constitution (106th Amendment) Act, 2023',
+      'Parliamentary proceedings'
+    ]
+  },
+  {
+    id: 'law-uttarakhand-ucc',
+    title: 'Uttarakhand Implements Uniform Civil Code (UCC) - First State',
+    date: '2024-02-07',
+    summary: 'Uttarakhand became the first state in independent India to enact a Uniform Civil Code, standardizing laws on marriage, divorce, inheritance, and live-in relationships.',
+    article: `On February 7, 2024, the Uttarakhand Legislative Assembly passed the Uniform Civil Code (UCC) Bill, making it the first state in independent India to enact comprehensive uniform laws governing personal matters across all religions.
+
+Key Provisions: Marriage - Minimum age 21 (men), 18 (women), mandatory registration within 60 days, polygamy prohibited for all communities; Divorce - Uniform grounds including cruelty, desertion, adultery, mandatory 6-month reconciliation period; Inheritance - Equal rights for sons and daughters, Class I heirs get equal shares; Live-in Relationships - Mandatory registration within 30 days, failure to register attracts up to 3 months imprisonment or Rs 25,000 fine; Adoption - Uniform adoption law for all communities.
+
+Exemptions: Scheduled Tribes (as per Article 142); Matters covered by existing central laws.
+
+Constitutional Basis: Article 44 (Directive Principle) enjoins the state to endeavour to secure a Uniform Civil Code. While not justiciable, courts have repeatedly urged implementation.`,
+    relevance: [
+      'Article 44 and Directive Principles',
+      'Personal laws vs. uniform code debate',
+      'Federal structure - state legislative powers',
+      'Fundamental rights and DPSP balance',
+    ],
+    sources: [
+      'Uttarakhand Uniform Civil Code, 2024',
+      'Legislative Assembly proceedings'
+    ]
+  },
+  {
+    id: 'law-dpdp-act',
+    title: 'Digital Personal Data Protection Act 2023',
+    date: '2023-08-11',
+    summary: 'India enacted its first comprehensive data protection law, establishing rights for data principals and obligations for data fiduciaries handling personal data.',
+    article: `The Digital Personal Data Protection Act (DPDP Act) received presidential assent on August 11, 2023, marking India first comprehensive legislation on personal data protection after years of deliberation.
+
+Key Concepts: Data Principal - Individual whose personal data is being processed; Data Fiduciary - Entity that determines purpose and means of data processing; Data Processor - Entity processing data on behalf of fiduciary; Consent Manager - Registered entity helping principals manage consent.
+
+Rights of Data Principals: Right to access information about data processing; Right to correction and erasure of personal data; Right to grievance redressal; Right to nominate another person in case of death/incapacity.
+
+Obligations of Data Fiduciaries: Process data only for lawful purposes with consent; Ensure data accuracy and security; Delete data when purpose is fulfilled; Notify breaches to the Board and affected individuals.
+
+Data Protection Board: New adjudicatory body to handle complaints; Can impose penalties up to Rs 250 crore per violation. Cross-Border Transfers are permitted to countries not blacklisted by the government.`,
+    relevance: [
+      'Right to privacy and Article 21',
+      'Technology law and regulations',
+      'Consumer rights and data protection',
+      'Compliance and corporate governance',
+    ],
+    sources: [
+      'Digital Personal Data Protection Act, 2023',
+      'Government notifications'
+    ]
   }
 ];

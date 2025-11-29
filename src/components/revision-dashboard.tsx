@@ -33,10 +33,10 @@ const typeColors = {
 
 const quickActions = [
   { href: '/mock-test', icon: FileText, label: '🔥 Mock Test', color: 'text-red-500', highlight: true },
+  { href: '/current-affairs', icon: FileText, label: '📰 Current Affairs', color: 'text-amber-500', highlight: true },
   { href: '/mcqs', icon: Target, label: 'Quick MCQs', color: 'text-blue-500' },
   { href: '/flashcards', icon: Layers3, label: 'Flashcards', color: 'text-green-500' },
   { href: '/notes', icon: BookOpen, label: 'Notes', color: 'text-purple-500' },
-  { href: '/reels', icon: PlaySquare, label: 'Legal Reels', color: 'text-orange-500' },
   { href: '/assistant', icon: Brain, label: 'AI Doubt Solver', color: 'text-pink-500' },
 ];
 
