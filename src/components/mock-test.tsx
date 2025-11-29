@@ -13,12 +13,12 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { 
   Clock, Play, Pause, CheckCircle2, XCircle, ArrowRight, ArrowLeft,
   Flag, AlertTriangle, Trophy, Target, BookOpen, RotateCcw, ChevronRight,
-  Timer, Award, TrendingUp, FileText
+  Timer, Award, TrendingUp, FileText, ListChecks
 } from 'lucide-react';
-import { clatMockTest1, MockTest, MockTestQuestion, currentAffairsCapsule } from '@/lib/mock-test-data';
+import { mockTests, MockTest, MockTestQuestion, currentAffairsCapsule } from '@/lib/mock-test-data';
 import { cn } from '@/lib/utils';
 
-type TestState = 'not-started' | 'in-progress' | 'paused' | 'completed' | 'review';
+type TestState = 'select-test' | 'not-started' | 'in-progress' | 'paused' | 'completed' | 'review';
 
 interface UserAnswer {
   questionId: string;
@@ -28,13 +28,14 @@ interface UserAnswer {
 }
 
 export default function MockTestComponent() {
-  const [testState, setTestState] = useState<TestState>('not-started');
+  const [testState, setTestState] = useState<TestState>('select-test');
+  const [selectedTestIndex, setSelectedTestIndex] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState<Map<string, UserAnswer>>(new Map());
-  const [timeRemaining, setTimeRemaining] = useState(clatMockTest1.duration * 60); // in seconds
+  const [timeRemaining, setTimeRemaining] = useState(mockTests[0].duration * 60); // in seconds
   const [activeTab, setActiveTab] = useState('mock-test');
   
-  const mockTest = clatMockTest1;
+  const mockTest = mockTests[selectedTestIndex];
   const currentQuestion = mockTest.questions[currentQuestionIndex];
 
   // Timer effect
@@ -85,6 +86,18 @@ export default function MockTestComponent() {
     setUserAnswers(new Map());
     setTimeRemaining(mockTest.duration * 60);
     setCurrentQuestionIndex(0);
+  };
+
+  const selectTest = (index: number) => {
+    setSelectedTestIndex(index);
+    setTestState('not-started');
+    setUserAnswers(new Map());
+    setTimeRemaining(mockTests[index].duration * 60);
+    setCurrentQuestionIndex(0);
+  };
+
+  const backToTestSelection = () => {
+    setTestState('select-test');
   };
 
   const selectAnswer = (optionIndex: number) => {
@@ -192,10 +205,122 @@ export default function MockTestComponent() {
     unanswered: 'bg-muted hover:bg-muted/80',
   };
 
+  // Test selection screen
+  if (testState === 'select-test') {
+    return (
+      <div className="space-y-6">
+        <Tabs value={activeTab} onValueChange={setActiveTab}>
+          <TabsList className="grid w-full grid-cols-2">
+            <TabsTrigger value="mock-test">🎯 Mock Tests</TabsTrigger>
+            <TabsTrigger value="current-affairs">📰 Current Affairs</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="mock-test" className="space-y-6">
+            <div className="text-center mb-6">
+              <h2 className="text-xl font-bold mb-2">Select a Mock Test</h2>
+              <p className="text-muted-foreground">Choose from our full-length CLAT 2025 mock tests</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              {mockTests.map((test, index) => (
+                <Card 
+                  key={test.id} 
+                  className={cn(
+                    "cursor-pointer transition-all hover:shadow-lg hover:border-primary",
+                    index === 0 ? "border-blue-500/50" : "border-green-500/50"
+                  )}
+                  onClick={() => selectTest(index)}
+                >
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center justify-between">
+                      <Badge variant={index === 0 ? "default" : "secondary"} className={index === 1 ? "bg-green-500 hover:bg-green-600" : ""}>
+                        {index === 0 ? "Mock Test 1" : "Mock Test 2 - NEW"}
+                      </Badge>
+                      <ListChecks className="h-5 w-5 text-muted-foreground" />
+                    </div>
+                    <CardTitle className="text-lg">{test.title}</CardTitle>
+                    <CardDescription className="text-sm">{test.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-4 gap-2 text-center mb-4">
+                      <div className="p-2 bg-muted rounded">
+                        <p className="font-bold text-primary">{test.totalQuestions}</p>
+                        <p className="text-xs text-muted-foreground">Qs</p>
+                      </div>
+                      <div className="p-2 bg-muted rounded">
+                        <p className="font-bold text-primary">{test.duration}</p>
+                        <p className="text-xs text-muted-foreground">Min</p>
+                      </div>
+                      <div className="p-2 bg-muted rounded">
+                        <p className="font-bold text-primary">{test.totalMarks}</p>
+                        <p className="text-xs text-muted-foreground">Marks</p>
+                      </div>
+                      <div className="p-2 bg-muted rounded">
+                        <p className="font-bold text-red-500">-{test.negativeMarking}</p>
+                        <p className="text-xs text-muted-foreground">Neg</p>
+                      </div>
+                    </div>
+                    <Button className="w-full" variant={index === 0 ? "default" : "outline"}>
+                      <Play className="h-4 w-4 mr-2" />
+                      Select This Test
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <Alert className="bg-green-50 border-green-200 dark:bg-green-950 dark:border-green-800">
+              <Trophy className="h-4 w-4 text-green-600" />
+              <AlertDescription className="text-green-700 dark:text-green-300">
+                <strong>Pro Tip:</strong> Complete both mock tests for comprehensive preparation. Each test has completely different questions!
+              </AlertDescription>
+            </Alert>
+          </TabsContent>
+
+          <TabsContent value="current-affairs" className="space-y-6">
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <FileText className="h-5 w-5 text-primary" />
+                  {currentAffairsCapsule.title}
+                </CardTitle>
+                <CardDescription>Last updated: {currentAffairsCapsule.lastUpdated}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ScrollArea className="h-[500px] pr-4">
+                  <div className="space-y-6">
+                    {currentAffairsCapsule.sections.map((section, index) => (
+                      <div key={index}>
+                        <h3 className="font-bold text-lg mb-3">{section.title}</h3>
+                        <ul className="space-y-2">
+                          {section.items.map((item, i) => (
+                            <li key={i} className="flex items-start gap-2 text-sm">
+                              <span className="text-primary mt-1">•</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </ScrollArea>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
+      </div>
+    );
+  }
+
   // Not started screen
   if (testState === 'not-started') {
     return (
       <div className="space-y-6">
+        <Button variant="ghost" size="sm" onClick={backToTestSelection} className="mb-2">
+          <ArrowLeft className="h-4 w-4 mr-2" />
+          Back to Test Selection
+        </Button>
+        
         <Tabs value={activeTab} onValueChange={setActiveTab}>
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="mock-test">🎯 Mock Test</TabsTrigger>
