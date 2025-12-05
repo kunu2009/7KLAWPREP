@@ -69,6 +69,7 @@ const newFeatures = [
 const clatTools = [
   { href: "/passage-sprint", label: "Passage Sprint", icon: Zap },
   { href: "/legal-drill", label: "Legal Drill", icon: Scale },
+  { href: "/question-types", label: "Question Types", icon: ListChecks },
   { href: "/gk-oneliners", label: "GK One-Liners", icon: Globe },
   { href: "/maxims", label: "Legal Maxims", icon: ScrollText },
   { href: "/comparisons", label: "Comparisons", icon: GitCompare },
@@ -82,6 +83,10 @@ const clatTools = [
   { href: "/lr-patterns", label: "LR Patterns", icon: Brain },
   { href: "/parajumble", label: "Parajumble", icon: Shuffle },
   { href: "/mini-test", label: "Mini Test", icon: Timer },
+  { href: "/fact-opinion", label: "Fact vs Opinion", icon: FileText },
+  { href: "/mind-maps", label: "Mind Maps", icon: Map },
+  { href: "/timeline", label: "Legal Timeline", icon: CalendarClock },
+  { href: "/bare-acts", label: "Bare Acts", icon: BookText },
 ];
 
 const aiTools = [

@@ -4,6 +4,48 @@
 
 ---
 
+## 📊 IMPLEMENTATION STATUS (Updated: December 5, 2025)
+
+### ✅ COMPLETED FEATURES (25 tools)
+| # | Feature | Route | Status |
+|---|---------|-------|--------|
+| 1.1 | Passage Sprint Trainer | `/passage-sprint` | ✅ Done |
+| 1.2 | Legal Reasoning Drill (IRAC) | `/legal-drill` | ✅ Done |
+| 1.3 | Question-Type Drills | `/question-types` | ✅ Done |
+| 1.4 | CLAT Daily 25 | `/daily-25` | ✅ Done |
+| 1.5 | Speed Reading Strip | `/speed-reading` | ✅ Done |
+| 1.6 | GK One-Liners | `/gk-oneliners` | ✅ Done |
+| 1.7 | Error Analysis Tool | `/error-log` | ✅ Done |
+| 1.8 | Vocabulary-in-Context Drill | `/vocab-context` | ✅ Done |
+| 1.9 | Logical Reasoning Pattern Bank | `/lr-patterns` | ✅ Done |
+| 1.13 | Fact vs. Opinion Sorter | `/fact-opinion` | ✅ Done |
+| 1.15 | Parajumble Trainer | `/parajumble` | ✅ Done |
+| 2.1 | Mind-Maps & Concept Maps | `/mind-maps` | ✅ Done |
+| 2.2 | Case Diary | `/case-diary` | ✅ Done |
+| 2.3 | One-Page Notes / Rapid Revision | `/quick-revision` | ✅ Done |
+| 2.4 | Comparative Tables | `/comparisons` | ✅ Done |
+| 2.5 | Brain-Dump Mode | `/brain-dump` | ✅ Done |
+| 2.6 | Legal Maxims Bank | `/maxims` | ✅ Done |
+| 2.7 | Bare Acts Reference | `/bare-acts` | ✅ Done |
+| 3.11 | Legal Timeline Builder | `/timeline` | ✅ Done |
+| 4.1 | Mini Tests | `/mini-test` | ✅ Done |
+| - | MCQ Practice | `/mcqs` | ✅ Done |
+| - | Flashcards | `/flashcards` | ✅ Done |
+| - | Study Planner | `/planner` | ✅ Done |
+| - | Progress Tracker | `/progress` | ✅ Done |
+| - | Mock Tests | `/mock-test` | ✅ Done |
+
+### 🟡 OPTIONAL ENHANCEMENTS (Low Priority - Post CLAT)
+| # | Feature | Route | Priority |
+|---|---------|-------|----------|
+| 1.10 | Inference Builder Tool | - | 🟢 LOW |
+| 1.11 | Find the Principle Exercise | - | 🟢 LOW |
+| 1.12 | Legal Conditions Trainer | - | 🟢 LOW |
+| 1.14 | Author's Attitude Detector | - | 🟢 LOW |
+| 1.22 | Mixed Stamina Test | - | 🟢 LOW |
+
+---
+
 ## 📋 Table of Contents
 
 1. [Priority Tier 1: CLAT-Specific Tools (HIGH PRIORITY - IMMEDIATE)](#priority-tier-1-clat-specific-tools-high-priority---immediate)
