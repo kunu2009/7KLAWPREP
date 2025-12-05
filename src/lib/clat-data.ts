@@ -308,6 +308,142 @@ export const passageDrills: PassageDrill[] = [
         explanation: 'The passage states "The postal rule states that acceptance is complete when posted, not when received."'
       }
     ]
+  },
+  {
+    id: 'passage-9',
+    passage: `The principle of natural justice represents fundamental rules of judicial procedure. The two primary rules are "audi alteram partem" (hear the other side) and "nemo judex in causa sua" (no one should be judge in their own cause). These principles apply not only to courts but also to administrative and quasi-judicial bodies. The right to a fair hearing includes the right to know the charges, present evidence, cross-examine witnesses, and receive a reasoned decision. However, these principles are not absolute. They may be excluded by express statutory provision, or where their application would obstruct the statutory purpose. In emergencies, preliminary hearings may be dispensed with, subject to post-decisional hearing.`,
+    wordCount: 112,
+    difficulty: 'medium',
+    category: 'legal',
+    recommendedTime: 180,
+    questions: [
+      {
+        id: 'p9-q1',
+        topic: 'Administrative Law',
+        question: 'What does "nemo judex in causa sua" mean?',
+        options: ['Hear the other side', 'No one should be judge in their own cause', 'Justice delayed is justice denied', 'Law is supreme'],
+        correctAnswerIndex: 1,
+        explanation: 'The passage defines it as "no one should be judge in their own cause."'
+      },
+      {
+        id: 'p9-q2',
+        topic: 'Administrative Law',
+        question: 'To which bodies do principles of natural justice apply?',
+        options: ['Only courts', 'Only administrative bodies', 'Courts, administrative and quasi-judicial bodies', 'Only Parliament'],
+        correctAnswerIndex: 2,
+        explanation: 'The passage states these principles apply "not only to courts but also to administrative and quasi-judicial bodies."'
+      },
+      {
+        id: 'p9-q3',
+        topic: 'Administrative Law',
+        question: 'When can natural justice principles be excluded?',
+        options: ['Never', 'Always', 'By express statute or if application would obstruct statutory purpose', 'Only in criminal cases'],
+        correctAnswerIndex: 2,
+        explanation: 'The passage mentions they may be excluded "by express statutory provision, or where their application would obstruct the statutory purpose."'
+      }
+    ]
+  },
+  {
+    id: 'passage-10',
+    passage: `Arbitration has emerged as a preferred mode of alternative dispute resolution in commercial matters. The Arbitration and Conciliation Act, 1996, based on the UNCITRAL Model Law, governs arbitration in India. Arbitration can be ad-hoc or institutional, domestic or international. The arbitration agreement must be in writing and can be a separate document or a clause in the main contract. The arbitral tribunal's award is final and binding, subject to limited grounds of challenge under Section 34. The 2015 and 2019 amendments aimed to make Indian arbitration more efficient and aligned with international best practices, introducing time limits and reducing judicial intervention.`,
+    wordCount: 103,
+    difficulty: 'medium',
+    category: 'legal',
+    recommendedTime: 180,
+    questions: [
+      {
+        id: 'p10-q1',
+        topic: 'Arbitration',
+        question: 'What is the basis of India\'s arbitration law?',
+        options: ['British Arbitration Act', 'UNCITRAL Model Law', 'American Arbitration Rules', 'ICC Rules'],
+        correctAnswerIndex: 1,
+        explanation: 'The passage states the Act is "based on the UNCITRAL Model Law."'
+      },
+      {
+        id: 'p10-q2',
+        topic: 'Arbitration',
+        question: 'What is the nature of an arbitral award?',
+        options: ['Advisory only', 'Final and binding with limited challenge grounds', 'Can be freely appealed', 'Valid only if accepted by parties'],
+        correctAnswerIndex: 1,
+        explanation: 'The passage states "The arbitral tribunal\'s award is final and binding, subject to limited grounds of challenge under Section 34."'
+      },
+      {
+        id: 'p10-q3',
+        topic: 'Arbitration',
+        question: 'What form must an arbitration agreement take?',
+        options: ['Oral only', 'Must be in writing', 'Can be oral or written', 'Must be notarized'],
+        correctAnswerIndex: 1,
+        explanation: 'The passage clearly states "The arbitration agreement must be in writing."'
+      }
+    ]
+  },
+  {
+    id: 'passage-11',
+    passage: `The doctrine of precedent, also known as stare decisis ("to stand by things decided"), is fundamental to common law systems. Under this doctrine, courts are bound to follow decisions of higher courts within the same hierarchy. In India, Supreme Court decisions are binding on all courts, while High Court decisions bind lower courts within that state. However, precedent is not mechanical. Courts can distinguish cases based on material facts, overrule previous decisions when clearly wrong, or limit the scope of a precedent. Per incuriam decisions (made without considering relevant statutory provisions or binding precedents) need not be followed. Obiter dicta (remarks made in passing) are persuasive but not binding.`,
+    wordCount: 110,
+    difficulty: 'hard',
+    category: 'legal',
+    recommendedTime: 200,
+    questions: [
+      {
+        id: 'p11-q1',
+        topic: 'Jurisprudence',
+        question: 'What does "stare decisis" mean?',
+        options: ['Judge in their own cause', 'To stand by things decided', 'Hear the other side', 'No punishment without law'],
+        correctAnswerIndex: 1,
+        explanation: 'The passage defines it as "to stand by things decided."'
+      },
+      {
+        id: 'p11-q2',
+        topic: 'Jurisprudence',
+        question: 'What is a "per incuriam" decision?',
+        options: ['A unanimous decision', 'A decision made without considering relevant law/precedents', 'A decision by full bench', 'A foreign court decision'],
+        correctAnswerIndex: 1,
+        explanation: 'The passage states per incuriam decisions are "made without considering relevant statutory provisions or binding precedents."'
+      },
+      {
+        id: 'p11-q3',
+        topic: 'Jurisprudence',
+        question: 'What is the status of obiter dicta?',
+        options: ['Binding on all courts', 'Persuasive but not binding', 'Has no legal value', 'Binding only on lower courts'],
+        correctAnswerIndex: 1,
+        explanation: 'The passage states "Obiter dicta (remarks made in passing) are persuasive but not binding."'
+      }
+    ]
+  },
+  {
+    id: 'passage-12',
+    passage: `Intellectual property rights have gained significant importance in the modern knowledge economy. India is a signatory to TRIPS (Trade-Related Aspects of Intellectual Property Rights) under WTO. Patents protect inventions for 20 years from filing date. Copyrights protect literary, artistic, and musical works for the author's lifetime plus 60 years. Trademarks protect brand identity and can be renewed indefinitely. Trade secrets receive no registration but protection through confidentiality agreements. Geographical indications protect products originating from specific regions, like Darjeeling Tea or Basmati Rice. The Indian IP regime balances creator rights with public access, including provisions for compulsory licensing and parallel imports in certain circumstances.`,
+    wordCount: 106,
+    difficulty: 'medium',
+    category: 'legal',
+    recommendedTime: 180,
+    questions: [
+      {
+        id: 'p12-q1',
+        topic: 'IP Law',
+        question: 'What is the duration of patent protection in India?',
+        options: ['10 years', '20 years from filing', 'Lifetime plus 60 years', 'Indefinitely renewable'],
+        correctAnswerIndex: 1,
+        explanation: 'The passage states "Patents protect inventions for 20 years from filing date."'
+      },
+      {
+        id: 'p12-q2',
+        topic: 'IP Law',
+        question: 'What is the copyright duration for an author\'s work?',
+        options: ['20 years', '50 years', 'Author\'s lifetime plus 60 years', '70 years from publication'],
+        correctAnswerIndex: 2,
+        explanation: 'The passage states "Copyrights protect literary, artistic, and musical works for the author\'s lifetime plus 60 years."'
+      },
+      {
+        id: 'p12-q3',
+        topic: 'IP Law',
+        question: 'Which IP right has no registration requirement?',
+        options: ['Patents', 'Trademarks', 'Trade secrets', 'Geographical indications'],
+        correctAnswerIndex: 2,
+        explanation: 'The passage states "Trade secrets receive no registration but protection through confidentiality agreements."'
+      }
+    ]
   }
 ];
 
@@ -472,6 +608,86 @@ export const legalDrills: LegalDrill[] = [
       application: 'Dr. Sharma bought dental chair for professional practice. This is commercial use for business, not personal consumption or self-employment for livelihood.',
       conclusion: 'Dr. Sharma is not a consumer under CPA as purchase was for commercial/professional purpose.'
     }
+  },
+  {
+    id: 'drill-9',
+    principle: 'Under the law of nuisance, a person is liable if they unreasonably interfere with another\'s use and enjoyment of land. However, if the plaintiff came to the nuisance (moved to an area where the nuisance already existed), this may be considered in determining liability.',
+    factSituation: 'Seema purchased a house near an airport that had been operating for 20 years. She now files a suit claiming the aircraft noise constitutes nuisance affecting her peaceful enjoyment of property.',
+    options: [
+      'Airport is liable as noise is clearly a nuisance',
+      'Airport is not liable as Seema came to the nuisance',
+      'Airport is liable only if noise exceeds permitted decibels',
+      'Coming to nuisance is not a defense; airport may still be liable'
+    ],
+    correctAnswer: 3,
+    reasoning: 'While "coming to nuisance" is a factor, it is not a complete defense. If the interference is unreasonable, liability may still exist. The airport\'s pre-existence is considered but doesn\'t grant immunity.',
+    topic: 'Torts',
+    iracBreakdown: {
+      issue: 'Whether the airport is liable for nuisance even though Seema purchased the house knowing about aircraft operations?',
+      rule: 'Nuisance requires unreasonable interference. Coming to nuisance is a factor but not a complete defense.',
+      application: 'Airport operated for 20 years before Seema moved. However, noise may still constitute unreasonable interference with property enjoyment.',
+      conclusion: 'Coming to nuisance is not a complete defense; airport may still be liable if interference is unreasonable.'
+    }
+  },
+  {
+    id: 'drill-10',
+    principle: 'Article 14 of the Constitution guarantees equality before law. However, reasonable classification is permitted if there is an intelligible differentia (distinguishing factor) and rational nexus with the object sought to be achieved.',
+    factSituation: 'The government passes a law providing free education only to children whose parents earn less than ₹5 lakh per year. A parent earning ₹5.5 lakh challenges this as violating Article 14.',
+    options: [
+      'Law is unconstitutional as it creates inequality',
+      'Law is valid as it makes reasonable classification with rational nexus to its objective',
+      'Law violates Article 21 right to education',
+      'Law is discriminatory and arbitrary'
+    ],
+    correctAnswer: 1,
+    reasoning: 'The classification based on income is intelligible differentia. The object of helping economically weaker sections has rational nexus with the income criterion. Such classification is permissible under Article 14.',
+    topic: 'Constitution',
+    iracBreakdown: {
+      issue: 'Whether income-based classification for free education violates Article 14?',
+      rule: 'Article 14 permits reasonable classification with intelligible differentia and rational nexus to the objective.',
+      application: 'Income criterion is clear differentia. Objective is to help economically weaker sections. There is rational nexus between income limit and the welfare objective.',
+      conclusion: 'The law is valid as it makes reasonable classification consistent with Article 14.'
+    }
+  },
+  {
+    id: 'drill-11',
+    principle: 'The doctrine of frustration discharges a contract when, after its formation, an event occurs which makes performance impossible or radically different from what was contemplated, provided the event was not due to fault of either party.',
+    factSituation: 'Ram books a venue for his daughter\'s wedding on December 15. On December 10, the government imposes a lockdown due to pandemic, prohibiting gatherings. The venue owner refuses to refund the advance payment.',
+    options: [
+      'Ram must pay full amount as contract is binding',
+      'Contract is frustrated; both parties are discharged and advance should be returned',
+      'Venue owner can keep advance as per contract terms',
+      'Ram is at fault for not anticipating lockdown'
+    ],
+    correctAnswer: 1,
+    reasoning: 'Government lockdown is a supervening impossibility not due to either party\'s fault. The contract is frustrated, and under Section 65 of Indian Contract Act, advance payment must be restored.',
+    topic: 'Contracts',
+    iracBreakdown: {
+      issue: 'Whether government lockdown frustrates the venue booking contract?',
+      rule: 'Frustration occurs when supervening event makes performance impossible/radically different, through no fault of parties.',
+      application: 'Lockdown is supervening event. Holding wedding gathering became illegal/impossible. Neither party was at fault.',
+      conclusion: 'Contract is frustrated; advance must be returned under Section 65.'
+    }
+  },
+  {
+    id: 'drill-12',
+    principle: 'Under criminal law, a person is entitled to the right of private defense of body and property. This right extends to causing death if there is reasonable apprehension of death or grievous hurt.',
+    factSituation: 'Late at night, Amit sees Raju attempting to break into his house. Amit shouts warnings, but Raju continues and pulls out what appears to be a gun. In fear, Amit fires his licensed gun, killing Raju. It is later discovered that Raju\'s "gun" was actually a toy.',
+    options: [
+      'Amit is guilty of murder as he killed an unarmed man',
+      'Amit is not liable as he exercised lawful right of private defense based on reasonable apprehension',
+      'Amit is guilty of culpable homicide as he should have verified',
+      'Amit is guilty of causing death by negligence'
+    ],
+    correctAnswer: 1,
+    reasoning: 'The right of private defense depends on reasonable apprehension at the time of the act, not actual danger. Amit reasonably believed Raju had a real gun and was in danger of death or grievous hurt. The defense is valid even though the gun was fake.',
+    topic: 'Criminal Law',
+    iracBreakdown: {
+      issue: 'Whether Amit can claim private defense when the weapon turned out to be fake?',
+      rule: 'Private defense is based on reasonable apprehension of danger at the time of the act, not actual danger.',
+      application: 'Amit saw what appeared to be a gun. Night break-in with apparent weapon creates reasonable apprehension of death/grievous hurt. He gave warnings first.',
+      conclusion: 'Amit is protected under private defense as apprehension was reasonable under the circumstances.'
+    }
   }
 ];
 
@@ -590,6 +806,77 @@ export const legalMaxims: LegalMaxim[] = [
     meaning: 'The welfare of the people is the supreme law',
     example: 'During a pandemic, individual rights may be restricted for public health and safety.',
     topic: 'Constitution'
+  },
+  {
+    id: 'maxim-16',
+    latin: 'Nullum crimen sine lege',
+    meaning: 'No crime without law; an act is not criminal unless prohibited by law',
+    example: 'A person cannot be punished for an act that was not an offence when committed.',
+    topic: 'Criminal Law',
+    relatedCases: ['Article 20(1) of Indian Constitution']
+  },
+  {
+    id: 'maxim-17',
+    latin: 'Nulla poena sine lege',
+    meaning: 'No punishment without law',
+    example: 'Punishment cannot be imposed for an act unless there was a law prescribing the punishment at the time of the act.',
+    topic: 'Criminal Law'
+  },
+  {
+    id: 'maxim-18',
+    latin: 'Pacta sunt servanda',
+    meaning: 'Agreements must be kept; contracts are binding',
+    example: 'Once parties enter into a valid contract, they are bound to fulfill their obligations.',
+    topic: 'Contracts'
+  },
+  {
+    id: 'maxim-19',
+    latin: 'Delegatus non potest delegare',
+    meaning: 'A delegate cannot further delegate',
+    example: 'If Parliament delegates power to make rules to a Minister, the Minister cannot sub-delegate that power to a subordinate.',
+    topic: 'Administrative Law'
+  },
+  {
+    id: 'maxim-20',
+    latin: 'Ex nudo pacto non oritur actio',
+    meaning: 'No action arises from a bare promise (without consideration)',
+    example: 'A promise to give a gift without any consideration is not enforceable.',
+    topic: 'Contracts'
+  },
+  {
+    id: 'maxim-21',
+    latin: 'Expressio unius est exclusio alterius',
+    meaning: 'Expression of one thing excludes another',
+    example: 'If a statute lists specific items, other items not listed are presumed to be excluded.',
+    topic: 'Interpretation of Statutes'
+  },
+  {
+    id: 'maxim-22',
+    latin: 'Ejusdem generis',
+    meaning: 'Of the same kind; general words following specific words are limited to same category',
+    example: 'If a law mentions "dogs, cats, and other animals," the "other animals" likely refers to domestic pets, not wild animals.',
+    topic: 'Interpretation of Statutes'
+  },
+  {
+    id: 'maxim-23',
+    latin: 'Noscitur a sociis',
+    meaning: 'A word is known by the company it keeps',
+    example: 'The meaning of a doubtful word can be determined by reference to surrounding words.',
+    topic: 'Interpretation of Statutes'
+  },
+  {
+    id: 'maxim-24',
+    latin: 'In pari delicto potior est conditio defendentis',
+    meaning: 'In equal fault, the condition of the defendant is better',
+    example: 'If both parties are equally at fault in an illegal contract, neither can sue the other.',
+    topic: 'Contracts'
+  },
+  {
+    id: 'maxim-25',
+    latin: 'Locus standi',
+    meaning: 'Right to appear or stand before a court',
+    example: 'Only a person whose legal rights are affected has locus standi to file a suit, except in PIL where relaxed.',
+    topic: 'Civil Procedure'
   }
 ];
 
@@ -678,6 +965,104 @@ export const comparisonTables: ComparisonTable[] = [
       { aspect: 'Evidence Recording', valueA: 'Less elaborate', valueB: 'Full examination of witnesses' },
       { aspect: 'Examples', valueA: 'Defamation, minor hurt', valueB: 'Murder, robbery, rape' }
     ]
+  },
+  {
+    id: 'comp-7',
+    title: 'President vs Governor',
+    topicA: 'President of India',
+    topicB: 'Governor of State',
+    rows: [
+      { aspect: 'Election', valueA: 'Elected by Electoral College (MPs + MLAs)', valueB: 'Appointed by President' },
+      { aspect: 'Term', valueA: '5 years', valueB: '5 years (holds office during pleasure of President)' },
+      { aspect: 'Removal', valueA: 'Impeachment under Article 61', valueB: 'No formal procedure; removed by President' },
+      { aspect: 'Qualifications', valueA: 'Citizen, 35 years, eligible for Lok Sabha', valueB: 'Citizen, 35 years' },
+      { aspect: 'Pardoning Power', valueA: 'Article 72 - includes death sentence', valueB: 'Article 161 - cannot pardon death sentence' },
+      { aspect: 'Emergency Powers', valueA: 'Can proclaim all three emergencies', valueB: 'Recommends President\'s Rule (Art 356)' }
+    ]
+  },
+  {
+    id: 'comp-8',
+    title: 'Supreme Court vs High Court',
+    topicA: 'Supreme Court',
+    topicB: 'High Court',
+    rows: [
+      { aspect: 'Article', valueA: 'Article 124-147', valueB: 'Article 214-231' },
+      { aspect: 'Writ Jurisdiction', valueA: 'Article 32 (only for FRs)', valueB: 'Article 226 (FRs + any other purpose)' },
+      { aspect: 'Judges', valueA: '34 including CJI', valueB: 'Varies by state' },
+      { aspect: 'Appointment', valueA: 'By President on CJI recommendation', valueB: 'By President, CJI consulted, Governor consulted' },
+      { aspect: 'Transfer', valueA: 'CJI can be transferred (never done)', valueB: 'Can be transferred by President' },
+      { aspect: 'Retirement Age', valueA: '65 years', valueB: '62 years' }
+    ]
+  },
+  {
+    id: 'comp-9',
+    title: 'Ordinary Bill vs Money Bill',
+    topicA: 'Ordinary Bill',
+    topicB: 'Money Bill',
+    rows: [
+      { aspect: 'Introduction', valueA: 'Either House', valueB: 'Only Lok Sabha' },
+      { aspect: 'Definition', valueA: 'Any bill not a Money Bill', valueB: 'Article 110 - taxation, borrowing, Consolidated Fund' },
+      { aspect: 'Rajya Sabha Power', valueA: 'Equal powers, can amend/reject', valueB: 'Can only suggest amendments within 14 days' },
+      { aspect: 'Joint Sitting', valueA: 'Possible under Article 108', valueB: 'Not possible' },
+      { aspect: 'Speaker\'s Role', valueA: 'Normal presiding', valueB: 'Certifies as Money Bill (final)' },
+      { aspect: 'President\'s Assent', valueA: 'Can return once', valueB: 'Cannot return (prior recommendation taken)' }
+    ]
+  },
+  {
+    id: 'comp-10',
+    title: 'Fundamental Duties vs Directive Principles',
+    topicA: 'Fundamental Duties (Part IVA)',
+    topicB: 'Directive Principles (Part IV)',
+    rows: [
+      { aspect: 'Article', valueA: 'Article 51A (11 duties)', valueB: 'Article 36-51' },
+      { aspect: 'Added By', valueA: '42nd Amendment 1976', valueB: 'Original Constitution' },
+      { aspect: 'Source', valueA: 'USSR Constitution', valueB: 'Irish Constitution' },
+      { aspect: 'Addressed To', valueA: 'Citizens only', valueB: 'State' },
+      { aspect: 'Justiciability', valueA: 'Non-justiciable', valueB: 'Non-justiciable' },
+      { aspect: 'Nature', valueA: 'Duties of citizens', valueB: 'Obligations of State' }
+    ]
+  },
+  {
+    id: 'comp-11',
+    title: 'Article 32 vs Article 226',
+    topicA: 'Article 32 (Supreme Court)',
+    topicB: 'Article 226 (High Court)',
+    rows: [
+      { aspect: 'Purpose', valueA: 'Only for Fundamental Rights', valueB: 'FRs + any other purpose' },
+      { aspect: 'Scope', valueA: 'Narrower', valueB: 'Wider' },
+      { aspect: 'Territorial', valueA: 'Whole of India', valueB: 'Within territorial jurisdiction' },
+      { aspect: 'Suspendable', valueA: 'Cannot be suspended (Art 359)', valueB: 'Can be suspended during Emergency' },
+      { aspect: 'Nature', valueA: 'Fundamental Right itself', valueB: 'Constitutional right, not FR' },
+      { aspect: 'Called By Ambedkar', valueA: 'Heart and Soul of Constitution', valueB: 'No such title' }
+    ]
+  },
+  {
+    id: 'comp-12',
+    title: 'IPC vs BNS (New Criminal Law)',
+    topicA: 'Indian Penal Code 1860',
+    topicB: 'Bharatiya Nyaya Sanhita 2023',
+    rows: [
+      { aspect: 'Enacted', valueA: '1860 (British era)', valueB: '2023 (effective July 1, 2024)' },
+      { aspect: 'Sections', valueA: '511 sections', valueB: '358 sections' },
+      { aspect: 'Sedition', valueA: 'Section 124A', valueB: 'Removed; replaced with offence against sovereignty' },
+      { aspect: 'Mob Lynching', valueA: 'No specific provision', valueB: 'Specific offence added' },
+      { aspect: 'Terrorism', valueA: 'No definition', valueB: 'Defined under Section 113' },
+      { aspect: 'Organized Crime', valueA: 'No specific provision', valueB: 'Defined and criminalized' }
+    ]
+  },
+  {
+    id: 'comp-13',
+    title: 'Cognizable vs Non-Cognizable Offence',
+    topicA: 'Cognizable Offence',
+    topicB: 'Non-Cognizable Offence',
+    rows: [
+      { aspect: 'Definition', valueA: 'Police can arrest without warrant', valueB: 'Police cannot arrest without warrant' },
+      { aspect: 'Investigation', valueA: 'Police can investigate without magistrate order', valueB: 'Requires magistrate permission' },
+      { aspect: 'FIR', valueA: 'FIR is mandatory', valueB: 'NCR (Non-Cognizable Report) filed' },
+      { aspect: 'Seriousness', valueA: 'Generally serious offences', valueB: 'Generally less serious' },
+      { aspect: 'Examples', valueA: 'Murder, robbery, rape', valueB: 'Assault, defamation, cheating (some)' },
+      { aspect: 'Schedule', valueA: 'Listed in First Schedule CrPC', valueB: 'Listed in First Schedule CrPC' }
+    ]
   }
 ];
 
@@ -754,7 +1139,58 @@ export const gkOneLiners: GKOneLiner[] = [
   { id: 'gk-47', statement: 'CLAT is conducted by Consortium of NLUs (20 NLUs participate)', category: 'laws', date: 'ongoing', importance: 'high' },
   { id: 'gk-48', statement: 'Article 142 gives Supreme Court power to pass any order necessary for complete justice', category: 'laws', date: 'ongoing', importance: 'high' },
   { id: 'gk-49', statement: 'Parliament has 2 sessions minimum - Budget Session (Feb-May) and Monsoon Session (Jul-Aug)', category: 'laws', date: 'ongoing', importance: 'medium' },
-  { id: 'gk-50', statement: 'PM CARES Fund created in March 2020 for COVID-19 emergency response', category: 'schemes', date: '2020-03', importance: 'medium' }
+  { id: 'gk-50', statement: 'PM CARES Fund created in March 2020 for COVID-19 emergency response', category: 'schemes', date: '2020-03', importance: 'medium' },
+  // Latest 2024-2025 Current Affairs for CLAT
+  { id: 'gk-51', statement: 'Bharatiya Nyaya Sanhita (BNS) replaced Indian Penal Code 1860', category: 'laws', date: '2024-07', importance: 'high' },
+  { id: 'gk-52', statement: 'Bharatiya Nagarik Suraksha Sanhita (BNSS) replaced CrPC 1973', category: 'laws', date: '2024-07', importance: 'high' },
+  { id: 'gk-53', statement: 'Bharatiya Sakshya Adhiniyam (BSA) replaced Indian Evidence Act 1872', category: 'laws', date: '2024-07', importance: 'high' },
+  { id: 'gk-54', statement: 'Supreme Court has 34 judges including CJI (increased from 31 in 2019)', category: 'laws', date: 'ongoing', importance: 'high' },
+  { id: 'gk-55', statement: 'High Courts in India: Total 25 (Telangana HC established in 2019)', category: 'laws', date: 'ongoing', importance: 'high' },
+  { id: 'gk-56', statement: 'India ranked 129th in Human Development Index 2024 (UNDP)', category: 'international', date: '2024', importance: 'medium' },
+  { id: 'gk-57', statement: 'Paris Olympics 2024: India won 6 medals - Manu Bhaker (2 bronze), Neeraj Chopra (silver)', category: 'sports', date: '2024-08', importance: 'high' },
+  { id: 'gk-58', statement: 'T20 World Cup 2024 won by India, defeating South Africa in final at Barbados', category: 'sports', date: '2024-06', importance: 'high' },
+  { id: 'gk-59', statement: 'Nobel Peace Prize 2024 awarded to Nihon Hidankyo (Japanese atomic bomb survivors organization)', category: 'awards', date: '2024-10', importance: 'high' },
+  { id: 'gk-60', statement: 'Nobel Prize in Literature 2024: Han Kang (South Korea) - first Asian woman', category: 'awards', date: '2024-10', importance: 'medium' },
+  { id: 'gk-61', statement: 'Nobel Prize in Economics 2024: Daron Acemoglu, Simon Johnson, James Robinson', category: 'awards', date: '2024-10', importance: 'medium' },
+  { id: 'gk-62', statement: 'Jnanpith Award 2023: Gulzar (Urdu) and Jagadguru Rambhadracharya (Sanskrit)', category: 'awards', date: '2024', importance: 'medium' },
+  { id: 'gk-63', statement: 'Booker Prize 2024: Samantha Harvey for "Orbital"', category: 'awards', date: '2024-11', importance: 'medium' },
+  { id: 'gk-64', statement: 'Miss Universe 2024: Victoria Kjær Theilvig (Denmark)', category: 'events', date: '2024-11', importance: 'low' },
+  { id: 'gk-65', statement: 'COP29 (Climate Summit) held in Baku, Azerbaijan in November 2024', category: 'international', date: '2024-11', importance: 'high' },
+  { id: 'gk-66', statement: 'India became member of UN Security Council as non-permanent member for 2021-22', category: 'international', date: '2021', importance: 'medium' },
+  { id: 'gk-67', statement: 'SCO Summit 2024 hosted by Kazakhstan; Pakistan hosted virtual SCO Summit', category: 'international', date: '2024', importance: 'medium' },
+  { id: 'gk-68', statement: 'BRICS Summit 2024 held in Kazan, Russia - New members joined', category: 'international', date: '2024-10', importance: 'high' },
+  { id: 'gk-69', statement: 'India-UAE CEPA (Comprehensive Economic Partnership Agreement) operational since 2022', category: 'international', date: '2022', importance: 'medium' },
+  { id: 'gk-70', statement: 'Article 371: Special provisions for 11 states including NE states, Maharashtra, Gujarat', category: 'laws', date: 'ongoing', importance: 'high' },
+  { id: 'gk-71', statement: 'Lokpal and Lokayuktas Act 2013 - Justice Pinaki Chandra Ghose was first Lokpal (2019)', category: 'laws', date: '2019', importance: 'high' },
+  { id: 'gk-72', statement: 'National Green Tribunal (NGT) established in 2010 under NGT Act', category: 'laws', date: '2010', importance: 'medium' },
+  { id: 'gk-73', statement: 'Competition Commission of India (CCI) established in 2003, became functional in 2009', category: 'laws', date: '2009', importance: 'medium' },
+  { id: 'gk-74', statement: 'National Company Law Tribunal (NCLT) established in 2016 for corporate disputes', category: 'laws', date: '2016', importance: 'medium' },
+  { id: 'gk-75', statement: 'Insolvency and Bankruptcy Code 2016 - NCLT is adjudicating authority for companies', category: 'laws', date: '2016', importance: 'high' },
+  { id: 'gk-76', statement: 'Mediation Act 2023 - First standalone mediation law in India', category: 'laws', date: '2023', importance: 'high' },
+  { id: 'gk-77', statement: 'Jan Vishwas Act 2023 decriminalized 183 offences across 42 Acts', category: 'laws', date: '2023', importance: 'high' },
+  { id: 'gk-78', statement: 'Telecommunications Act 2023 replaced Indian Telegraph Act 1885', category: 'laws', date: '2023', importance: 'medium' },
+  { id: 'gk-79', statement: 'Press and Registration of Periodicals Act 2023 replaced Press Act 1867', category: 'laws', date: '2023', importance: 'medium' },
+  { id: 'gk-80', statement: 'Forest Conservation Amendment Act 2023 - Exempted border areas and strategic projects', category: 'laws', date: '2023', importance: 'medium' },
+  { id: 'gk-81', statement: 'Chief Election Commissioner tenure: 6 years or 65 years age, whichever earlier', category: 'laws', date: 'ongoing', importance: 'high' },
+  { id: 'gk-82', statement: 'President of India salary: ₹5 lakh per month (increased in 2018)', category: 'laws', date: '2018', importance: 'medium' },
+  { id: 'gk-83', statement: 'Governor salary: ₹3.5 lakh per month', category: 'laws', date: 'ongoing', importance: 'medium' },
+  { id: 'gk-84', statement: 'Supreme Court and High Court judges get pension equal to 50% of last drawn salary', category: 'laws', date: 'ongoing', importance: 'medium' },
+  { id: 'gk-85', statement: 'Attorney General is appointed under Article 76, holds office during pleasure of President', category: 'laws', date: 'ongoing', importance: 'high' },
+  { id: 'gk-86', statement: 'Solicitor General and Additional Solicitor Generals are not constitutional posts', category: 'laws', date: 'ongoing', importance: 'medium' },
+  { id: 'gk-87', statement: 'Inter-State Council established under Article 263 (set up in 1990)', category: 'laws', date: '1990', importance: 'medium' },
+  { id: 'gk-88', statement: 'Zonal Councils: 5 zones created under States Reorganisation Act 1956', category: 'laws', date: '1956', importance: 'medium' },
+  { id: 'gk-89', statement: 'NITI Aayog replaced Planning Commission in 2015', category: 'schemes', date: '2015', importance: 'high' },
+  { id: 'gk-90', statement: 'GST Council: Constitutional body under Article 279A, chaired by Union Finance Minister', category: 'laws', date: '2017', importance: 'high' },
+  { id: 'gk-91', statement: 'India Stack: Digital public infrastructure - Aadhaar, UPI, DigiLocker, CoWIN', category: 'science', date: 'ongoing', importance: 'medium' },
+  { id: 'gk-92', statement: 'UPI transactions crossed 10 billion monthly transactions in 2023', category: 'events', date: '2023', importance: 'medium' },
+  { id: 'gk-93', statement: 'Digital India Programme launched on July 1, 2015', category: 'schemes', date: '2015-07', importance: 'medium' },
+  { id: 'gk-94', statement: 'Make in India launched on September 25, 2014', category: 'schemes', date: '2014-09', importance: 'medium' },
+  { id: 'gk-95', statement: 'Startup India launched on January 16, 2016', category: 'schemes', date: '2016-01', importance: 'medium' },
+  { id: 'gk-96', statement: 'Swachh Bharat Mission launched on October 2, 2014 (Gandhi Jayanti)', category: 'schemes', date: '2014-10', importance: 'medium' },
+  { id: 'gk-97', statement: 'India declared Open Defecation Free (ODF) on October 2, 2019', category: 'events', date: '2019-10', importance: 'medium' },
+  { id: 'gk-98', statement: 'Jal Jeevan Mission launched in 2019 - Har Ghar Jal by 2024', category: 'schemes', date: '2019', importance: 'medium' },
+  { id: 'gk-99', statement: 'PM Gati Shakti National Master Plan launched October 2021 for infrastructure', category: 'schemes', date: '2021-10', importance: 'medium' },
+  { id: 'gk-100', statement: 'National Education Policy 2020 replaced 34-year-old Education Policy of 1986', category: 'laws', date: '2020', importance: 'high' }
 ];
 
 // ==================== BRAIN DUMP TOPICS ====================
@@ -851,6 +1287,99 @@ export const brainDumpTopics: BrainDumpTopic[] = [
       'Injuria sine damno: Legal injury without damage - remedy available (Ashby v. White)',
       'General Defenses: Volenti non fit injuria, Plaintiff wrongdoer, Inevitable accident, Act of God, Private defense, Statutory authority, Necessity',
       'Vicarious Liability: Employer liable for employee\'s torts in course of employment (Qui facit per alium facit per se)'
+    ]
+  },
+  {
+    id: 'bd-6',
+    title: 'Emergency Provisions',
+    category: 'Constitution',
+    keyPoints: [
+      'Three types: National (352), State (356), Financial (360)',
+      '44th Amendment changes: Internal disturbance removed, written cabinet advice required',
+      'Article 352 proclaimed for war, external aggression, armed rebellion',
+      'Effects on Fundamental Rights during Emergency'
+    ],
+    officialNotes: [
+      'National Emergency (Art 352): Proclaimed by President on written advice of Cabinet. Needs Parliamentary approval within 1 month. Duration: Initially 6 months, can be extended indefinitely. Art 20 & 21 cannot be suspended.',
+      'State Emergency (Art 356): President\'s Rule when constitutional machinery fails. Maximum duration 3 years (with Parliament approval every 6 months). S.R. Bommai case: Judicial review possible, state assembly can be dissolved only after Parliament approval.',
+      'Financial Emergency (Art 360): Never proclaimed. President can reduce salaries, direct states on financial matters. Must be approved by Parliament within 2 months.',
+      '44th Amendment (1978): Removed "internal disturbance" as ground for Art 352. Required written advice of Cabinet. Art 20 & 21 made non-suspendable. Art 359 cannot suspend enforcement of Art 20 & 21.'
+    ]
+  },
+  {
+    id: 'bd-7',
+    title: 'Amendment Procedure (Article 368)',
+    category: 'Constitution',
+    keyPoints: [
+      'Three categories of amendments',
+      'Simple majority, Special majority, Special majority + state ratification',
+      'Basic structure cannot be amended',
+      'Key amendments: 1st, 7th, 24th, 42nd, 44th, 52nd, 61st, 73rd, 74th, 86th, 101st'
+    ],
+    officialNotes: [
+      'Simple Majority: Admission of new states, creation of legislative councils, salaries of judges, citizenship, etc.',
+      'Special Majority (2/3 of members present and voting + majority of total membership): Most FR amendments, DPSP, election procedures, etc.',
+      'Special Majority + Ratification by half states: Federal provisions - Election of President, SC/HC, distribution of powers (List I, II, III), representation of states, Art 368 itself',
+      'Important Amendments: 1st (9th Schedule), 24th (affirmed Art 368), 42nd (Mini Constitution), 44th (Restored position), 52nd (Anti-defection), 73rd/74th (Panchayati Raj), 86th (Right to Education), 101st (GST), 103rd (EWS reservation)'
+    ]
+  },
+  {
+    id: 'bd-8',
+    title: 'Indian Penal Code - Key Offences',
+    category: 'Criminal Law',
+    keyPoints: [
+      'General exceptions (Chapter IV)',
+      'Offences against human body (299-377)',
+      'Difference between murder and culpable homicide',
+      'Hurt and Grievous Hurt'
+    ],
+    officialNotes: [
+      'Section 299: Culpable Homicide - Causing death with intention or knowledge that act is likely to cause death',
+      'Section 300: Murder - Culpable homicide is murder if: (1) intention to cause death, (2) intention to cause bodily injury knowing it likely to cause death, (3) intention to cause injury sufficient in ordinary course to cause death, (4) act so imminently dangerous',
+      'Exception to Murder: Grave and sudden provocation, Private defense exceeded, Public servant exceeding powers, Sudden fight without premeditation, Consent of victim over 18',
+      'Section 304: Punishment for culpable homicide not amounting to murder - Life imprisonment or 10 years + fine',
+      'Section 304A: Death by negligence (not amounting to culpable homicide) - 2 years or fine or both',
+      'Section 304B: Dowry death - Death within 7 years of marriage, shown she was subjected to cruelty for dowry'
+    ]
+  },
+  {
+    id: 'bd-9',
+    title: 'Consumer Protection Act 2019',
+    category: 'Consumer Law',
+    keyPoints: [
+      'Replaces Consumer Protection Act 1986',
+      'Three-tier redressal mechanism',
+      'Definition of consumer, defect, deficiency',
+      'Central Consumer Protection Authority (CCPA)'
+    ],
+    officialNotes: [
+      'Consumer: Buys goods/services for consideration (including online). Excludes commercial purposes except self-employment livelihood.',
+      'District Commission: Claims up to ₹1 crore (increased from ₹20 lakh)',
+      'State Commission: Claims ₹1 crore to ₹10 crore; appeals from District',
+      'National Commission: Claims above ₹10 crore; appeals from State',
+      'CCPA: Central authority to regulate matters related to violation of consumer rights, unfair trade practices, false advertisements',
+      'Product Liability: Manufacturer, service provider, seller liable for harm caused by defective product/service',
+      'E-commerce: Now specifically covered; platforms must display country of origin, name of seller'
+    ]
+  },
+  {
+    id: 'bd-10',
+    title: 'RTI Act 2005',
+    category: 'Constitution',
+    keyPoints: [
+      'Fundamental right derived from Article 19(1)(a)',
+      'Two-tier structure: PIO and Appellate Authority',
+      'Exemptions under Section 8',
+      'Time limits for providing information'
+    ],
+    officialNotes: [
+      'Application: Any citizen can apply. Fee: ₹10 (Central), varies for states. BPL applicants exempted.',
+      'Time Limit: 30 days normally, 48 hours if life/liberty involved, 40 days if third party involved',
+      'Section 8 Exemptions: National security, commercial confidence, fiduciary relationship, cabinet papers, personal information, pending investigation, etc.',
+      'Section 8(2): Information that cannot be denied to Parliament/Legislature cannot be denied to citizen',
+      'Information Commissions: Central Information Commission (CIC) and State Information Commissions (SIC)',
+      'Penalties: ₹250 per day delay, maximum ₹25,000 for unreasonable denial',
+      'Amendment 2019: Salaries and tenures of Information Commissioners to be determined by Central Government'
     ]
   }
 ];
@@ -1067,6 +1596,166 @@ export const caseLaws: CaseLaw[] = [
     category: 'Fundamental Rights',
     keywords: ['Section 377', 'LGBTQ+', 'privacy', 'dignity', 'decriminalization'],
     significance: 'Historic judgment for LGBTQ+ rights in India.',
+    importance: 'high'
+  },
+  {
+    id: 'case-16',
+    caseName: 'Minerva Mills v. Union of India',
+    citation: 'AIR 1980 SC 1789',
+    year: 1980,
+    facts: 'Minerva Mills challenged the 42nd Amendment which gave primacy to DPSPs over Fundamental Rights and made amendments non-justiciable.',
+    issue: 'Whether the 42nd Amendment provisions limiting judicial review are constitutional?',
+    judgment: 'Supreme Court struck down clauses 4 and 5 of Article 368, holding that judicial review is part of basic structure.',
+    principle: 'Judicial review is part of basic structure. Constitution maintains balance between Fundamental Rights and DPSPs - neither is superior.',
+    oneLiner: 'Judicial review is basic structure; balance between FR and DPSP is essential.',
+    topic: 'Constitution',
+    category: 'Constitutional Law',
+    keywords: ['42nd Amendment', 'judicial review', 'basic structure', 'Article 368'],
+    significance: 'Reaffirmed basic structure doctrine and importance of judicial review.',
+    importance: 'high'
+  },
+  {
+    id: 'case-17',
+    caseName: 'A.K. Gopalan v. State of Madras',
+    citation: 'AIR 1950 SC 27',
+    year: 1950,
+    facts: 'A.K. Gopalan, a Communist leader, was detained under Preventive Detention Act 1950. He challenged detention under Articles 19, 21, and 22.',
+    issue: 'Whether Articles 19, 21, and 22 should be read together or separately?',
+    judgment: 'Court held each fundamental right is independent. Article 21 only requires procedure established by law, need not be fair or just.',
+    principle: 'Each Fundamental Right operates in its own field independently (Later overruled by Maneka Gandhi case).',
+    oneLiner: 'Articles 19, 21, 22 are independent (overruled by Maneka Gandhi).',
+    topic: 'Constitution',
+    category: 'Fundamental Rights',
+    keywords: ['preventive detention', 'Article 21', 'procedure established by law'],
+    significance: 'First major FR case; narrow interpretation later overruled.',
+    importance: 'high'
+  },
+  {
+    id: 'case-18',
+    caseName: 'Shankari Prasad v. Union of India',
+    citation: 'AIR 1951 SC 458',
+    year: 1951,
+    facts: 'First Amendment to Constitution was challenged for abridging Fundamental Rights (inserted Article 31A and 31B).',
+    issue: 'Can Parliament amend Fundamental Rights under Article 368?',
+    judgment: 'Court held that "law" in Article 13(2) does not include constitutional amendments. Parliament can amend any part including FRs.',
+    principle: 'Constitutional amendments are not "law" under Article 13, hence can modify Fundamental Rights.',
+    oneLiner: 'Parliament can amend Fundamental Rights; amendments not covered by Article 13.',
+    topic: 'Constitution',
+    category: 'Constitutional Law',
+    keywords: ['First Amendment', 'Article 368', 'Article 13', 'amendment power'],
+    significance: 'Established Parliament\'s wide amending power (later modified by Kesavananda).',
+    importance: 'medium'
+  },
+  {
+    id: 'case-19',
+    caseName: 'I.C. Golaknath v. State of Punjab',
+    citation: 'AIR 1967 SC 1643',
+    year: 1967,
+    facts: 'Punjab land reform laws were challenged. The question was Parliament\'s power to amend Fundamental Rights.',
+    issue: 'Can Parliament amend Fundamental Rights?',
+    judgment: 'By 6:5 majority, Court held that Parliament cannot amend Fundamental Rights as they are transcendental.',
+    principle: 'Fundamental Rights cannot be amended by Parliament (overruled by Kesavananda Bharati).',
+    oneLiner: 'FRs cannot be amended (overruled by Kesavananda).',
+    topic: 'Constitution',
+    category: 'Constitutional Law',
+    keywords: ['Fundamental Rights', 'amendment', 'Article 368', 'transcendental'],
+    significance: 'Led to 24th Amendment; partly overruled by Kesavananda.',
+    importance: 'high'
+  },
+  {
+    id: 'case-20',
+    caseName: 'Sajjan Singh v. State of Rajasthan',
+    citation: 'AIR 1965 SC 845',
+    year: 1965,
+    facts: '17th Amendment was challenged which inserted certain state laws in 9th Schedule.',
+    issue: 'Whether Parliament can amend Fundamental Rights?',
+    judgment: 'Court upheld Shankari Prasad, holding Parliament can amend any part of Constitution including FRs.',
+    principle: 'Reaffirmed Parliament\'s power to amend Fundamental Rights.',
+    oneLiner: 'Followed Shankari Prasad; Parliament can amend FRs.',
+    topic: 'Constitution',
+    category: 'Constitutional Law',
+    keywords: ['17th Amendment', '9th Schedule', 'amendment power'],
+    significance: 'Continued trend of upholding amendment power before Golaknath.',
+    importance: 'medium'
+  },
+  {
+    id: 'case-21',
+    caseName: 'Waman Rao v. Union of India',
+    citation: 'AIR 1981 SC 271',
+    year: 1981,
+    facts: 'Laws placed in 9th Schedule after Kesavananda Bharati were challenged.',
+    issue: 'Whether laws in 9th Schedule after April 24, 1973 can be challenged?',
+    judgment: 'Court held laws placed in 9th Schedule after April 24, 1973 can be challenged if they violate basic structure.',
+    principle: 'Laws in 9th Schedule after Kesavananda date can be challenged for violating basic structure.',
+    oneLiner: 'Post-Kesavananda 9th Schedule laws can be challenged.',
+    topic: 'Constitution',
+    category: 'Constitutional Law',
+    keywords: ['9th Schedule', 'basic structure', 'Kesavananda', 'judicial review'],
+    significance: 'Set cutoff date for 9th Schedule protection.',
+    importance: 'medium'
+  },
+  {
+    id: 'case-22',
+    caseName: 'I.R. Coelho v. State of Tamil Nadu',
+    citation: '(2007) 2 SCC 1',
+    year: 2007,
+    facts: 'Tamil Nadu reservation laws in 9th Schedule were challenged for violating basic structure.',
+    issue: 'Whether any law in 9th Schedule can be challenged for violating basic structure?',
+    judgment: 'Nine-judge bench held that all laws in 9th Schedule (irrespective of date) can be challenged if they violate basic structure or fundamental rights.',
+    principle: 'No law is immune from judicial review if it violates basic structure, even if in 9th Schedule.',
+    oneLiner: 'All 9th Schedule laws subject to basic structure test.',
+    topic: 'Constitution',
+    category: 'Constitutional Law',
+    keywords: ['9th Schedule', 'basic structure', 'judicial review', 'fundamental rights'],
+    significance: 'Expanded judicial review over 9th Schedule laws.',
+    importance: 'high'
+  },
+  {
+    id: 'case-23',
+    caseName: 'ADM Jabalpur v. Shivkant Shukla',
+    citation: 'AIR 1976 SC 1207',
+    year: 1976,
+    facts: 'During Emergency (1975-77), habeas corpus petitions by detainees were rejected by High Courts. Question was whether Article 21 can be suspended during Emergency.',
+    issue: 'Can the right to life under Article 21 be suspended during Emergency?',
+    judgment: 'By 4:1 majority, Court held that during Emergency, no person can move court for enforcement of Article 21. Justice H.R. Khanna dissented.',
+    principle: 'During Emergency, even right to life can be suspended (Later overruled by 44th Amendment).',
+    oneLiner: 'Article 21 can be suspended in Emergency (overruled by 44th Amendment).',
+    topic: 'Constitution',
+    category: 'Fundamental Rights',
+    keywords: ['Emergency', 'Article 21', 'habeas corpus', 'Khanna dissent'],
+    significance: 'Darkest hour of Indian judiciary; led to 44th Amendment protecting Art 20 & 21.',
+    importance: 'high'
+  },
+  {
+    id: 'case-24',
+    caseName: 'State of West Bengal v. Committee for Protection of Democratic Rights',
+    citation: '(2010) 3 SCC 571',
+    year: 2010,
+    facts: 'State government challenged transfer of investigation to CBI by High Court in a case involving state police.',
+    issue: 'Can High Court transfer investigation to CBI without state consent?',
+    judgment: 'Supreme Court held that in extraordinary circumstances affecting fundamental rights, High Court can order CBI investigation even without state consent.',
+    principle: 'High Courts can order CBI investigation to protect fundamental rights, even against state\'s wish.',
+    oneLiner: 'HC can order CBI probe without state consent in exceptional cases.',
+    topic: 'Constitution',
+    category: 'Criminal Law',
+    keywords: ['CBI investigation', 'federalism', 'High Court powers', 'fundamental rights'],
+    significance: 'Balanced federalism with protection of fundamental rights.',
+    importance: 'medium'
+  },
+  {
+    id: 'case-25',
+    caseName: 'Arnesh Kumar v. State of Bihar',
+    citation: '(2014) 8 SCC 273',
+    year: 2014,
+    facts: 'Accused was arrested in a dowry harassment case (Section 498A IPC) without proper procedure.',
+    issue: 'Can police arrest without following proper procedure in cognizable offences punishable up to 7 years?',
+    judgment: 'Court laid down guidelines that arrest is not mandatory even in cognizable cases. Police must follow checklist before arrest.',
+    principle: 'Arrest should be exception, not rule. Section 41 CrPC guidelines must be followed for offences punishable up to 7 years.',
+    oneLiner: 'Arrest not mandatory in cognizable cases; Section 41 CrPC checklist must be followed.',
+    topic: 'Criminal Law',
+    category: 'Criminal Law',
+    keywords: ['arrest', 'Section 498A', 'Section 41 CrPC', 'personal liberty'],
+    significance: 'Protected against arbitrary arrests; mandatory guidelines for police.',
     importance: 'high'
   }
 ];
