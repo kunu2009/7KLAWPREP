@@ -11,6 +11,7 @@ import { useFeatureToggles, SectionToggleKey } from '@/context/feature-toggles';
 import { useProgress } from '@/hooks/use-progress';
 import { useRevisionMode } from '@/context/revision-mode-context';
 import RevisionDashboard from '@/components/revision-dashboard';
+import { StudyToolsFeatured, StudyToolsGrid, StudyToolsCompact } from '@/components/study-tools-drawer';
 
 const motivationalQuotes = [
   { quote: "The law is reason, free from passion.", author: "Aristotle" },
@@ -156,6 +157,12 @@ export default function DashboardPage() {
                     </div>
                 </CardContent>
             </Card>
+
+            {/* New Study Tools Featured Section */}
+            <StudyToolsFeatured />
+
+            {/* All CLAT Study Tools Grid */}
+            <StudyToolsGrid />
 
             {/* Your Progress Summary */}
             {isClient && attempted > 0 && (
