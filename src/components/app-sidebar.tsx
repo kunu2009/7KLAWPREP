@@ -45,7 +45,10 @@ import {
   Bolt,
   Timer,
   Shuffle,
-  Eye
+  Eye,
+  Shield,
+  Moon,
+  Heart
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -97,8 +100,11 @@ const aiTools = [
 ];
 
 const wellnessTools = [
+  { href: "/safe-space", label: "Safe Space", icon: Shield },
   { href: "/stress-relief", label: "Stress Relief", icon: Smile },
-  { href: "/exam-anxiety", label: "Exam Anxiety Guide", icon: Brain },
+  { href: "/positivity-gym", label: "Positivity Gym", icon: Brain },
+  { href: "/sleep-sanctuary", label: "Sleep Sanctuary", icon: Moon },
+  { href: "/exam-anxiety", label: "Exam Anxiety Guide", icon: Heart },
   { href: "/mood-journal", label: "Mood Journal", icon: SmilePlus },
   { href: "/focus-timer", label: "Focus Timer", icon: Timer },
 ];

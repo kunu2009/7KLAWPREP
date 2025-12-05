@@ -33,7 +33,9 @@ import {
   Heart,
   Smile,
   BookHeart,
-  Wind
+  Wind,
+  Shield,
+  Moon
 } from "lucide-react";
 
 // All CLAT study tools with their metadata
@@ -69,9 +71,12 @@ const clatStudyTools = [
   { href: "/error-log", label: "Error Log", icon: AlertCircle, color: "text-red-600", bg: "bg-red-600/10", category: "Revision", isNew: false, description: "Track mistakes" },
 
   // Wellness & Mental Health
+  { href: "/safe-space", label: "Safe Space", icon: Shield, color: "text-pink-500", bg: "bg-pink-500/10", category: "Wellness", isNew: true, description: "Your private corner" },
   { href: "/stress-relief", label: "Stress Relief", icon: Wind, color: "text-emerald-500", bg: "bg-emerald-500/10", category: "Wellness", isNew: true, description: "Breathing & calm" },
-  { href: "/exam-anxiety", label: "Exam Anxiety", icon: Heart, color: "text-pink-500", bg: "bg-pink-500/10", category: "Wellness", isNew: true, description: "Anxiety tips" },
-  { href: "/mood-journal", label: "Mood Journal", icon: BookHeart, color: "text-rose-500", bg: "bg-rose-500/10", category: "Wellness", isNew: true, description: "Track feelings" },
+  { href: "/positivity-gym", label: "Positivity Gym", icon: Brain, color: "text-purple-500", bg: "bg-purple-500/10", category: "Wellness", isNew: true, description: "Mind training" },
+  { href: "/sleep-sanctuary", label: "Sleep Sanctuary", icon: Moon, color: "text-indigo-500", bg: "bg-indigo-500/10", category: "Wellness", isNew: true, description: "Better sleep" },
+  { href: "/exam-anxiety", label: "Exam Anxiety", icon: Heart, color: "text-rose-500", bg: "bg-rose-500/10", category: "Wellness", isNew: true, description: "Anxiety tips" },
+  { href: "/mood-journal", label: "Mood Journal", icon: BookHeart, color: "text-amber-500", bg: "bg-amber-500/10", category: "Wellness", isNew: true, description: "Track feelings" },
   { href: "/focus-timer", label: "Focus Timer", icon: Timer, color: "text-red-500", bg: "bg-red-500/10", category: "Wellness", isNew: true, description: "Pomodoro timer" },
 ];
 
@@ -117,7 +122,7 @@ export function StudyToolsGrid() {
             <CardDescription>20 specialized tools for your CLAT prep</CardDescription>
           </div>
           <Badge variant="outline" className="gap-1">
-            <Sparkles className="h-3 w-3" /> 9 New
+            <Sparkles className="h-3 w-3" /> 12 New
           </Badge>
         </div>
       </CardHeader>
