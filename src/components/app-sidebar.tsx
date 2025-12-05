@@ -32,7 +32,17 @@ import {
   Gavel,
   TrendingUp,
   SmilePlus,
-  Settings
+  Settings,
+  Zap,
+  Globe,
+  Brain,
+  BookOpen,
+  GitCompare,
+  ScrollText,
+  CalendarDays,
+  BookMarked,
+  AlertCircle,
+  Bolt
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -51,6 +61,19 @@ const newFeatures = [
   { href: "/visual-law", label: "Visual Law", icon: Projector },
   { href: "/career-roadmap", label: "Career Roadmap", icon: Map },
   { href: "/revision-wheel", label: "Revision Wheel", icon: Disc3 },
+];
+
+const clatTools = [
+  { href: "/passage-sprint", label: "Passage Sprint", icon: Zap },
+  { href: "/legal-drill", label: "Legal Drill", icon: Scale },
+  { href: "/gk-oneliners", label: "GK One-Liners", icon: Globe },
+  { href: "/maxims", label: "Legal Maxims", icon: ScrollText },
+  { href: "/comparisons", label: "Comparisons", icon: GitCompare },
+  { href: "/daily-25", label: "Daily 25", icon: CalendarDays },
+  { href: "/brain-dump", label: "Brain Dump", icon: Brain },
+  { href: "/case-diary", label: "Case Diary", icon: BookMarked },
+  { href: "/quick-revision", label: "Quick Revision", icon: Bolt },
+  { href: "/error-log", label: "Error Log", icon: AlertCircle },
 ];
 
 const aiTools = [
@@ -91,6 +114,11 @@ export function AppSidebar() {
         <SidebarMenu>
           <h3 className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">New Features</h3>
           {renderMenuItems(newFeatures)}
+        </SidebarMenu>
+
+        <SidebarMenu>
+          <h3 className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">🔥 CLAT Tools</h3>
+          {renderMenuItems(clatTools)}
         </SidebarMenu>
 
         <SidebarMenu>
