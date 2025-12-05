@@ -29,7 +29,11 @@ import {
   Grid3X3,
   Sparkles,
   ArrowRight,
-  GraduationCap
+  GraduationCap,
+  Heart,
+  Smile,
+  BookHeart,
+  Wind
 } from "lucide-react";
 
 // All CLAT study tools with their metadata
@@ -63,6 +67,12 @@ const clatStudyTools = [
   // Revision
   { href: "/quick-revision", label: "Quick Revision", icon: Bolt, color: "text-yellow-600", bg: "bg-yellow-600/10", category: "Revision", isNew: false, description: "Fast review" },
   { href: "/error-log", label: "Error Log", icon: AlertCircle, color: "text-red-600", bg: "bg-red-600/10", category: "Revision", isNew: false, description: "Track mistakes" },
+
+  // Wellness & Mental Health
+  { href: "/stress-relief", label: "Stress Relief", icon: Wind, color: "text-emerald-500", bg: "bg-emerald-500/10", category: "Wellness", isNew: true, description: "Breathing & calm" },
+  { href: "/exam-anxiety", label: "Exam Anxiety", icon: Heart, color: "text-pink-500", bg: "bg-pink-500/10", category: "Wellness", isNew: true, description: "Anxiety tips" },
+  { href: "/mood-journal", label: "Mood Journal", icon: BookHeart, color: "text-rose-500", bg: "bg-rose-500/10", category: "Wellness", isNew: true, description: "Track feelings" },
+  { href: "/focus-timer", label: "Focus Timer", icon: Timer, color: "text-red-500", bg: "bg-red-500/10", category: "Wellness", isNew: true, description: "Pomodoro timer" },
 ];
 
 const categories = [
@@ -71,6 +81,7 @@ const categories = [
   { name: "Brain Training", icon: Brain, color: "text-purple-500" },
   { name: "Visual", icon: Map, color: "text-pink-500" },
   { name: "Revision", icon: Bolt, color: "text-orange-500" },
+  { name: "Wellness", icon: Heart, color: "text-emerald-500" },
 ];
 
 // App-drawer style tool button
@@ -106,7 +117,7 @@ export function StudyToolsGrid() {
             <CardDescription>20 specialized tools for your CLAT prep</CardDescription>
           </div>
           <Badge variant="outline" className="gap-1">
-            <Sparkles className="h-3 w-3" /> 5 New
+            <Sparkles className="h-3 w-3" /> 9 New
           </Badge>
         </div>
       </CardHeader>

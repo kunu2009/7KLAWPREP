@@ -96,6 +96,13 @@ const aiTools = [
   { href: "/courtroom-sim", label: "Courtroom Sim", icon: Gavel },
 ];
 
+const wellnessTools = [
+  { href: "/stress-relief", label: "Stress Relief", icon: Smile },
+  { href: "/exam-anxiety", label: "Exam Anxiety Guide", icon: Brain },
+  { href: "/mood-journal", label: "Mood Journal", icon: SmilePlus },
+  { href: "/focus-timer", label: "Focus Timer", icon: Timer },
+];
+
 export function AppSidebar() {
   const pathname = usePathname();
   const { toggleSidebar } = useSidebar();
@@ -137,6 +144,11 @@ export function AppSidebar() {
         <SidebarMenu>
           <h3 className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">AI Tools</h3>
           {renderMenuItems(aiTools)}
+        </SidebarMenu>
+
+        <SidebarMenu>
+          <h3 className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">💚 Wellness</h3>
+          {renderMenuItems(wellnessTools)}
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter className="mt-auto flex flex-col items-center gap-2 p-2">
