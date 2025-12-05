@@ -42,7 +42,10 @@ import {
   CalendarDays,
   BookMarked,
   AlertCircle,
-  Bolt
+  Bolt,
+  Timer,
+  Shuffle,
+  Eye
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 
@@ -74,6 +77,11 @@ const clatTools = [
   { href: "/case-diary", label: "Case Diary", icon: BookMarked },
   { href: "/quick-revision", label: "Quick Revision", icon: Bolt },
   { href: "/error-log", label: "Error Log", icon: AlertCircle },
+  { href: "/vocab-context", label: "Vocabulary Drill", icon: BookOpen },
+  { href: "/speed-reading", label: "Speed Reading", icon: Eye },
+  { href: "/lr-patterns", label: "LR Patterns", icon: Brain },
+  { href: "/parajumble", label: "Parajumble", icon: Shuffle },
+  { href: "/mini-test", label: "Mini Test", icon: Timer },
 ];
 
 const aiTools = [
