@@ -14,7 +14,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
       </Sidebar>
       <FeatureToggleProvider>
         <RevisionModeProvider>
-          <SidebarInset className="flex flex-col">
+          <SidebarInset className="flex flex-col min-w-0">
             <RevisionModeBanner />
             <header className="sticky top-0 z-10 flex h-12 sm:h-14 items-center justify-between gap-3 border-b bg-background/90 px-3 sm:px-6 backdrop-blur-sm">
               <div className="flex items-center gap-3">
@@ -23,7 +23,7 @@ export default function AppLayout({ children }: { children: ReactNode }) {
               </div>
               <GlobalCommandLauncher />
             </header>
-            <main className="flex-1 overflow-auto p-3 sm:p-6">{children}</main>
+            <main className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto p-3 sm:p-6">{children}</main>
           </SidebarInset>
         </RevisionModeProvider>
       </FeatureToggleProvider>
