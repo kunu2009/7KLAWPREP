@@ -89,15 +89,15 @@ export default function DashboardPage() {
     };
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
             {/* Header with Streak */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold tracking-tight">AIR-1 Mission Desk</h1>
-                    <p className="text-muted-foreground">One focused session at a time. Start today&apos;s highest-impact work.</p>
+                    <h1 className="text-xl sm:text-2xl font-bold tracking-tight">AIR-1 Mission Desk</h1>
+                    <p className="text-sm sm:text-base text-muted-foreground">One focused session at a time. Start today&apos;s highest-impact work.</p>
                 </div>
                 {isClient && (
-                    <Card className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border-orange-500/20 sm:min-w-[200px]">
+                    <Card className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border-orange-500/20 w-full sm:w-auto sm:min-w-[200px]">
                         <CardContent className="p-4 flex items-center gap-3">
                             <div className="p-2 bg-orange-500/20 rounded-full">
                                 <Flame className="h-6 w-6 text-orange-500" />
@@ -115,28 +115,28 @@ export default function DashboardPage() {
 
             {/* Mission-first cards */}
             <Card>
-                <CardHeader className="pb-3">
+                <CardHeader className="pb-2 sm:pb-3">
                     <CardTitle className="text-base flex items-center gap-2">
                         <Target className="h-4 w-4 text-primary" />
                         Start Today&apos;s AIR-1 Session
                     </CardTitle>
-                    <CardDescription>Recommended flow: warm-up MCQs → focused drill → review mistakes.</CardDescription>
+                    <CardDescription className="text-xs sm:text-sm">Recommended flow: warm-up MCQs → focused drill → review mistakes.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <Button asChild className="h-auto py-4" onClick={handleStartSession}>
+                        <Button asChild className="h-auto py-3 sm:py-4" onClick={handleStartSession}>
                             <Link href="/mcqs" onClick={() => handleToolHop('/mcqs', 'mission_primary')} className="flex items-center justify-center gap-2">
                                 <Target className="h-5 w-5" />
                                 <span className="font-semibold">Start Session</span>
                             </Link>
                         </Button>
-                        <Button variant="outline" asChild className="h-auto py-4" onClick={() => handleToolHop('/legal-drill', 'mission_secondary')}>
+                        <Button variant="outline" asChild className="h-auto py-3 sm:py-4" onClick={() => handleToolHop('/legal-drill', 'mission_secondary')}>
                             <Link href="/legal-drill" className="flex items-center justify-center gap-2">
                                 <Clock3 className="h-5 w-5 text-blue-500" />
                                 <span className="font-medium">Focused Drill</span>
                             </Link>
                         </Button>
-                        <Button variant="outline" asChild className="h-auto py-4" onClick={() => handleToolHop('/error-log', 'mission_secondary')}>
+                        <Button variant="outline" asChild className="h-auto py-3 sm:py-4" onClick={() => handleToolHop('/error-log', 'mission_secondary')}>
                             <Link href="/error-log" className="flex items-center justify-center gap-2">
                                 <AlertTriangle className="h-5 w-5 text-amber-500" />
                                 <span className="font-medium">Fix Mistakes</span>

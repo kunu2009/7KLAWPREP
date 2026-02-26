@@ -16,14 +16,14 @@ export default function AppLayout({ children }: { children: ReactNode }) {
         <RevisionModeProvider>
           <SidebarInset className="flex flex-col">
             <RevisionModeBanner />
-            <header className="sticky top-0 z-10 flex h-14 items-center justify-between gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6">
+            <header className="sticky top-0 z-10 flex h-12 sm:h-14 items-center justify-between gap-3 border-b bg-background/90 px-3 sm:px-6 backdrop-blur-sm">
               <div className="flex items-center gap-3">
                 <SidebarTrigger className="md:hidden" />
-                <h1 className="text-lg font-semibold">LawPrep Sprint</h1>
+                <h1 className="text-base sm:text-lg font-semibold">LawPrep Sprint</h1>
               </div>
               <GlobalCommandLauncher />
             </header>
-            <main className="flex-1 overflow-auto p-4 sm:p-6">{children}</main>
+            <main className="flex-1 overflow-auto p-3 sm:p-6">{children}</main>
           </SidebarInset>
         </RevisionModeProvider>
       </FeatureToggleProvider>
