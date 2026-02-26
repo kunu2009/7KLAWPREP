@@ -5,6 +5,7 @@ import { RevisionModeProvider } from "@/context/revision-mode-context";
 import { RevisionModeBanner } from "@/components/revision-mode-banner";
 import { ReactNode } from "react";
 import { GlobalCommandLauncher } from "@/components/global-command-launcher";
+import { MobileBottomNav } from "@/components/mobile-bottom-nav";
 
 export default function AppLayout({ children }: { children: ReactNode }) {
   return (
@@ -23,7 +24,8 @@ export default function AppLayout({ children }: { children: ReactNode }) {
               </div>
               <GlobalCommandLauncher />
             </header>
-            <main className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto p-3 sm:p-6">{children}</main>
+            <main className="flex-1 min-w-0 overflow-x-hidden overflow-y-auto p-3 pb-20 sm:p-6 md:pb-6">{children}</main>
+            <MobileBottomNav />
           </SidebarInset>
         </RevisionModeProvider>
       </FeatureToggleProvider>

@@ -6,7 +6,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { mcqs, flashcards, notes, reels } from '@/lib/data';
-import { Database, FileText, Layers3, PlaySquare, Flame, Trophy, ArrowRight, Sparkles, Target, Clock3, AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { Database, FileText, Layers3, PlaySquare, Flame, Trophy, ArrowRight, Sparkles, Target, Clock3, AlertTriangle, CheckCircle2, Search } from 'lucide-react';
 import { useFeatureToggles, SectionToggleKey } from '@/context/feature-toggles';
 import { useProgress } from '@/hooks/use-progress';
 import { useRevisionMode } from '@/context/revision-mode-context';
@@ -90,35 +90,32 @@ export default function DashboardPage() {
 
     return (
         <div className="space-y-4 sm:space-y-6">
-            {/* Header with Streak */}
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                <div>
-                    <h1 className="text-xl sm:text-2xl font-bold tracking-tight">AIR-1 Mission Desk</h1>
-                    <p className="text-sm sm:text-base text-muted-foreground">One focused session at a time. Start today&apos;s highest-impact work.</p>
+            <div className="space-y-3">
+                <p className="text-xs text-muted-foreground">{new Date().toLocaleDateString(undefined, { day: '2-digit', month: 'short' })}</p>
+                <div className="flex items-center justify-between gap-3">
+                    <div>
+                        <h1 className="text-xl sm:text-2xl font-bold tracking-tight">Hi, Aspirant</h1>
+                        <p className="text-sm text-muted-foreground">Let&apos;s make today count.</p>
+                    </div>
+                    {isClient && (
+                        <div className="flex items-center gap-2 rounded-full border bg-card px-3 py-1.5">
+                            <Flame className="h-4 w-4 text-primary" />
+                            <span className="text-sm font-semibold">{zenMode ? '---' : currentStreak}</span>
+                        </div>
+                    )}
                 </div>
-                {isClient && (
-                    <Card className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border-orange-500/20 w-full sm:w-auto sm:min-w-[200px]">
-                        <CardContent className="p-4 flex items-center gap-3">
-                            <div className="p-2 bg-orange-500/20 rounded-full">
-                                <Flame className="h-6 w-6 text-orange-500" />
-                            </div>
-                            <div>
-                                <p className="text-2xl font-bold text-orange-600">{zenMode ? '---' : currentStreak} day{currentStreak !== 1 ? 's' : ''}</p>
-                                <p className="text-xs text-muted-foreground flex items-center gap-1">
-                                    <Trophy className="h-3 w-3" /> Best: {zenMode ? '---' : longestStreak}
-                                </p>
-                            </div>
-                        </CardContent>
-                    </Card>
-                )}
+                <Link href="/search" onClick={() => handleToolHop('/search', 'dashboard_search')} className="flex h-11 items-center gap-2 rounded-xl border bg-card px-3 text-sm text-muted-foreground">
+                    <Search className="h-4 w-4" />
+                    Search notes, topics, drills...
+                </Link>
             </div>
 
             {/* Mission-first cards */}
-            <Card>
+            <Card className="overflow-hidden border-primary/20 bg-gradient-to-r from-primary/10 to-primary/5">
                 <CardHeader className="pb-2 sm:pb-3">
                     <CardTitle className="text-base flex items-center gap-2">
                         <Target className="h-4 w-4 text-primary" />
-                        Start Today&apos;s AIR-1 Session
+                        What would you like to learn today?
                     </CardTitle>
                     <CardDescription className="text-xs sm:text-sm">Recommended flow: warm-up MCQs → focused drill → review mistakes.</CardDescription>
                 </CardHeader>
@@ -145,6 +142,11 @@ export default function DashboardPage() {
                     </div>
                 </CardContent>
             </Card>
+
+            <div className="flex items-center justify-between">
+                <h2 className="text-base font-semibold">For you</h2>
+                <Link href="/progress" className="text-xs text-muted-foreground">See all</Link>
+            </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                 <Card>
