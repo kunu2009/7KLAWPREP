@@ -15,28 +15,27 @@ import {
 import {
   BookText,
   CalendarClock,
+  CalendarDays,
   LayoutDashboard,
   MessageCircle,
   Search,
   LineChart,
   Scale,
   FileText,
+  Layers,
+  ListChecks,
+  PanelLeft,
   Projector,
   Map,
   Disc3,
   Settings,
   Globe,
-  Brain,
-  BookOpen,
-    Shield,
-    Target
+  Shield,
+  Target,
   Bolt,
   Timer,
-  Shuffle,
-  Eye,
-  Shield,
-  Moon,
-  Heart
+  AlertCircle,
+  Zap
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { trackEvent } from "@/lib/analytics";
