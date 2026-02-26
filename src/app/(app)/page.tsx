@@ -7,13 +7,13 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { mcqs, flashcards, notes, reels } from '@/lib/data';
 import { Database, FileText, Layers3, PlaySquare, Flame, Trophy, ArrowRight, Sparkles, Target, Clock3, AlertTriangle, CheckCircle2, Search, Compass, BookOpenCheck, Brain, CalendarDays } from 'lucide-react';
-import { useFeatureToggles, SectionToggleKey } from '@/context/feature-toggles';
+import { useFeatureToggles } from '@/context/feature-toggles';
 import { useProgress } from '@/hooks/use-progress';
 import { useRevisionMode } from '@/context/revision-mode-context';
 import RevisionDashboard from '@/components/revision-dashboard';
-import { StudyToolsCompact } from '@/components/study-tools-drawer';
 import { trackEvent } from '@/lib/analytics';
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
 
 const motivationalQuotes = [
   { quote: "The law is reason, free from passion.", author: "Aristotle" },
@@ -25,25 +25,11 @@ const motivationalQuotes = [
   { quote: "One who is his own lawyer has a fool for a client.", author: "Legal Proverb" },
 ];
 
-const StatCard = ({ title, value, icon: Icon, unit, description }: { title: string, value: string | number, icon: React.ElementType, unit?: string, description?: string }) => (
-    <Card>
-        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">{title}</CardTitle>
-            <Icon className="h-4 w-4 text-muted-foreground" />
-        </CardHeader>
-        <CardContent>
-            <div className="text-2xl font-bold">
-                {value} {unit && <span className="text-base font-medium text-muted-foreground">{unit}</span>}
-            </div>
-            {description && <p className="text-xs text-muted-foreground">{description}</p>}
-        </CardContent>
-    </Card>
-);
-
 export default function DashboardPage() {
     const [quote, setQuote] = useState(motivationalQuotes[0]);
+    const [searchQuery, setSearchQuery] = useState('');
     const [mounted, setMounted] = useState(false);
-    const { sections, sectionOrder, zenMode } = useFeatureToggles();
+    const { zenMode } = useFeatureToggles();
     const { currentStreak, longestStreak, attempted, correct, isClient, getWeakestTopics } = useProgress();
     const { isRevisionMode } = useRevisionMode();
 
@@ -59,19 +45,6 @@ export default function DashboardPage() {
     const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
     const weakestTopics = useMemo(() => getWeakestTopics(1), [getWeakestTopics]);
     const topWeakTopic = weakestTopics[0];
-
-    const statConfigs: Array<{ key: SectionToggleKey; title: string; value: number; unit: string; description: string; icon: React.ElementType; }> = useMemo(() => ([
-        { key: 'mcqs', title: 'Total MCQs', value: mcqs.length, unit: 'questions', description: 'Across all topics', icon: Database },
-        { key: 'flashcards', title: 'Total Flashcards', value: flashcards.length, unit: 'cards', description: 'For quick revision', icon: Layers3 },
-        { key: 'notes', title: 'Note Topics', value: notes.length, unit: 'subjects', description: 'Covering key areas', icon: FileText },
-        { key: 'reels', title: 'Legal Reels', value: reels.length, unit: 'shorts', description: 'Bite-sized explainers', icon: PlaySquare },
-    ]), []);
-
-    const visibleStats = useMemo(() => {
-        return sectionOrder
-            .map(key => statConfigs.find(stat => stat.key === key))
-            .filter((stat): stat is NonNullable<typeof stat> => !!stat && sections[stat.key]);
-    }, [sectionOrder, sections, statConfigs]);
 
     // Show Revision Dashboard when revision mode is active (AFTER all hooks are called)
     if (mounted && isRevisionMode) {
@@ -119,8 +92,59 @@ export default function DashboardPage() {
         },
     ];
 
+    const quickActions = [
+        { title: 'Start Session', href: '/mcqs' },
+        { title: 'Focused Drill', href: '/legal-drill' },
+        { title: 'Fix Mistakes', href: '/error-log' },
+        { title: 'Ask Assistant', href: '/assistant' },
+        { title: 'Quick Revision', href: '/quick-revision' },
+        { title: 'Start Here Guide', href: '/start-here' },
+    ];
+
+    const searchableItems = [...materialCards.map(item => ({
+        title: item.title,
+        href: item.href,
+        subtitle: typeof item.count === 'number' ? `${item.count} items` : 'Open now',
+    })), ...guidedPaths.map(path => ({
+        title: path.title,
+        href: path.href,
+        subtitle: path.description,
+    })), ...quickActions.map(action => ({
+        title: action.title,
+        href: action.href,
+        subtitle: 'Quick action',
+    }))];
+
+    const filteredSearchResults = useMemo(() => {
+        const query = searchQuery.trim().toLowerCase();
+        if (!query) return [];
+        return searchableItems
+            .filter(item => item.title.toLowerCase().includes(query) || item.subtitle.toLowerCase().includes(query))
+            .slice(0, 6);
+    }, [searchQuery, searchableItems]);
+
+    const todaysPlan = [
+        {
+            title: topWeakTopic ? `${topWeakTopic.topic} Drill` : 'Warm-up MCQs',
+            description: topWeakTopic
+                ? `Target weak area (${zenMode ? '---' : `${topWeakTopic.accuracy}%`} accuracy)`
+                : 'Solve 10 mixed questions to start momentum',
+            href: topWeakTopic ? '/legal-drill' : '/mcqs',
+        },
+        {
+            title: 'Concept Reinforcement',
+            description: 'Read one short topic note and revise 5 flashcards',
+            href: '/notes',
+        },
+        {
+            title: 'Error Recovery',
+            description: 'Review mistakes and lock one learning takeaway',
+            href: '/error-log',
+        },
+    ];
+
     return (
-        <div className="space-y-4 sm:space-y-6">
+        <div className="space-y-3 sm:space-y-5 pb-24 md:pb-6">
             <div className="space-y-3">
                 <p className="text-xs text-muted-foreground">{new Date().toLocaleDateString(undefined, { day: '2-digit', month: 'short' })}</p>
                 <div className="flex items-center justify-between gap-3">
@@ -135,10 +159,41 @@ export default function DashboardPage() {
                         </div>
                     )}
                 </div>
-                <Link href="/search" onClick={() => handleToolHop('/search', 'dashboard_search')} className="flex h-11 items-center gap-2 rounded-xl border bg-card px-3 text-sm text-muted-foreground">
-                    <Search className="h-4 w-4" />
-                    Search notes, topics, drills...
-                </Link>
+                <div className="space-y-2">
+                    <div className="relative">
+                        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                        <Input
+                            value={searchQuery}
+                            onChange={(event) => setSearchQuery(event.target.value)}
+                            placeholder="Search notes, reels, drills, assistant..."
+                            className="h-11 rounded-xl pl-9"
+                        />
+                    </div>
+                    {searchQuery.trim().length > 0 && (
+                        <div className="rounded-xl border bg-card p-2">
+                            {filteredSearchResults.length ? (
+                                <div className="space-y-1">
+                                    {filteredSearchResults.map((item) => (
+                                        <Link
+                                            key={`${item.title}-${item.href}`}
+                                            href={item.href}
+                                            onClick={() => handleToolHop(item.href, 'dashboard_inline_search')}
+                                            className="flex items-center justify-between rounded-lg px-2 py-2 hover:bg-muted"
+                                        >
+                                            <div>
+                                                <p className="text-sm font-medium">{item.title}</p>
+                                                <p className="text-xs text-muted-foreground">{item.subtitle}</p>
+                                            </div>
+                                            <ArrowRight className="h-3.5 w-3.5 text-muted-foreground" />
+                                        </Link>
+                                    ))}
+                                </div>
+                            ) : (
+                                <p className="px-2 py-2 text-xs text-muted-foreground">No quick matches. Try “mcq”, “assistant”, “reels”, or “notes”.</p>
+                            )}
+                        </div>
+                    )}
+                </div>
             </div>
 
             {/* Mission-first cards */}
@@ -151,20 +206,20 @@ export default function DashboardPage() {
                     <CardDescription className="text-xs sm:text-sm">Recommended flow: warm-up MCQs → focused drill → review mistakes.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <Button asChild className="h-auto py-3 sm:py-4" onClick={handleStartSession}>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
+                        <Button asChild className="h-auto py-3" onClick={handleStartSession}>
                             <Link href="/mcqs" onClick={() => handleToolHop('/mcqs', 'mission_primary')} className="flex items-center justify-center gap-2">
                                 <Target className="h-5 w-5" />
                                 <span className="font-semibold">Start Session</span>
                             </Link>
                         </Button>
-                        <Button variant="outline" asChild className="h-auto py-3 sm:py-4" onClick={() => handleToolHop('/legal-drill', 'mission_secondary')}>
+                        <Button variant="outline" asChild className="h-auto py-3" onClick={() => handleToolHop('/legal-drill', 'mission_secondary')}>
                             <Link href="/legal-drill" className="flex items-center justify-center gap-2">
                                 <Clock3 className="h-5 w-5 text-blue-500" />
                                 <span className="font-medium">Focused Drill</span>
                             </Link>
                         </Button>
-                        <Button variant="outline" asChild className="h-auto py-3 sm:py-4" onClick={() => handleToolHop('/error-log', 'mission_secondary')}>
+                        <Button variant="outline" asChild className="h-auto py-3" onClick={() => handleToolHop('/error-log', 'mission_secondary')}>
                             <Link href="/error-log" className="flex items-center justify-center gap-2">
                                 <AlertTriangle className="h-5 w-5 text-amber-500" />
                                 <span className="font-medium">Fix Mistakes</span>
@@ -192,24 +247,53 @@ export default function DashboardPage() {
                 </CardContent>
             </Card>
 
+            <Card className="border-primary/20 bg-gradient-to-r from-primary/10 via-primary/5 to-background">
+                <CardHeader className="pb-3">
+                    <div className="flex items-center justify-between gap-2">
+                        <CardTitle className="text-base flex items-center gap-2">
+                            <Trophy className="h-4 w-4 text-primary" />
+                            Today&apos;s 3-Task Auto Plan
+                        </CardTitle>
+                        <Badge variant="secondary">Focused</Badge>
+                    </div>
+                    <CardDescription>Do these in order for a high-impact day.</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-2">
+                    {todaysPlan.map((task, index) => (
+                        <Link
+                            key={task.title}
+                            href={task.href}
+                            onClick={() => handleToolHop(task.href, 'today_auto_plan')}
+                            className="flex items-center justify-between rounded-xl border bg-card/80 px-3 py-3 hover:border-primary/40"
+                        >
+                            <div>
+                                <p className="text-sm font-semibold">{index + 1}. {task.title}</p>
+                                <p className="text-xs text-muted-foreground">{task.description}</p>
+                            </div>
+                            <ArrowRight className="h-4 w-4 text-muted-foreground" />
+                        </Link>
+                    ))}
+                </CardContent>
+            </Card>
+
             <div className="space-y-3">
                 <div className="flex items-center justify-between">
                     <h2 className="text-base font-semibold">Material Hub</h2>
                     <Badge variant="outline">All in one place</Badge>
                 </div>
-                <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-3">
                     {materialCards.map((item) => (
                         <Link
                             key={item.title}
                             href={item.href}
                             onClick={() => handleToolHop(item.href, 'material_hub')}
-                            className="rounded-2xl border bg-card p-3 hover:border-primary/40 transition-colors"
+                            className="rounded-2xl border bg-card p-3 sm:p-3.5 hover:border-primary/40 transition-colors"
                         >
                             <div className="flex items-center justify-between">
                                 <item.icon className="h-4 w-4 text-primary" />
                                 {typeof item.count === 'number' && <span className="text-xs text-muted-foreground">{item.count}</span>}
                             </div>
-                            <p className="mt-3 text-sm font-semibold">{item.title}</p>
+                            <p className="mt-2.5 text-sm font-semibold leading-tight">{item.title}</p>
                         </Link>
                     ))}
                 </div>
@@ -290,8 +374,6 @@ export default function DashboardPage() {
                 </Card>
             </div>
 
-            <StudyToolsCompact />
-
             {/* Your Progress Summary */}
             {isClient && attempted > 0 && (
                 <Card>
@@ -327,34 +409,6 @@ export default function DashboardPage() {
                 </Card>
             )}
 
-            {/* Content Stats */}
-            {visibleStats.length ? (
-                <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                    {visibleStats.map((stat) => (
-                        <StatCard
-                            key={stat.key}
-                            title={stat.title}
-                            value={zenMode ? "---" : stat.value}
-                            icon={stat.icon}
-                            unit={stat.unit}
-                            description={stat.description}
-                        />
-                    ))}
-                </div>
-            ) : (
-                <Card>
-                    <CardHeader>
-                        <CardTitle>Nothing to display</CardTitle>
-                        <CardDescription>All dashboard sections are hidden. Re-enable the ones you need from Settings.</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                        <Link href="/settings" className="text-sm font-semibold text-primary underline-offset-4 hover:underline">
-                            Open Settings
-                        </Link>
-                    </CardContent>
-                </Card>
-            )}
-
             {/* Motivational Quote */}
             <Card className="bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20">
                 <CardContent className="p-4">
@@ -365,27 +419,6 @@ export default function DashboardPage() {
                             <p className="text-xs text-muted-foreground mt-1">— {quote.author}</p>
                         </div>
                     </div>
-                </CardContent>
-            </Card>
-
-            {/* Content Breakdown */}
-            <Card>
-                <CardHeader>
-                    <CardTitle>Content Breakdown</CardTitle>
-                    <CardDescription>
-                        Here is a summary of the study materials currently in the app.
-                    </CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <ul className="list-disc list-inside mt-2 space-y-2 text-muted-foreground">
-                        <li><span className="font-semibold text-foreground">{mcqs.length} Multiple Choice Questions</span> across various subjects to test your knowledge.</li>
-                        <li><span className="font-semibold text-foreground">{flashcards.length} Flashcards</span> for quick revision of key legal terms and maxims.</li>
-                        <li>In-depth <span className="font-semibold text-foreground">{notes.length} Topic Notes</span> covering Constitution, Legal Aptitude, and more.</li>
-                        <li><span className="font-semibold text-foreground">{reels.length} Legal Reels</span> for bite-sized learning on the go.</li>
-                    </ul>
-                    <p className="text-xs text-muted-foreground mt-4">
-                        Customize this dashboard from the <Link href="/settings" className="font-medium text-foreground underline-offset-2 hover:underline">Settings</Link> page if you prefer a lighter view.
-                    </p>
                 </CardContent>
             </Card>
         </div>

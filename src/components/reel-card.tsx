@@ -8,30 +8,45 @@ import { cn } from '@/lib/utils';
 
 interface ReelCardProps {
   reel: Reel;
+  index: number;
 }
 
-export function ReelCard({ reel }: ReelCardProps) {
+const gradientPalettes = [
+  "from-fuchsia-500/55 via-purple-500/35 to-indigo-500/35",
+  "from-cyan-500/55 via-blue-500/35 to-violet-500/35",
+  "from-emerald-500/55 via-teal-500/35 to-cyan-500/35",
+  "from-amber-500/55 via-orange-500/35 to-rose-500/35",
+  "from-sky-500/55 via-indigo-500/35 to-fuchsia-500/35",
+];
+
+export function ReelCard({ reel, index }: ReelCardProps) {
   // A small set of default icons or a fallback is good practice
   const LucideIcon = icons[reel.icon as keyof typeof icons] || AlertTriangle;
+  const gradientClass = gradientPalettes[index % gradientPalettes.length];
 
   return (
-    <div className="h-full w-full snap-start flex items-center justify-center p-4 md:p-8">
+    <div className="h-[86vh] sm:h-[88vh] w-full snap-start flex items-center justify-center p-2 sm:p-3">
       <Card className={cn(
-        "w-full max-w-md h-full flex flex-col justify-between p-6 shadow-xl",
-        "bg-gradient-to-br from-primary/10 via-background to-background",
-        "animate-in fade-in-50 zoom-in-95 duration-500"
+        "w-full h-full flex flex-col justify-between p-5 sm:p-6 shadow-xl border-primary/20 rounded-[1.75rem]",
+        `bg-gradient-to-br ${gradientClass}`,
+        "animate-in fade-in-50 zoom-in-95 duration-500 overflow-hidden"
       )}>
-        <div className="flex items-center gap-3 text-primary">
-          <LucideIcon className="h-6 w-6 shrink-0" />
-          <h2 className="text-xl font-bold">{reel.title}</h2>
+        <div className="flex items-center justify-between gap-3 text-primary">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="rounded-xl bg-background/70 p-2">
+              <LucideIcon className="h-6 w-6 shrink-0" />
+            </div>
+            <h2 className="text-lg sm:text-xl font-bold truncate text-foreground">{reel.title}</h2>
+          </div>
+          <span className="rounded-full bg-background/70 px-2.5 py-1 text-[10px] font-semibold text-muted-foreground">REEL</span>
         </div>
-        <CardContent className="flex-1 flex items-center justify-center p-0 my-4">
-          <p className="text-2xl font-medium text-center leading-relaxed">
+        <CardContent className="flex-1 flex items-center justify-center p-0 my-4 sm:my-6">
+          <p className="text-[1.7rem] sm:text-3xl font-semibold text-center leading-[1.45] sm:leading-[1.5] px-1 sm:px-2 text-foreground">
             {reel.content}
           </p>
         </CardContent>
-        <div className="text-center text-muted-foreground text-xs">
-          LawPrep Sprint Reels
+        <div className="rounded-xl bg-background/60 px-3 py-2 text-center text-muted-foreground text-xs font-medium backdrop-blur-sm">
+          LawPrep Reels • Swipe up for next
         </div>
       </Card>
     </div>
