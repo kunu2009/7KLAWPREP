@@ -7,12 +7,17 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Brain, Send, Loader2, User, Sparkles, BookOpen, Scale, Lightbulb, HelpCircle } from "lucide-react";
 import { answerLawQuestion } from "@/ai/flows/answer-law-questions";
+import { Badge } from "@/components/ui/badge";
+import { trackEvent } from "@/lib/analytics";
 
 interface Message {
     id: string;
     role: 'user' | 'assistant';
     content: string;
     timestamp: Date;
+    confidence?: 'low' | 'medium' | 'high';
+    verificationNote?: string;
+    sources?: Array<{ title: string; reference: string }>;
 }
 
 const suggestedQuestions = [
@@ -40,6 +45,8 @@ export default function AssistantPage() {
         e.preventDefault();
         if (!input.trim() || isLoading) return;
 
+        trackEvent("ai_question_submitted", { promptLength: input.trim().length });
+
         const userMessage: Message = {
             id: Date.now().toString(),
             role: 'user',
@@ -59,6 +66,9 @@ export default function AssistantPage() {
                 role: 'assistant',
                 content: response.answer,
                 timestamp: new Date(),
+                confidence: response.confidence,
+                verificationNote: response.verificationNote,
+                sources: response.sources,
             };
 
             setMessages(prev => [...prev, assistantMessage]);
@@ -140,6 +150,41 @@ export default function AssistantPage() {
                                     }`}
                                 >
                                     <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                                    {message.role === 'assistant' && (
+                                        <div className="mt-3 space-y-2">
+                                            {message.confidence && (
+                                                <Badge
+                                                    variant={message.confidence === 'high' ? 'default' : message.confidence === 'medium' ? 'secondary' : 'outline'}
+                                                    className="text-[10px] uppercase tracking-wide"
+                                                >
+                                                    Confidence: {message.confidence}
+                                                </Badge>
+                                            )}
+
+                                            {!!message.sources?.length && (
+                                                <div className="space-y-1">
+                                                    <p className="text-xs font-medium text-muted-foreground">Sources</p>
+                                                    <div className="flex flex-wrap gap-1.5">
+                                                        {message.sources.map((source, index) => (
+                                                            <button
+                                                                key={`${source.reference}-${index}`}
+                                                                type="button"
+                                                                onClick={() => trackEvent("ai_citation_clicked", { title: source.title, reference: source.reference })}
+                                                                className="rounded-md border px-2 py-1 text-xs text-left hover:bg-background"
+                                                                title={`${source.title} — ${source.reference}`}
+                                                            >
+                                                                {source.title}: {source.reference}
+                                                            </button>
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
+
+                                            {message.verificationNote && (
+                                                <p className="text-xs text-muted-foreground">{message.verificationNote}</p>
+                                            )}
+                                        </div>
+                                    )}
                                     <p className={`text-xs mt-1 ${
                                         message.role === 'user' ? 'text-primary-foreground/70' : 'text-muted-foreground'
                                     }`}>

@@ -12,6 +12,7 @@ import { Progress } from '@/components/ui/progress';
 import { RotateCw, Target, CheckCircle2, XCircle, Trophy, Flame } from 'lucide-react';
 import { format } from 'date-fns';
 import { useProgress } from '@/hooks/use-progress';
+import { trackEvent } from '@/lib/analytics';
 
 // More efficient shuffle algorithm (Fisher-Yates)
 const shuffleMcqs = (array: MCQ[]): MCQ[] => {
@@ -105,6 +106,18 @@ export default function DailyMcqPage() {
     const accuracy = answered > 0 ? Math.round((correct / answered) * 100) : 0;
     return { answered, correct, incorrect, remaining, accuracy };
   }, [answeredQuestions, dailyMcqs.length]);
+
+  useEffect(() => {
+    if (!isClient || dailyMcqs.length === 0) return;
+    if (sessionStats.answered !== dailyMcqs.length) return;
+
+    trackEvent("session_completed", {
+      module: "daily_mcqs",
+      total: dailyMcqs.length,
+      correct: sessionStats.correct,
+      accuracy: sessionStats.accuracy,
+    });
+  }, [isClient, sessionStats, dailyMcqs.length, dailyMcqs]);
 
   // Get unique topics from today's MCQs
   const todaysTopics = useMemo(() => {

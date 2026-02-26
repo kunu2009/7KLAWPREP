@@ -3,15 +3,16 @@
 
 import Link from "next/link";
 import { useState, useEffect, useMemo } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { mcqs, flashcards, notes, reels } from '@/lib/data';
-import { Database, FileText, Layers3, PlaySquare, Server, Flame, Trophy, ArrowRight, Sparkles, Target, Zap, BookOpen } from 'lucide-react';
+import { Database, FileText, Layers3, PlaySquare, Flame, Trophy, ArrowRight, Sparkles, Target, Clock3, AlertTriangle, CheckCircle2 } from 'lucide-react';
 import { useFeatureToggles, SectionToggleKey } from '@/context/feature-toggles';
 import { useProgress } from '@/hooks/use-progress';
 import { useRevisionMode } from '@/context/revision-mode-context';
 import RevisionDashboard from '@/components/revision-dashboard';
-import { StudyToolsFeatured, StudyToolsGrid, StudyToolsCompact } from '@/components/study-tools-drawer';
+import { StudyToolsCompact } from '@/components/study-tools-drawer';
+import { trackEvent } from '@/lib/analytics';
 
 const motivationalQuotes = [
   { quote: "The law is reason, free from passion.", author: "Aristotle" },
@@ -39,11 +40,10 @@ const StatCard = ({ title, value, icon: Icon, unit, description }: { title: stri
 );
 
 export default function DashboardPage() {
-    const [dataSize, setDataSize] = useState(0);
     const [quote, setQuote] = useState(motivationalQuotes[0]);
     const [mounted, setMounted] = useState(false);
     const { sections, sectionOrder, zenMode } = useFeatureToggles();
-    const { currentStreak, longestStreak, attempted, correct, isClient } = useProgress();
+    const { currentStreak, longestStreak, attempted, correct, isClient, getWeakestTopics } = useProgress();
     const { isRevisionMode } = useRevisionMode();
 
     useEffect(() => {
@@ -51,17 +51,13 @@ export default function DashboardPage() {
     }, []);
 
     useEffect(() => {
-        // This calculation runs only on the client-side to avoid server/client mismatch
-        const allData = { mcqs, flashcards, notes };
-        const sizeInBytes = new Blob([JSON.stringify(allData)]).size;
-        setDataSize(sizeInBytes);
-        
         // Random quote on load
         setQuote(motivationalQuotes[Math.floor(Math.random() * motivationalQuotes.length)]);
     }, []);
 
-    const formattedSize = (dataSize / 1024).toFixed(2); // Convert to KB
     const accuracy = attempted > 0 ? Math.round((correct / attempted) * 100) : 0;
+    const weakestTopics = useMemo(() => getWeakestTopics(1), [getWeakestTopics]);
+    const topWeakTopic = weakestTopics[0];
 
     const statConfigs: Array<{ key: SectionToggleKey; title: string; value: number; unit: string; description: string; icon: React.ElementType; }> = useMemo(() => ([
         { key: 'mcqs', title: 'Total MCQs', value: mcqs.length, unit: 'questions', description: 'Across all topics', icon: Database },
@@ -81,13 +77,24 @@ export default function DashboardPage() {
         return <RevisionDashboard />;
     }
 
+    const handleStartSession = () => {
+        trackEvent("home_session_start", {
+            streak: currentStreak,
+            attempted,
+        });
+    };
+
+    const handleToolHop = (destination: string, source: string) => {
+        trackEvent("home_tool_hop", { destination, source });
+    };
+
     return (
         <div className="space-y-6">
             {/* Header with Streak */}
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
-                    <h1 className="text-2xl font-bold tracking-tight">Dashboard</h1>
-                    <p className="text-muted-foreground">Welcome back! Let's continue your CLAT journey.</p>
+                    <h1 className="text-2xl font-bold tracking-tight">AIR-1 Mission Desk</h1>
+                    <p className="text-muted-foreground">One focused session at a time. Start today&apos;s highest-impact work.</p>
                 </div>
                 {isClient && (
                     <Card className="bg-gradient-to-r from-orange-500/10 to-red-500/10 border-orange-500/20 sm:min-w-[200px]">
@@ -106,63 +113,88 @@ export default function DashboardPage() {
                 )}
             </div>
 
-            {/* Motivational Quote */}
-            <Card className="bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20">
-                <CardContent className="p-4">
-                    <div className="flex items-start gap-3">
-                        <Sparkles className="h-5 w-5 text-primary mt-0.5 shrink-0" />
-                        <div>
-                            <p className="text-sm italic">"{quote.quote}"</p>
-                            <p className="text-xs text-muted-foreground mt-1">— {quote.author}</p>
-                        </div>
-                    </div>
-                </CardContent>
-            </Card>
-
-            {/* Quick Actions */}
+            {/* Mission-first cards */}
             <Card>
                 <CardHeader className="pb-3">
                     <CardTitle className="text-base flex items-center gap-2">
-                        <Zap className="h-4 w-4 text-primary" />
-                        Quick Actions
+                        <Target className="h-4 w-4 text-primary" />
+                        Start Today&apos;s AIR-1 Session
                     </CardTitle>
-                    <CardDescription>Jump into your study session</CardDescription>
+                    <CardDescription>Recommended flow: warm-up MCQs → focused drill → review mistakes.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                        <Button variant="outline" asChild className="h-auto py-4 flex-col gap-2">
-                            <Link href="/mcqs">
-                                <Target className="h-5 w-5 text-blue-500" />
-                                <span className="text-xs font-medium">Daily MCQs</span>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <Button asChild className="h-auto py-4" onClick={handleStartSession}>
+                            <Link href="/mcqs" onClick={() => handleToolHop('/mcqs', 'mission_primary')} className="flex items-center justify-center gap-2">
+                                <Target className="h-5 w-5" />
+                                <span className="font-semibold">Start Session</span>
                             </Link>
                         </Button>
-                        <Button variant="outline" asChild className="h-auto py-4 flex-col gap-2">
-                            <Link href="/flashcards">
-                                <Layers3 className="h-5 w-5 text-green-500" />
-                                <span className="text-xs font-medium">Flashcards</span>
+                        <Button variant="outline" asChild className="h-auto py-4" onClick={() => handleToolHop('/legal-drill', 'mission_secondary')}>
+                            <Link href="/legal-drill" className="flex items-center justify-center gap-2">
+                                <Clock3 className="h-5 w-5 text-blue-500" />
+                                <span className="font-medium">Focused Drill</span>
                             </Link>
                         </Button>
-                        <Button variant="outline" asChild className="h-auto py-4 flex-col gap-2">
-                            <Link href="/mood-study">
-                                <Sparkles className="h-5 w-5 text-purple-500" />
-                                <span className="text-xs font-medium">Mood Study</span>
-                            </Link>
-                        </Button>
-                        <Button variant="outline" asChild className="h-auto py-4 flex-col gap-2">
-                            <Link href="/assistant">
-                                <BookOpen className="h-5 w-5 text-orange-500" />
-                                <span className="text-xs font-medium">AI Assistant</span>
+                        <Button variant="outline" asChild className="h-auto py-4" onClick={() => handleToolHop('/error-log', 'mission_secondary')}>
+                            <Link href="/error-log" className="flex items-center justify-center gap-2">
+                                <AlertTriangle className="h-5 w-5 text-amber-500" />
+                                <span className="font-medium">Fix Mistakes</span>
                             </Link>
                         </Button>
                     </div>
                 </CardContent>
             </Card>
 
-            {/* New Study Tools Featured Section */}
-            <StudyToolsFeatured />
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                <Card>
+                    <CardHeader className="pb-3">
+                        <CardTitle className="text-base">Weakest Skill Right Now</CardTitle>
+                        <CardDescription>Auto-picked from your recent answers (minimum 3 attempts/topic).</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                        {topWeakTopic ? (
+                            <div className="space-y-2">
+                                <p className="text-lg font-semibold">{topWeakTopic.topic}</p>
+                                <p className="text-sm text-muted-foreground">
+                                    Accuracy: <span className="font-semibold text-foreground">{zenMode ? "---" : `${topWeakTopic.accuracy}%`}</span> · Attempts: <span className="font-semibold text-foreground">{zenMode ? "---" : topWeakTopic.attempted}</span>
+                                </p>
+                                <Button variant="ghost" size="sm" asChild onClick={() => handleToolHop('/legal-drill', 'weak_topic_card')}>
+                                    <Link href="/legal-drill" className="flex items-center gap-1">
+                                        Practice this now <ArrowRight className="h-3 w-3" />
+                                    </Link>
+                                </Button>
+                            </div>
+                        ) : (
+                            <p className="text-sm text-muted-foreground">Answer at least 3 questions in a topic to unlock weakness analysis.</p>
+                        )}
+                    </CardContent>
+                </Card>
 
-            {/* All CLAT Study Tools Grid */}
-            <StudyToolsGrid />
+                <Card>
+                    <CardHeader className="pb-3">
+                        <CardTitle className="text-base">Last Mock Recovery</CardTitle>
+                        <CardDescription>Your post-test correction ritual for rank improvement.</CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-2">
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <CheckCircle2 className="h-4 w-4 text-green-600" />
+                            Review wrong answers in `Error Log`
+                        </div>
+                        <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <CheckCircle2 className="h-4 w-4 text-green-600" />
+                            Reattempt weak topics in `Legal Drill`
+                        </div>
+                        <Button variant="ghost" size="sm" asChild onClick={() => handleToolHop('/error-log', 'recovery_card')}>
+                            <Link href="/error-log" className="flex items-center gap-1">
+                                Run recovery now <ArrowRight className="h-3 w-3" />
+                            </Link>
+                        </Button>
+                    </CardContent>
+                </Card>
+            </div>
+
+            <StudyToolsCompact />
 
             {/* Your Progress Summary */}
             {isClient && attempted > 0 && (
@@ -212,7 +244,6 @@ export default function DashboardPage() {
                             description={stat.description}
                         />
                     ))}
-                    <StatCard title="Approx. Data Size" value={formattedSize} icon={Server} unit="KB" description="Loaded on client" />
                 </div>
             ) : (
                 <Card>
@@ -227,6 +258,19 @@ export default function DashboardPage() {
                     </CardContent>
                 </Card>
             )}
+
+            {/* Motivational Quote */}
+            <Card className="bg-gradient-to-r from-primary/5 to-primary/10 border-primary/20">
+                <CardContent className="p-4">
+                    <div className="flex items-start gap-3">
+                        <Sparkles className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+                        <div>
+                            <p className="text-sm italic">"{quote.quote}"</p>
+                            <p className="text-xs text-muted-foreground mt-1">— {quote.author}</p>
+                        </div>
+                    </div>
+                </CardContent>
+            </Card>
 
             {/* Content Breakdown */}
             <Card>

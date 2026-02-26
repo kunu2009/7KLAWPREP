@@ -8,10 +8,19 @@ import { Textarea } from '@/components/ui/textarea';
 import { summarizeLegalText } from '@/ai/flows/summarize-legal-text';
 import { useToast } from '@/hooks/use-toast';
 import { Loader2, Wand2, X } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { trackEvent } from '@/lib/analytics';
+
+type SummaryResult = {
+  summary: string;
+  confidence: 'low' | 'medium' | 'high';
+  verificationNote: string;
+  sources: Array<{ title: string; reference: string }>;
+};
 
 export default function SummarizerPage() {
   const [legalText, setLegalText] = useState('');
-  const [summary, setSummary] = useState('');
+  const [summaryResult, setSummaryResult] = useState<SummaryResult | null>(null);
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
 
@@ -19,13 +28,19 @@ export default function SummarizerPage() {
     e.preventDefault();
     if (!legalText.trim()) return;
 
-    setSummary('');
+    setSummaryResult(null);
+    trackEvent('ai_summary_requested', { textLength: legalText.trim().length });
 
     startTransition(async () => {
       try {
         const response = await summarizeLegalText({ legalText });
         if (response && response.summary) {
-          setSummary(response.summary);
+          setSummaryResult({
+            summary: response.summary,
+            confidence: response.confidence,
+            verificationNote: response.verificationNote,
+            sources: response.sources ?? [],
+          });
         } else {
           throw new Error("Invalid response from summarizer.");
         }
@@ -41,7 +56,7 @@ export default function SummarizerPage() {
 
   const handleClear = () => {
     setLegalText('');
-    setSummary('');
+    setSummaryResult(null);
   };
 
   return (
@@ -84,20 +99,54 @@ export default function SummarizerPage() {
         <Card className="flex flex-col">
           <CardHeader>
             <CardTitle>AI Summary</CardTitle>
-            <CardDescription>This is the AI-generated summary of your text.</CardDescription>
+            <CardDescription>This is the retrieval-grounded AI summary of your text.</CardDescription>
           </CardHeader>
           <CardContent className="flex-1 flex">
-            {isPending && !summary && (
+            {isPending && !summaryResult && (
               <div className="flex flex-1 items-center justify-center">
                 <Loader2 className="h-8 w-8 animate-spin text-muted-foreground" />
               </div>
             )}
-            {summary && (
-              <div className="text-sm leading-relaxed whitespace-pre-wrap flex-1">
-                {summary}
+            {summaryResult && (
+              <div className="text-sm leading-relaxed whitespace-pre-wrap flex-1 space-y-4">
+                <div>{summaryResult.summary}</div>
+
+                <Badge
+                  variant={
+                    summaryResult.confidence === 'high'
+                      ? 'default'
+                      : summaryResult.confidence === 'medium'
+                      ? 'secondary'
+                      : 'outline'
+                  }
+                  className="text-[10px] uppercase tracking-wide"
+                >
+                  Confidence: {summaryResult.confidence}
+                </Badge>
+
+                {summaryResult.sources.length > 0 && (
+                  <div className="space-y-2">
+                    <p className="text-xs font-medium text-muted-foreground">Sources</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {summaryResult.sources.map((source, index) => (
+                        <button
+                          key={`${source.reference}-${index}`}
+                          type="button"
+                          onClick={() => trackEvent('ai_citation_clicked', { title: source.title, reference: source.reference })}
+                          className="rounded-md border px-2 py-1 text-xs text-left hover:bg-muted"
+                          title={`${source.title} — ${source.reference}`}
+                        >
+                          {source.title}: {source.reference}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                <p className="text-xs text-muted-foreground">{summaryResult.verificationNote}</p>
               </div>
             )}
-            {!isPending && !summary && (
+            {!isPending && !summaryResult && (
               <div className="flex flex-1 items-center justify-center text-center text-muted-foreground">
                 <p>Your summary will appear here.</p>
               </div>

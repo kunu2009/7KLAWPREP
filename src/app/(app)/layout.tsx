@@ -4,6 +4,7 @@ import { FeatureToggleProvider } from "@/context/feature-toggles";
 import { RevisionModeProvider } from "@/context/revision-mode-context";
 import { RevisionModeBanner } from "@/components/revision-mode-banner";
 import { ReactNode } from "react";
+import { GlobalCommandLauncher } from "@/components/global-command-launcher";
 
 export default function AppLayout({ children }: { children: ReactNode }) {
   return (
@@ -15,9 +16,12 @@ export default function AppLayout({ children }: { children: ReactNode }) {
         <RevisionModeProvider>
           <SidebarInset className="flex flex-col">
             <RevisionModeBanner />
-            <header className="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6 md:hidden">
-              <SidebarTrigger />
-              <h1 className="text-lg font-semibold">LawPrep Sprint</h1>
+            <header className="sticky top-0 z-10 flex h-14 items-center justify-between gap-4 border-b bg-background/80 px-4 backdrop-blur-sm sm:px-6">
+              <div className="flex items-center gap-3">
+                <SidebarTrigger className="md:hidden" />
+                <h1 className="text-lg font-semibold">LawPrep Sprint</h1>
+              </div>
+              <GlobalCommandLauncher />
             </header>
             <main className="flex-1 overflow-auto p-4 sm:p-6">{children}</main>
           </SidebarInset>

@@ -21,27 +21,15 @@ import {
   LineChart,
   Scale,
   FileText,
-  Layers,
-  ListChecks,
-  PanelLeft,
-  PlaySquare,
   Projector,
   Map,
   Disc3,
-  Smile,
-  Gavel,
-  TrendingUp,
-  SmilePlus,
   Settings,
-  Zap,
   Globe,
   Brain,
   BookOpen,
-  GitCompare,
-  ScrollText,
-  CalendarDays,
-  BookMarked,
-  AlertCircle,
+    Shield,
+    Target
   Bolt,
   Timer,
   Shuffle,
@@ -51,72 +39,57 @@ import {
   Heart
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
+import { trackEvent } from "@/lib/analytics";
 
-const menuItems = [
+const learnItems = [
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
-  { href: "/mcqs", label: "Daily MCQs", icon: ListChecks },
   { href: "/notes", label: "Topic Notes", icon: BookText },
   { href: "/flashcards", label: "Flashcards", icon: Layers },
-  { href: "/reels", label: "Legal Reels", icon: PlaySquare },
-  { href: "/planner", label: "Study Planner", icon: CalendarClock },
-  { href: "/progress", label: "Progress Tracker", icon: LineChart },
-  { href: "/search", label: "Search Content", icon: Search },
+  { href: "/bare-acts", label: "Bare Acts", icon: BookText },
+  { href: "/current-affairs", label: "Current Affairs", icon: Globe },
 ];
 
-const newFeatures = [
-  { href: "/visual-law", label: "Visual Law", icon: Projector },
-  { href: "/career-roadmap", label: "Career Roadmap", icon: Map },
+const practiceItems = [
+  { href: "/mcqs", label: "Daily MCQs", icon: ListChecks },
+  { href: "/daily-25", label: "Daily 25", icon: CalendarDays },
+  { href: "/passage-sprint", label: "Passage Sprint", icon: Zap },
+  { href: "/legal-drill", label: "Legal Drill", icon: Scale },
+  { href: "/mini-test", label: "Mini Test", icon: Timer },
+  { href: "/mock-test", label: "Mock Test", icon: Target },
+];
+
+const analyzeItems = [
+  { href: "/progress", label: "Progress Tracker", icon: LineChart },
+  { href: "/error-log", label: "Error Log", icon: AlertCircle },
+  { href: "/quick-revision", label: "Quick Revision", icon: Bolt },
+  { href: "/planner", label: "Study Planner", icon: CalendarClock },
   { href: "/revision-wheel", label: "Revision Wheel", icon: Disc3 },
 ];
 
-const clatTools = [
-  { href: "/passage-sprint", label: "Passage Sprint", icon: Zap },
-  { href: "/legal-drill", label: "Legal Drill", icon: Scale },
-  { href: "/question-types", label: "Question Types", icon: ListChecks },
-  { href: "/gk-oneliners", label: "GK One-Liners", icon: Globe },
-  { href: "/maxims", label: "Legal Maxims", icon: ScrollText },
-  { href: "/comparisons", label: "Comparisons", icon: GitCompare },
-  { href: "/daily-25", label: "Daily 25", icon: CalendarDays },
-  { href: "/brain-dump", label: "Brain Dump", icon: Brain },
-  { href: "/case-diary", label: "Case Diary", icon: BookMarked },
-  { href: "/quick-revision", label: "Quick Revision", icon: Bolt },
-  { href: "/error-log", label: "Error Log", icon: AlertCircle },
-  { href: "/vocab-context", label: "Vocabulary Drill", icon: BookOpen },
-  { href: "/speed-reading", label: "Speed Reading", icon: Eye },
-  { href: "/lr-patterns", label: "LR Patterns", icon: Brain },
-  { href: "/parajumble", label: "Parajumble", icon: Shuffle },
-  { href: "/mini-test", label: "Mini Test", icon: Timer },
-  { href: "/fact-opinion", label: "Fact vs Opinion", icon: FileText },
-  { href: "/mind-maps", label: "Mind Maps", icon: Map },
-  { href: "/timeline", label: "Legal Timeline", icon: CalendarClock },
-  { href: "/bare-acts", label: "Bare Acts", icon: BookText },
-];
-
-const aiTools = [
-  { href: "/summarizer", label: "Summarizer", icon: FileText },
+const moreItems = [
   { href: "/assistant", label: "AI Assistant", icon: MessageCircle },
-  { href: "/mood-study", label: "Mood Study", icon: SmilePlus },
-  { href: "/courtroom-sim", label: "Courtroom Sim", icon: Gavel },
-];
-
-const wellnessTools = [
+  { href: "/summarizer", label: "Summarizer", icon: FileText },
+  { href: "/visual-law", label: "Visual Law", icon: Projector },
+  { href: "/career-roadmap", label: "Career Roadmap", icon: Map },
+  { href: "/search", label: "Search Content", icon: Search },
   { href: "/safe-space", label: "Safe Space", icon: Shield },
-  { href: "/stress-relief", label: "Stress Relief", icon: Smile },
-  { href: "/positivity-gym", label: "Positivity Gym", icon: Brain },
-  { href: "/sleep-sanctuary", label: "Sleep Sanctuary", icon: Moon },
-  { href: "/exam-anxiety", label: "Exam Anxiety Guide", icon: Heart },
-  { href: "/mood-journal", label: "Mood Journal", icon: SmilePlus },
-  { href: "/focus-timer", label: "Focus Timer", icon: Timer },
 ];
 
 export function AppSidebar() {
   const pathname = usePathname();
   const { toggleSidebar } = useSidebar();
 
-  const renderMenuItems = (items: typeof menuItems) => items.map((item) => (
+  const handleToolClick = (href: string, section: string) => {
+    trackEvent("home_tool_hop", { destination: href, section });
+  };
+
+  const renderMenuItems = (
+    items: Array<{ href: string; label: string; icon: React.ElementType }>,
+    section: string
+  ) => items.map((item) => (
     <SidebarMenuItem key={item.href}>
       <SidebarMenuButton asChild isActive={pathname === item.href} tooltip={{ children: item.label, side: 'right' }}>
-        <Link href={item.href}>
+        <Link href={item.href} onClick={() => handleToolClick(item.href, section)}>
           <item.icon />
           <span className="group-data-[collapsible=icon]:hidden">{item.label}</span>
         </Link>
@@ -134,27 +107,23 @@ export function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
-          {renderMenuItems(menuItems)}
+          <h3 className="px-4 pt-2 pb-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">Learn</h3>
+          {renderMenuItems(learnItems, "learn")}
         </SidebarMenu>
 
         <SidebarMenu>
-          <h3 className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">New Features</h3>
-          {renderMenuItems(newFeatures)}
+          <h3 className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">Practice</h3>
+          {renderMenuItems(practiceItems, "practice")}
         </SidebarMenu>
 
         <SidebarMenu>
-          <h3 className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">🔥 CLAT Tools</h3>
-          {renderMenuItems(clatTools)}
+          <h3 className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">Analyze</h3>
+          {renderMenuItems(analyzeItems, "analyze")}
         </SidebarMenu>
 
         <SidebarMenu>
-          <h3 className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">AI Tools</h3>
-          {renderMenuItems(aiTools)}
-        </SidebarMenu>
-
-        <SidebarMenu>
-          <h3 className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">💚 Wellness</h3>
-          {renderMenuItems(wellnessTools)}
+          <h3 className="px-4 pt-4 pb-2 text-xs font-semibold text-muted-foreground group-data-[collapsible=icon]:hidden">More</h3>
+          {renderMenuItems(moreItems, "more")}
         </SidebarMenu>
       </SidebarContent>
       <SidebarFooter className="mt-auto flex flex-col items-center gap-2 p-2">
