@@ -25,7 +25,7 @@ export function ReelCard({ reel, index }: ReelCardProps) {
   const gradientClass = gradientPalettes[index % gradientPalettes.length];
 
   return (
-    <div className="h-[86vh] sm:h-[88vh] w-full snap-start flex items-center justify-center p-2 sm:p-3">
+    <div className="h-full min-h-full w-full snap-start flex items-stretch justify-center px-2 py-1 sm:px-3 sm:py-1.5">
       <Card className={cn(
         "w-full h-full flex flex-col justify-between p-5 sm:p-6 shadow-xl border-primary/20 rounded-[1.75rem]",
         `bg-gradient-to-br ${gradientClass}`,
@@ -40,12 +40,12 @@ export function ReelCard({ reel, index }: ReelCardProps) {
           </div>
           <span className="rounded-full bg-background/70 px-2.5 py-1 text-[10px] font-semibold text-muted-foreground">REEL</span>
         </div>
-        <CardContent className="flex-1 flex items-center justify-center p-0 my-4 sm:my-6">
+        <CardContent className="flex-1 flex items-center justify-center p-0 my-3 sm:my-5">
           <p className="text-[1.7rem] sm:text-3xl font-semibold text-center leading-[1.45] sm:leading-[1.5] px-1 sm:px-2 text-foreground">
             {reel.content}
           </p>
         </CardContent>
-        <div className="rounded-xl bg-background/60 px-3 py-2 text-center text-muted-foreground text-xs font-medium backdrop-blur-sm">
+        <div className="rounded-xl bg-background/60 px-3 py-1.5 text-center text-muted-foreground text-xs font-medium backdrop-blur-sm">
           LawPrep Reels • Swipe up for next
         </div>
       </Card>

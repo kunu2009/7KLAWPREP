@@ -3,12 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Home, Target, MessageCircle, LineChart } from "lucide-react";
+import { Home, Target, LineChart, Settings } from "lucide-react";
 
 const navItems = [
   { href: "/", label: "Home", icon: Home },
   { href: "/mcqs", label: "Practice", icon: Target },
-  { href: "/assistant", label: "Assistant", icon: MessageCircle },
+  { href: "/settings", label: "Settings", icon: Settings },
   { href: "/progress", label: "Progress", icon: LineChart },
 ];
 

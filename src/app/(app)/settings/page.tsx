@@ -8,6 +8,14 @@ import { Button } from "@/components/ui/button";
 import { useFeatureToggles, SectionToggleKey } from "@/context/feature-toggles";
 import { ArrowUp, ArrowDown, EyeOff, User } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useTheme } from "next-themes";
+import {
+  AppCustomization,
+  DEFAULT_APP_CUSTOMIZATION,
+  applyAppCustomization,
+  getStoredAppCustomization,
+  saveAppCustomization,
+} from "@/lib/app-customization";
 
 const SECTION_COPY: Record<SectionToggleKey, { title: string; description: string }> = {
   mcqs: {
@@ -29,7 +37,26 @@ const SECTION_COPY: Record<SectionToggleKey, { title: string; description: strin
 };
 
 export default function SettingsPage() {
+  const { theme, setTheme } = useTheme();
   const { sections, sectionOrder, zenMode, profile, updateSection, reorderSections, toggleZenMode, updateProfile, resetSections } = useFeatureToggles();
+  const [customization, setCustomization] = React.useState<AppCustomization>(DEFAULT_APP_CUSTOMIZATION);
+
+  React.useEffect(() => {
+    const loaded = getStoredAppCustomization();
+    setCustomization(loaded);
+    applyAppCustomization(loaded);
+  }, []);
+
+  const handleCustomizationChange = <K extends keyof AppCustomization>(key: K, value: AppCustomization[K]) => {
+    const next = { ...customization, [key]: value };
+    setCustomization(next);
+    saveAppCustomization(next);
+  };
+
+  const resetAppCustomization = () => {
+    setCustomization(DEFAULT_APP_CUSTOMIZATION);
+    saveAppCustomization(DEFAULT_APP_CUSTOMIZATION);
+  };
 
   const moveUp = (index: number) => {
     if (index === 0) return;
@@ -49,8 +76,81 @@ export default function SettingsPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Control Center</h1>
-        <p className="text-muted-foreground">Customize your dashboard layout and visibility.</p>
+        <p className="text-muted-foreground">Customize your app look, dashboard layout, and study visibility.</p>
       </div>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>App Appearance</CardTitle>
+          <CardDescription>Tune theme, colors, readability, and shape across the whole app.</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-5">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div className="space-y-2">
+              <p className="text-sm font-medium">Theme Mode</p>
+              <Select value={theme ?? "system"} onValueChange={(value) => setTheme(value)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Theme mode" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="light">Light</SelectItem>
+                  <SelectItem value="dark">Dark</SelectItem>
+                  <SelectItem value="system">System</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-sm font-medium">Accent Theme</p>
+              <Select value={customization.accent} onValueChange={(value: AppCustomization["accent"]) => handleCustomizationChange("accent", value)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Accent" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="indigo">Indigo (Default)</SelectItem>
+                  <SelectItem value="emerald">Emerald</SelectItem>
+                  <SelectItem value="rose">Rose</SelectItem>
+                  <SelectItem value="amber">Amber</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-sm font-medium">Text Scale</p>
+              <Select value={customization.scale} onValueChange={(value: AppCustomization["scale"]) => handleCustomizationChange("scale", value)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Text scale" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="compact">Compact</SelectItem>
+                  <SelectItem value="default">Default</SelectItem>
+                  <SelectItem value="large">Large</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+
+            <div className="space-y-2">
+              <p className="text-sm font-medium">Corner Style</p>
+              <Select value={customization.radius} onValueChange={(value: AppCustomization["radius"]) => handleCustomizationChange("radius", value)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Corner style" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="sharp">Sharp</SelectItem>
+                  <SelectItem value="default">Default</SelectItem>
+                  <SelectItem value="soft">Soft</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+
+          <Separator />
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm text-muted-foreground">Reset all appearance changes to default?</p>
+            <Button variant="outline" onClick={resetAppCustomization}>Reset appearance</Button>
+          </div>
+        </CardContent>
+      </Card>
 
       <Card>
         <CardHeader>

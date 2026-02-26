@@ -89,4 +89,44 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  :root[data-accent='indigo'] {
+    --primary: 231 48% 48%;
+    --ring: 231 48% 48%;
+    --sidebar-primary: 231 48% 48%;
+    --accent: 36 100% 50%;
+  }
+
+  :root[data-accent='emerald'] {
+    --primary: 160 84% 36%;
+    --ring: 160 84% 36%;
+    --sidebar-primary: 160 84% 36%;
+    --accent: 163 94% 42%;
+  }
+
+  :root[data-accent='rose'] {
+    --primary: 346 77% 49%;
+    --ring: 346 77% 49%;
+    --sidebar-primary: 346 77% 49%;
+    --accent: 24 95% 53%;
+  }
+
+  :root[data-accent='amber'] {
+    --primary: 38 92% 50%;
+    --ring: 38 92% 50%;
+    --sidebar-primary: 38 92% 50%;
+    --accent: 45 93% 47%;
+  }
+
+  :root[data-scale='compact'] {
+    font-size: 15px;
+  }
+
+  :root[data-scale='default'] {
+    font-size: 16px;
+  }
+
+  :root[data-scale='large'] {
+    font-size: 17px;
+  }
 }
