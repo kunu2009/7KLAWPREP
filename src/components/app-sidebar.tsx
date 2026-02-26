@@ -28,6 +28,7 @@ import {
   Projector,
   Map,
   Disc3,
+  Compass,
   Settings,
   Globe,
   Shield,
@@ -41,6 +42,7 @@ import { ThemeToggle } from "./theme-toggle";
 import { trackEvent } from "@/lib/analytics";
 
 const learnItems = [
+  { href: "/start-here", label: "Start Here", icon: Compass },
   { href: "/", label: "Dashboard", icon: LayoutDashboard },
   { href: "/notes", label: "Topic Notes", icon: BookText },
   { href: "/flashcards", label: "Flashcards", icon: Layers },

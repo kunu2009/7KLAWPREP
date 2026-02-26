@@ -6,13 +6,14 @@ import { useState, useEffect, useMemo } from 'react';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { mcqs, flashcards, notes, reels } from '@/lib/data';
-import { Database, FileText, Layers3, PlaySquare, Flame, Trophy, ArrowRight, Sparkles, Target, Clock3, AlertTriangle, CheckCircle2, Search } from 'lucide-react';
+import { Database, FileText, Layers3, PlaySquare, Flame, Trophy, ArrowRight, Sparkles, Target, Clock3, AlertTriangle, CheckCircle2, Search, Compass, BookOpenCheck, Brain, CalendarDays } from 'lucide-react';
 import { useFeatureToggles, SectionToggleKey } from '@/context/feature-toggles';
 import { useProgress } from '@/hooks/use-progress';
 import { useRevisionMode } from '@/context/revision-mode-context';
 import RevisionDashboard from '@/components/revision-dashboard';
 import { StudyToolsCompact } from '@/components/study-tools-drawer';
 import { trackEvent } from '@/lib/analytics';
+import { Badge } from "@/components/ui/badge";
 
 const motivationalQuotes = [
   { quote: "The law is reason, free from passion.", author: "Aristotle" },
@@ -88,6 +89,36 @@ export default function DashboardPage() {
         trackEvent("home_tool_hop", { destination, source });
     };
 
+    const materialCards = [
+        { title: 'MCQs', count: mcqs.length, href: '/mcqs', icon: Database },
+        { title: 'Topic Notes', count: notes.length, href: '/notes', icon: FileText },
+        { title: 'Flashcards', count: flashcards.length, href: '/flashcards', icon: Layers3 },
+        { title: 'Legal Reels', count: reels.length, href: '/reels', icon: PlaySquare },
+        { title: 'Bare Acts', count: null, href: '/bare-acts', icon: BookOpenCheck },
+        { title: 'Current Affairs', count: null, href: '/current-affairs', icon: CalendarDays },
+    ];
+
+    const guidedPaths = [
+        {
+            title: 'Beginner Path (7 Days)',
+            description: 'Start from basics without getting overwhelmed.',
+            href: '/start-here',
+            icon: Compass,
+        },
+        {
+            title: 'Accuracy Path',
+            description: 'Focus on error reduction via drills and review.',
+            href: '/error-log',
+            icon: Target,
+        },
+        {
+            title: 'AIR-1 Sprint Path',
+            description: 'Use daily mission flow + weak-topic correction loop.',
+            href: '/mcqs',
+            icon: Brain,
+        },
+    ];
+
     return (
         <div className="space-y-4 sm:space-y-6">
             <div className="space-y-3">
@@ -142,6 +173,69 @@ export default function DashboardPage() {
                     </div>
                 </CardContent>
             </Card>
+
+            <Card>
+                <CardHeader className="pb-3">
+                    <CardTitle className="text-base flex items-center gap-2">
+                        <Compass className="h-4 w-4 text-primary" />
+                        New here?
+                    </CardTitle>
+                    <CardDescription>Use this guided setup so you don&apos;t jump randomly between tools.</CardDescription>
+                </CardHeader>
+                <CardContent>
+                    <Button asChild className="w-full sm:w-auto" onClick={() => handleToolHop('/start-here', 'new_user_banner')}>
+                        <Link href="/start-here" className="flex items-center gap-2">
+                            Open Start Here Guide
+                            <ArrowRight className="h-4 w-4" />
+                        </Link>
+                    </Button>
+                </CardContent>
+            </Card>
+
+            <div className="space-y-3">
+                <div className="flex items-center justify-between">
+                    <h2 className="text-base font-semibold">Material Hub</h2>
+                    <Badge variant="outline">All in one place</Badge>
+                </div>
+                <div className="grid grid-cols-2 lg:grid-cols-3 gap-3">
+                    {materialCards.map((item) => (
+                        <Link
+                            key={item.title}
+                            href={item.href}
+                            onClick={() => handleToolHop(item.href, 'material_hub')}
+                            className="rounded-2xl border bg-card p-3 hover:border-primary/40 transition-colors"
+                        >
+                            <div className="flex items-center justify-between">
+                                <item.icon className="h-4 w-4 text-primary" />
+                                {typeof item.count === 'number' && <span className="text-xs text-muted-foreground">{item.count}</span>}
+                            </div>
+                            <p className="mt-3 text-sm font-semibold">{item.title}</p>
+                        </Link>
+                    ))}
+                </div>
+            </div>
+
+            <div className="space-y-3">
+                <h2 className="text-base font-semibold">Guided Study Paths</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    {guidedPaths.map((path) => (
+                        <Card key={path.title}>
+                            <CardHeader className="pb-2">
+                                <CardTitle className="text-sm flex items-center gap-2">
+                                    <path.icon className="h-4 w-4 text-primary" />
+                                    {path.title}
+                                </CardTitle>
+                                <CardDescription className="text-xs">{path.description}</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <Button variant="outline" asChild size="sm" className="w-full" onClick={() => handleToolHop(path.href, 'guided_paths')}>
+                                    <Link href={path.href}>Open</Link>
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
+            </div>
 
             <div className="flex items-center justify-between">
                 <h2 className="text-base font-semibold">For you</h2>
