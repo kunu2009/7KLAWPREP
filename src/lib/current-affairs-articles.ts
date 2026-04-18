@@ -2482,5 +2482,215 @@ International Comparisons: India now ranks behind US (1,500+ unicorns) and China
       'Venture intelligence (VC funding tracker) India database'
     ]
   },
+  {
+    id: 'ca-may2026-digital-competition-bill',
+    title: 'Digital Competition Bill 2026 Draft Released for Platform Regulation',
+    date: '2026-05-12',
+    summary: 'The government released a draft Digital Competition Bill to regulate anti-competitive conduct by large digital intermediaries and gatekeeper platforms.',
+    article: `In May 2026, the Ministry of Corporate Affairs released the draft Digital Competition Bill, 2026 for public consultation. The draft proposes a forward-looking framework for regulating anti-competitive behavior by large digital platforms, including app stores, search engines, e-commerce marketplaces, and ad-tech ecosystems. It introduces ex-ante obligations for “systemically significant digital enterprises,” moving beyond traditional ex-post enforcement under the Competition Act.
+
+Core proposals include restrictions on self-preferencing, mandatory data portability, interoperability requirements in selected sectors, limits on anti-steering clauses, and disclosure rules for ranking and recommendation systems. The bill proposes coordinated oversight between the Competition Commission of India and sectoral regulators to avoid regulatory fragmentation.
+
+Policy debate has focused on balancing innovation incentives with market fairness. Startups and consumer groups have largely welcomed anti-monopoly safeguards, while some global platforms have raised concerns about compliance burden and legal uncertainty. For CLAT, the draft is significant for constitutional questions on proportional regulation, due process in digital markets, and interface between economic liberty and public interest.` ,
+    relevance: [
+      'Competition law in digital markets',
+      'Regulation of platform monopolies and gatekeepers',
+      'Data portability and interoperability rights',
+      'Balancing innovation with consumer welfare',
+    ],
+    sources: [
+      'Ministry of Corporate Affairs draft consultation note (May 2026)',
+      'Competition law policy commentary (May 2026)'
+    ]
+  },
+  {
+    id: 'ca-may2026-river-basin-treaty',
+    title: 'India-Nepal Signs Mahakali Basin Cooperation Framework',
+    date: '2026-05-28',
+    summary: 'India and Nepal signed a river-basin framework on flood forecasting, hydropower planning, and transboundary water governance.',
+    article: `In late May 2026, India and Nepal signed a revised Mahakali Basin Cooperation Framework, aimed at improving flood-risk management, joint hydrological data exchange, and hydropower planning. The framework updates earlier technical agreements by creating time-bound mechanisms for early warning alerts, sediment management, and basin-level planning.
+
+The agreement reflects a shift from project-wise negotiation toward river-basin governance. It provides for joint technical committees, dispute resolution channels, and annual ministerial review meetings. Border districts in both countries are expected to benefit through better monsoon preparedness and coordinated infrastructure investments.
+
+For legal analysis, the framework is relevant to treaty implementation, federal-state coordination in transboundary water governance, and environmental impact obligations. It also offers a useful comparative lens with other South Asian water-sharing disputes and cooperative federal diplomacy.` ,
+    relevance: [
+      'International water law and treaty implementation',
+      'Transboundary environmental governance',
+      'Disaster-risk reduction and public administration',
+      'Regional diplomacy and cooperative mechanisms',
+    ],
+    sources: [
+      'Joint statement by Ministries of External Affairs (May 2026)',
+      'Hydrological cooperation briefing papers'
+    ]
+  },
+  {
+    id: 'ca-jun2026-urban-heat-action-code',
+    title: 'National Urban Heat Action Code Notified for Metro Cities',
+    date: '2026-06-09',
+    summary: 'A new Urban Heat Action Code mandates district heat plans, cooling shelters, and occupational protections during extreme heat events.',
+    article: `In June 2026, the Union government notified a National Urban Heat Action Code to guide state and municipal authorities in responding to heatwaves. The code requires city-level heat vulnerability mapping, early-warning communication, school scheduling advisories, and employer obligations for outdoor workers.
+
+Public health departments are required to activate cooling shelters and emergency medical response when threshold temperatures are crossed. Municipal corporations must submit compliance reports and annual preparedness audits. The policy links climate adaptation with labor rights, public health, and city planning.
+
+Legal interest centers on enforceability of advisories, accountability for non-compliance, and integration with disaster management law. For CLAT, this topic combines environmental governance, constitutional right to life, and administrative law standards in emergency planning.` ,
+    relevance: [
+      'Climate adaptation and urban governance',
+      'Article 21 and right to health/life in heat emergencies',
+      'Labour protections during extreme weather',
+      'Disaster management compliance obligations',
+    ],
+    sources: [
+      'Ministry of Housing and Urban Affairs notification (Jun 2026)',
+      'National Disaster Management heat advisory documents'
+    ]
+  },
+  {
+    id: 'ca-jun2026-national-education-audit',
+    title: 'National Learning Equity Audit 2026 Released',
+    date: '2026-06-25',
+    summary: 'A national audit flagged state-wise learning gaps in foundational literacy, digital access, and secondary transition rates.',
+    article: `The National Learning Equity Audit 2026, released in June, assessed outcomes across foundational literacy, numeracy, digital infrastructure, and school retention. The report found improved enrolment but uneven learning outcomes, particularly in rural and low-income districts.
+
+Key recommendations include targeted remedial programmes, teacher mentoring clusters, multilingual learning support, and district-level accountability dashboards. The audit also emphasized bridge interventions for students transitioning from middle to secondary school.
+
+The report is relevant to constitutional obligations around education, affirmative policy design, and evidence-based governance. For CLAT aspirants, it offers material on policy evaluation, rights-based education frameworks, and centre-state implementation dynamics.` ,
+    relevance: [
+      'Education policy and equity metrics',
+      'Right to education implementation challenges',
+      'Public policy evaluation and accountability',
+      'Social justice and district-level targeting',
+    ],
+    sources: [
+      'National education audit report (Jun 2026)',
+      'Ministry of Education implementation review notes'
+    ]
+  },
+  {
+    id: 'ca-jul2026-cyber-resilience-framework',
+    title: 'Critical Infrastructure Cyber Resilience Framework 2026 Launched',
+    date: '2026-07-11',
+    summary: 'India launched a national framework for cyber resilience across power, telecom, health, and transport infrastructure.',
+    article: `In July 2026, the National Cyber Security architecture introduced a Critical Infrastructure Cyber Resilience Framework covering power grids, digital payments, hospitals, and transport systems. The framework mandates sectoral cyber drills, breach reporting timelines, and coordinated incident response protocols.
+
+Operators of designated critical infrastructure must implement baseline security controls, vendor-risk audits, and business continuity plans. The framework also introduces simulation exercises and independent red-team assessments under regulatory supervision.
+
+From a legal perspective, the framework intersects with data protection, liability standards, public safety obligations, and cybercrime prosecution. It is especially relevant for legal reasoning questions on digital governance and national security constraints.` ,
+    relevance: [
+      'Cybersecurity regulation and critical infrastructure law',
+      'Breach reporting and compliance standards',
+      'National security vs privacy considerations',
+      'Digital risk governance and liability',
+    ],
+    sources: [
+      'National cyber resilience framework release (Jul 2026)',
+      'Sectoral regulator cybersecurity advisories'
+    ]
+  },
+  {
+    id: 'ca-aug2026-public-health-supply-chain',
+    title: 'Public Health Supply Chain Reform Mission Announced',
+    date: '2026-08-06',
+    summary: 'A national mission was launched to modernize vaccine, diagnostics, and essential medicine logistics.',
+    article: `In August 2026, the Ministry of Health launched a Public Health Supply Chain Reform Mission targeting stock-out reduction and transparent procurement. The mission includes state logistics dashboards, cold-chain upgrades, and district-level demand forecasting.
+
+The reform seeks to reduce rural-urban disparities in access to essential medicines and diagnostics by integrating digital inventory systems with procurement pipelines. A monitoring framework has been introduced with performance-linked grants for states that improve availability indicators.
+
+For legal and policy analysis, the mission engages administrative accountability, procurement standards, and public health rights. It is relevant for CLAT as a case of governance reform where technology, federal coordination, and social equity converge.` ,
+    relevance: [
+      'Public health governance and state obligations',
+      'Transparent procurement and administrative accountability',
+      'Access-to-medicine equity challenges',
+      'Data-driven federal programme implementation',
+    ],
+    sources: [
+      'Ministry of Health mission launch brief (Aug 2026)',
+      'State logistics modernization notes'
+    ]
+  },
+  {
+    id: 'ca-sep2026-labour-codes-review',
+    title: 'Parliamentary Review on Labour Codes Implementation Tabled',
+    date: '2026-09-03',
+    summary: 'A parliamentary committee review highlighted compliance gaps in wages, social security portability, and gig worker protections.',
+    article: `In September 2026, a parliamentary committee tabled a review of labour code implementation, finding progress in registration systems but uneven enforcement across sectors and states. The report highlighted delayed rule harmonisation, inspector capacity constraints, and patchy social security access for migrant and gig workers.
+
+Recommendations include universal worker ID interoperability, faster adjudication of wage disputes, and clearer definitions of platform-worker obligations. The committee also called for stronger grievance redress systems and periodic publication of compliance data.
+
+This development is important for legal analysis of labour rights, social security entitlements, and federal implementation. For CLAT, it offers rich material on statutory interpretation, welfare rights, and the changing future of work.` ,
+    relevance: [
+      'Labour law enforcement and worker rights',
+      'Gig economy regulation and social security',
+      'Parliamentary oversight of executive implementation',
+      'Wage justice and dispute resolution mechanisms',
+    ],
+    sources: [
+      'Parliamentary standing committee report (Sep 2026)',
+      'Ministry of Labour implementation update'
+    ]
+  },
+  {
+    id: 'ca-oct2026-ai-education-ethics',
+    title: 'AI in Education Ethics Standards Published for Schools and Universities',
+    date: '2026-10-14',
+    summary: 'A national framework set guardrails for AI-assisted assessment, proctoring, and learning analytics in education institutions.',
+    article: `In October 2026, national ethics standards were published to regulate AI use in schools and higher education institutions. The standards address algorithmic transparency, anti-bias testing, student consent, data minimisation, and grievance redress for automated decisions.
+
+Institutions deploying AI-proctoring or analytics tools must provide explainability notices, human review options, and appeal channels for students. The framework discourages high-stakes automated decision-making without independent oversight.
+
+For legal reasoning, this issue connects privacy law, children’s rights, equality concerns, and administrative fairness in educational governance. It is likely to feature in exam passages around technology governance and constitutional values in public institutions.` ,
+    relevance: [
+      'AI ethics and educational governance',
+      'Student privacy and consent frameworks',
+      'Non-discrimination and algorithmic fairness',
+      'Due process in automated decision systems',
+    ],
+    sources: [
+      'National AI-in-education standards release (Oct 2026)',
+      'Education regulator advisory notes'
+    ]
+  },
+  {
+    id: 'ca-nov2026-india-africa-green-corridor',
+    title: 'India-Africa Green Trade Corridor Initiative Unveiled',
+    date: '2026-11-08',
+    summary: 'India and partner African economies announced a green trade corridor initiative focused on clean-energy supply chains.',
+    article: `In November 2026, India and a consortium of African partner states announced a Green Trade Corridor Initiative to support clean-energy value chains, climate-resilient ports, and standards cooperation in low-carbon goods.
+
+The initiative proposes capacity building in customs digitisation, certification harmonisation, and green financing windows for MSMEs. It also seeks to improve legal predictability for cross-border investment in renewables, battery manufacturing, and critical minerals processing.
+
+The development is significant for international trade law, south-south cooperation, and climate diplomacy. For CLAT prep, it helps connect trade agreements, sustainability obligations, and development policy in a comparative framework.` ,
+    relevance: [
+      'International economic law and green trade',
+      'Climate diplomacy and development cooperation',
+      'Cross-border standards and certification regimes',
+      'MSME access to global value chains',
+    ],
+    sources: [
+      'India-Africa joint declaration (Nov 2026)',
+      'Trade and climate policy briefings'
+    ]
+  },
+  {
+    id: 'ca-dec2026-justice-delivery-dashboard',
+    title: 'National Justice Delivery Dashboard 2.0 Goes Live',
+    date: '2026-12-02',
+    summary: 'A new public dashboard launched to track case pendency, disposal rates, and court infrastructure indicators across districts.',
+    article: `In December 2026, the Justice Delivery Dashboard 2.0 was launched with expanded public indicators on court pendency, disposal velocity, vacancy positions, and digital hearing adoption. The platform aims to improve judicial transparency and support data-driven policy interventions.
+
+The dashboard allows time-series analysis by district and court tier, enabling targeted administrative reforms. It also integrates legal aid utilization metrics and mediation uptake to assess alternate dispute resolution pathways.
+
+For CLAT, this topic is relevant to access to justice, institutional accountability, and procedural reform debates. It ties constitutional promises of timely justice to administrative modernization and open-data governance.` ,
+    relevance: [
+      'Judicial administration and pendency reform',
+      'Access to justice and legal aid monitoring',
+      'Data transparency in public institutions',
+      'Procedural justice and court modernization',
+    ],
+    sources: [
+      'e-Courts programme release (Dec 2026)',
+      'Department of Justice implementation note'
+    ]
+  },
 ];
 
