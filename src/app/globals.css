@@ -118,6 +118,20 @@
     --accent: 45 93% 47%;
   }
 
+  :root[data-accent='timberwolf'] {
+    --primary: 216 10% 42%;
+    --ring: 216 10% 42%;
+    --sidebar-primary: 216 10% 42%;
+    --accent: 30 8% 72%;
+  }
+
+  :root[data-accent='neo-lebrislims'] {
+    --primary: 199 79% 44%;
+    --ring: 199 79% 44%;
+    --sidebar-primary: 199 79% 44%;
+    --accent: 167 62% 42%;
+  }
+
   :root[data-scale='compact'] {
     font-size: 15px;
   }

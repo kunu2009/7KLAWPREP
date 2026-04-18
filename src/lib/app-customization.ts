@@ -1,4 +1,10 @@
-export type AccentPreset = "indigo" | "emerald" | "rose" | "amber";
+export type AccentPreset =
+  | "indigo"
+  | "emerald"
+  | "rose"
+  | "amber"
+  | "timberwolf"
+  | "neo-lebrislims";
 export type ScalePreset = "compact" | "default" | "large";
 export type RadiusPreset = "sharp" | "default" | "soft";
 

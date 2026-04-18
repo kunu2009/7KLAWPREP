@@ -58,6 +58,26 @@ export default function SettingsPage() {
     saveAppCustomization(DEFAULT_APP_CUSTOMIZATION);
   };
 
+  const handleThemeModeChange = (value: string) => {
+    setTheme(value);
+
+    if (typeof document === "undefined") return;
+
+    const root = document.documentElement;
+    if (value === "light") {
+      root.classList.remove("dark");
+      return;
+    }
+
+    if (value === "dark") {
+      root.classList.add("dark");
+      return;
+    }
+
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    root.classList.toggle("dark", prefersDark);
+  };
+
   const moveUp = (index: number) => {
     if (index === 0) return;
     const newOrder = [...sectionOrder];
@@ -88,7 +108,7 @@ export default function SettingsPage() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <p className="text-sm font-medium">Theme Mode</p>
-              <Select value={theme ?? "system"} onValueChange={(value) => setTheme(value)}>
+              <Select value={theme ?? "system"} onValueChange={handleThemeModeChange}>
                 <SelectTrigger>
                   <SelectValue placeholder="Theme mode" />
                 </SelectTrigger>
@@ -111,6 +131,8 @@ export default function SettingsPage() {
                   <SelectItem value="emerald">Emerald</SelectItem>
                   <SelectItem value="rose">Rose</SelectItem>
                   <SelectItem value="amber">Amber</SelectItem>
+                  <SelectItem value="timberwolf">Timberwolf Mode</SelectItem>
+                  <SelectItem value="neo-lebrislims">Neo Lebrislims Mode</SelectItem>
                 </SelectContent>
               </Select>
             </div>

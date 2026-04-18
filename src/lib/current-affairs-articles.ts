@@ -2482,5 +2482,215 @@ International Comparisons: India now ranks behind US (1,500+ unicorns) and China
       'Venture intelligence (VC funding tracker) India database'
     ]
   },
+  {
+    id: 'ca-jan2026-budget-prep-fiscal-framework',
+    title: 'Pre-Budget 2026 Consultations: Fiscal Priorities and Welfare Balancing',
+    date: '2026-01-12',
+    summary: 'Finance Ministry pre-budget consultations in January focused on inflation control, welfare targeting, and employment-oriented public spending.',
+    article: `During January 2026, pre-budget consultations gathered inputs from industry groups, farmer bodies, MSME associations, labour representatives, and state finance departments. The central debate was around balancing fiscal prudence with social-sector commitments, especially in education, health, and food-security-linked expenditure.
+
+Policy discussions also addressed tax simplification for small businesses, urban employment support, and capex continuation for logistics and rail modernization. On the revenue side, improving GST compliance and widening direct-tax efficiency remained key themes.
+
+For legal reasoning and policy analysis, these consultations are important because they shape statutory finance proposals, delegated rules, and centre-state fiscal negotiations that later appear in the annual budget cycle.`,
+    relevance: [
+      'Public finance and budget process',
+      'Fiscal federalism and centre-state coordination',
+      'Welfare commitments vs deficit constraints',
+      'Tax policy and compliance reform'
+    ],
+    sources: [
+      'Ministry of Finance consultation briefings (Jan 2026)',
+      'Pre-budget stakeholder submissions (Jan 2026)'
+    ]
+  },
+  {
+    id: 'ca-jan2026-logistics-policy-review',
+    title: 'National Logistics Coordination Review for 2026',
+    date: '2026-01-21',
+    summary: 'Inter-ministerial review meetings in January examined freight costs, multimodal integration, and digital cargo tracking progress.',
+    article: `In January 2026, a logistics coordination review assessed implementation of multimodal transport targets and cargo digitization. Discussions involved rail, shipping, road transport, customs authorities, and state logistics cells.
+
+The review emphasized reducing turnaround times at ports, improving first-mile and last-mile links, and standardizing digital documentation for inter-state freight movement. It also evaluated institutional bottlenecks in warehousing approvals and city-level freight planning.
+
+This matters for current affairs because logistics efficiency directly affects inflation transmission, export competitiveness, and federal administrative coordination under sectoral laws and delegated notifications.`,
+    relevance: [
+      'Infrastructure governance and inter-ministerial coordination',
+      'Trade facilitation and regulatory streamlining',
+      'Federal implementation and state logistics policy',
+      'Economic efficiency and inflation linkages'
+    ],
+    sources: [
+      'Transport and logistics review notes (Jan 2026)',
+      'Inter-ministerial implementation updates'
+    ]
+  },
+  {
+    id: 'ca-feb2026-economic-survey-key-themes',
+    title: 'Economic Survey Themes 2026: Jobs, Productivity, and Public Investment',
+    date: '2026-02-01',
+    summary: 'The 2026 Economic Survey discourse centered on job-intensive growth, productivity improvements, and continuity of public capex strategy.',
+    article: `Early February policy discourse around the Economic Survey highlighted three recurring priorities: sustaining capital expenditure, improving labour productivity, and broadening formal employment pathways. Analysts tracked sector-wise growth contributions and inflation-adjusted household consumption trends.
+
+The survey framing also discussed supply-chain resilience, digital public infrastructure expansion, and export competitiveness in manufacturing and services. A key policy thread was how public investment can crowd in private investment while maintaining fiscal balance.
+
+For exam preparation, this theme is useful for understanding macro-policy narratives and how economic documents connect with annual finance legislation and medium-term reform choices.`,
+    relevance: [
+      'Macroeconomic policy interpretation',
+      'Growth-employment linkage in public policy',
+      'Budgetary strategy and fiscal sustainability',
+      'Evidence-based governance and economic indicators'
+    ],
+    sources: [
+      'Economic policy commentary (Feb 2026)',
+      'Government macroeconomic briefing documents'
+    ]
+  },
+  {
+    id: 'ca-feb2026-public-health-readiness-drives',
+    title: 'Seasonal Public Health Readiness Drives Expanded Across States',
+    date: '2026-02-17',
+    summary: 'States expanded preventive public health drives in February focusing on vaccination continuity, district surveillance, and medicine availability.',
+    article: `February 2026 saw multiple state-level public health readiness drives aimed at strengthening district surveillance, maintaining essential medicine stocks, and improving referral pathways in public hospitals. Health departments also emphasized preventive outreach and standardized reporting across districts.
+
+Administrative focus areas included procurement transparency, primary care staffing, and interoperability of health records. Several states reported integration of local dashboards to track availability of critical supplies in real time.
+
+This is relevant for legal and governance preparation because it sits at the intersection of right-to-health obligations, administrative accountability, and public procurement standards.`,
+    relevance: [
+      'Public health governance and rights perspective',
+      'Administrative accountability and service delivery',
+      'Procurement and medicine availability oversight',
+      'State capacity and district implementation quality'
+    ],
+    sources: [
+      'State health department updates (Feb 2026)',
+      'Public health monitoring bulletins'
+    ]
+  },
+  {
+    id: 'ca-mar2026-parliament-session-procedural-reforms',
+    title: 'Parliament Session 2026: Focus on Committee Scrutiny and Procedure',
+    date: '2026-03-04',
+    summary: 'March parliamentary discussions emphasized committee scrutiny timelines, legislative consultation quality, and debate productivity metrics.',
+    article: `In March 2026, parliamentary proceedings featured procedural discussions on bill scrutiny windows, committee workload, and quality of legislative consultation. Policy observers tracked referral rates to standing committees and time allocated for clause-by-clause examination.
+
+The procedural focus reflected broader concerns over legislative speed versus scrutiny depth. Members across parties raised points regarding better pre-legislative consultation, clearer explanatory notes, and stronger post-enactment review frameworks.
+
+For legal aptitude and constitutional awareness, this topic is important because legislative procedure shapes statutory quality, implementation ease, and judicial interpretation burden.`,
+    relevance: [
+      'Parliamentary procedure and lawmaking quality',
+      'Committee system and legislative oversight',
+      'Pre-legislative consultation standards',
+      'Democratic accountability in statutory drafting'
+    ],
+    sources: [
+      'Parliament session summaries (Mar 2026)',
+      'Legislative procedure analysis briefs'
+    ]
+  },
+  {
+    id: 'ca-mar2026-green-energy-grid-integration',
+    title: 'Grid Integration Review for Renewable Capacity Expansion',
+    date: '2026-03-12',
+    summary: 'Energy-sector review meetings in March examined transmission readiness and storage planning for higher renewable penetration.',
+    article: `March 2026 energy reviews examined grid stability and transmission planning as renewable capacity share increased. Focus areas included storage deployment, balancing mechanisms, and interstate transmission upgrades to reduce curtailment.
+
+Regulators and utilities discussed scheduling reforms, forecasting accuracy, and investment sequencing for resilient power delivery. Clean-energy expansion was framed alongside affordability and distribution-company viability concerns.
+
+This policy area is central for current affairs because it links environmental targets with regulatory design, federal electricity governance, and infrastructure financing.`,
+    relevance: [
+      'Energy regulation and grid governance',
+      'Renewable transition and storage policy',
+      'Interstate transmission and federal coordination',
+      'Climate commitments and implementation challenges'
+    ],
+    sources: [
+      'Power-sector review notes (Mar 2026)',
+      'Regulatory and utility coordination briefs'
+    ]
+  },
+  {
+    id: 'ca-apr2026-urban-governance-finance',
+    title: 'Urban Governance Financing Discussions Ahead of FY Rollout',
+    date: '2026-04-03',
+    summary: 'April deliberations highlighted municipal financing, user-charge reforms, and accountability in urban service delivery.',
+    article: `In early April 2026, policy discussions on urban governance financing focused on municipal revenue quality, property-tax modernization, and predictable transfers for core services such as water, sanitation, and waste systems.
+
+Debates also included accountability frameworks for urban local bodies, service-level benchmarking, and integration of digital civic systems for complaint redress and asset management.
+
+For exam relevance, this topic illustrates constitutional decentralization in practice, especially the capacity gap between assigned local responsibilities and actual fiscal resources.`,
+    relevance: [
+      'Urban local bodies and fiscal decentralization',
+      'Municipal finance and service delivery accountability',
+      'Governance reform and citizen-facing administration',
+      'Constitutional context of local self-government'
+    ],
+    sources: [
+      'Urban governance policy round-up (Apr 2026)',
+      'Municipal finance discussion papers'
+    ]
+  },
+  {
+    id: 'ca-apr2026-agri-market-modernization',
+    title: 'Agricultural Market Modernization and Farmer Access Reforms',
+    date: '2026-04-07',
+    summary: 'April policy reviews examined agri-market infrastructure, digital mandi access, and post-harvest value-chain integration.',
+    article: `Agricultural market modernization was a recurring policy focus in April 2026, with discussions on improving digital mandi connectivity, storage logistics, and transparent price discovery. The objective was to reduce post-harvest losses and improve farmer realization.
+
+State and central coordination remained central for integrating transport, warehousing, and market information systems. Stakeholders also discussed cooperative models and credit-linked infrastructure support.
+
+The issue is legally and administratively relevant because agriculture markets involve overlapping state powers, central schemes, and statutory regulation through market committees and delegated rules.`,
+    relevance: [
+      'Agricultural market regulation and reform',
+      'Centre-state coordination in agri policy',
+      'Rural infrastructure and value-chain efficiency',
+      'Price discovery and farmer welfare policy'
+    ],
+    sources: [
+      'Agriculture policy review briefings (Apr 2026)',
+      'State agri-market modernization notes'
+    ]
+  },
+  {
+    id: 'ca-apr2026-digital-public-infrastructure-governance',
+    title: 'Digital Public Infrastructure Governance Roundtable Outcomes',
+    date: '2026-04-11',
+    summary: 'April governance roundtables reviewed consent architecture, grievance systems, and interoperability standards in public digital platforms.',
+    article: `In April 2026, policy roundtables on digital public infrastructure examined governance standards across identity, payments, and service-delivery stacks. Emphasis was placed on consent design, grievance mechanisms, and interoperability to improve trust and inclusion.
+
+Participants discussed safeguards for exclusion errors, auditability of automated decisions, and harmonization between sectoral regulators. The governance model increasingly focused on service reliability and rights-compatible implementation.
+
+For legal studies, this area is important for understanding privacy, accountability, and administrative law questions in technology-enabled welfare and governance systems.`,
+    relevance: [
+      'Digital governance and public infrastructure law',
+      'Consent and grievance-redress architecture',
+      'Interoperability and inclusion standards',
+      'Administrative accountability in digital delivery'
+    ],
+    sources: [
+      'DPI governance discussions (Apr 2026)',
+      'Public digital systems policy notes'
+    ]
+  },
+  {
+    id: 'ca-apr2026-judicial-pendency-caseflow',
+    title: 'Caseflow Management Discussions in Higher Judiciary Administration',
+    date: '2026-04-16',
+    summary: 'Administrative discussions in April addressed pendency management, listing efficiency, and technology-assisted caseflow reforms.',
+    article: `By mid-April 2026, court administration discussions highlighted caseflow modernization through improved listing norms, digital records handling, and targeted disposal strategies for old matters. Attention remained on balancing speed with quality adjudication.
+
+Policy commentary also focused on vacancies, court-manager systems, and strengthened mediation pathways to reduce avoidable litigation load. Data-driven docket management emerged as a recurring recommendation.
+
+For current affairs preparation, this subject connects constitutional promises of access to justice with practical administrative reform in judicial institutions.`,
+    relevance: [
+      'Judicial administration and pendency reduction',
+      'Technology in court process management',
+      'Access to justice and institutional capacity',
+      'Procedural efficiency and dispute-resolution reform'
+    ],
+    sources: [
+      'Judicial administration discussion summaries (Apr 2026)',
+      'Caseflow reform policy commentary'
+    ]
+  },
 ];
 
