@@ -25,6 +25,7 @@ import {
   Users
 } from 'lucide-react';
 import { currentAffairsArticles, CurrentAffairsArticle } from '@/lib/current-affairs-articles';
+import { jan2026DailyCurrentAffairs, DailyCurrentAffairsDay } from '@/lib/current-affairs-daily-jan2026';
 import { cn } from '@/lib/utils';
 
 const categories = [
@@ -78,7 +79,9 @@ export default function CurrentAffairsPage() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('y2026');
+  const [viewMode, setViewMode] = useState<'articles' | 'daily'>('articles');
   const [selectedArticle, setSelectedArticle] = useState<CurrentAffairsArticle | null>(null);
+  const [selectedDaily, setSelectedDaily] = useState<DailyCurrentAffairsDay | null>(null);
   const [readArticles, setReadArticles] = useState<Set<string>>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('7k-read-articles');
@@ -107,6 +110,22 @@ export default function CurrentAffairsPage() {
   }, [activeCategory, searchQuery]);
 
   const coverageRange = useMemo(() => formatRange(currentAffairsArticles), []);
+
+  const filteredDaily = useMemo(() => {
+    let days = [...jan2026DailyCurrentAffairs].sort((a, b) => getDateValue(b.date) - getDateValue(a.date));
+    if (!searchQuery.trim()) return days;
+
+    const query = searchQuery.toLowerCase();
+    return days.filter((day) =>
+      day.dayLabel.toLowerCase().includes(query) ||
+      day.items.some(
+        (item) =>
+          item.category.toLowerCase().includes(query) ||
+          item.headline.toLowerCase().includes(query) ||
+          item.detail.toLowerCase().includes(query)
+      )
+    );
+  }, [searchQuery]);
 
   const markAsRead = (id: string) => {
     const updated = new Set(readArticles);
@@ -157,14 +176,33 @@ export default function CurrentAffairsPage() {
       <div className="relative mb-6">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
         <Input
-          placeholder="Search articles..."
+          placeholder={viewMode === 'articles' ? 'Search articles...' : 'Search daily digests, categories, headlines...'}
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           className="pl-10"
         />
       </div>
 
+      {/* Section Switch */}
+      <div className="mb-4 flex gap-2">
+        <Button
+          variant={viewMode === 'articles' ? 'default' : 'outline'}
+          onClick={() => setViewMode('articles')}
+          size="sm"
+        >
+          Articles
+        </Button>
+        <Button
+          variant={viewMode === 'daily' ? 'default' : 'outline'}
+          onClick={() => setViewMode('daily')}
+          size="sm"
+        >
+          Daily (Jan 2026)
+        </Button>
+      </div>
+
       {/* Category Tabs */}
+      {viewMode === 'articles' && (
       <div className="mb-6 flex gap-2 overflow-x-auto pb-1">
         {categories.map((cat) => {
           const Icon = cat.icon;
@@ -183,8 +221,10 @@ export default function CurrentAffairsPage() {
           );
         })}
       </div>
+      )}
 
       {/* Articles Grid */}
+      {viewMode === 'articles' && (
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {filteredArticles.map(article => (
           <Card 
@@ -224,10 +264,49 @@ export default function CurrentAffairsPage() {
           </Card>
         ))}
       </div>
+      )}
 
-      {filteredArticles.length === 0 && (
+      {/* Daily Grid */}
+      {viewMode === 'daily' && (
+        <div className="space-y-4">
+          {filteredDaily.map((day) => (
+            <Card
+              key={day.id}
+              className="cursor-pointer transition-all hover:shadow-md hover:border-primary/50"
+              onClick={() => setSelectedDaily(day)}
+            >
+              <CardHeader className="pb-2">
+                <div className="flex items-center justify-between gap-2">
+                  <Badge variant="outline" className="text-xs">{day.dayLabel}</Badge>
+                  <Badge variant="secondary" className="text-xs">{day.items.length} updates</Badge>
+                </div>
+                <CardTitle className="text-base">Daily Current Affairs - {day.dayLabel}</CardTitle>
+                <CardDescription className="text-xs">
+                  Law, International, National, Maharashtra, Sports, Awards, Crime, Judgments and more
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-1 mb-2">
+                  {[...new Set(day.items.map((item) => item.category))].slice(0, 6).map((cat) => (
+                    <Badge key={cat} variant="secondary" className="text-xs">{cat}</Badge>
+                  ))}
+                </div>
+                <p className="text-sm text-muted-foreground line-clamp-2">{day.items[0]?.headline}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      )}
+
+      {viewMode === 'articles' && filteredArticles.length === 0 && (
         <div className="text-center py-12">
           <p className="text-muted-foreground">No articles found matching your search.</p>
+        </div>
+      )}
+
+      {viewMode === 'daily' && filteredDaily.length === 0 && (
+        <div className="text-center py-12">
+          <p className="text-muted-foreground">No daily digests found matching your search.</p>
         </div>
       )}
 
@@ -301,6 +380,41 @@ export default function CurrentAffairsPage() {
               <div className="pt-4 border-t">
                 <Button size="sm" className="w-full" onClick={() => setSelectedArticle(null)}>
                   Done Reading
+                </Button>
+              </div>
+            </>
+          )}
+        </SheetContent>
+      </Sheet>
+
+      {/* Daily Detail Sheet */}
+      <Sheet open={!!selectedDaily} onOpenChange={(open) => !open && setSelectedDaily(null)}>
+        <SheetContent side="right" className="w-full sm:max-w-2xl overflow-y-auto">
+          {selectedDaily && (
+            <>
+              <SheetHeader className="pb-4 border-b">
+                <div className="flex items-center gap-2 mb-2">
+                  <Badge variant="outline">{selectedDaily.dayLabel}</Badge>
+                  <Badge variant="secondary">January 2026</Badge>
+                </div>
+                <SheetTitle className="text-xl leading-tight">Daily Current Affairs - {selectedDaily.dayLabel}</SheetTitle>
+              </SheetHeader>
+
+              <div className="py-6 space-y-4">
+                {selectedDaily.items.map((item, index) => (
+                  <div key={`${selectedDaily.id}-${index}`} className="p-4 rounded-lg border bg-card">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Badge variant="secondary" className="text-xs">{item.category}</Badge>
+                    </div>
+                    <h4 className="font-semibold text-sm mb-2">{item.headline}</h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.detail}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="pt-4 border-t">
+                <Button size="sm" className="w-full" onClick={() => setSelectedDaily(null)}>
+                  Close Daily Brief
                 </Button>
               </div>
             </>
