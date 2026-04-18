@@ -71,6 +71,22 @@ const bareActsData: BareAct[] = [
         isImportant: true
       },
       {
+        id: "art15",
+        section: "Article 15",
+        title: "Prohibition of discrimination",
+        content: "The State shall not discriminate against any citizen on grounds only of religion, race, caste, sex, place of birth or any of them. The Constitution also permits special provisions for women, children, socially and educationally backward classes, SCs and STs.",
+        keywords: ["discrimination", "religion", "race", "caste", "sex", "reservation"],
+        isImportant: true
+      },
+      {
+        id: "art16",
+        section: "Article 16",
+        title: "Equality of opportunity in public employment",
+        content: "There shall be equality of opportunity for all citizens in matters relating to employment or appointment to any office under the State, subject to constitutionally valid reservations.",
+        keywords: ["public employment", "equality of opportunity", "reservation", "state services"],
+        isImportant: true
+      },
+      {
         id: "art19",
         section: "Article 19",
         title: "Protection of certain rights regarding freedom",
@@ -79,11 +95,27 @@ const bareActsData: BareAct[] = [
         isImportant: true
       },
       {
+        id: "art20",
+        section: "Article 20",
+        title: "Protection in respect of conviction for offenses",
+        content: "No person shall be convicted for an act not an offense at the time of commission (no ex post facto criminal law), nor be prosecuted and punished for the same offense more than once (double jeopardy), nor be compelled to be a witness against himself (self-incrimination).",
+        keywords: ["ex post facto", "double jeopardy", "self-incrimination", "criminal safeguards"],
+        isImportant: true
+      },
+      {
         id: "art21",
         section: "Article 21",
         title: "Protection of life and personal liberty",
         content: "No person shall be deprived of his life or personal liberty except according to procedure established by law.",
         keywords: ["life", "liberty", "procedure established by law", "due process", "dignity"],
+        isImportant: true
+      },
+      {
+        id: "art22",
+        section: "Article 22",
+        title: "Protection against arrest and detention",
+        content: "A person arrested must be informed of grounds of arrest, has right to consult and be defended by a legal practitioner, and must be produced before nearest Magistrate within 24 hours. Special provisions exist for preventive detention.",
+        keywords: ["arrest", "detention", "24 hours", "legal counsel", "preventive detention"],
         isImportant: true
       },
       {
@@ -108,6 +140,14 @@ const bareActsData: BareAct[] = [
         title: "Power of High Courts to issue writs",
         content: "(1) Every High Court shall have power to issue directions, orders or writs including habeas corpus, mandamus, prohibition, quo warranto, certiorari for enforcement of FRs and for any other purpose.",
         keywords: ["high court", "writs", "wider jurisdiction", "any other purpose"],
+        isImportant: true
+      },
+      {
+        id: "art39a",
+        section: "Article 39A",
+        title: "Equal justice and free legal aid",
+        content: "The State shall secure that the operation of the legal system promotes justice on a basis of equal opportunity, and shall provide free legal aid to ensure opportunities for securing justice are not denied because of economic or other disabilities.",
+        keywords: ["legal aid", "equal justice", "DPSP", "access to justice"],
         isImportant: true
       },
       {
@@ -152,6 +192,22 @@ const bareActsData: BareAct[] = [
         isImportant: true
       },
       {
+        id: "s34",
+        section: "Section 34/3(5)",
+        title: "Acts done by several persons in furtherance of common intention",
+        content: "When a criminal act is done by several persons in furtherance of common intention of all, each person is liable for that act as if it were done by him alone.",
+        keywords: ["common intention", "joint liability", "group offense", "participation"],
+        isImportant: true
+      },
+      {
+        id: "s120b",
+        section: "Section 120B/61",
+        title: "Criminal conspiracy",
+        content: "When two or more persons agree to do an illegal act, or a legal act by illegal means, they may be guilty of criminal conspiracy. Punishment depends on gravity and object of conspiracy.",
+        keywords: ["conspiracy", "agreement", "illegal act", "joint planning"],
+        isImportant: true
+      },
+      {
         id: "s306",
         section: "Section 306/108",
         title: "Abetment of suicide",
@@ -165,6 +221,14 @@ const bareActsData: BareAct[] = [
         title: "Theft",
         content: "Whoever intending to take dishonestly any moveable property out of possession of any person without that person's consent, moves that property in order to such taking, is said to commit theft.",
         keywords: ["theft", "dishonest intention", "moveable property", "without consent"],
+        isImportant: true
+      },
+      {
+        id: "s375",
+        section: "Section 375/63",
+        title: "Rape (core definition)",
+        content: "Defines circumstances under which sexual acts constitute rape, centering on absence of valid consent and statutory protection in law. Age and consent principles are strictly applied.",
+        keywords: ["rape", "consent", "sexual offense", "women protection"],
         isImportant: true
       },
       {
@@ -198,6 +262,22 @@ const bareActsData: BareAct[] = [
         title: "When police may arrest without warrant",
         content: "Police officer may arrest without warrant: (a) Person committing cognizable offense in presence; (b) Against whom reasonable complaint/credible information exists; (c) Proclaimed offender; (d) In possession of stolen property; (e) Obstructs police officer; (f) Escaped from lawful custody; (g) Suspected deserter from Armed Forces.",
         keywords: ["arrest", "without warrant", "cognizable", "police officer"],
+        isImportant: true
+      },
+      {
+        id: "s50",
+        section: "Section 50/47",
+        title: "Person arrested to be informed of grounds and bail",
+        content: "Every police officer arresting without warrant shall communicate full particulars of the offense or other grounds for arrest. In bailable offenses, the person must be informed of right to bail.",
+        keywords: ["grounds of arrest", "right to bail", "communication of arrest", "fair procedure"],
+        isImportant: true
+      },
+      {
+        id: "s57",
+        section: "Section 57/58",
+        title: "Person arrested not to be detained more than 24 hours",
+        content: "No police officer shall detain an arrested person for longer than 24 hours without special order of a Magistrate, excluding time necessary for journey to Magistrate.",
+        keywords: ["24 hours", "illegal detention", "magistrate", "custody safeguards"],
         isImportant: true
       },
       {
@@ -290,6 +370,14 @@ const bareActsData: BareAct[] = [
         isImportant: true
       },
       {
+        id: "s32",
+        section: "Section 32/26",
+        title: "Statements by persons who cannot be called as witnesses",
+        content: "Statements of a person who is dead or cannot be found may be relevant in specific situations, including statements as to cause of death and circumstances of transaction resulting in death.",
+        keywords: ["dying declaration", "relevancy", "deceased witness", "cause of death"],
+        isImportant: true
+      },
+      {
         id: "s25",
         section: "Section 25/23",
         title: "Confession to police officer not to be proved",
@@ -355,11 +443,27 @@ const bareActsData: BareAct[] = [
         isImportant: true
       },
       {
+        id: "s11",
+        section: "Section 11",
+        title: "Who are competent to contract",
+        content: "Every person is competent to contract who is of age of majority, of sound mind, and not disqualified from contracting by any law to which he is subject.",
+        keywords: ["competency", "majority", "sound mind", "disqualification"],
+        isImportant: true
+      },
+      {
         id: "s14",
         section: "Section 14",
         title: "Free Consent",
         content: "Consent is said to be free when it is not caused by: (1) Coercion (Section 15); (2) Undue influence (Section 16); (3) Fraud (Section 17); (4) Misrepresentation (Section 18); (5) Mistake (Section 20, 21, 22).",
         keywords: ["free consent", "coercion", "undue influence", "fraud", "misrepresentation", "mistake"],
+        isImportant: true
+      },
+      {
+        id: "s27-ica",
+        section: "Section 27",
+        title: "Agreement in restraint of trade",
+        content: "Every agreement by which anyone is restrained from exercising a lawful profession, trade or business of any kind is, to that extent, void, subject to recognized statutory exceptions.",
+        keywords: ["restraint of trade", "void agreements", "public policy", "business"],
         isImportant: true
       },
       {
@@ -376,6 +480,104 @@ const bareActsData: BareAct[] = [
         title: "Compensation for breach",
         content: "When a contract has been broken, party who suffers by such breach is entitled to receive compensation for any loss or damage caused to him thereby, which naturally arose in usual course of things from such breach, or which parties knew was likely to result.",
         keywords: ["damages", "compensation", "breach", "natural consequence", "remoteness"],
+        isImportant: true
+      }
+    ]
+  },
+  {
+    id: "tpa",
+    name: "Transfer of Property Act",
+    shortName: "TPA",
+    year: 1882,
+    description: "Core property-transfer statute for immovable property transactions.",
+    sections: [
+      {
+        id: "tpa-s5",
+        section: "Section 5",
+        title: "Transfer of property defined",
+        content: "Transfer of property means an act by which a living person conveys property, in present or future, to one or more other living persons, or to himself and one or more other living persons.",
+        keywords: ["transfer", "living person", "conveyance", "immovable property"],
+        isImportant: true
+      },
+      {
+        id: "tpa-s52",
+        section: "Section 52",
+        title: "Lis pendens",
+        content: "During pendency of a suit concerning rights to immovable property, the property cannot be transferred or otherwise dealt with to affect rights of other party under any decree or order.",
+        keywords: ["lis pendens", "pending litigation", "immovable property", "transfer restriction"],
+        isImportant: true
+      },
+      {
+        id: "tpa-s53a",
+        section: "Section 53A",
+        title: "Part performance",
+        content: "Where transferee has taken possession in part performance of a contract and is willing to perform his part, transferor is debarred from enforcing rights inconsistent with contract, subject to statutory conditions.",
+        keywords: ["part performance", "possession", "equity", "contract"],
+        isImportant: true
+      },
+      {
+        id: "tpa-s54",
+        section: "Section 54",
+        title: "Sale",
+        content: "Sale is transfer of ownership in exchange for a price paid, promised, or part-paid and part-promised. For tangible immovable property above prescribed value, a registered instrument is required.",
+        keywords: ["sale", "ownership", "price", "registered instrument"],
+        isImportant: true
+      },
+      {
+        id: "tpa-s58",
+        section: "Section 58",
+        title: "Mortgage",
+        content: "Mortgage is transfer of an interest in specific immovable property for securing payment of money advanced, existing or future debt, or performance of an engagement giving rise to pecuniary liability.",
+        keywords: ["mortgage", "security", "interest in property", "debt"],
+        isImportant: true
+      }
+    ]
+  },
+  {
+    id: "sra",
+    name: "Specific Relief Act",
+    shortName: "SRA",
+    year: 1963,
+    description: "Provides equitable remedies such as specific performance and injunctions.",
+    sections: [
+      {
+        id: "sra-s10",
+        section: "Section 10",
+        title: "Specific performance of contracts",
+        content: "Specific performance may be enforced subject to provisions of the Act where monetary compensation is not an adequate remedy and legal requirements are fulfilled.",
+        keywords: ["specific performance", "equitable remedy", "contract enforcement"],
+        isImportant: true
+      },
+      {
+        id: "sra-s14",
+        section: "Section 14",
+        title: "Contracts not specifically enforceable",
+        content: "Certain contracts are not specifically enforceable, including those depending on personal qualifications or those that are determinable by nature.",
+        keywords: ["not enforceable", "determinable contracts", "personal service"],
+        isImportant: true
+      },
+      {
+        id: "sra-s16",
+        section: "Section 16",
+        title: "Personal bars to relief",
+        content: "Specific performance cannot be enforced in favor of a person who has not performed or has not been ready and willing to perform essential terms of the contract.",
+        keywords: ["ready and willing", "personal bar", "plaintiff conduct"],
+        isImportant: true
+      },
+      {
+        id: "sra-s20",
+        section: "Section 20",
+        title: "Substituted performance",
+        content: "Where contract is breached, party may have performance completed through a third party or own agency and recover expenses from defaulting party, subject to statutory conditions.",
+        keywords: ["substituted performance", "breach", "recovery of expenses"],
+        isImportant: false
+      },
+      {
+        id: "sra-s34",
+        section: "Section 34",
+        title: "Declaratory decrees",
+        content: "Any person entitled to any legal character or right as to property may seek a declaration from court, and court may make such declaration where appropriate.",
+        keywords: ["declaration", "legal character", "property rights", "civil remedy"],
         isImportant: true
       }
     ]
