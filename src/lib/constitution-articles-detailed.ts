@@ -383,7 +383,7 @@ Article 26 grants corporate rights to religious organizations. While Article 25 
       'Right to own, acquire, manage religious property',
       'Internal management: Religious denominations decide religious matters ',
       'Secular regulation: State can regulate secular aspects (health, safety, education standards)',
-      'Applies to all religions,' Christian, Hindu, Muslim, Sikh, Buddhist, Jain organizations',
+      'Applies to all religions: Christian, Hindu, Muslim, Sikh, Buddhist, Jain organizations',
       'Distinction: Article 25 (personal) vs. Article 26 (institutional religious rights)',
     ],
     relatedArticles: ['Article 25', 'Article 27', 'Article 28'],
