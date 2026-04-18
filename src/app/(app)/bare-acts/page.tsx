@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,13 @@ import {
   Bookmark,
   FileText,
   ArrowLeft,
+  Scale,
+  Shield,
+  Landmark,
+  Briefcase,
+  BookOpen,
+  Gavel,
+  Building2,
 } from "lucide-react";
 
 interface BareActSection {
@@ -549,6 +556,44 @@ const bareActsData: BareAct[] = [
   }
 ];
 
+const actVisuals: Record<string, { icon: ReactNode; bg: string; iconColor: string }> = {
+  constitution: {
+    icon: <Landmark className="h-5 w-5" />,
+    bg: "bg-blue-50",
+    iconColor: "text-blue-600",
+  },
+  ipc: {
+    icon: <Shield className="h-5 w-5" />,
+    bg: "bg-rose-50",
+    iconColor: "text-rose-600",
+  },
+  crpc: {
+    icon: <Gavel className="h-5 w-5" />,
+    bg: "bg-amber-50",
+    iconColor: "text-amber-700",
+  },
+  evidence: {
+    icon: <BookOpen className="h-5 w-5" />,
+    bg: "bg-violet-50",
+    iconColor: "text-violet-600",
+  },
+  contract: {
+    icon: <Briefcase className="h-5 w-5" />,
+    bg: "bg-emerald-50",
+    iconColor: "text-emerald-700",
+  },
+  tpa: {
+    icon: <Building2 className="h-5 w-5" />,
+    bg: "bg-cyan-50",
+    iconColor: "text-cyan-700",
+  },
+  sra: {
+    icon: <Scale className="h-5 w-5" />,
+    bg: "bg-orange-50",
+    iconColor: "text-orange-700",
+  },
+};
+
 export default function BareActsPage() {
   const router = useRouter();
   const [activeAct, setActiveAct] = useState<BareAct | null>(null);
@@ -609,16 +654,17 @@ export default function BareActsPage() {
                 setActiveSection(null);
                 setSearchQuery("");
               }}
-              className="w-full p-4 rounded-xl bg-white border border-slate-200 text-left hover:border-blue-400 hover:bg-blue-50 transition-all"
+              className="w-full p-4 rounded-2xl bg-white border border-slate-200 text-left hover:border-slate-300 hover:shadow-sm transition-all"
             >
-              <div className="flex flex-col items-start gap-2">
-                <div className="h-10 w-10 rounded-full bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-700">
-                  {act.shortName.slice(0, 2)}
+              <div className="flex flex-col items-start gap-2.5">
+                <div className={`h-11 w-11 rounded-xl flex items-center justify-center ${actVisuals[act.id]?.bg ?? "bg-slate-100"} ${actVisuals[act.id]?.iconColor ?? "text-slate-700"}`}>
+                  {actVisuals[act.id]?.icon ?? <FileText className="h-5 w-5" />}
                 </div>
                 <Badge variant="secondary" className="font-mono text-xs">
                   {act.shortName}
                 </Badge>
                 <h3 className="font-semibold text-sm text-slate-900 leading-tight">{act.name}</h3>
+                <p className="text-[11px] leading-4 text-slate-500 line-clamp-2">{act.description}</p>
               </div>
             </button>
           ))}

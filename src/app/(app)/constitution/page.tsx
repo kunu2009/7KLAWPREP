@@ -26,12 +26,12 @@ export default function ConstitutionPage() {
   const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeArticle, setActiveArticle] = useState<ConstitutionArticle | null>(null);
-  const [expandedPoints, setExpandedPoints] = useState<Set<string>>(new Set());
   const [bookmarkedArticles, setBookmarkedArticles] = useState<Set<string>>(new Set());
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [selectedPart, setSelectedPart] = useState<string>("all");
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [mobileReadTab, setMobileReadTab] = useState<"summary" | "full" | "points">("full");
   const isReadyRef = useRef(false);
 
   useEffect(() => {
@@ -98,16 +98,6 @@ export default function ConstitutionPage() {
 
   const parts = Object.keys(articlesByPart).sort();
 
-  const toggleExpandPoint = (pointId: string) => {
-    const newExpanded = new Set(expandedPoints);
-    if (newExpanded.has(pointId)) {
-      newExpanded.delete(pointId);
-    } else {
-      newExpanded.add(pointId);
-    }
-    setExpandedPoints(newExpanded);
-  };
-
   const toggleBookmark = (id: string) => {
     const newBookmarked = new Set(bookmarkedArticles);
     if (newBookmarked.has(id)) {
@@ -126,6 +116,7 @@ export default function ConstitutionPage() {
 
   const handleArticleSelect = (article: ConstitutionArticle) => {
     setActiveArticle(article);
+    setMobileReadTab("full");
     setMenuOpen(false);
     if (isMobile) {
       window.history.pushState({ article: article.id }, "", window.location.href);
@@ -134,6 +125,7 @@ export default function ConstitutionPage() {
 
   const handleBack = () => {
     setActiveArticle(null);
+    setMobileReadTab("full");
     setMenuOpen(false);
   };
 
@@ -281,84 +273,100 @@ export default function ConstitutionPage() {
               />
             </Button>
           </div>
+
+          <div className="px-4 pb-3">
+            <div className="grid grid-cols-3 gap-2 rounded-lg bg-slate-100 p-1">
+              <button
+                onClick={() => setMobileReadTab("summary")}
+                className={`rounded-md py-2 text-xs font-medium transition-colors ${
+                  mobileReadTab === "summary" ? "bg-white text-slate-900 shadow-sm" : "text-slate-600"
+                }`}
+              >
+                Summary
+              </button>
+              <button
+                onClick={() => setMobileReadTab("full")}
+                className={`rounded-md py-2 text-xs font-medium transition-colors ${
+                  mobileReadTab === "full" ? "bg-white text-slate-900 shadow-sm" : "text-slate-600"
+                }`}
+              >
+                Full Text
+              </button>
+              <button
+                onClick={() => setMobileReadTab("points")}
+                className={`rounded-md py-2 text-xs font-medium transition-colors ${
+                  mobileReadTab === "points" ? "bg-white text-slate-900 shadow-sm" : "text-slate-600"
+                }`}
+              >
+                Key Points
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Article Content */}
         <div className="p-4 space-y-4">
-          {/* Summary */}
-          <Card className="border-0 bg-white">
-            <CardContent className="p-4">
-              <p className="text-sm text-slate-700 leading-relaxed">{activeArticle.summary}</p>
-            </CardContent>
-          </Card>
+          {mobileReadTab === "summary" && (
+            <Card className="border-0 bg-white">
+              <CardContent className="p-5">
+                <p className="text-[15px] text-slate-700 leading-7">{activeArticle.summary}</p>
+              </CardContent>
+            </Card>
+          )}
 
-          {/* Full Text - Collapsible */}
-          <Card className="border-0 bg-white">
-            <CardHeader className="pb-2 cursor-pointer" onClick={() => toggleExpandPoint("fulltext")}>
-              <div className="flex items-center justify-between">
+          {mobileReadTab === "full" && (
+            <Card className="border-0 bg-white">
+              <CardHeader className="pb-2">
                 <CardTitle className="text-base">Full Text</CardTitle>
-                {expandedPoints.has("fulltext") ? (
-                  <ChevronUp className="h-4 w-4" />
-                ) : (
-                  <ChevronDown className="h-4 w-4" />
-                )}
-              </div>
-            </CardHeader>
-            {expandedPoints.has("fulltext") && (
+              </CardHeader>
               <CardContent className="pt-0">
-                <div className="p-3 rounded-lg bg-slate-50 text-xs leading-relaxed text-slate-800 whitespace-pre-wrap line-clamp-6">
-                  {activeArticle.fullText}
+                <div className="p-4 rounded-lg bg-slate-50 border border-slate-200">
+                  <p className="text-[14px] leading-7 text-slate-800 whitespace-pre-wrap">
+                    {activeArticle.fullText}
+                  </p>
                 </div>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => copyToClipboard(activeArticle.fullText, activeArticle.id)}
-                  className="mt-2 w-full text-xs"
+                  className="mt-3 w-full"
                 >
                   {copiedId === activeArticle.id ? (
                     <>
-                      <Check className="h-3 w-3 mr-1" /> Copied
+                      <Check className="h-4 w-4 mr-1" /> Copied
                     </>
                   ) : (
                     <>
-                      <Copy className="h-3 w-3 mr-1" /> Copy Full Text
+                      <Copy className="h-4 w-4 mr-1" /> Copy Full Text
                     </>
                   )}
                 </Button>
               </CardContent>
-            )}
-          </Card>
+            </Card>
+          )}
 
-          {/* Key Points - Collapsible */}
-          <Card className="border-0 bg-white">
-            <CardHeader className="pb-2 cursor-pointer" onClick={() => toggleExpandPoint("keypoints")}>
-              <div className="flex items-center justify-between">
+          {mobileReadTab === "points" && (
+            <Card className="border-0 bg-white">
+              <CardHeader className="pb-2">
                 <CardTitle className="text-base flex items-center gap-2">
                   <Lightbulb className="h-4 w-4 text-yellow-600" />
                   Key Points
                 </CardTitle>
-                {expandedPoints.has("keypoints") ? (
-                  <ChevronUp className="h-4 w-4" />
-                ) : (
-                  <ChevronDown className="h-4 w-4" />
-                )}
-              </div>
-            </CardHeader>
-            {expandedPoints.has("keypoints") && (
+              </CardHeader>
               <CardContent className="pt-0">
-                <div className="space-y-2">
+                <div className="space-y-3">
                   {activeArticle.keyPoints.map((point, idx) => (
-                    <div key={idx} className="p-2 rounded-lg bg-slate-50 text-xs text-slate-800">
-                      <div className="flex gap-2">
-                        <span className="text-yellow-600 flex-shrink-0">•</span>
-                        <p className="leading-relaxed">{point}</p>
+                    <div key={idx} className="p-3 rounded-lg bg-slate-50 border border-slate-200">
+                      <div className="flex gap-3">
+                        <span className="text-[12px] font-semibold text-slate-500 mt-0.5">{idx + 1}.</span>
+                        <p className="text-[14px] leading-6 text-slate-800">{point}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               </CardContent>
-            )}
-          </Card>
+            </Card>
+          )}
 
           {/* Related Articles */}
           {activeArticle.relatedArticles.length > 0 && (
