@@ -2155,7 +2155,7 @@ Commemoration Events: Chief Justice hosts constitutional law symposium (leading 
     id: 'ca-jan2026-defense-procurement-report',
     title: 'Defense Procurement Reform: Govt Accelerates Indigenous Weapons Development',
     date: '2026-01-15',
-    summary: 'The Department of Defense Production released an annual report highlighting acceleration of ''Make in India'' defense electronics and accelerated weaponry localization.',
+    summary: "The Department of Defense Production released an annual report highlighting acceleration of 'Make in India' defense electronics and accelerated weaponry localization.",
     article: `In January 2026, the Department of Defense Production presented Parliament a comprehensive report on indigenous defense manufacturing, highlighting achieved milestones in reducing import dependency and accelerating indigenous weapons development timelines.
 
 Key Statistics: Indigenous content in defense procurement reached 62% (up from 58% in 2025, target 75% by 2029); Defense exports increased to USD 2.8 billion (FY 2025-26, up from USD 2 billion in previous year); Number of startups in defense tech ecosystem grew to 180+ (from 100 in 2024).
