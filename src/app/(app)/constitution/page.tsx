@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -22,14 +23,43 @@ import {
 import { constitutionArticles, ConstitutionArticle } from "@/lib/constitution-articles-detailed";
 
 export default function ConstitutionPage() {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeArticle, setActiveArticle] = useState<ConstitutionArticle | null>(constitutionArticles[0]);
+  const [activeArticle, setActiveArticle] = useState<ConstitutionArticle | null>(null);
   const [expandedPoints, setExpandedPoints] = useState<Set<string>>(new Set());
   const [bookmarkedArticles, setBookmarkedArticles] = useState<Set<string>>(new Set());
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [selectedPart, setSelectedPart] = useState<string>("all");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" && window.innerWidth < 768);
+  const [isMobile, setIsMobile] = useState(false);
+  const isReadyRef = useRef(false);
+
+  useEffect(() => {
+    const syncViewport = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    syncViewport();
+    isReadyRef.current = true;
+    window.addEventListener("resize", syncViewport);
+    return () => window.removeEventListener("resize", syncViewport);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile || !isReadyRef.current) return;
+
+    const onPopState = () => {
+      if (activeArticle) {
+        setActiveArticle(null);
+        return;
+      }
+
+      router.push("/bare-acts");
+    };
+
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, [activeArticle, isMobile, router]);
 
   // Group articles by part
   const articlesByPart = useMemo(() => {
@@ -97,6 +127,9 @@ export default function ConstitutionPage() {
   const handleArticleSelect = (article: ConstitutionArticle) => {
     setActiveArticle(article);
     setMenuOpen(false);
+    if (isMobile) {
+      window.history.pushState({ article: article.id }, "", window.location.href);
+    }
   };
 
   const handleBack = () => {
@@ -111,10 +144,20 @@ export default function ConstitutionPage() {
         {/* Mobile Header */}
         <div className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
           <div className="p-4 space-y-3">
-            <div className="flex items-center justify-between">
-              <div>
-                <h1 className="text-lg font-bold text-slate-900">Constitution</h1>
-                <p className="text-xs text-slate-500">India - Full Reference</p>
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="rounded-lg"
+                  onClick={() => router.push("/bare-acts")}
+                >
+                  <ArrowLeft className="h-5 w-5" />
+                </Button>
+                <div>
+                  <h1 className="text-lg font-bold text-slate-900">Constitution</h1>
+                  <p className="text-xs text-slate-500">India - Full Reference</p>
+                </div>
               </div>
               <Button
                 variant="ghost"
@@ -435,8 +478,13 @@ export default function ConstitutionPage() {
         </div>
 
         {/* Article Detail */}
-        {activeArticle && (
+        {(activeArticle ?? filteredArticles[0]) && (
           <div className="md:col-span-2 space-y-6">
+            {(() => {
+              const article = activeArticle ?? filteredArticles[0];
+              if (!article) return null;
+              return (
+                <>
             {/* Article Header */}
             <Card className="bg-gradient-to-br from-blue-500/10 to-slate-500/5">
               <CardHeader>
@@ -444,28 +492,28 @@ export default function ConstitutionPage() {
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       <Badge variant="secondary" className="font-mono text-base px-3 py-1">
-                        {activeArticle.article}
+                        {article.article}
                       </Badge>
-                      {activeArticle.landmark && (
+                      {article.landmark && (
                         <Badge className="bg-yellow-500/20 text-yellow-700 hover:bg-yellow-500/30">
                           <Star className="h-3 w-3 mr-1" /> Landmark
                         </Badge>
                       )}
                     </div>
-                    <CardTitle className="text-2xl">{activeArticle.title}</CardTitle>
+                    <CardTitle className="text-2xl">{article.title}</CardTitle>
                     <CardDescription className="text-sm mt-2 text-slate-700">
-                      <strong>Part:</strong> {activeArticle.part}
+                      <strong>Part:</strong> {article.part}
                     </CardDescription>
                   </div>
 
                   <Button
                     variant="ghost"
                     size="icon"
-                    onClick={() => toggleBookmark(activeArticle.id)}
+                    onClick={() => toggleBookmark(article.id)}
                   >
                     <Bookmark
                       className={`h-5 w-5 ${
-                        bookmarkedArticles.has(activeArticle.id)
+                        bookmarkedArticles.has(article.id)
                           ? "text-purple-500 fill-purple-500"
                           : "text-muted-foreground"
                       }`}
@@ -474,7 +522,7 @@ export default function ConstitutionPage() {
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-slate-700 leading-relaxed">{activeArticle.summary}</p>
+                <p className="text-sm text-slate-700 leading-relaxed">{article.summary}</p>
               </CardContent>
             </Card>
 
@@ -486,16 +534,16 @@ export default function ConstitutionPage() {
               <CardContent>
                 <div className="p-4 rounded-lg bg-slate-50 border border-slate-200">
                   <p className="text-sm leading-relaxed whitespace-pre-wrap text-slate-800">
-                    {activeArticle.fullText}
+                    {article.fullText}
                   </p>
                 </div>
                 <Button
                   variant="ghost"
                   size="sm"
-                  onClick={() => copyToClipboard(activeArticle.fullText, activeArticle.id)}
+                  onClick={() => copyToClipboard(article.fullText, article.id)}
                   className="mt-2"
                 >
-                  {copiedId === activeArticle.id ? (
+                  {copiedId === article.id ? (
                     <>
                       <Check className="h-4 w-4 mr-2" /> Copied
                     </>
@@ -518,8 +566,8 @@ export default function ConstitutionPage() {
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
-                  {activeArticle.keyPoints.map((point, idx) => {
-                    const pointId = `${activeArticle.id}-point-${idx}`;
+                  {article.keyPoints.map((point, idx) => {
+                    const pointId = `${article.id}-point-${idx}`;
                     return (
                       <div key={pointId} className="p-3 rounded-lg bg-slate-50">
                         <div className="flex items-start gap-2">
@@ -534,14 +582,14 @@ export default function ConstitutionPage() {
             </Card>
 
             {/* Related Articles */}
-            {activeArticle.relatedArticles.length > 0 && (
+            {article.relatedArticles.length > 0 && (
               <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">Related Articles</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
-                    {activeArticle.relatedArticles.map((relatedId) => (
+                    {article.relatedArticles.map((relatedId) => (
                       <Button
                         key={relatedId}
                         variant="outline"
@@ -558,6 +606,9 @@ export default function ConstitutionPage() {
                 </CardContent>
               </Card>
             )}
+                </>
+              );
+            })()}
           </div>
         )}
       </div>

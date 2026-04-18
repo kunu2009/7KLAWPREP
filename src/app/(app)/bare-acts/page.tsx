@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -12,13 +12,9 @@ import {
   Copy,
   Check,
   ChevronDown,
-  ChevronUp,
   Bookmark,
   FileText,
-  Menu,
-  X,
   ArrowLeft,
-  ArrowRight,
 } from "lucide-react";
 
 interface BareActSection {
@@ -554,23 +550,12 @@ const bareActsData: BareAct[] = [
 ];
 
 export default function BareActsPage() {
-  const [activeAct, setActiveAct] = useState<BareAct | null>(bareActsData[0]);
+  const router = useRouter();
+  const [activeAct, setActiveAct] = useState<BareAct | null>(null);
   const [activeSection, setActiveSection] = useState<BareActSection | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
   const [bookmarkedSections, setBookmarkedSections] = useState<Set<string>>(new Set());
   const [copiedId, setCopiedId] = useState<string | null>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const toggleExpand = (id: string) => {
-    const newExpanded = new Set(expandedSections);
-    if (newExpanded.has(id)) {
-      newExpanded.delete(id);
-    } else {
-      newExpanded.add(id);
-    }
-    setExpandedSections(newExpanded);
-  };
 
   const toggleBookmark = (id: string) => {
     const newBookmarked = new Set(bookmarkedSections);
@@ -606,44 +591,34 @@ export default function BareActsPage() {
         <div className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm p-4 space-y-3">
           <div className="flex items-center justify-between">
             <h1 className="text-lg font-bold text-slate-900">Bare Acts</h1>
-            <Button variant="ghost" size="icon" onClick={() => setMenuOpen(!menuOpen)}>
-              {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </Button>
+            <Badge variant="outline" className="text-xs">Pick an Act</Badge>
           </div>
-
-          {menuOpen && (
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
-              <Input
-                placeholder="Search sections..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10 py-2 text-sm"
-              />
-            </div>
-          )}
+          <p className="text-xs text-slate-500">Tap COI for full Constitution. Other acts open section-wise quick study.</p>
         </div>
 
-        <div className="p-4 space-y-2">
+        <div className="p-4 grid grid-cols-2 gap-3">
           {bareActsData.map((act) => (
             <button
               key={act.id}
               onClick={() => {
+                if (act.id === "constitution") {
+                  router.push("/constitution");
+                  return;
+                }
                 setActiveAct(act);
                 setActiveSection(null);
-                setMenuOpen(false);
+                setSearchQuery("");
               }}
-              className="w-full p-4 rounded-lg bg-white border border-slate-200 text-left hover:border-blue-400 hover:bg-blue-50 transition-all"
+              className="w-full p-4 rounded-xl bg-white border border-slate-200 text-left hover:border-blue-400 hover:bg-blue-50 transition-all"
             >
-              <div className="flex items-start justify-between gap-2">
-                <div className="flex-1 min-w-0">
-                  <Badge variant="secondary" className="font-mono text-xs mb-1">
-                    {act.shortName}
-                  </Badge>
-                  <h3 className="font-semibold text-sm text-slate-900">{act.name}</h3>
-                  <p className="text-xs text-slate-500 mt-1 line-clamp-2">{act.description}</p>
+              <div className="flex flex-col items-start gap-2">
+                <div className="h-10 w-10 rounded-full bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-700">
+                  {act.shortName.slice(0, 2)}
                 </div>
-                <ChevronDown className="h-4 w-4 text-slate-400 flex-shrink-0 mt-1" />
+                <Badge variant="secondary" className="font-mono text-xs">
+                  {act.shortName}
+                </Badge>
+                <h3 className="font-semibold text-sm text-slate-900 leading-tight">{act.name}</h3>
               </div>
             </button>
           ))}
@@ -659,7 +634,10 @@ export default function BareActsPage() {
         {/* Header */}
         <div className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm p-4 space-y-3">
           <div className="flex items-center gap-3">
-            <Button variant="ghost" size="icon" onClick={() => setActiveAct(null)}>
+            <Button variant="ghost" size="icon" onClick={() => {
+              setSearchQuery("");
+              setActiveAct(null);
+            }}>
               <ArrowLeft className="h-5 w-5" />
             </Button>
             <div className="flex-1 min-w-0">
@@ -681,14 +659,6 @@ export default function BareActsPage() {
               className="pl-10 py-2 text-sm"
             />
           </div>
-
-          {activeAct.id === "constitution" && (
-            <Link href="/constitution">
-              <Button variant="default" size="sm" className="w-full gap-2 text-xs">
-                Full Constitution <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-          )}
         </div>
 
         {/* Sections List */}
