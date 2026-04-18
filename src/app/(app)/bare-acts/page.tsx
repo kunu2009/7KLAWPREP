@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -17,7 +18,8 @@ import {
   FileText,
   ChevronDown,
   ChevronUp,
-  Bookmark
+  Bookmark,
+  ArrowRight
 } from "lucide-react";
 
 interface BareActSection {
@@ -721,11 +723,22 @@ export default function BareActsPage() {
             {/* Act Info */}
             <Card className="mb-6 bg-gradient-to-br from-slate-500/10 to-slate-500/5">
               <CardHeader className="pb-2">
-                <CardTitle className="text-lg">{act.name}</CardTitle>
-                <CardDescription>
-                  <Badge variant="outline" className="mr-2">{act.year}</Badge>
-                  {act.description}
-                </CardDescription>
+                <div className="flex items-start justify-between gap-4">
+                  <div className="flex-1">
+                    <CardTitle className="text-lg">{act.name}</CardTitle>
+                    <CardDescription>
+                      <Badge variant="outline" className="mr-2">{act.year}</Badge>
+                      {act.description}
+                    </CardDescription>
+                  </div>
+                  {act.id === "constitution" && (
+                    <Link href="/constitution">
+                      <Button variant="default" size="sm" className="gap-2 whitespace-nowrap">
+                        Full Constitution <ArrowRight className="h-4 w-4" />
+                      </Button>
+                    </Link>
+                  )}
+                </div>
               </CardHeader>
             </Card>
 
