@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
+import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
 import { 
   ArrowLeft,
   Search,
@@ -21,14 +22,14 @@ import {
   CheckCircle2,
   Calendar,
   Leaf,
-  Users,
+  Users
 } from 'lucide-react';
 import { currentAffairsArticles, CurrentAffairsArticle } from '@/lib/current-affairs-articles';
 import { cn } from '@/lib/utils';
 
 const categories = [
-  { key: 'all', label: 'All', icon: BookOpen },
-  { key: 'y2026', label: '2026', icon: Calendar },
+  { key: 'y2026', label: '2026 (Jan-Apr)', icon: Calendar },
+  { key: 'all', label: 'All Topics', icon: BookOpen },
   { key: 'law', label: 'Law/Courts', icon: Scale },
   { key: 'governance', label: 'Governance', icon: Landmark },
   { key: 'economy', label: 'Economy', icon: BarChart3 },
@@ -75,12 +76,9 @@ const formatRange = (articles: CurrentAffairsArticle[]) => {
 
 export default function CurrentAffairsPage() {
   const router = useRouter();
-  const isReadyRef = useRef(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [activeCategory, setActiveCategory] = useState('all');
+  const [activeCategory, setActiveCategory] = useState('y2026');
   const [selectedArticle, setSelectedArticle] = useState<CurrentAffairsArticle | null>(null);
-  const [isMobile, setIsMobile] = useState(false);
-  const [detailTab, setDetailTab] = useState<'summary' | 'full' | 'relevance' | 'sources'>('full');
   const [readArticles, setReadArticles] = useState<Set<string>>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('7k-read-articles');
@@ -88,29 +86,6 @@ export default function CurrentAffairsPage() {
     }
     return new Set();
   });
-
-  useEffect(() => {
-    const syncViewport = () => setIsMobile(window.innerWidth < 768);
-    syncViewport();
-    isReadyRef.current = true;
-    window.addEventListener('resize', syncViewport);
-    return () => window.removeEventListener('resize', syncViewport);
-  }, []);
-
-  useEffect(() => {
-    if (!isMobile || !isReadyRef.current) return;
-
-    const onPopState = () => {
-      if (selectedArticle) {
-        setSelectedArticle(null);
-      } else {
-        router.back();
-      }
-    };
-
-    window.addEventListener('popstate', onPopState);
-    return () => window.removeEventListener('popstate', onPopState);
-  }, [isMobile, selectedArticle, router]);
 
   const filteredArticles = useMemo(() => {
     let articles = [...currentAffairsArticles].sort((a, b) => getDateValue(b.date) - getDateValue(a.date));
@@ -146,117 +121,8 @@ export default function CurrentAffairsPage() {
 
   const openArticle = (article: CurrentAffairsArticle) => {
     setSelectedArticle(article);
-    setDetailTab('full');
     markAsRead(article.id);
-    if (isMobile) {
-      window.history.pushState({ article: article.id }, '', window.location.href);
-    }
   };
-
-  if (isMobile && selectedArticle) {
-    return (
-      <div className="min-h-screen bg-slate-50">
-        <div className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
-          <div className="p-4 flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3 min-w-0">
-              <Button variant="ghost" size="icon" onClick={() => setSelectedArticle(null)}>
-                <ArrowLeft className="h-5 w-5" />
-              </Button>
-              <div className="min-w-0">
-                <Badge variant="outline" className="text-xs mb-1">{selectedArticle.date}</Badge>
-                <h1 className="text-sm font-semibold line-clamp-1">{selectedArticle.title}</h1>
-              </div>
-            </div>
-            <CheckCircle2 className="h-5 w-5 text-green-500" />
-          </div>
-
-          <div className="px-4 pb-3">
-            <div className="grid grid-cols-4 gap-1 rounded-lg bg-slate-100 p-1">
-              {[
-                { key: 'summary', label: 'Summary' },
-                { key: 'full', label: 'Full' },
-                { key: 'relevance', label: 'CLAT' },
-                { key: 'sources', label: 'Sources' },
-              ].map((tab) => (
-                <button
-                  key={tab.key}
-                  onClick={() => setDetailTab(tab.key as 'summary' | 'full' | 'relevance' | 'sources')}
-                  className={cn(
-                    'rounded-md py-2 text-[11px] font-medium transition-colors',
-                    detailTab === tab.key ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-600'
-                  )}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        <div className="p-4 space-y-4">
-          {detailTab === 'summary' && (
-            <Card className="border-0 bg-white">
-              <CardContent className="p-5">
-                <p className="text-[15px] leading-7 text-slate-700">{selectedArticle.summary}</p>
-              </CardContent>
-            </Card>
-          )}
-
-          {detailTab === 'full' && (
-            <Card className="border-0 bg-white">
-              <CardContent className="p-5">
-                <div className="space-y-4">
-                  {selectedArticle.article.split('\n\n').map((para, i) => (
-                    <p key={i} className="text-[14px] leading-7 text-slate-800">
-                      {para.replace(/\*\*/g, '')}
-                    </p>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
-          {detailTab === 'relevance' && (
-            <Card className="border-0 bg-white">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base">CLAT Relevance</CardTitle>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <div className="space-y-3">
-                  {selectedArticle.relevance.map((point, i) => (
-                    <div key={i} className="p-3 rounded-lg bg-amber-50 border border-amber-100">
-                      <div className="flex gap-3">
-                        <span className="text-xs font-semibold text-amber-700 mt-0.5">{i + 1}.</span>
-                        <p className="text-sm leading-6 text-slate-800">{point}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          )}
-
-          {detailTab === 'sources' && (
-            <Card className="border-0 bg-white">
-              <CardHeader className="pb-2">
-                <CardTitle className="text-base">Sources</CardTitle>
-              </CardHeader>
-              <CardContent className="pt-0">
-                <div className="space-y-2">
-                  {selectedArticle.sources.map((source, i) => (
-                    <div key={i} className="flex items-start gap-2 text-sm p-2 rounded bg-slate-50">
-                      <ExternalLink className="h-4 w-4 mt-0.5 text-slate-500" />
-                      <span className="text-slate-700">{source}</span>
-                    </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          )}
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="container max-w-6xl mx-auto py-6 px-4">
@@ -298,7 +164,7 @@ export default function CurrentAffairsPage() {
         />
       </div>
 
-      {/* Category Pills */}
+      {/* Category Tabs */}
       <div className="mb-6 flex gap-2 overflow-x-auto pb-1">
         {categories.map((cat) => {
           const Icon = cat.icon;
@@ -365,53 +231,82 @@ export default function CurrentAffairsPage() {
         </div>
       )}
 
-      {/* Desktop Article Detail */}
-      {selectedArticle && (
-        <Card className="mt-8">
-          <CardHeader>
-            <div className="flex items-center justify-between gap-3">
-              <div>
-                <Badge variant="outline" className="mb-2">{selectedArticle.date}</Badge>
-                <CardTitle className="text-xl">{selectedArticle.title}</CardTitle>
+      {/* Article Detail Sheet */}
+      <Sheet open={!!selectedArticle} onOpenChange={(open) => !open && setSelectedArticle(null)}>
+        <SheetContent side="right" className="w-full sm:max-w-2xl overflow-y-auto">
+          {selectedArticle && (
+            <>
+              <SheetHeader className="pb-4 border-b">
+                <div className="flex items-center gap-2 mb-2">
+                  <Badge variant="outline">{selectedArticle.date}</Badge>
+                  <CheckCircle2 className="h-4 w-4 text-green-500" />
+                </div>
+                <SheetTitle className="text-xl leading-tight">{selectedArticle.title}</SheetTitle>
+              </SheetHeader>
+              
+              <div className="py-6 space-y-6">
+                <div className="p-4 bg-primary/5 rounded-lg border border-primary/20">
+                  <h3 className="font-semibold text-sm text-primary mb-2">📌 Quick Summary</h3>
+                  <p className="text-sm">{selectedArticle.summary}</p>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold mb-3">📖 Detailed Analysis</h3>
+                  <div className="prose prose-sm dark:prose-invert max-w-none">
+                    {selectedArticle.article.split('\n\n').map((para, i) => {
+                      if (para.startsWith('**') && para.endsWith('**')) {
+                        return <h4 key={i} className="font-semibold mt-4 mb-2">{para.replace(/\*\*/g, '')}</h4>;
+                      }
+                      if (para.includes('**')) {
+                        return (
+                          <p key={i} className="mb-3 text-sm leading-relaxed" 
+                            dangerouslySetInnerHTML={{ 
+                              __html: para.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') 
+                            }} 
+                          />
+                        );
+                      }
+                      return <p key={i} className="mb-3 text-sm leading-relaxed">{para}</p>;
+                    })}
+                  </div>
+                </div>
+
+                <div className="p-4 bg-amber-500/10 rounded-lg border border-amber-500/20">
+                  <h3 className="font-semibold text-sm text-amber-700 dark:text-amber-400 mb-3">
+                    🎯 CLAT Relevance
+                  </h3>
+                  <ul className="space-y-2">
+                    {selectedArticle.relevance.map((point, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm">
+                        <span className="text-amber-500 mt-0.5">•</span>
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold text-sm mb-2">📚 Sources</h3>
+                  <ul className="space-y-1">
+                    {selectedArticle.sources.map((source, i) => (
+                      <li key={i} className="text-xs text-muted-foreground flex items-center gap-1">
+                        <ExternalLink className="h-3 w-3" />
+                        {source}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <Button variant="outline" onClick={() => setSelectedArticle(null)}>
-                Close
-              </Button>
-            </div>
-            <CardDescription>{selectedArticle.summary}</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="space-y-3">
-              {selectedArticle.article.split('\n\n').map((para, i) => (
-                <p key={i} className="text-sm leading-7 text-slate-700">
-                  {para.replace(/\*\*/g, '')}
-                </p>
-              ))}
-            </div>
 
-            <div className="p-4 bg-amber-50 rounded-lg border border-amber-100">
-              <h3 className="font-semibold mb-2">CLAT Relevance</h3>
-              <ul className="space-y-2">
-                {selectedArticle.relevance.map((point, i) => (
-                  <li key={i} className="text-sm">• {point}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="font-semibold mb-2">Sources</h3>
-              <ul className="space-y-1">
-                {selectedArticle.sources.map((source, i) => (
-                  <li key={i} className="text-xs text-muted-foreground flex items-center gap-2">
-                    <ExternalLink className="h-3 w-3" />
-                    {source}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </CardContent>
-        </Card>
-      )}
+              <div className="pt-4 border-t">
+                <Button size="sm" className="w-full" onClick={() => setSelectedArticle(null)}>
+                  Done Reading
+                </Button>
+              </div>
+            </>
+          )}
+        </SheetContent>
+      </Sheet>
     </div>
   );
 }
