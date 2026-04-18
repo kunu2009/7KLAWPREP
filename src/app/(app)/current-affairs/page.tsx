@@ -118,11 +118,14 @@ export default function CurrentAffairsPage() {
     const query = searchQuery.toLowerCase();
     return days.filter((day) =>
       day.dayLabel.toLowerCase().includes(query) ||
+      (day.dailyBrief?.toLowerCase().includes(query) ?? false) ||
+      (day.sources?.some((source) => source.toLowerCase().includes(query)) ?? false) ||
       day.items.some(
         (item) =>
           item.category.toLowerCase().includes(query) ||
           item.headline.toLowerCase().includes(query) ||
-          item.detail.toLowerCase().includes(query)
+          item.detail.toLowerCase().includes(query) ||
+          item.source.toLowerCase().includes(query)
       )
     );
   }, [searchQuery]);
@@ -291,7 +294,9 @@ export default function CurrentAffairsPage() {
                     <Badge key={cat} variant="secondary" className="text-xs">{cat}</Badge>
                   ))}
                 </div>
-                <p className="text-sm text-muted-foreground line-clamp-2">{day.items[0]?.headline}</p>
+                <p className="text-sm text-muted-foreground line-clamp-3">
+                  {day.dailyBrief ?? day.items[0]?.headline ?? 'Daily updates across categories'}
+                </p>
               </CardContent>
             </Card>
           ))}
@@ -401,6 +406,13 @@ export default function CurrentAffairsPage() {
               </SheetHeader>
 
               <div className="py-6 space-y-4">
+                {selectedDaily.dailyBrief && (
+                  <div className="p-4 rounded-lg border bg-primary/5 border-primary/20">
+                    <h3 className="font-semibold text-sm text-primary mb-2">Newspaper Desk Brief</h3>
+                    <p className="text-sm leading-relaxed">{selectedDaily.dailyBrief}</p>
+                  </div>
+                )}
+
                 {selectedDaily.items.map((item, index) => (
                   <div key={`${selectedDaily.id}-${index}`} className="p-4 rounded-lg border bg-card">
                     <div className="flex items-center gap-2 mb-2">
@@ -408,8 +420,32 @@ export default function CurrentAffairsPage() {
                     </div>
                     <h4 className="font-semibold text-sm mb-2">{item.headline}</h4>
                     <p className="text-sm text-muted-foreground leading-relaxed">{item.detail}</p>
+                    <a
+                      href={item.sourceUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-3 inline-flex items-center gap-1 text-xs text-primary hover:underline"
+                    >
+                      <ExternalLink className="h-3 w-3" />
+                      Source: {item.source}
+                    </a>
                   </div>
                 ))}
+
+                <div className="p-4 rounded-lg border bg-muted/40">
+                  <h3 className="font-semibold text-sm mb-2">Reported In</h3>
+                  <ul className="space-y-1">
+                    {(selectedDaily.sources?.length
+                      ? selectedDaily.sources
+                      : [...new Set(selectedDaily.items.map((item) => item.source))]
+                    ).map((source, i) => (
+                      <li key={i} className="text-xs text-muted-foreground flex items-start gap-1">
+                        <ExternalLink className="h-3 w-3 mt-0.5" />
+                        <span>{source}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
 
               <div className="pt-4 border-t">
