@@ -4,11 +4,8 @@ import { useState, useMemo } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import {
-  BookOpen,
   Search,
   Star,
   Copy,
@@ -17,17 +14,22 @@ import {
   ChevronUp,
   Bookmark,
   FileText,
+  Menu,
+  X,
+  ArrowLeft,
   Lightbulb,
 } from "lucide-react";
 import { constitutionArticles, ConstitutionArticle } from "@/lib/constitution-articles-detailed";
 
 export default function ConstitutionPage() {
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeArticle, setActiveArticle] = useState<string>("coi-preamble");
+  const [activeArticle, setActiveArticle] = useState<ConstitutionArticle | null>(constitutionArticles[0]);
   const [expandedPoints, setExpandedPoints] = useState<Set<string>>(new Set());
   const [bookmarkedArticles, setBookmarkedArticles] = useState<Set<string>>(new Set());
   const [copiedId, setCopiedId] = useState<string | null>(null);
   const [selectedPart, setSelectedPart] = useState<string>("all");
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(typeof window !== "undefined" && window.innerWidth < 768);
 
   // Group articles by part
   const articlesByPart = useMemo(() => {
@@ -64,7 +66,6 @@ export default function ConstitutionPage() {
     return filtered;
   }, [searchQuery, selectedPart]);
 
-  const currentArticle = constitutionArticles.find((a) => a.id === activeArticle);
   const parts = Object.keys(articlesByPart).sort();
 
   const toggleExpandPoint = (pointId: string) => {
@@ -93,8 +94,264 @@ export default function ConstitutionPage() {
     setTimeout(() => setCopiedId(null), 2000);
   };
 
-  const bookmarkedItems = constitutionArticles.filter((a) => bookmarkedArticles.has(a.id));
+  const handleArticleSelect = (article: ConstitutionArticle) => {
+    setActiveArticle(article);
+    setMenuOpen(false);
+  };
 
+  const handleBack = () => {
+    setActiveArticle(null);
+    setMenuOpen(false);
+  };
+
+  // MOBILE VIEW - Article List
+  if (isMobile && !activeArticle) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+        {/* Mobile Header */}
+        <div className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+          <div className="p-4 space-y-3">
+            <div className="flex items-center justify-between">
+              <div>
+                <h1 className="text-lg font-bold text-slate-900">Constitution</h1>
+                <p className="text-xs text-slate-500">India - Full Reference</p>
+              </div>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="rounded-lg"
+              >
+                {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </Button>
+            </div>
+
+            {/* Search */}
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-slate-400" />
+              <Input
+                placeholder="Search articles..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 py-2 text-sm"
+              />
+            </div>
+
+            {/* Part Filter - Collapsible on mobile */}
+            {menuOpen && (
+              <div className="space-y-2">
+                <Button
+                  variant={selectedPart === "all" ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedPart("all")}
+                  className="w-full text-xs"
+                >
+                  All Parts
+                </Button>
+                <div className="grid grid-cols-2 gap-2">
+                  {parts.slice(0, 6).map((part) => (
+                    <Button
+                      key={part}
+                      variant={selectedPart === part ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setSelectedPart(part)}
+                      className="text-xs"
+                    >
+                      {part.split(" - ")[0].substring(0, 12)}
+                    </Button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Article List */}
+        <div className="p-4 space-y-2">
+          {filteredArticles.length > 0 ? (
+            filteredArticles.map((article) => (
+              <button
+                key={article.id}
+                onClick={() => handleArticleSelect(article)}
+                className="w-full p-3 rounded-lg bg-white border border-slate-200 text-left hover:border-blue-400 hover:bg-blue-50 transition-all"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <Badge variant="secondary" className="font-mono text-xs">
+                        {article.article}
+                      </Badge>
+                      {article.landmark && <Star className="h-3 w-3 text-yellow-500 flex-shrink-0" />}
+                    </div>
+                    <h3 className="font-semibold text-sm text-slate-900 mt-1 line-clamp-2">
+                      {article.title}
+                    </h3>
+                    <p className="text-xs text-slate-500 mt-1">{article.summary}</p>
+                  </div>
+                  <ChevronDown className="h-4 w-4 text-slate-400 flex-shrink-0 mt-1" />
+                </div>
+              </button>
+            ))
+          ) : (
+            <div className="text-center py-12">
+              <Search className="h-12 w-12 text-slate-300 mx-auto mb-2" />
+              <p className="text-sm text-slate-500">No articles found</p>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  }
+
+  // MOBILE VIEW - Article Details
+  if (isMobile && activeArticle) {
+    return (
+      <div className="min-h-screen bg-slate-50">
+        {/* Mobile Header */}
+        <div className="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+          <div className="p-4 flex items-center justify-between">
+            <div className="flex items-center gap-3 flex-1 min-w-0">
+              <Button variant="ghost" size="icon" onClick={handleBack} className="flex-shrink-0">
+                <ArrowLeft className="h-5 w-5" />
+              </Button>
+              <div className="min-w-0">
+                <Badge variant="secondary" className="font-mono text-xs mb-1">
+                  {activeArticle.article}
+                </Badge>
+                <h1 className="font-bold text-sm text-slate-900 line-clamp-1">
+                  {activeArticle.title}
+                </h1>
+              </div>
+            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => toggleBookmark(activeArticle.id)}
+              className="flex-shrink-0"
+            >
+              <Bookmark
+                className={`h-5 w-5 ${
+                  bookmarkedArticles.has(activeArticle.id)
+                    ? "text-purple-500 fill-purple-500"
+                    : "text-slate-400"
+                }`}
+              />
+            </Button>
+          </div>
+        </div>
+
+        {/* Article Content */}
+        <div className="p-4 space-y-4">
+          {/* Summary */}
+          <Card className="border-0 bg-white">
+            <CardContent className="p-4">
+              <p className="text-sm text-slate-700 leading-relaxed">{activeArticle.summary}</p>
+            </CardContent>
+          </Card>
+
+          {/* Full Text - Collapsible */}
+          <Card className="border-0 bg-white">
+            <CardHeader className="pb-2 cursor-pointer" onClick={() => toggleExpandPoint("fulltext")}>
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-base">Full Text</CardTitle>
+                {expandedPoints.has("fulltext") ? (
+                  <ChevronUp className="h-4 w-4" />
+                ) : (
+                  <ChevronDown className="h-4 w-4" />
+                )}
+              </div>
+            </CardHeader>
+            {expandedPoints.has("fulltext") && (
+              <CardContent className="pt-0">
+                <div className="p-3 rounded-lg bg-slate-50 text-xs leading-relaxed text-slate-800 whitespace-pre-wrap line-clamp-6">
+                  {activeArticle.fullText}
+                </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => copyToClipboard(activeArticle.fullText, activeArticle.id)}
+                  className="mt-2 w-full text-xs"
+                >
+                  {copiedId === activeArticle.id ? (
+                    <>
+                      <Check className="h-3 w-3 mr-1" /> Copied
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="h-3 w-3 mr-1" /> Copy Full Text
+                    </>
+                  )}
+                </Button>
+              </CardContent>
+            )}
+          </Card>
+
+          {/* Key Points - Collapsible */}
+          <Card className="border-0 bg-white">
+            <CardHeader className="pb-2 cursor-pointer" onClick={() => toggleExpandPoint("keypoints")}>
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-base flex items-center gap-2">
+                  <Lightbulb className="h-4 w-4 text-yellow-600" />
+                  Key Points
+                </CardTitle>
+                {expandedPoints.has("keypoints") ? (
+                  <ChevronUp className="h-4 w-4" />
+                ) : (
+                  <ChevronDown className="h-4 w-4" />
+                )}
+              </div>
+            </CardHeader>
+            {expandedPoints.has("keypoints") && (
+              <CardContent className="pt-0">
+                <div className="space-y-2">
+                  {activeArticle.keyPoints.map((point, idx) => (
+                    <div key={idx} className="p-2 rounded-lg bg-slate-50 text-xs text-slate-800">
+                      <div className="flex gap-2">
+                        <span className="text-yellow-600 flex-shrink-0">•</span>
+                        <p className="leading-relaxed">{point}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            )}
+          </Card>
+
+          {/* Related Articles */}
+          {activeArticle.relatedArticles.length > 0 && (
+            <Card className="border-0 bg-white">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-base">Related</CardTitle>
+              </CardHeader>
+              <CardContent className="pt-0">
+                <div className="flex flex-wrap gap-2">
+                  {activeArticle.relatedArticles.map((relatedId) => (
+                    <Button
+                      key={relatedId}
+                      variant="outline"
+                      size="sm"
+                      className="text-xs"
+                      onClick={() => {
+                        const related = constitutionArticles.find((a) => a.id.endsWith(relatedId));
+                        if (related) handleArticleSelect(related);
+                      }}
+                    >
+                      {relatedId}
+                    </Button>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          )}
+        </div>
+
+        {/* Bottom Padding for Safety */}
+        <div className="h-4" />
+      </div>
+    );
+  }
+
+  // DESKTOP VIEW - Original layout
   return (
     <div className="container mx-auto p-4 md:p-6 max-w-6xl">
       {/* Header */}
@@ -104,52 +361,10 @@ export default function ConstitutionPage() {
             <FileText className="h-6 w-6 text-blue-600" />
           </div>
           <div>
-            <h1 className="text-2xl md:text-3xl font-bold">Constitution of India - Full Reference</h1>
-            <p className="text-muted-foreground">Detailed explanation of all major Articles across 12 comprehensive iterations</p>
+            <h1 className="text-2xl md:text-3xl font-bold">Constitution of India</h1>
+            <p className="text-muted-foreground">Detailed explanation of major Articles</p>
           </div>
         </div>
-      </div>
-
-      {/* Quick Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
-        <Card className="bg-gradient-to-br from-blue-500/10 to-blue-500/5">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-2">
-              <FileText className="h-4 w-4 text-blue-600" />
-              <span className="text-sm text-muted-foreground">Articles</span>
-            </div>
-            <p className="text-2xl font-bold mt-1">{constitutionArticles.length}</p>
-          </CardContent>
-        </Card>
-        <Card className="bg-gradient-to-br from-purple-500/10 to-purple-500/5">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-2">
-              <Bookmark className="h-4 w-4 text-purple-600" />
-              <span className="text-sm text-muted-foreground">Bookmarked</span>
-            </div>
-            <p className="text-2xl font-bold mt-1">{bookmarkedArticles.size}</p>
-          </CardContent>
-        </Card>
-        <Card className="bg-gradient-to-br from-yellow-500/10 to-yellow-500/5">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-2">
-              <Star className="h-4 w-4 text-yellow-600" />
-              <span className="text-sm text-muted-foreground">Landmark</span>
-            </div>
-            <p className="text-2xl font-bold mt-1">
-              {constitutionArticles.filter((a) => a.landmark).length}
-            </p>
-          </CardContent>
-        </Card>
-        <Card className="bg-gradient-to-br from-green-500/10 to-green-500/5">
-          <CardContent className="p-4">
-            <div className="flex items-center gap-2">
-              <Lightbulb className="h-4 w-4 text-green-600" />
-              <span className="text-sm text-muted-foreground">Parts</span>
-            </div>
-            <p className="text-2xl font-bold mt-1">{parts.length}</p>
-          </CardContent>
-        </Card>
       </div>
 
       {/* Search and Filters */}
@@ -183,11 +398,6 @@ export default function ConstitutionPage() {
               {part.split(" - ")[0]}
             </Button>
           ))}
-          {parts.length > 8 && (
-            <Button variant="outline" size="sm" className="text-xs">
-              +{parts.length - 8} more
-            </Button>
-          )}
         </div>
       </div>
 
@@ -196,39 +406,36 @@ export default function ConstitutionPage() {
         <div className="md:col-span-1 md:sticky md:top-4 md:h-fit">
           <Card className="border-blue-200/30">
             <CardHeader className="pb-2">
-              <CardTitle className="text-base">Articles Index</CardTitle>
-              <CardDescription className="text-xs">Found {filteredArticles.length} articles</CardDescription>
+              <CardTitle className="text-base">Articles ({filteredArticles.length})</CardTitle>
             </CardHeader>
             <CardContent>
-              <ScrollArea className="h-[500px]">
-                <div className="space-y-1 pr-4">
-                  {filteredArticles.map((article) => (
-                    <button
-                      key={article.id}
-                      onClick={() => setActiveArticle(article.id)}
-                      className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
-                        activeArticle === article.id
-                          ? "bg-blue-500/20 text-blue-700 font-semibold"
-                          : "hover:bg-slate-100 text-slate-700"
-                      }`}
-                    >
-                      <div className="flex items-start justify-between gap-2">
-                        <div className="flex-1">
-                          <div className="font-mono text-xs text-muted-foreground">{article.article}</div>
-                          <div className="text-sm font-medium line-clamp-2">{article.title}</div>
-                        </div>
-                        {article.landmark && <Star className="h-3 w-3 text-yellow-500 flex-shrink-0 mt-1" />}
+              <div className="space-y-1">
+                {filteredArticles.map((article) => (
+                  <button
+                    key={article.id}
+                    onClick={() => handleArticleSelect(article)}
+                    className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                      activeArticle?.id === article.id
+                        ? "bg-blue-500/20 text-blue-700 font-semibold"
+                        : "hover:bg-slate-100 text-slate-700"
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-2">
+                      <div>
+                        <div className="font-mono text-xs text-muted-foreground">{article.article}</div>
+                        <div className="font-medium line-clamp-2">{article.title}</div>
                       </div>
-                    </button>
-                  ))}
-                </div>
-              </ScrollArea>
+                      {article.landmark && <Star className="h-3 w-3 text-yellow-500 flex-shrink-0 mt-1" />}
+                    </div>
+                  </button>
+                ))}
+              </div>
             </CardContent>
           </Card>
         </div>
 
         {/* Article Detail */}
-        {currentArticle && (
+        {activeArticle && (
           <div className="md:col-span-2 space-y-6">
             {/* Article Header */}
             <Card className="bg-gradient-to-br from-blue-500/10 to-slate-500/5">
@@ -237,52 +444,37 @@ export default function ConstitutionPage() {
                   <div>
                     <div className="flex items-center gap-2 mb-2">
                       <Badge variant="secondary" className="font-mono text-base px-3 py-1">
-                        {currentArticle.article}
+                        {activeArticle.article}
                       </Badge>
-                      {currentArticle.landmark && (
+                      {activeArticle.landmark && (
                         <Badge className="bg-yellow-500/20 text-yellow-700 hover:bg-yellow-500/30">
                           <Star className="h-3 w-3 mr-1" /> Landmark
                         </Badge>
                       )}
                     </div>
-                    <CardTitle className="text-2xl">{currentArticle.title}</CardTitle>
+                    <CardTitle className="text-2xl">{activeArticle.title}</CardTitle>
                     <CardDescription className="text-sm mt-2 text-slate-700">
-                      <strong>Part:</strong> {currentArticle.part}
+                      <strong>Part:</strong> {activeArticle.part}
                     </CardDescription>
                   </div>
 
-                  <div className="flex gap-1 flex-shrink-0">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => toggleBookmark(currentArticle.id)}
-                      title="Bookmark this article"
-                    >
-                      <Bookmark
-                        className={`h-5 w-5 ${
-                          bookmarkedArticles.has(currentArticle.id)
-                            ? "text-purple-500 fill-purple-500"
-                            : "text-muted-foreground"
-                        }`}
-                      />
-                    </Button>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => copyToClipboard(currentArticle.fullText, currentArticle.id)}
-                      title="Copy full text"
-                    >
-                      {copiedId === currentArticle.id ? (
-                        <Check className="h-5 w-5 text-green-500" />
-                      ) : (
-                        <Copy className="h-5 w-5 text-muted-foreground" />
-                      )}
-                    </Button>
-                  </div>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => toggleBookmark(activeArticle.id)}
+                  >
+                    <Bookmark
+                      className={`h-5 w-5 ${
+                        bookmarkedArticles.has(activeArticle.id)
+                          ? "text-purple-500 fill-purple-500"
+                          : "text-muted-foreground"
+                      }`}
+                    />
+                  </Button>
                 </div>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-slate-700 leading-relaxed">{currentArticle.summary}</p>
+                <p className="text-sm text-slate-700 leading-relaxed">{activeArticle.summary}</p>
               </CardContent>
             </Card>
 
@@ -294,9 +486,25 @@ export default function ConstitutionPage() {
               <CardContent>
                 <div className="p-4 rounded-lg bg-slate-50 border border-slate-200">
                   <p className="text-sm leading-relaxed whitespace-pre-wrap text-slate-800">
-                    {currentArticle.fullText}
+                    {activeArticle.fullText}
                   </p>
                 </div>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => copyToClipboard(activeArticle.fullText, activeArticle.id)}
+                  className="mt-2"
+                >
+                  {copiedId === activeArticle.id ? (
+                    <>
+                      <Check className="h-4 w-4 mr-2" /> Copied
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="h-4 w-4 mr-2" /> Copy
+                    </>
+                  )}
+                </Button>
               </CardContent>
             </Card>
 
@@ -305,50 +513,18 @@ export default function ConstitutionPage() {
               <CardHeader>
                 <CardTitle className="text-lg flex items-center gap-2">
                   <Lightbulb className="h-5 w-5 text-yellow-600" />
-                  Key Points &amp; Implications
+                  Key Points
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
-                  {currentArticle.keyPoints.map((point, idx) => {
-                    const pointId = `${currentArticle.id}-point-${idx}`;
-                    const isExpanded = expandedPoints.has(pointId);
-                    const isLong = point.length > 100;
-
+                  {activeArticle.keyPoints.map((point, idx) => {
+                    const pointId = `${activeArticle.id}-point-${idx}`;
                     return (
-                      <div key={pointId} className="p-3 rounded-lg bg-slate-50 border border-slate-200">
-                        <div
-                          className={`flex items-start gap-2 cursor-pointer ${isLong ? "" : ""}`}
-                          onClick={() => isLong && toggleExpandPoint(pointId)}
-                        >
-                          <div className="text-yellow-600 mt-1">•</div>
-                          <div className="flex-1">
-                            <p
-                              className={`text-sm leading-relaxed ${
-                                isLong && !isExpanded ? "line-clamp-2" : ""
-                              }`}
-                            >
-                              {point}
-                            </p>
-                            {isLong && (
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="mt-1 h-auto p-0 text-xs text-blue-600"
-                                onClick={() => toggleExpandPoint(pointId)}
-                              >
-                                {isExpanded ? (
-                                  <>
-                                    <ChevronUp className="h-3 w-3 mr-1" /> Show less
-                                  </>
-                                ) : (
-                                  <>
-                                    <ChevronDown className="h-3 w-3 mr-1" /> Show more
-                                  </>
-                                )}
-                              </Button>
-                            )}
-                          </div>
+                      <div key={pointId} className="p-3 rounded-lg bg-slate-50">
+                        <div className="flex items-start gap-2">
+                          <span className="text-yellow-600 mt-1">•</span>
+                          <p className="text-sm text-slate-800 leading-relaxed">{point}</p>
                         </div>
                       </div>
                     );
@@ -358,46 +534,25 @@ export default function ConstitutionPage() {
             </Card>
 
             {/* Related Articles */}
-            {currentArticle.relatedArticles.length > 0 && (
+            {activeArticle.relatedArticles.length > 0 && (
               <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">Related Articles</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
-                    {currentArticle.relatedArticles.map((relatedId) => {
-                      const relatedArticle = constitutionArticles.find((a) => a.id.endsWith(relatedId));
-                      if (!relatedArticle) return null;
-
-                      return (
-                        <Button
-                          key={relatedId}
-                          variant="outline"
-                          size="sm"
-                          onClick={() => setActiveArticle(relatedArticle.id)}
-                          className="text-xs cursor-pointer hover:bg-blue-50"
-                        >
-                          {relatedId}
-                        </Button>
-                      );
-                    })}
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-
-            {/* Exam Info */}
-            {currentArticle.exams.length > 0 && (
-              <Card className="bg-gradient-to-br from-purple-500/10 to-purple-500/5">
-                <CardHeader>
-                  <CardTitle className="text-lg">Exam Relevance</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-2">
-                    {currentArticle.exams.map((exam) => (
-                      <Badge key={exam} variant="secondary" className="bg-purple-500/20 text-purple-700">
-                        {exam}
-                      </Badge>
+                    {activeArticle.relatedArticles.map((relatedId) => (
+                      <Button
+                        key={relatedId}
+                        variant="outline"
+                        size="sm"
+                        onClick={() => {
+                          const related = constitutionArticles.find((a) => a.id.endsWith(relatedId));
+                          if (related) handleArticleSelect(related);
+                        }}
+                      >
+                        {relatedId}
+                      </Button>
                     ))}
                   </div>
                 </CardContent>
@@ -406,32 +561,6 @@ export default function ConstitutionPage() {
           </div>
         )}
       </div>
-
-      {/* Bookmarked Articles Section */}
-      {bookmarkedItems.length > 0 && (
-        <Card className="mt-8 bg-gradient-to-br from-purple-500/10 to-purple-500/5">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-lg flex items-center gap-2">
-              <Bookmark className="h-5 w-5 text-purple-600" />
-              Bookmarked Articles ({bookmarkedItems.length})
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap gap-2">
-              {bookmarkedItems.map((item) => (
-                <Badge
-                  key={item.id}
-                  variant="secondary"
-                  className="cursor-pointer hover:bg-purple-500/20 bg-purple-500/10"
-                  onClick={() => setActiveArticle(item.id)}
-                >
-                  {item.article} - {item.title.substring(0, 20)}...
-                </Badge>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
     </div>
   );
 }
