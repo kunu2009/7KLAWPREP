@@ -14,6 +14,7 @@ import RevisionDashboard from '@/components/revision-dashboard';
 import { trackEvent } from '@/lib/analytics';
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { useCourse } from "@/context/course-context";
 
 const motivationalQuotes = [
   { quote: "The law is reason, free from passion.", author: "Aristotle" },
@@ -30,6 +31,7 @@ export default function DashboardPage() {
     const [searchQuery, setSearchQuery] = useState('');
     const [mounted, setMounted] = useState(false);
     const { zenMode } = useFeatureToggles();
+    const { courseConfig } = useCourse();
     const { currentStreak, longestStreak, attempted, correct, isClient, getWeakestTopics } = useProgress();
     const { isRevisionMode } = useRevisionMode();
 
@@ -149,8 +151,8 @@ export default function DashboardPage() {
                 <p className="text-xs text-muted-foreground">{new Date().toLocaleDateString(undefined, { day: '2-digit', month: 'short' })}</p>
                 <div className="flex items-center justify-between gap-3">
                     <div>
-                        <h1 className="text-xl sm:text-2xl font-bold tracking-tight">Hi, Aspirant</h1>
-                        <p className="text-sm text-muted-foreground">Let&apos;s make today count.</p>
+                        <h1 className="text-xl sm:text-2xl font-bold tracking-tight">Hi, {courseConfig.shortLabel} Aspirant</h1>
+                        <p className="text-sm text-muted-foreground">{courseConfig.description}</p>
                     </div>
                     {isClient && (
                         <div className="flex items-center gap-2 rounded-full border bg-card px-3 py-1.5">
@@ -165,7 +167,7 @@ export default function DashboardPage() {
                         <Input
                             value={searchQuery}
                             onChange={(event) => setSearchQuery(event.target.value)}
-                            placeholder="Search notes, reels, drills, assistant..."
+                            placeholder={`Search ${courseConfig.shortLabel.toLowerCase()} notes, reels, drills, assistant...`}
                             className="h-11 rounded-xl pl-9"
                         />
                     </div>
@@ -201,9 +203,9 @@ export default function DashboardPage() {
                 <CardHeader className="pb-2 sm:pb-3">
                     <CardTitle className="text-base flex items-center gap-2">
                         <Target className="h-4 w-4 text-primary" />
-                        What would you like to learn today?
+                            What would you like to learn today?
                     </CardTitle>
-                    <CardDescription className="text-xs sm:text-sm">Recommended flow: warm-up MCQs → focused drill → review mistakes.</CardDescription>
+                    <CardDescription className="text-xs sm:text-sm">{courseConfig.shortLabel} flow: warm-up MCQs → focused drill → review mistakes.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">

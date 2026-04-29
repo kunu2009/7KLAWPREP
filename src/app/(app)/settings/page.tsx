@@ -6,9 +6,10 @@ import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { useFeatureToggles, SectionToggleKey } from "@/context/feature-toggles";
-import { ArrowUp, ArrowDown, EyeOff, User } from "lucide-react";
+import { ArrowUp, ArrowDown, EyeOff, User, BookOpenCheck } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useTheme } from "next-themes";
+import { useCourse, COURSE_OPTIONS } from "@/context/course-context";
 import {
   AppCustomization,
   DEFAULT_APP_CUSTOMIZATION,
@@ -39,6 +40,7 @@ const SECTION_COPY: Record<SectionToggleKey, { title: string; description: strin
 export default function SettingsPage() {
   const { theme, setTheme } = useTheme();
   const { sections, sectionOrder, zenMode, profile, updateSection, reorderSections, toggleZenMode, updateProfile, resetSections } = useFeatureToggles();
+  const { course, courseConfig, setCourse } = useCourse();
   const [customization, setCustomization] = React.useState<AppCustomization>(DEFAULT_APP_CUSTOMIZATION);
 
   React.useEffect(() => {
@@ -180,6 +182,27 @@ export default function SettingsPage() {
           <CardDescription>Manage your focus and study environment.</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <div className="p-2 bg-muted rounded-full">
+                <BookOpenCheck className="h-5 w-5" />
+              </div>
+              <div>
+                <p className="text-sm font-medium leading-none">Course Mode</p>
+                <p className="text-sm text-muted-foreground">Active: {courseConfig.label}. Switch between CLAT and MHCET 5-year LLB views.</p>
+              </div>
+            </div>
+            <Select value={course} onValueChange={(v) => setCourse(v as keyof typeof COURSE_OPTIONS)}>
+              <SelectTrigger className="w-[190px]">
+                <SelectValue placeholder="Choose course" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="clat">{COURSE_OPTIONS.clat.label}</SelectItem>
+                <SelectItem value="mhcet">{COURSE_OPTIONS.mhcet.label}</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <Separator />
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-4">
               <div className="p-2 bg-muted rounded-full">

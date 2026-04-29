@@ -6,8 +6,12 @@ import { RevisionModeBanner } from "@/components/revision-mode-banner";
 import { ReactNode } from "react";
 import { GlobalCommandLauncher } from "@/components/global-command-launcher";
 import { MobileBottomNav } from "@/components/mobile-bottom-nav";
+import { CourseProvider, useCourse } from "@/context/course-context";
+import { CourseSelectionGate } from "@/components/course-selection-gate";
 
-export default function AppLayout({ children }: { children: ReactNode }) {
+function AppShell({ children }: { children: ReactNode }) {
+  const { courseConfig } = useCourse();
+
   return (
     <SidebarProvider>
       <Sidebar collapsible="icon">
@@ -15,12 +19,13 @@ export default function AppLayout({ children }: { children: ReactNode }) {
       </Sidebar>
       <FeatureToggleProvider>
         <RevisionModeProvider>
+          <CourseSelectionGate />
           <SidebarInset className="flex flex-col min-w-0">
             <RevisionModeBanner />
             <header className="sticky top-0 z-10 flex h-12 sm:h-14 items-center justify-between gap-3 border-b bg-background/90 px-3 sm:px-6 backdrop-blur-sm">
               <div className="flex items-center gap-3">
                 <SidebarTrigger className="md:hidden" />
-                <h1 className="text-base sm:text-lg font-semibold">LawPrep Sprint</h1>
+                <h1 className="text-base sm:text-lg font-semibold">LawPrep Sprint · {courseConfig.shortLabel}</h1>
               </div>
               <GlobalCommandLauncher />
             </header>
@@ -30,5 +35,13 @@ export default function AppLayout({ children }: { children: ReactNode }) {
         </RevisionModeProvider>
       </FeatureToggleProvider>
     </SidebarProvider>
+  );
+}
+
+export default function AppLayout({ children }: { children: ReactNode }) {
+  return (
+    <CourseProvider>
+      <AppShell>{children}</AppShell>
+    </CourseProvider>
   );
 }

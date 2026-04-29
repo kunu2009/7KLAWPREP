@@ -40,6 +40,7 @@ import {
 } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
 import { trackEvent } from "@/lib/analytics";
+import { useCourse } from "@/context/course-context";
 
 const learnItems = [
   { href: "/start-here", label: "Start Here", icon: Compass },
@@ -79,6 +80,7 @@ const moreItems = [
 export function AppSidebar() {
   const pathname = usePathname();
   const { toggleSidebar } = useSidebar();
+  const { courseConfig } = useCourse();
 
   const handleToolClick = (href: string, section: string) => {
     trackEvent("home_tool_hop", { destination: href, section });
@@ -105,6 +107,9 @@ export function AppSidebar() {
           <Scale className="size-6 text-primary" />
           <h1 className="text-lg font-semibold group-data-[collapsible=icon]:hidden">LawPrep Sprint</h1>
         </div>
+        <p className="px-2 text-xs text-muted-foreground group-data-[collapsible=icon]:hidden">
+          {courseConfig.label}
+        </p>
       </SidebarHeader>
       <SidebarContent>
         <SidebarMenu>
